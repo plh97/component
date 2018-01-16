@@ -1,0 +1,15 @@
+{
+  "name": "@peng/component",
+  "version": "1.0.0",
+  "description": "do some component for company",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "parcel src/index.js",
+    "b": "rollup ./src/index.js --o ./dist/index.js --f iife"
+  },
+  "keywords": [
+    "kingubo"
+  ],
+  "author": "pengliheng",
+  "license": "ISC"
+}
