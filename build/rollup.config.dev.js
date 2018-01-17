@@ -8,7 +8,7 @@ export default {
     output: {
         file: 'dist/index.js',
         format: 'cjs',
-        name: 'component',
+        name: 'Component',
     },
     plugins: [
         resolve(),
