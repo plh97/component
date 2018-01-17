@@ -1,9 +1,45 @@
-// @import 
+@import './assets/common/common.less';
+
 
 .component-btn {
-	border: 2px solid red;
+	outline: none;
+	cursor: pointer;
+	touch-action: manipulation;
+	height: 32px;
+	font-weight: 400;
+	font-size: 14px;
+	user-select: none;
+	padding: 0px 15px;
+	border-radius: 4px;
+	white-space: nowrap;
+	display: inline-flex;
+	background-color: #fff;
+	border: 1px solid @grey3; 
+	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+	&:hover {
+		color: @lightBlue4;
+		border: 1px solid @lightBlue4; 
+	}
+
+	&:active {
+		color: @lightBlue8;
+		border: 1px solid @lightBlue8; 
+	}
 
 	&.btn-primary {
-		background-color: blue;
+		color: #fff;
+		border: 1px solid @lightBlue6; 
+		background-color: @lightBlue6;
+
+		&:hover {
+			background-color: @lightBlue4;
+			border: 1px solid @lightBlue4; 
+		}
+		
+		&:active {
+			background-color: @lightBlue8;
+			border: 1px solid @lightBlue8; 
+		}
 	}
 }

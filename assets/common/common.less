@@ -1,0 +1,364 @@
+// light-blue
+@lightBlue0: #e1f5fe;
+@lightBlue1: #b3e5fc;
+@lightBlue2: #81d4fa;
+@lightBlue3: #4fc3f7;
+@lightBlue4: #29b6f6;
+@lightBlue5: #03a9f4;
+@lightBlue6: #039be5;
+@lightBlue7: #0288d1;
+@lightBlue8: #0277bd;
+@lightBlue9: #01579b;
+
+// grey
+@grey0: #fafafa;
+@grey1: #f5f5f5;
+@grey2: #eeeeee;
+@grey3: #e0e0e0;
+@grey4: #bdbdbd;
+@grey5: #9e9e9e;
+@grey6: #757575;
+@grey7: #616161;
+@grey8: #424242;
+@grey9: #212121;
+
+@platform: #eb854d;
+@platform1: #eba077;
+@platform2: #ffc8ab;
+@education: #5DDAA6;
+@education1: #38c78c;
+@lock: #5BB2EF;
+@lock1: #3e97d6;
+@daocheng-red: #ca1523;
+
+.border{
+	&.platform{
+		background-color: @platform;
+	}
+	&.education{
+		background-color: @education;
+	}
+	&.lock{
+		background-color: @lock;
+	}
+}
+
+@font-face {
+  font-family: "Reem Kufi";
+  src: url("../../assets/font/a.woff");
+}
+
+.iconfont {
+	display: inline-flex;
+	align-items: center;
+	flex-direction: row;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, 
+dl, dt, dd, ul, ol, li, pre, form, fieldset, 
+legend, button, input, textarea, th, td { 
+	margin:0; 
+	padding:0; 
+}
+body, button, input, select, textarea {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	box-sizing: border-box;
+	font-size: 24px / 1.5 ;
+	// color:#000;
+}
+h1, h2, h3, h4, h5, h6{
+	// font-size:100%;
+}
+
+pre[class*="language-"]{
+	padding: 0.7em;
+}
+// code{
+// 	overflow: scroll;
+// 	max-width: 100%;
+//     display: inline-block;
+// }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:Consolas,Menlo,Courier,monospace }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { 
+	// text-decoration:none; 
+	color: #c97373;
+}
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+
+/* 设置滚动条的样式 */
+// ::-webkit-scrollbar {
+// 	width: 8px;
+// 	height: 0px;
+// 	&:end {
+// 	    display: none;
+// 	}
+// }
+// /* 滚动槽 */
+// ::-webkit-scrollbar-track {
+// 	background-color: rgba(0, 0, 0, 0);
+// }
+// /* 滚动条滑块 */
+// ::-webkit-scrollbar-thumb {
+//     background-color: rgba(0, 0, 0, 0.5);
+//     border-radius: 4px;
+//     &:end {
+//         display: none;
+//     }
+// }
+// ::-webkit-scrollbar-thumb:window-inactive {
+// 	background-color: rgba(0, 0, 0, 0.5);
+// }
+
+
+
+@keyframes bigger {
+	from {
+		transform: scale(1);
+	}
+
+	to {
+		transform: scale(1.2);
+	}
+}
+
+@keyframes upper {
+	from {
+		transform: translate(0,-20px);
+	}
+
+	to {
+		transform: translate(0);
+	}
+}
+
+@keyframes smaller {
+	from {
+		transform: scale(1.2);
+	}
+
+	to {
+		transform: scale(1);
+	}
+}
+
+.join-us-icon{
+	width: 126px;
+	height: 30px;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: stretch;
+	flex-direction: row;
+	justify-content: space-between;
+	border: 1px solid @daocheng-red;
+
+	.icon-get-more {
+		display: inline-flex;
+		justify-content: center;
+		width: 30px;
+		background-color: @daocheng-red;
+		color: #fff;
+	}
+	.content {
+		font-size: 1.2rem;
+		flex: 1;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&:hover {
+		.icon-get-more {
+			background-color: #fff;
+			color: @daocheng-red;
+		}
+		.content {
+			background-color: @daocheng-red;
+			color: #fff;
+			
+		}
+	}
+}
+
+// .icon-get-more {
+// 	width: 126px;
+// 	height: 40px;
+// 	cursor: pointer;
+// 	color: #e24647;
+// 	font-size: 1.3rem;
+// 	position: relative;
+// 	padding-left: 40px;
+// 	display: inline-flex;
+// 	justify-content: center;
+// 	border: 1px solid @daocheng-red;
+
+// 	&::before {
+// 		width: 30vw;
+// 		left: 0px;
+// 		height: 98%;
+// 		color: #f5f5f5;
+// 		max-width: 40px;
+// 		position: absolute;
+// 		align-items: center;
+// 		display: inline-flex;
+// 		justify-content: center;
+// 		background-color: @daocheng-red;
+// 	}
+
+// 	&:hover{
+// 		color: #f5f5f5;
+// 		background-color: @daocheng-red;
+
+// 		&::before {
+// 			// height: 37px;
+// 			color: @daocheng-red;
+// 			background-color: #f5f5f5;
+// 		}
+// 	}
+// }
+
+.icon-circle {
+	width: 19px;
+	height: 19px;
+	align-items: center;
+	border-radius: 100%;
+	display: inline-flex;
+	justify-content: center;
+
+	&.yellow {
+		background: linear-gradient(to top right, #cca235, #feeb3f);
+	}
+
+	&.blue {
+		background: linear-gradient(to top right, #63b4cc, #8af6f9);
+	}
+
+	&.red {
+		background: linear-gradient(to top right, #e74642, #fda283);
+	}
+}
+
+svg{
+	&.icon{
+		/* 通过设置 font-size 来改变图标大小 */
+		width: 1em; height: 1em;
+		/* 图标和文字相邻时，垂直对齐 */
+		vertical-align: -0.15em;
+		/* 通过设置 color 来改变 SVG 的颜色/fill */
+		fill: currentColor;
+		/* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
+		   normalize.css 中也包含这行 */
+		overflow: hidden;
+	}
+}
+
+.education-background {
+	background-color: @education;
+}
+
+.lock-background {
+	background-color: @lock;
+}
+
+.platform-background {
+	background-color: @platform;
+}
+
+.back-to-top{
+	right: 5%;
+	bottom: 5%;
+	cursor: pointer;
+	position: fixed;
+	background-color: rgba(0,0,0,0);
+
+	i{
+		font-size: 5rem;
+		color: @grey4;
+	}
+}
+
+@keyframes scroll-lower {
+	from {
+		background-color: rgba(255, 255, 255, 0);
+		color: #fff;
+	}
+
+	to {
+		background-color: rgba(255, 255, 255, 1);
+		color: #000;
+	}
+}
+@keyframes scroll-top {
+	from {
+		background-color: rgba(255, 255, 255, 1);
+		color: #000;
+	}
+
+	to {
+		background-color: rgba(255, 255, 255, 0);
+		color: #fff;
+	}
+}
+
+@keyframes scale-left {
+	from {
+		transform: scale(0);
+		left: 25%;
+	}
+
+	to {
+		transform: scale(1);
+		left: 0%;
+	}
+}
+
+@keyframes scale-left2 {
+	from {
+		opacity: 0;
+		transform: scale(0);
+		left: 50%;
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+		left: 0%;
+	}
+}
+
+@keyframes scale-right {
+	from {
+		transform: scale(0);
+		right: 25%;
+	}
+
+	to {
+		transform: scale(1);
+		right: 0%;
+	}
+}
+
+@keyframes scale-right2 {
+	from {
+		opacity: 0;
+		transform: scale(0);
+		right: 50%;
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+		right: 0%;
+	}
+}

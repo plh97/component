@@ -12,9 +12,7 @@ export default {
     },
     plugins: [
         resolve(),
-        postcss({
-            plugins: []
-        }),
+        postcss(),
         babel({
             exclude: 'node_modules/**'
         }),

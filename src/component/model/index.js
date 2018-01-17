@@ -11,31 +11,39 @@ const model = args => {
     mask.innerHTML = `
         <div class="component-model">
             <div class="component-model-header">
-                <span>Basic Model</span>
-                <span>X</span>
+                <span class="title">Basic Model</span>
+                <span class="btn-close">X</span>
             </div>
             <div class="component-model-body">${content}</div>
             <div class="component-model-footer">
                 ${Button({
-                    className:"return"
+                    className:"return",
+                    text:"返回"
                 }).outerHTML}
-                <button class="component-btn return">返回</button>
-                <button class="component-btn confirm btn-primary">确认</button>
+                &nbsp;
+                &nbsp;
+                ${Button({
+                    className:"confirm btn-primary",
+                    text:"确认"
+                }).outerHTML}
             </div>
         </div>
     `;
-    console.log(
-        'button',Button.outerHTML
-    );
     mask.addEventListener('click',e=>{
         e.stopPropagation()
         // e.preventDefault()
         // return false
+
+        if(
+            e.path[0].classList.contains('component-mask')
+        ){
+            mask.remove()
+            $('body').style.overflow = "auto";
+        }
 	},false)
 	let btns = mask.querySelectorAll('.component-model button');
     btns.forEach(dom=>{
         dom.addEventListener('click',()=>{
-            console.log(dom.innerHTML)
             mask.remove()
             $('body').style.overflow = "auto";
         })
