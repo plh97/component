@@ -1,4 +1,4 @@
-var $ = function (n) {
+let $ = function (n) {
 	return document.querySelector(n);
 };
 

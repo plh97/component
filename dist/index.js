@@ -1,209 +1,96 @@
-// modules are defined as an array
-// [ module function, map of requires ]
-//
-// map of requires is short require name -> numeric require
-//
-// anything defined in a previous bundle is accessed via the
-// orig method which is the require for previous bundles
+'use strict';
 
-// eslint-disable-next-line no-global-assign
-require = (function (modules, cache, entry) {
-  // Save the require from previous bundle to this closure if any
-  var previousRequire = typeof require === "function" && require;
+function __$$styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
 
-  function newRequire(name, jumped) {
-    if (!cache[name]) {
-      if (!modules[name]) {
-        // if we cannot find the module within our internal map or
-        // cache jump to the current global require ie. the last bundle
-        // that was added to the page.
-        var currentRequire = typeof require === "function" && require;
-        if (!jumped && currentRequire) {
-          return currentRequire(name, true);
-        }
+  if (!css || typeof document === 'undefined') { return; }
 
-        // If there are other bundles on this page the require from the
-        // previous one is saved to 'previousRequire'. Repeat this as
-        // many times as there are bundles until the module is found or
-        // we exhaust the require chain.
-        if (previousRequire) {
-          return previousRequire(name, true);
-        }
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
 
-        var err = new Error('Cannot find module \'' + name + '\'');
-        err.code = 'MODULE_NOT_FOUND';
-        throw err;
-      }
-      
-      localRequire.resolve = resolve;
-
-      var module = cache[name] = new newRequire.Module;
-
-      modules[name][0].call(module.exports, localRequire, module, module.exports);
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
     }
-
-    return cache[name].exports;
-
-    function localRequire(x){
-      return newRequire(localRequire.resolve(x));
-    }
-
-    function resolve(x){
-      return modules[name][1][x] || x;
-    }
+  } else {
+    head.appendChild(style);
   }
 
-  function Module() {
-    this.bundle = newRequire;
-    this.exports = {};
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
   }
-
-  newRequire.Module = Module;
-  newRequire.modules = modules;
-  newRequire.cache = cache;
-  newRequire.parent = previousRequire;
-
-  for (var i = 0; i < entry.length; i++) {
-    newRequire(entry[i]);
-  }
-
-  // Override the current require with this new one
-  return newRequire;
-})({1:[function(require,module,exports) {
-class Component {
-    static init(args){
-        const {
-            dom
-        } = args;
-        Component.dom = dom
-    }
-    static model(){
-        const {
-            dom
-        } = Component;
-        console.log(dom);
-    }
 }
 
-// module.exports = Component;
+var $ = function $(n) {
+	return document.querySelector(n);
+};
 
-},{}],0:[function(require,module,exports) {
-var global = (1, eval)('this');
-var OldModule = module.bundle.Module;
-function Module() {
-  OldModule.call(this);
-  this.hot = {
-    accept: function (fn) {
-      this._acceptCallback = fn || function () {};
-    },
-    dispose: function (fn) {
-      this._disposeCallback = fn;
+var index = 42;
+
+var css = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  background-color: rgba(0, 0, 0, 0.6);\n}\n.component-mask .component-model {\n  top: 16vh;\n  width: 100%;\n  height: 220px;\n  position: absolute;\n  max-width: 520px;\n  border-radius: 4px;\n  background-color: #fff;\n  background-clip: padding-box;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.component-mask .component-model .component-model-header {\n  padding: 0 24px;\n  height: 16px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  color: rgba(0, 0, 0, 0.65);\n  border-bottom: 1px solid #e8e8e8;\n}\n.component-mask .component-model .component-model-body {\n  padding: 24px;\n  font-size: 14px;\n}\n";
+__$$styleInject(css);
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
     }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
   };
-}
+}();
 
-module.bundle.Module = Module;
+var Component = function () {
+    function Component() {
+        classCallCheck(this, Component);
+    }
 
-if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':54716/');
-  ws.onmessage = function(event) {
-    var data = JSON.parse(event.data);
+    createClass(Component, null, [{
+        key: 'model',
+        value: function model(args) {
+            var content = args.content;
 
-    if (data.type === 'update') {
-      data.assets.forEach(function (asset) {
-        hmrApply(global.require, asset);
-      });
-
-      data.assets.forEach(function (asset) {
-        if (!asset.isNew) {
-          hmrAccept(global.require, asset.id);
+            console.log('the answer is ' + index);
+            var mask = document.createElement('div');
+            mask.className = 'component-mask';
+            mask.innerHTML = '\n            <div class="component-model">\n                <div class="component-model-header">\n                    <span>Basic Model</span>\n                    <span>X</span>\n                </div>\n                <div class="component-model-body">' + content + '</div>\n                <div class="component-model-footer">\n                    <button class="component-btn return">\u8FD4\u56DE</button>\n                    <button class="component-btn confirm ant-btn-primary">\u786E\u8BA4</button>\n                </div>\n            </div>\n        ';
+            mask.addEventListener('click', function (e) {
+                e.stopPropagation();
+                // e.preventDefault() 
+                // return false
+            }, false);
+            mask.querySelectorAll('.model button').forEach(function (dom) {
+                dom.addEventListener('click', function () {
+                    console.log(dom.innerHTML);
+                    mask.remove();
+                    $('body').style.overflow = "auto";
+                });
+            });
+            $('body').style.overflow = "hidden";
+            $('body').append(mask);
         }
-      });
-    }
+    }]);
+    return Component;
+}();
 
-    if (data.type === 'reload') {
-      ws.close();
-      ws.onclose = function () {
-        window.location.reload();
-      }
-    }
-
-    if (data.type === 'error-resolved') {
-      console.log('[parcel] ✨ Error resolved');
-    }
-
-    if (data.type === 'error') {
-      console.error('[parcel] 🚨  ' + data.error.message + '\n' + 'data.error.stack');
-    }
-  };
-}
-
-function getParents(bundle, id) {
-  var modules = bundle.modules;
-  if (!modules) {
-    return [];
-  }
-
-  var parents = [];
-  var k, d, dep;
-
-  for (k in modules) {
-    for (d in modules[k][1]) {
-      dep = modules[k][1][d];
-      if (dep === id || (Array.isArray(dep) && dep[dep.length - 1] === id)) {
-        parents.push(+k);
-      }
-    }
-  }
-
-  if (bundle.parent) {
-    parents = parents.concat(getParents(bundle.parent, id));
-  }
-
-  return parents;
-}
-
-function hmrApply(bundle, asset) {
-  var modules = bundle.modules;
-  if (!modules) {
-    return;
-  }
-
-  if (modules[asset.id] || !bundle.parent) {
-    var fn = new Function('require', 'module', 'exports', asset.generated.js);
-    asset.isNew = !modules[asset.id];
-    modules[asset.id] = [fn, asset.deps];
-  } else if (bundle.parent) {
-    hmrApply(bundle.parent, asset);
-  }
-}
-
-function hmrAccept(bundle, id) {
-  var modules = bundle.modules;
-  if (!modules) {
-    return;
-  }
-
-  if (!modules[id] && bundle.parent) {
-    return hmrAccept(bundle.parent, id);
-  }
-
-  var cached = bundle.cache[id];
-  if (cached && cached.hot._disposeCallback) {
-    cached.hot._disposeCallback();
-  }
-
-  delete bundle.cache[id];
-  bundle(id);
-
-  cached = bundle.cache[id];
-  if (cached && cached.hot && cached.hot._acceptCallback) {
-    cached.hot._acceptCallback();
-    return true;
-  }
-
-  return getParents(global.require, id).some(function (id) {
-    return hmrAccept(global.require, id)
-  });
-}
-},{}]},{},[0,1])
+// export default Component;

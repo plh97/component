@@ -1,15 +1,32 @@
 {
-  "name": "@peng/component",
-  "version": "1.0.0",
-  "description": "do some component for company",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "parcel src/index.js",
-    "b": "rollup ./src/index.js --o ./dist/index.js --f iife"
-  },
-  "keywords": [
-    "kingubo"
-  ],
-  "author": "pengliheng",
-  "license": "ISC"
+	"name": "@peng/component",
+	"version": "1.0.0",
+	"description": "do some component for company",
+	"main": "dist/index.js",
+	"scripts": {
+		"test": "parcel src/index.js",
+		"w": "rollup --config build/rollup.config.dev.js -w",
+		"b": "rollup --config build/rollup.config.dev.js",
+		"p": "rollup --config build/rollup.config.prod.js"
+	},
+	"keywords": [
+		"kingubo"
+	],
+	"author": "pengliheng",
+	"license": "ISC",
+	"devDependencies": {
+		"babel-plugin-external-helpers": "^6.22.0",
+		"babel-preset-env": "^1.6.1",
+		"less": "^2.7.3",
+		"rollup-plugin-babel": "^3.0.3",
+		"rollup-plugin-node-resolve": "^3.0.2",
+		"rollup-plugin-postcss": "^1.2.5"
+	},
+	"dependencies": {
+		"babel-core": "^6.26.0",
+		"rollup": "^0.54.1",
+		"rollup-plugin-css-only": "^0.4.0",
+		"rollup-plugin-less": "^0.1.3",
+		"the-answer": "^1.0.0"
+	}
 }
