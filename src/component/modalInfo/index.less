@@ -1,4 +1,5 @@
-// @import './assets/common/common.less';
+@import './assets/common/common.less';
+
 .component-mask {
     top: 0;
     left: 0;
@@ -12,40 +13,54 @@
     animation-fill-mode: forwards;
 
     .component-modalInfo {
+        top: 16vh;
+        width: 100vw;
+        display: flex;
+        max-width: 416px;
+        min-height: 165px;
+        position: absolute;
+        border-radius: 4px;
+        background-color: #fff;
+        box-sizing: border-box;
+        padding: 32px 32px 24px 18px;
         transform-origin: -6px 182px 0px;
         animation: scale-top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         animation-fill-mode: forwards;
-        top: 16vh;
-        width: 100%;
-        min-height: 186px;
-        position: absolute;
-        max-width: 416px;
-        border-radius: 4px;
-        background-color: #fff;
         background-clip: padding-box;
-        display: flex;
         flex-direction: column;
         justify-content: space-between;
 
-        .component-modalInfo-body {
-            flex: 1;
-            padding: 24px 5px;
-            font-size: 14px;
+        .component-model-header {
             display: inline-flex;
-            align-items: flex-start;
-            flex-direction: row;
+            align-items: center;
             justify-content: space-between;
+            flex-direction: row;
+            color: rgba(0, 0, 0, 0.65);
             
             .icon {
-                flex: 2 2 5%;
+                flex: 2 2 15%;
             }
-            .component-modalInfo-body-container{
-                flex: 2 2 80%;
+            .title {
+                color: rgba(0, 0, 0, 0.85);
+                font-weight: bold;
+                font-size: 16px;
+                flex: 2 2 85%;
+                color: @grey9;
             }
         }
+        .component-model-body {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.65);
+            margin-top: 8px;
+
+            flex: 1;
+            margin-left: 55px;
+            display: inline-flex;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
         .component-modalInfo-footer {
-            height: 55px;
-            padding: 0 24px;
             display: inline-flex;
             align-items: center;
             justify-content: flex-end;

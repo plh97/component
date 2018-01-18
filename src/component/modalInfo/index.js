@@ -7,10 +7,14 @@ const ModalInfo = args => {
     let {
         type,
         content,
+        title,
         callback
     } = args;
     if(!type.match(/(info|success|error|warning)/)){
         type="info"
+    }
+    if(title==undefined){
+        title="{title: 请输入title参数}"
     }
     if(content==undefined){
         content="{content: 请输入content参数}"
@@ -22,13 +26,14 @@ const ModalInfo = args => {
     mask.className = 'component-mask';
     mask.innerHTML = `
         <div class="component-modalInfo">
-            <div class="component-modalInfo-body">
+            <div class="component-model-header">
                 ${Icon({
                     type
                 })}
-                <span class="component-modalInfo-body-container">
-                    ${content}
-                </span>
+                <span class="title">${title}</span>
+            </div>
+            <div class="component-model-body">
+                ${content}
             </div>
             <div class="component-modalInfo-footer">
                 ${Button({
@@ -49,7 +54,7 @@ const ModalInfo = args => {
             $('body').style.overflow = "auto";
         }
 	},false)
-	let btns = mask.querySelectorAll('.component-model button');
+    let btns = mask.querySelectorAll('.component-modalInfo button');
     btns.forEach(dom=>{
         dom.addEventListener('click',()=>{
             mask.remove()

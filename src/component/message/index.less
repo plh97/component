@@ -1,0 +1,46 @@
+@import './assets/common/common.less';
+.component-container {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none;
+    justify-content: flex-start;
+
+    .component-container-message {
+        top: 10px;
+        width: auto;
+        font-size: 16px;
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        margin-bottom: 10px;
+        padding: 10px 16px;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        background-color: #fff;
+
+        &.info,&.success,&.warning {
+            animation: slide-in 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            animation-fill-mode: forwards;
+        }
+
+        &.error {
+            animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+            // animation-fill-mode: forwards;
+            // transform: translate3d(0, 0, 0);
+            // backface-visibility: hidden;
+            // perspective: 1000px;
+        }
+
+        .icon{
+            font-size: 19px;
+        }
+    }
+}

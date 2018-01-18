@@ -5,49 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
-    <h1>123213213213</h1>
+    <br/>
+    <div id="container-modal"></div>
+    <br/>
+    <div id="container-message"></div>
     <script src="../dist/index.js"></script>
     <script>
         const {
-            modalInfo
+            message
         } = Component
-        console.log(
-            Component
-        );
-        document.body.addEventListener('click',()=>{
-            modalInfo({
-                type: "info",
-                content: `
-                    内容是什么？？？
-                    <span>不想说什么</span>
-                    <h1>h1</h1>
-                `,
-                callback: ()=>{
-                    console.log('callback');
-                }
-            })
-        },false)
+        var times = 0;
+        document.querySelector('#container-modal').innerHTML = `
+            ${Button({
+                className:"btn-primary",
+                text:"Modal"
+            }).outerHTML}
+            ${Button({
+                className:"confirm btn-primary",
+                text:"ModalInfo"
+            }).outerHTML}
+        `
+        document.querySelector('#container-message').innerHTML = `
+            ${Button({
+                className:"confirm btn-primary",
+                text:"info"
+            }).outerHTML}
+            ${Button({
+                className:"confirm btn-primary",
+                text:"success"
+            }).outerHTML}
+            ${Button({
+                className:"confirm btn-primary",
+                text:"error"
+            }).outerHTML}
+            ${Button({
+                className:"confirm btn-primary",
+                text:"warning"
+            }).outerHTML}
+        `;
+        document.querySelectorAll('#container-message button').forEach(btn =>{
+            console.log(btn.innerText);
+            btn.addEventListener('click',(e)=>{
+                message({
+                    type: e.target.innerText,
+                    time: 1000,
+                    content: `这个是${e.target.innerText},第${times++}次`,
+                    callback: ()=>{
+                        console.log('callback',e.target.innerText);
+                    }
+                })
+            },false)
+        })
+        document.querySelectorAll('#container-modal button').forEach(btn =>{
+            console.log(btn.innerText);
+            if(btn.innerText == "Modal"){
+                btn.addEventListener('click',(e)=>{
+                    Modal({
+                        title: `${btn.innerText}的标题`,
+                        content: `这个是${e.target.innerText}的内容,第${times++}次`,
+                        callback: ()=>console.log('callback',e.target.innerText,"的确认")
+                    })
+                },false)
+            }else if(btn.innerText == "ModalInfo"){
+                btn.addEventListener('click',(e)=>{
+                    ModalInfo({
+                        type: `error`,
+                        title: `${btn.innerText}的标题`,
+                        content: `这个是${e.target.innerText}的内容,第${times++}次`,
+                        callback: () => console.log('callback',e.target.innerText,"的确认")
+                    })
+                },false)
+            }
+        })
     </script>
 </body>
 </html>
