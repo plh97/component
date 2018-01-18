@@ -12,6 +12,20 @@
             justify-content: center;
             align-items: center;
         }
+        .ao {
+            width: 0;
+            display: inline-block;
+        }
+        .ao:before {
+            content: "love 你 love";
+            outline: 2px solid #cd0000;
+            color: #fff;
+        }
+        .ao:after {
+            content: "你 love 你";
+            outline: 2px solid #cd0000;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -19,6 +33,7 @@
     <div id="container-modal"></div>
     <br/>
     <div id="container-message"></div>
+    <div class="ao"></div>
     <script src="../dist/index.js"></script>
     <script>
         const {
@@ -54,7 +69,6 @@
             }).outerHTML}
         `;
         document.querySelectorAll('#container-message button').forEach(btn =>{
-            console.log(btn.innerText);
             btn.addEventListener('click',(e)=>{
                 message({
                     type: e.target.innerText,
@@ -67,7 +81,6 @@
             },false)
         })
         document.querySelectorAll('#container-modal button').forEach(btn =>{
-            console.log(btn.innerText);
             if(btn.innerText == "Modal"){
                 btn.addEventListener('click',(e)=>{
                     Modal({
