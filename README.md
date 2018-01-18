@@ -52,7 +52,7 @@
 		grid-gap: <line-size> <line-size>;
 	}
 
-### 工程化
+### css工程化
 - 工具
 	- less sass(scss) stylus
 		嵌套规则，颜色命名，
@@ -352,3 +352,10 @@
 	![](https://cdn.css-tricks.com/wp-content/uploads/2016/03/redux-article-3-03.svg)
 	通过最顶点store保存所有数据，子组件若想改变父组件状态，只能通过修改store内部数据，然后数据从顶部层层流向底部直至父组件。
 	有没有觉得react的单向数据流与angular和vue的双向绑定，在业务逻辑上面要清晰的多？看起来单向数据流多么麻烦，但是在浏览器内部仅仅只是一瞬间完成。
+
+# 前端工程化构建
+- 大型项目方案 react + webpack + react-router-dom + mobx + react-mobx
+- 标配 react create-react-app 脚手架
+- 标配 vue-cli 脚手架
+- 屌丝版0配置  parcel + postcss + less + autoPrify
+	parcel默认自带babel转换语法，所以不需要再配置。
