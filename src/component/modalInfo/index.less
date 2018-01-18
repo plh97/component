@@ -1,0 +1,54 @@
+// @import './assets/common/common.less';
+.component-mask {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    animation-fill-mode: forwards;
+
+    .component-modalInfo {
+        transform-origin: -6px 182px 0px;
+        animation: scale-top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        animation-fill-mode: forwards;
+        top: 16vh;
+        width: 100%;
+        min-height: 186px;
+        position: absolute;
+        max-width: 416px;
+        border-radius: 4px;
+        background-color: #fff;
+        background-clip: padding-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .component-modalInfo-body {
+            flex: 1;
+            padding: 24px 5px;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: flex-start;
+            flex-direction: row;
+            justify-content: space-between;
+            
+            .icon {
+                flex: 2 2 5%;
+            }
+            .component-modalInfo-body-container{
+                flex: 2 2 80%;
+            }
+        }
+        .component-modalInfo-footer {
+            height: 55px;
+            padding: 0 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+}

@@ -69,9 +69,6 @@ body, button, input, select, textarea {
 	font-size: 24px / 1.5 ;
 	// color:#000;
 }
-h1, h2, h3, h4, h5, h6{
-	// font-size:100%;
-}
 
 pre[class*="language-"]{
 	padding: 0.7em;
@@ -249,19 +246,7 @@ table { border-collapse:collapse; border-spacing:0; }
 	}
 }
 
-svg{
-	&.icon{
-		/* 通过设置 font-size 来改变图标大小 */
-		width: 1em; height: 1em;
-		/* 图标和文字相邻时，垂直对齐 */
-		vertical-align: -0.15em;
-		/* 通过设置 color 来改变 SVG 的颜色/fill */
-		fill: currentColor;
-		/* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
-		   normalize.css 中也包含这行 */
-		overflow: hidden;
-	}
-}
+
 
 .education-background {
 	background-color: @education;
@@ -360,5 +345,62 @@ svg{
 		opacity: 1;
 		transform: scale(1);
 		right: 0%;
+	}
+}
+
+@keyframes scale-top {
+	from {
+		opacity: 0;
+		transform: scale(0);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes scale-top {
+	from {
+		opacity: 0;
+		transform: scale(0);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes scale-top-reverse {
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+	
+	to {
+		opacity: 0;
+		transform: scale(0);
+	}
+}
+
+@keyframes mask-show {
+	from {
+		background-color: rgba(0,0,0,0);
+	}
+
+	to {
+		background-color: rgba(0,0,0,0.6);
+	}
+}
+
+
+@keyframes mask-show-reverse {
+	from {
+		background-color: rgba(0,0,0,0.6);
+	}
+
+	to {
+		background-color: rgba(0,0,0,0);
 	}
 }

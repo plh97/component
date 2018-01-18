@@ -1,11 +1,13 @@
 
 import answer from 'the-answer';
-import model from "./component/model";
-import Button from "./container/button";
+import Modal from "./component/modal";
+import ModalInfo from "./component/modalInfo";
+import Button from "./container/button/index.js";
 
 const Component = {
-    model,
-    Button
+    modal: Modal,
+    modalInfo: ModalInfo,
+    button: Button
 }
 
 console.log(`the answer is ${answer} ${Component}`);

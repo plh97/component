@@ -30,15 +30,22 @@
     <script src="../dist/index.js"></script>
     <script>
         const {
-            mobel
+            modalInfo
         } = Component
+        console.log(
+            Component
+        );
         document.body.addEventListener('click',()=>{
-            model({
-                content:`
-                    <h1>123213213213</h1>
-                    <h1>123213213213</h1>
-                    <h1>123213213213</h1>
-                `
+            modalInfo({
+                type: "info",
+                content: `
+                    内容是什么？？？
+                    <span>不想说什么</span>
+                    <h1>h1</h1>
+                `,
+                callback: ()=>{
+                    console.log('callback');
+                }
             })
         },false)
     </script>
