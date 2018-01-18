@@ -23,7 +23,15 @@
 	- canvas   画，图片高清，且便于实现动画效果,
 	- iconfont图标字体的引入。
 - #### 无浮动
-	彻底摆脱看不懂，难以控制的`float:left`
+	彻底摆脱看不懂，难以控制的`float:left`.
 	解决方案:
 	- flex弹性布局 ,bootstrapt/antd 等优秀的库同样基于flex进行栅格布局.[can i use](https://caniuse.com/#search=flex)
-	- grid网格布局，比flex更加优秀的布局.[can i use](https://caniuse.com/#search=grid)
+	- grid网格布局，比flex更加优秀的布局.[can i use](https://caniuse.com/#search=grid){:target="_blank"}
+
+### 布局
+	- flex 布局 - 简单，适用于移动端不同浏览器宽度的一种方案
+	container:{
+		display: flex;
+		flex-director: row; //方向
+		justi
+	}
