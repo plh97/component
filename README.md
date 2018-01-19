@@ -13,11 +13,23 @@
 		content: `弹出框内容！`
 	})
 	```
-- modal
+- modal / modalInfo / modalConfirm
 	```js
 	Modal({
 		title: `标题`,
 		content: `内容`,
 		callback: ()=>console.log('回调函数!')
+	})
+	ModalInfo({
+		type: `error`, // info/success/error/warning
+		title: `标题`,
+		content: `内容`,
+		callback: () => console.log("确认")
+	})
+	ModalConfirm({
+		type: `error`, // info/success/error/warning
+		title: `标题`,
+		content: `内容`,
+		callback: () => console.log("确认")
 	})
 	```

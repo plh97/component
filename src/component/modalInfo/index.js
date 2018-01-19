@@ -10,7 +10,7 @@ const ModalInfo = args => {
         title,
         callback
     } = args;
-    if(!type.match(/(info|success|error|warning)/)){
+    if(!type.match(/(info|success|error|warning|confirm|delete)/)){
         type="info"
     }
     if(title==undefined){
@@ -36,8 +36,12 @@ const ModalInfo = args => {
                 ${content}
             </div>
             <div class="component-modalInfo-footer">
+                ${(type=="confirm"||type=="delete") ? Button({
+                    className:"confirm",
+                    text:"取消"
+                }).outerHTML:""}
                 ${Button({
-                    className:"confirm btn-primary",
+                    className:`confirm ${type=="delete" ? "btn-danger":"btn-primary"}`,
                     text:"确认"
                 }).outerHTML}
             </div>

@@ -31,6 +31,7 @@
 		"postcss-modular-css": "^7.2.0",
 		"postcss-modules": "^1.1.0",
 		"rollup": "^0.54.1",
+		"rollup-plugin-uglify": "^2.0.1",
 		"the-answer": "^1.0.0"
 	}
 }
