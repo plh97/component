@@ -24,6 +24,7 @@
 	},
 	"dependencies": {
 		"babel-core": "^6.26.0",
+		"mddir": "^1.1.0",
 		"modular-css-rollup": "^7.2.0",
 		"postcss-easy-import": "^3.0.0",
 		"postcss-import": "^11.0.0",
