@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({2:[function(require,module,exports) {
+})({4:[function(require,module,exports) {
 'use strict';
 
 function __$$styleInject(css, ref) {
@@ -347,7 +347,108 @@ console.log("the answer is " + index + " " + Component);
 
 module.exports = Component;
 
-},{}],0:[function(require,module,exports) {
+},{}],3:[function(require,module,exports) {
+"use strict";
+
+var _index = require("../dist/index.js");
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const { message, spin } = _index2.default;
+const { info, modal, confirm } = _index2.default.modal;
+var times = 0;
+document.querySelector('#container-modal').innerHTML = `
+    ${Button({
+  className: "btn-primary",
+  text: "Modal"
+}).outerHTML}
+    ${Button({
+  className: "confirm btn-primary",
+  text: "ModalInfo"
+}).outerHTML}
+    ${Button({
+  className: "confirm btn-primary",
+  text: "ModalConfirm"
+}).outerHTML}
+    ${Button({
+  className: "confirm btn-primary",
+  text: "ModalDelete"
+}).outerHTML}
+`;
+document.querySelector('#container-message').innerHTML = `
+    ${Button({
+  className: "confirm btn-primary",
+  text: "info"
+}).outerHTML}
+    ${Button({
+  className: "confirm btn-primary",
+  text: "success"
+}).outerHTML}
+    ${Button({
+  className: "confirm btn-primary",
+  text: "error"
+}).outerHTML}
+    ${Button({
+  className: "confirm btn-primary",
+  text: "warning"
+}).outerHTML}
+`;
+document.querySelectorAll('#container-message button').forEach(btn => {
+  btn.addEventListener('click', e => {
+    message({
+      type: e.target.innerText,
+      time: 1000,
+      content: `这个是${e.target.innerText},第${times++}次`,
+      callback: () => {
+        console.log('callback', e.target.innerText);
+      }
+    });
+  }, false);
+});
+document.querySelectorAll('#container-modal button').forEach(btn => {
+  if (btn.innerText == "Modal") {
+    btn.addEventListener('click', e => {
+      modal({
+        title: `${btn.innerText}的标题`,
+        content: `这个是${e.target.innerText}的内容,第${times++}次`,
+        callback: () => console.log('callback', e.target.innerText, "的确认")
+      });
+    }, false);
+  } else if (btn.innerText == "ModalInfo") {
+    btn.addEventListener('click', e => {
+      info({
+        type: `info`,
+        title: `${btn.innerText}的标题`,
+        content: `这个是${e.target.innerText}的内容,第${times++}次`,
+        callback: () => console.log('callback', e.target.innerText, "的确认")
+      });
+    }, false);
+  } else if (btn.innerText == "ModalConfirm") {
+    btn.addEventListener('click', e => {
+      info({
+        type: `confirm`,
+        title: `Do you Want to delete these items?`,
+        content: `警告内容`,
+        callback: () => console.log('callback', e.target.innerText, "的确认")
+      });
+    }, false);
+  } else if (btn.innerText == "ModalDelete") {
+    btn.addEventListener('click', e => {
+      info({
+        type: `delete`,
+        title: `Do you Want to delete these items?`,
+        content: `报错内容`,
+        callback: () => console.log('callback', e.target.innerText, "的确认")
+      });
+    }, false);
+  }
+});
+document.querySelector('.container').addEventListener('click', e => {
+  spin({ dom: document.querySelector('.container') });
+}, false);
+},{"../dist/index.js":4}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -466,4 +567,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,2])
+},{}]},{},[0,3])

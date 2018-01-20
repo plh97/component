@@ -1,52 +1,3 @@
-// light-blue
-@lightBlue0: #e1f5fe;
-@lightBlue1: #b3e5fc;
-@lightBlue2: #81d4fa;
-@lightBlue3: #4fc3f7;
-@lightBlue4: #29b6f6;
-@lightBlue5: #03a9f4;
-@lightBlue6: #039be5;
-@lightBlue7: #0288d1;
-@lightBlue8: #0277bd;
-@lightBlue9: #01579b;
-
-// grey
-@grey0: #fafafa;
-@grey1: #f5f5f5;
-@grey2: #eeeeee;
-@grey3: #e0e0e0;
-@grey4: #bdbdbd;
-@grey5: #9e9e9e;
-@grey6: #757575;
-@grey7: #616161;
-@grey8: #424242;
-@grey9: #212121;
-// red
-@red0: #ff737e;
-@red1: #ff4d4f;
-@red2: #ff1c2f;
-
-@platform: #eb854d;
-@platform1: #eba077;
-@platform2: #ffc8ab;
-@education: #5DDAA6;
-@education1: #38c78c;
-@lock: #5BB2EF;
-@lock1: #3e97d6;
-@daocheng-red: #ca1523;
-
-.border{
-	&.platform{
-		background-color: @platform;
-	}
-	&.education{
-		background-color: @education;
-	}
-	&.lock{
-		background-color: @lock;
-	}
-}
-
 @font-face {
   font-family: "Reem Kufi";
   src: url("../../assets/font/a.woff");
@@ -196,80 +147,6 @@ table { border-collapse:collapse; border-spacing:0; }
     }
 }
 
-.join-us-icon{
-	width: 126px;
-	height: 30px;
-	cursor: pointer;
-	display: inline-flex;
-	align-items: stretch;
-	flex-direction: row;
-	justify-content: space-between;
-	border: 1px solid @daocheng-red;
-
-	.icon-get-more {
-		display: inline-flex;
-		justify-content: center;
-		width: 30px;
-		background-color: @daocheng-red;
-		color: #fff;
-	}
-	.content {
-		font-size: 1.2rem;
-		flex: 1;
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	&:hover {
-		.icon-get-more {
-			background-color: #fff;
-			color: @daocheng-red;
-		}
-		.content {
-			background-color: @daocheng-red;
-			color: #fff;
-			
-		}
-	}
-}
-
-// .icon-get-more {
-// 	width: 126px;
-// 	height: 40px;
-// 	cursor: pointer;
-// 	color: #e24647;
-// 	font-size: 1.3rem;
-// 	position: relative;
-// 	padding-left: 40px;
-// 	display: inline-flex;
-// 	justify-content: center;
-// 	border: 1px solid @daocheng-red;
-
-// 	&::before {
-// 		width: 30vw;
-// 		left: 0px;
-// 		height: 98%;
-// 		color: #f5f5f5;
-// 		max-width: 40px;
-// 		position: absolute;
-// 		align-items: center;
-// 		display: inline-flex;
-// 		justify-content: center;
-// 		background-color: @daocheng-red;
-// 	}
-
-// 	&:hover{
-// 		color: #f5f5f5;
-// 		background-color: @daocheng-red;
-
-// 		&::before {
-// 			// height: 37px;
-// 			color: @daocheng-red;
-// 			background-color: #f5f5f5;
-// 		}
-// 	}
-// }
 
 .icon-circle {
 	width: 19px;
@@ -294,30 +171,6 @@ table { border-collapse:collapse; border-spacing:0; }
 
 
 
-.education-background {
-	background-color: @education;
-}
-
-.lock-background {
-	background-color: @lock;
-}
-
-.platform-background {
-	background-color: @platform;
-}
-
-.back-to-top{
-	right: 5%;
-	bottom: 5%;
-	cursor: pointer;
-	position: fixed;
-	background-color: rgba(0,0,0,0);
-
-	i{
-		font-size: 5rem;
-		color: @grey4;
-	}
-}
 
 @keyframes scroll-lower {
 	from {
