@@ -22,3 +22,4 @@ const Component = {
 
 console.log(`the answer is ${answer} ${Component}`);
 
+export default Component;
