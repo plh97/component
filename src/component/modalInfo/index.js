@@ -37,7 +37,7 @@ const ModalInfo = args => {
             </div>
             <div class="component-modalInfo-footer">
                 ${(type=="confirm"||type=="delete") ? Button({
-                    className:"confirm",
+                    className:"cancal",
                     text:"取消"
                 }).outerHTML:""}
                 ${Button({
@@ -59,6 +59,7 @@ const ModalInfo = args => {
         }
 	},false)
     let btns = mask.querySelectorAll('.component-modalInfo button');
+    btns = Array.prototype.slice.call(btns);
     btns.forEach(dom=>{
         dom.addEventListener('click',()=>{
             mask.remove()
@@ -69,7 +70,7 @@ const ModalInfo = args => {
         })
     })
     $('body').style.overflow = "hidden";
-    $('body').append(mask);
+    $('body').appendChild(mask);
 }
 
 export default ModalInfo;

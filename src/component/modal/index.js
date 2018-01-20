@@ -56,7 +56,8 @@ const Modal = args => {
             $('body').style.overflow = "auto";
         }
 	},false)
-	let btns = mask.querySelectorAll('.component-model button');
+    let btns = mask.querySelectorAll('.component-model button');
+    btns = Array.prototype.slice.call(btns);
     btns.forEach(dom=>{
         dom.addEventListener('click',()=>{
             mask.remove()
@@ -67,7 +68,7 @@ const Modal = args => {
         })
     })
     $('body').style.overflow = "hidden";
-    $('body').append(mask);
+    $('body').appendChild(mask);
 }
 
 // let removeAnimation = e =>{

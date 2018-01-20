@@ -1,6 +1,7 @@
-import $ from '../../utils/jquery.js';
 import './index.less'
+import $ from '../../utils/jquery.js';
 import Icon from "../../container/icon";
+
 
 const Spin = args => {
     if(args==undefined){
@@ -11,14 +12,18 @@ const Spin = args => {
     }
     if(!!dom.querySelector('.component-container-spin')){
         dom.querySelector('.component-container-spin').remove()
+        $('body').style.overflow = "auto";
     }else{
         let container = document.createElement('div')
         container.className = `component-container-spin ${dom==document.body?"component-container-global":""}`;
         container.innerHTML = `
-            ${Icon({type:'spin'})}
-            <span>Loading...</span>
+            <div class="spin-container">
+                ${Icon({type:'spin'})}
+                <span>Loading...</span>
+            </div>
         `;
-        dom.append(container)
+        dom.appendChild(container)
+        $('body').style.overflow = "hidden";
     }
 }
 
