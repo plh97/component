@@ -1,25 +1,33 @@
-
-import answer from 'the-answer';
+import "../assets/common/common.less";
 import Modal from "./component/modal";
 import Message from "./component/message";
 import ModalInfo from "./component/modalInfo";
+import Spin from "./component/spin";
 import Button from "./container/button";
 import Icon from "./container/icon";
-import Spin from "./component/spin";
+
 
 const Component = {
-    message: Message,
-    spin: Spin,
-    container: {
-        button: Button,
-        icon: Icon,
-    },
-    modal:{
+    pc:{
+        message: Message,
+        spin: Spin,
         modal: Modal,
-        info: ModalInfo
+        modalInfo: ModalInfo,
+        container: {
+            button: Button,
+            icon: Icon,
+        }
+    },
+    mobile:{
+        message: Message,
+        spin: Spin,
+        modal: Modal,
+        modalInfo: ModalInfo,
+        container: {
+            button: Button,
+            icon: Icon,
+        }
     }
 }
-
-console.log(`the answer is ${answer} ${Component}`);
 
 export default Component;

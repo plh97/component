@@ -31,7 +31,7 @@ const Modal = args => {
     setTimeout(() => {
         message.remove()
     }, time);
-    container.append(message);
+    container.appendChild(message);
 }
 
 // let removeAnimation = e =>{
