@@ -14,6 +14,7 @@ const Spin = args => {
         dom.querySelector('.component-container-spin').remove()
         $('body').style.overflow = "auto";
     }else{
+        dom.style.position="relative";
         let container = document.createElement('div')
         container.className = `component-container-spin ${dom==document.body?"component-container-global":""}`;
         container.innerHTML = `

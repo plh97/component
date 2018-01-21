@@ -8,31 +8,40 @@
         display: inline-flex;
         justify-content: center;
         flex-direction: column;
-        background-color: rgba(255,255,255,0.3);
+        position: absolute;
+        background-color: rgba(255,255,255,0.6);
+        top: 0;
+        left: 0;
     
         &.component-container-global {
             height: 100vh;
             position: absolute;
             pointer-events: none;
             top: 0;
-            .icon {
+
+            .spin-container {
                 position: absolute;
-                top: 20vh;
+                top: 25%;
+            }
+        }
+
+        .spin-container {
+            height: 60px;
+            justify-content: space-between;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+
+            .icon {
+                animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;
             }
             span {
-                position: absolute;
-                top: calc(~"20vh + 50px");
+                color: @lightBlue8;
+                // padding-top: 5px;
+                text-shadow: 0 1px 2px #fff;
             }
         }
-    
-        .icon {
-            animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;
-        }
-        span {
-            color: @lightBlue8;
-            padding-top: 5px;
-            text-shadow: 0 1px 2px #fff;
-        }
+
     }
 }
 
@@ -45,6 +54,8 @@
         justify-content: center;
         flex-direction: column;
         position: fixed;
+        top: 0;
+        left: 0;
 
         &.component-container-global {
             height: 100vh;

@@ -65,7 +65,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({2:[function(require,module,exports) {
+})({3:[function(require,module,exports) {
 // import {
 //     pc,
 //     mobile
@@ -201,19 +201,17 @@ modalBtns.forEach(btn =>{
     }
 })
 document.querySelector('.container').addEventListener('click',(e)=>{
-    // if(screen.width>768){
-    //     spin({dom: document.querySelector('.container')})
-    //     setTimeout(() => {
-    //         spin({dom: document.querySelector('.container')})
-    //     }, 2000);
-    // }else {
-        spin({
-            dom:document.querySelector('.container')
-        })
-    //     setTimeout(() => {
-    //         spin()
-    //     }, 2000);
-    // }
+    if(screen.width>768){
+        spin({dom: document.querySelector('.container')})
+        setTimeout(() => {
+            spin({dom: document.querySelector('.container')})
+        }, 2000);
+    }else {
+        spin()
+        setTimeout(() => {
+            spin()
+        }, 2000);
+    }
 },false)
 },{}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
@@ -233,7 +231,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent) {
-  var ws = new WebSocket('ws://localhost:49898/');
+  var ws = new WebSocket('ws://localhost:56703/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -334,4 +332,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,2])
+},{}]},{},[0,3])

@@ -8,6 +8,10 @@ const Modal = args => {
         content,
         callback
     } = args;
+    typeof(args)=='string' && (
+        content = args,
+        title = '标题'
+    );
     if(title==undefined){
         title="{title: 请输入title参数}"
     }

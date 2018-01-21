@@ -2,7 +2,7 @@ import $ from '../../utils/jquery.js';
 import './index.less'
 import Icon from "../../container/icon";
 
-const Modal = args => {
+const Message = args => {
     let {
         type,
         content,
@@ -35,4 +35,4 @@ const Modal = args => {
     container.appendChild(message);
 }
 
-export default Modal;
+export default Message;
