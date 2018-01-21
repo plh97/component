@@ -1,8 +1,8 @@
-import {
-    pc,
-    mobile
+// import {
+//     pc,
+//     mobile
 // } from "peng-component";
-} from "../dist/index.js";
+// } from "../dist/index.js";
 
 // if(screen.width>768){
 //     var {
@@ -29,6 +29,9 @@ import {
 //     spin,
 //     container
 // } = pc;
+const pc = Component.pc
+
+
 var modal  =pc.modal;
 var modalInfo  =pc.modalInfo;
 var message  =pc.message;
@@ -37,6 +40,7 @@ var container  =pc.container;
 
 var button = container.button;
 var icon = container.icon;
+
 
 var times = 0;
 document.querySelector('#container-modal').innerHTML = `
@@ -81,14 +85,18 @@ let modalBtns = document.querySelectorAll('#container-modal button');
 modalBtns = Array.prototype.slice.call(modalBtns)
 messageBtns.forEach(btn =>{
     btn.addEventListener('click',(e)=>{
-        message({
-            type: e.target.innerText,
-            time: 1000,
-            content: `这个是${e.target.innerText},第${times++}次`,
-            callback: ()=>{
-                console.log('callback',e.target.innerText);
-            }
-        })
+        if(e.target.innerText=="info"){
+            message('尼玛！')
+        }else{
+            message({
+                type: e.target.innerText,
+                time: 1000,
+                content: `这个是${e.target.innerText},第${times++}次`,
+                callback: ()=>{
+                    console.log('callback',e.target.innerText);
+                }
+            })
+        }
     },false)
 })
 modalBtns.forEach(btn =>{
@@ -102,12 +110,7 @@ modalBtns.forEach(btn =>{
         },false)
     }else if(btn.innerText == "ModalInfo"){
         btn.addEventListener('click',(e)=>{
-            modalInfo({
-                type: `info`,
-                title: `${btn.innerText}的标题`,
-                content: `这个是${e.target.innerText}的内容,第${times++}次`,
-                callback: () => console.log('callback',e.target.innerText,"的确认")
-            })
+            modalInfo('这个是简化版标题！！')
         },false)
     }else if(btn.innerText == "ModalConfirm"){
         btn.addEventListener('click',(e)=>{
@@ -130,9 +133,17 @@ modalBtns.forEach(btn =>{
     }
 })
 document.querySelector('.container').addEventListener('click',(e)=>{
-    if(screen.width>768){
-        spin({dom: document.querySelector('.container')})
-    }else {
-        spin()
-    }
+    // if(screen.width>768){
+    //     spin({dom: document.querySelector('.container')})
+    //     setTimeout(() => {
+    //         spin({dom: document.querySelector('.container')})
+    //     }, 2000);
+    // }else {
+        spin({
+            dom:document.querySelector('.container')
+        })
+    //     setTimeout(() => {
+    //         spin()
+    //     }, 2000);
+    // }
 },false)

@@ -7,8 +7,7 @@
 		"test": "parcel test/index.html",
 		"w": "rollup --config build/rollup.config.dev.js -w",
 		"b": "rollup --config build/rollup.config.dev.js",
-		"p": "rollup --config build/rollup.config.prod.js",
-		"parcel": "parcel test/index.html"
+		"p": "rollup --config build/rollup.config.prod.js"
 	},
 	"keywords": [
 		"component"

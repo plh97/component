@@ -9,6 +9,7 @@ const Modal = args => {
         callback,
         time
     } = args;
+    typeof(args)=='string' && (content = args);
     type = (type == undefined ? "info" : type);
     time = (time == undefined ? 1000 : time);
     content = (content == undefined ? "{content: 请输入content参数}" : content);
@@ -33,18 +34,5 @@ const Modal = args => {
     }, time);
     container.appendChild(message);
 }
-
-// let removeAnimation = e =>{
-//     const {
-//         dom,
-//         styles
-//     } = e
-//     for(let style in styles){
-//         console.log(
-//             style,": ",styles[style]
-//         );
-//         dom.style[style] = styles[style]
-//     }
-// }
 
 export default Modal;

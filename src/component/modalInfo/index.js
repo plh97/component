@@ -10,6 +10,11 @@ const ModalInfo = args => {
         title,
         callback
     } = args;
+    typeof(args)=='string' && (
+        content = '',
+        type = 'info',
+        title = args
+    );
     if(!type.match(/(info|success|error|warning|confirm|delete)/)){
         type="info"
     }
@@ -32,9 +37,11 @@ const ModalInfo = args => {
                 })}
                 <span class="title">${title}</span>
             </div>
-            <div class="component-model-body">
-                ${content}
-            </div>
+            ${typeof(args)=='string'?"":`
+                <div class="component-model-body">
+                    ${content}
+                </div>
+            `}
             <div class="component-modalInfo-footer">
                 ${(type=="confirm"||type=="delete") ? Button({
                     className:"cancal",
