@@ -1,13 +1,18 @@
 {
 	"name": "peng-component",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "make some component",
+	"homepage": "https://www.pipk.top",
 	"main": "dist/index.js",
 	"scripts": {
-		"test": "parcel test/index.html",
+		"t": "parcel test/index.html",
 		"w": "rollup --config build/rollup.config.dev.js -w",
 		"b": "rollup --config build/rollup.config.dev.js",
 		"p": "rollup --config build/rollup.config.prod.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pengliheng/component.git"
 	},
 	"keywords": [
 		"component"
