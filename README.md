@@ -51,7 +51,7 @@
 	![](http://oy82lbvct.bkt.clouddn.com/info.png)
 	### success
 	![](http://oy82lbvct.bkt.clouddn.com/success.png)
-	### error
+	### errorrrrr
 	![](http://oy82lbvct.bkt.clouddn.com/error.png)
 	### delete
 	![](http://oy82lbvct.bkt.clouddn.com/delete.png)
