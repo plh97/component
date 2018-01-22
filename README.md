@@ -27,20 +27,24 @@
 
 	// 给某个dom元素添加加载中...的样式
 	Spin({
-		dom:document.querySelector('.container')
+		dom:$('.container')
 	})
 	```
 	```js
 	Modal({
 		title: `标题`,
 		content: `内容`,
-		callback: ()=>console.log('回调函数!')
+		callback: function(){
+			console.log("回调函数")
+		}
 	})
 	ModalInfo({
 		type: `error`, // info/success/error/warning
 		title: `标题`,
 		content: `内容`,
-		callback: () => console.log("确认")
+		callback: function(){
+			console.log("确认")
+		}
 	})
 	```
 	---
@@ -80,13 +84,17 @@ var spin = pc.spin;
 	modal({
 		title: `标题`,
 		content: `内容`,
-		callback: ()=>console.log('回调函数!')
+		callback: function(){
+			console.log("确认")
+		}
 	})
 	modalInfo({
 		type: `error`, // info/success/error/warning
 		title: `标题`,
 		content: `内容`,
-		callback: () => console.log("确认")
+		callback: function(){
+			console.log("确认")
+		}
 	})
 	```
 - spin 加载中...组件
