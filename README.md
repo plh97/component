@@ -39,7 +39,7 @@
 		}
 	})
 	ModalInfo({
-		type: `error`, // info/success/error/warning
+		type: `error`, // info/success/error/warning/delete/confirm
 		title: `标题`,
 		content: `内容`,
 		callback: function(){
@@ -47,6 +47,17 @@
 		}
 	})
 	```
+	### info
+	![](http://oy82lbvct.bkt.clouddn.com/info.png)
+	### success
+	![](http://oy82lbvct.bkt.clouddn.com/success.png)
+	### error
+	![](http://oy82lbvct.bkt.clouddn.com/error.png)
+	### delete
+	![](http://oy82lbvct.bkt.clouddn.com/delete.png)
+	### confirm
+	![](http://oy82lbvct.bkt.clouddn.com/confirm.png)
+
 	---
 #### 如果你用npm，就可以用包的形式将组件引入
 `yarn add peng-component`

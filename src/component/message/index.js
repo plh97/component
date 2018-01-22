@@ -1,4 +1,3 @@
-import $ from '../../utils/jquery.js';
 import './index.less'
 import Icon from "../../container/icon";
 
