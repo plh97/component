@@ -2,8 +2,8 @@
 [效果预览](./test/index.html)
 
 #### 如果是直接引入
-```js
-<script src="path/to/peng-component.js"></script>
+```html
+<script src="path/to/component.js"></script>
 ```
 ##### 当你直接引入的时候，组件将作为全局变量直接可以获取，
 
@@ -27,22 +27,37 @@
 
 	// 给某个dom元素添加加载中...的样式
 	Spin({
-		dom:document.querySelector('.container')
+		dom:$('.container')
 	})
 	```
 	```js
 	Modal({
 		title: `标题`,
 		content: `内容`,
-		callback: ()=>console.log('回调函数!')
+		callback: function(){
+			console.log("回调函数")
+		}
 	})
 	ModalInfo({
-		type: `error`, // info/success/error/warning
+		type: `error`, // info/success/error/warning/delete/confirm
 		title: `标题`,
 		content: `内容`,
-		callback: () => console.log("确认")
+		callback: function(){
+			console.log("确认")
+		}
 	})
 	```
+	### info
+	![](http://oy82lbvct.bkt.clouddn.com/info.png)
+	### success
+	![](http://oy82lbvct.bkt.clouddn.com/success.png)
+	### error
+	![](http://oy82lbvct.bkt.clouddn.com/error.png)
+	### delete
+	![](http://oy82lbvct.bkt.clouddn.com/delete.png)
+	### confirm
+	![](http://oy82lbvct.bkt.clouddn.com/confirm.png)
+
 	---
 #### 如果你用npm，就可以用包的形式将组件引入
 `yarn add peng-component`
@@ -80,13 +95,17 @@ var spin = pc.spin;
 	modal({
 		title: `标题`,
 		content: `内容`,
-		callback: ()=>console.log('回调函数!')
+		callback: function(){
+			console.log("确认")
+		}
 	})
 	modalInfo({
 		type: `error`, // info/success/error/warning
 		title: `标题`,
 		content: `内容`,
-		callback: () => console.log("确认")
+		callback: function(){
+			console.log("确认")
+		}
 	})
 	```
 - spin 加载中...组件

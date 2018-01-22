@@ -1,5 +1,4 @@
 import './index.less'
-import $ from '../../utils/jquery.js';
 import Icon from "../../container/icon";
 
 
@@ -12,7 +11,7 @@ const Spin = args => {
     }
     if(!!dom.querySelector('.component-container-spin')){
         dom.querySelector('.component-container-spin').remove()
-        $('body').style.overflow = "auto";
+        document.body.style.overflow = "auto";
     }else{
         dom.style.position="relative";
         let container = document.createElement('div')
@@ -24,7 +23,7 @@ const Spin = args => {
             </div>
         `;
         dom.appendChild(container)
-        $('body').style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
     }
 }
 

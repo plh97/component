@@ -1,4 +1,3 @@
-import $ from '../../utils/jquery.js';
 import './index.less'
 import Button from "../../container/button";
 
@@ -57,7 +56,7 @@ const Modal = args => {
             e.path[0].classList.contains('component-mask')
         ){
             mask.remove()
-            $('body').style.overflow = "auto";
+            document.body.style.overflow = "auto";
         }
 	},false)
     let btns = mask.querySelectorAll('.component-model button');
@@ -65,27 +64,14 @@ const Modal = args => {
     btns.forEach(dom=>{
         dom.addEventListener('click',()=>{
             mask.remove()
-            $('body').style.overflow = "auto";
+            document.body.style.overflow = "auto";
             if(dom.classList.contains('confirm')) {
                 callback();
             }
         })
     })
-    $('body').style.overflow = "hidden";
-    $('body').appendChild(mask);
+    document.body.style.overflow = "hidden";
+    document.body.appendChild(mask);
 }
-
-// let removeAnimation = e =>{
-//     const {
-//         dom,
-//         styles
-//     } = e
-//     for(let style in styles){
-//         console.log(
-//             style,": ",styles[style]
-//         );
-//         dom.style[style] = styles[style]
-//     }
-// }
 
 export default Modal;

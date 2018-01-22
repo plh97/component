@@ -1,42 +1,47 @@
 {
 	"name": "peng-component",
-	"version": "1.0.6",
-	"description": "make some component",
+	"version": "1.0.11",
+	"description": "component use in fast mall",
+	"homepage": "https://www.pipk.top",
 	"main": "dist/index.js",
 	"scripts": {
-		"test": "parcel test/index.html",
+		"t": "parcel test/index.html",
 		"w": "rollup --config build/rollup.config.dev.js -w",
 		"b": "rollup --config build/rollup.config.dev.js",
 		"p": "rollup --config build/rollup.config.prod.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pengliheng/component.git"
 	},
 	"keywords": [
 		"component"
 	],
 	"author": "kingubo",
-	"license": "ISC",
+	"license": "MIT",
 	"devDependencies": {
-		"babel-plugin-external-helpers": "^6.22.0",
-		"babel-preset-env": "^1.6.1",
-		"less": "^2.7.3",
-		"rollup-plugin-babel": "^3.0.3",
-		"rollup-plugin-node-resolve": "^3.0.2",
-		"rollup-plugin-postcss": "^1.2.5"
-	},
-	"dependencies": {
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.0",
+		"babel-plugin-external-helpers": "^6.22.0",
+		"babel-preset-env": "^1.6.1",
 		"babel-preset-es2015": "^6.24.1",
-		"mddir": "^1.1.0",
+		"babel-register": "^6.26.0",
+		"less": "^2.7.3",
 		"modular-css-rollup": "^7.2.0",
-		"peng-component": "^1.0.5",
 		"postcss-easy-import": "^3.0.0",
 		"postcss-import": "^11.0.0",
 		"postcss-modular-css": "^7.2.0",
 		"postcss-modules": "^1.1.0",
-		"react": "^16.2.0",
-		"react-dom": "^16.2.0",
 		"rollup": "^0.54.1",
-		"rollup-plugin-uglify": "^2.0.1",
+		"rollup-plugin-babel": "^3.0.3",
+		"rollup-plugin-node-resolve": "^3.0.2",
+		"rollup-plugin-postcss": "^1.2.5",
+		"rollup-plugin-uglify": "^2.0.1"
+	},
+	"dependencies": {
+		"chai": "^4.1.2",
+		"mocha": "^5.0.0",
+		"peng-component": "^1.0.5",
 		"the-answer": "^1.0.0",
 		"vconsole": "^3.1.0"
 	}

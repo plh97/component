@@ -1,4 +1,3 @@
-import $ from '../../utils/jquery.js';
 import './index.less'
 import Button from "../../container/button";
 import Icon from "../../container/icon";
@@ -62,7 +61,7 @@ const ModalInfo = args => {
             e.path[0].classList.contains('component-mask')
         ){
             mask.remove()
-            $('body').style.overflow = "auto";
+            document.body.style.overflow = "auto";
         }
 	},false)
     let btns = mask.querySelectorAll('.component-modalInfo button');
@@ -70,14 +69,14 @@ const ModalInfo = args => {
     btns.forEach(dom=>{
         dom.addEventListener('click',()=>{
             mask.remove()
-            $('body').style.overflow = "auto";
+            document.body.style.overflow = "auto";
             if(dom.classList.contains('confirm')) {
                 callback();
             }
         })
     })
-    $('body').style.overflow = "hidden";
-    $('body').appendChild(mask);
+    document.body.style.overflow = "hidden";
+    document.body.appendChild(mask);
 }
 
 export default ModalInfo;
