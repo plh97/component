@@ -1,6 +1,6 @@
 {
 	"name": "peng-component",
-	"version": "1.0.8",
+	"version": "1.0.10",
 	"description": "component use in fast mall",
 	"homepage": "https://www.pipk.top",
 	"main": "dist/index.js",
@@ -18,7 +18,7 @@
 		"component"
 	],
 	"author": "kingubo",
-	"license": "ISC",
+	"license": "MIT",
 	"devDependencies": {
 		"babel-plugin-external-helpers": "^6.22.0",
 		"babel-preset-env": "^1.6.1",

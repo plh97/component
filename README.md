@@ -2,8 +2,8 @@
 [效果预览](./test/index.html)
 
 #### 如果是直接引入
-```js
-<script src="path/to/peng-component.js"></script>
+```html
+<script src="path/to/component.js"></script>
 ```
 ##### 当你直接引入的时候，组件将作为全局变量直接可以获取，
 
