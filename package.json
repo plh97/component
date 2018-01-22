@@ -1,7 +1,7 @@
 {
 	"name": "peng-component",
 	"version": "1.0.8",
-	"description": "make some component",
+	"description": "component use in fast mall",
 	"homepage": "https://www.pipk.top",
 	"main": "dist/index.js",
 	"scripts": {
