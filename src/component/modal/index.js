@@ -61,7 +61,7 @@ const Modal = async args => {
         }
     })
     document.body.appendChild(mask);
-    await sleep(1000);
+    await sleep(300);
     mask.addEventListener('click',e=>{
         e.stopPropagation()
         // e.preventDefault()

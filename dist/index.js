@@ -61,7 +61,7 @@ const sleep = ms => {
     return new Promise(resolve => setTimeout(resolve, ms));
 };
 
-const Dom$1 = {
+const Dom = {
     domFunc,
     sleep
 };
@@ -100,7 +100,7 @@ const Modal = (() => {
         const {
             domFunc,
             sleep
-        } = Dom$1;
+        } = Dom;
         let {
             title,
             content,
@@ -152,7 +152,7 @@ const Modal = (() => {
             }
         });
         document.body.appendChild(mask);
-        yield sleep(1000);
+        yield sleep(300);
         mask.addEventListener('click', function (e) {
             e.stopPropagation();
             // e.preventDefault()
@@ -303,7 +303,7 @@ const ModalInfo = (() => {
         const {
             domFunc,
             sleep
-        } = Dom$1;
+        } = Dom;
         let {
             type,
             content,
@@ -405,7 +405,7 @@ __$$styleInject(css$12);
 const Spin = args => {
     const {
         domFunc
-    } = Dom$1;
+    } = Dom;
     if (args == undefined) {
         var dom = document.body;
     } else {
@@ -470,4 +470,4 @@ const Component = {
     }
 };
 
-module.exports = Component;
+// module.exports = Component;

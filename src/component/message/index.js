@@ -1,5 +1,6 @@
 import './index.less'
 import Icon from "../../container/icon";
+import Dom from "../../utils/dom.js";
 
 const Message = async args => {
     const {
