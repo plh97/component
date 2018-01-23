@@ -14,7 +14,7 @@ const ModalInfo = args => {
         type = 'info',
         title = args
     );
-    if(!type.match(/(info|success|error|warning|confirm|delete)/)){
+    if(type==undefined){
         type="info"
     }
     if(title==undefined){
@@ -25,6 +25,9 @@ const ModalInfo = args => {
     }
     if(callback==undefined){
         callback=()=>{}
+    }
+    if(!type.match(/(info|success|error|warning|confirm|delete)/)){
+        type="info"
     }
     let mask = document.createElement('div');
     mask.className = 'component-mask';
