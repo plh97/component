@@ -1,7 +1,11 @@
 import './index.less'
 import Icon from "../../container/icon";
 
-const Message = args => {
+const Message = async args => {
+    const {
+        domFunc,
+        sleep
+    } = Dom;
     let {
         type,
         content,
@@ -28,10 +32,9 @@ const Message = args => {
         &nbsp;
         ${ content }
     `;
-    setTimeout(() => {
-        message.remove()
-    }, time);
     container.appendChild(message);
+    await sleep(time)
+    message.remove()
 }
 
 export default Message;

@@ -3,9 +3,10 @@ import Button from "../../container/button";
 import Icon from "../../container/icon";
 import Dom from "../../utils/dom.js";
 
-const ModalInfo = args => {
+const ModalInfo = async args => {
     const {
-        domFunc
+        domFunc,
+        sleep
     } = Dom;
     let {
         type,
@@ -57,7 +58,16 @@ const ModalInfo = args => {
             </div>
         </div>
     `;
-    mask.addEventListener('click',e=>{
+    domFunc({
+        dom: document.querySelector('html'),
+        style: {
+            paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+            overflow: "hidden"
+        }
+    })
+    document.body.appendChild(mask);
+    await sleep(300);
+    mask.addEventListener('click',e => {
         e.stopPropagation()
         // e.preventDefault()
         // return false
@@ -91,14 +101,6 @@ const ModalInfo = args => {
             }
         })
     })
-    domFunc({
-        dom:document.querySelector('html'),
-        style: {
-            paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
-            overflow: "hidden"
-        }
-    })
-    document.body.appendChild(mask);
 }
 
 export default ModalInfo;

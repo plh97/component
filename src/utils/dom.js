@@ -8,8 +8,13 @@ let domFunc = e => {
     }
 }
 
+const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+};
+
 const Dom = {
-    domFunc:domFunc
+    domFunc,
+    sleep
 }
 
 export default Dom;

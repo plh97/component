@@ -1,8 +1,6 @@
 {
     "presets": [
-      ["env", {
-        "modules": false
-      }]
+      ["es2017"]
     ],
     "plugins": ["external-helpers"]
   }

@@ -2,9 +2,10 @@ import './index.less'
 import Button from "../../container/button";
 import Dom from "../../utils/dom.js";
 
-const Modal = args => {
+const Modal = async args => {
     const {
-        domFunc
+        domFunc,
+        sleep
     } = Dom;
     let {
         title,
@@ -52,6 +53,15 @@ const Modal = args => {
             </div>
         </div>
     `;
+    domFunc({
+        dom:document.querySelector('html'),
+        style: {
+            paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+            overflow: "hidden"
+        }
+    })
+    document.body.appendChild(mask);
+    await sleep(1000);
     mask.addEventListener('click',e=>{
         e.stopPropagation()
         // e.preventDefault()
@@ -86,14 +96,6 @@ const Modal = args => {
             }
         })
     })
-    domFunc({
-        dom:document.querySelector('html'),
-        style: {
-            paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
-            overflow: "hidden"
-        }
-    })
-    document.body.appendChild(mask);
 }
 
 export default Modal;
