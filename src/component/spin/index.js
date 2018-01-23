@@ -1,8 +1,11 @@
 import './index.less'
 import Icon from "../../container/icon";
-
+import Dom from "../../utils/dom.js";
 
 const Spin = args => {
+    const {
+        domFunc
+    } = Dom;
     if(args==undefined){
         var dom = document.body;
     } else {
@@ -11,7 +14,13 @@ const Spin = args => {
     }
     if(!!dom.querySelector('.component-container-spin')){
         dom.querySelector('.component-container-spin').remove()
-        document.body.style.overflow = "auto";
+        domFunc({
+            dom:document.querySelector('html'),
+            style: {
+                paddingRight: `0px`,
+                overflow: "auto"
+            }
+        })
     }else{
         dom.style.position="relative";
         let container = document.createElement('div')
@@ -22,8 +31,19 @@ const Spin = args => {
                 <span>Loading...</span>
             </div>
         `;
+        container.addEventListener('click',(e)=>{
+            e.stopPropagation()
+            // e.preventDefault()
+            // return false
+        })
+        domFunc({
+            dom:document.querySelector('html'),
+            style: {
+                paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+                overflow: "hidden"
+            }
+        })
         dom.appendChild(container)
-        document.body.style.overflow = "hidden";
     }
 }
 

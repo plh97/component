@@ -10,7 +10,7 @@ const Message = args => {
     } = args;
     typeof(args)=='string' && (content = args);
     type = (type == undefined ? "info" : type);
-    time = (time == undefined ? 1000 : time);
+    time = (time == undefined ? 3000 : time);
     content = (content == undefined ? "{content: 请输入content参数}" : content);
     callback = (callback == undefined ? ()=>{} : callback);
 

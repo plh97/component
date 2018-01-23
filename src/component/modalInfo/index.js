@@ -1,8 +1,12 @@
 import './index.less'
 import Button from "../../container/button";
 import Icon from "../../container/icon";
+import Dom from "../../utils/dom.js";
 
 const ModalInfo = args => {
+    const {
+        domFunc
+    } = Dom;
     let {
         type,
         content,
@@ -10,15 +14,14 @@ const ModalInfo = args => {
         callback
     } = args;
     typeof(args)=='string' && (
-        content = '',
-        type = 'info',
-        title = args
+        content = args,
+        type = 'info'
     );
     if(type==undefined){
         type="info"
     }
     if(title==undefined){
-        title="{title: 请输入title参数}"
+        title="提示"
     }
     if(content==undefined){
         content="{content: 请输入content参数}"
@@ -39,11 +42,9 @@ const ModalInfo = args => {
                 })}
                 <span class="title">${title}</span>
             </div>
-            ${typeof(args)=='string'?"":`
-                <div class="component-model-body">
-                    ${content}
-                </div>
-            `}
+            <div class="component-model-body">
+                ${content}
+            </div>
             <div class="component-modalInfo-footer">
                 ${(type=="confirm"||type=="delete") ? Button({
                     className:"cancal",
@@ -64,7 +65,13 @@ const ModalInfo = args => {
             e.path[0].classList.contains('component-mask')
         ){
             mask.remove()
-            document.body.style.overflow = "auto";
+            domFunc({
+                dom:document.querySelector('html'),
+                style: {
+                    paddingRight: `0px`,
+                    overflow: "auto"
+                }
+            })
         }
 	},false)
     let btns = mask.querySelectorAll('.component-modalInfo button');
@@ -72,13 +79,25 @@ const ModalInfo = args => {
     btns.forEach(dom=>{
         dom.addEventListener('click',()=>{
             mask.remove()
-            document.body.style.overflow = "auto";
+            domFunc({
+                dom:document.querySelector('html'),
+                style: {
+                    paddingRight: `0px`,
+                    overflow: "auto"
+                }
+            })
             if(dom.classList.contains('confirm')) {
                 callback();
             }
         })
     })
-    document.body.style.overflow = "hidden";
+    domFunc({
+        dom:document.querySelector('html'),
+        style: {
+            paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+            overflow: "hidden"
+        }
+    })
     document.body.appendChild(mask);
 }
 

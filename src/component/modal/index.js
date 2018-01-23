@@ -1,7 +1,11 @@
 import './index.less'
 import Button from "../../container/button";
+import Dom from "../../utils/dom.js";
 
 const Modal = args => {
+    const {
+        domFunc
+    } = Dom;
     let {
         title,
         content,
@@ -56,7 +60,13 @@ const Modal = args => {
             e.path[0].classList.contains('component-mask')
         ){
             mask.remove()
-            document.body.style.overflow = "auto";
+            domFunc({
+                dom:document.querySelector('html'),
+                style: {
+                    paddingRight: `0px`,
+                    overflow: "auto"
+                }
+            })
         }
 	},false)
     let btns = mask.querySelectorAll('.component-model button');
@@ -64,13 +74,25 @@ const Modal = args => {
     btns.forEach(dom=>{
         dom.addEventListener('click',()=>{
             mask.remove()
-            document.body.style.overflow = "auto";
+            domFunc({
+                dom:document.querySelector('html'),
+                style: {
+                    paddingRight: `0px`,
+                    overflow: "auto"
+                }
+            })
             if(dom.classList.contains('confirm')) {
                 callback();
             }
         })
     })
-    document.body.style.overflow = "hidden";
+    domFunc({
+        dom:document.querySelector('html'),
+        style: {
+            paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+            overflow: "hidden"
+        }
+    })
     document.body.appendChild(mask);
 }
 

@@ -69,154 +69,158 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({3:[function(require,module,exports) {
-// import {
-//     pc,
-//     mobile
-// } from "peng-component";
-// } from "../dist/index.js";
+})({2:[function(require,module,exports) {
+// // import {
+// //     pc,
+// //     mobile
+// // } from "peng-component";
+// // } from "../dist/index.js";
 
-// if(screen.width>768){
-//     var {
-//         modal,
-//         modalInfo,
-//         message,
-//         spin,
-//         container
-//     } = pc;
-// }else{
-//     var {
-//         modal,
-//         modalInfo,
-//         message,
-//         spin,
-//         container
-//     } = mobile;
-// }
+// // if(screen.width>768){
+// //     var {
+// //         modal,
+// //         modalInfo,
+// //         message,
+// //         spin,
+// //         container
+// //     } = pc;
+// // }else{
+// //     var {
+// //         modal,
+// //         modalInfo,
+// //         message,
+// //         spin,
+// //         container
+// //     } = mobile;
+// // }
 
-// const {
-//     modal,
-//     modalInfo,
-//     message,
-//     spin,
-//     container
-// } = pc;
-const pc = Component.pc
+// // const {
+// //     modal,
+// //     modalInfo,
+// //     message,
+// //     spin,
+// //     container
+// // } = pc;
+var pc = Component.pc;
 
-
-var modal  =pc.modal;
-var modalInfo  =pc.modalInfo;
-var message  =pc.message;
-var spin  =pc.spin;
-var container  =pc.container;
+var modal = pc.modal;
+var modalInfo = pc.modalInfo;
+var message = pc.message;
+var spin = pc.spin;
+var container = pc.container;
 
 var button = container.button;
 var icon = container.icon;
 
-
 var times = 0;
-document.querySelector('#container-modal').innerHTML = `
-    ${button({
-        className:"btn-primary",
-        text:"Modal"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"ModalInfo"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"ModalConfirm"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"ModalDelete"
-    }).outerHTML}
-`
-document.querySelector('#container-message').innerHTML = `
-    ${button({
-        className:"confirm btn-primary",
-        text:"info"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"success"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"error"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"warning"
-    }).outerHTML}
-`;
-let messageBtns = document.querySelectorAll('#container-message button');
-messageBtns = Array.prototype.slice.call(messageBtns)
-let modalBtns = document.querySelectorAll('#container-modal button');
-modalBtns = Array.prototype.slice.call(modalBtns)
-messageBtns.forEach(btn =>{
-    btn.addEventListener('click',(e)=>{
-        if(e.target.innerText=="info"){
-            message('123')
-        }else{
-            message({
-                type: e.target.innerText,
-                time: 100000,
-                content: `这个是这个是这个是这个是这个是这个是这个是这个是这个是这个是这个是这个是${e.target.innerText},第${times++}次`,
-                callback: ()=>{
-                    console.log('callback',e.target.innerText);
-                }
-            })
+document.querySelector('#container-modal').innerHTML = "\n    " + button({
+  className: "btn-primary",
+  text: "Modal"
+}).outerHTML + "\n    " + button({
+  className: "confirm btn-primary",
+  text: "ModalInfo"
+}).outerHTML + "\n    " + button({
+  className: "confirm btn-primary",
+  text: "ModalConfirm"
+}).outerHTML + "\n    " + button({
+  className: "confirm btn-primary",
+  text: "ModalDelete"
+}).outerHTML + "\n";
+document.querySelector('#container-message').innerHTML = "\n    " + button({
+  className: "confirm btn-primary",
+  text: "info"
+}).outerHTML + "\n    " + button({
+  className: "confirm btn-primary",
+  text: "success"
+}).outerHTML + "\n    " + button({
+  className: "confirm btn-primary",
+  text: "error"
+}).outerHTML + "\n    " + button({
+  className: "confirm btn-primary",
+  text: "warning"
+}).outerHTML + "\n";
+var messageBtns = document.querySelectorAll('#container-message button');
+messageBtns = Array.prototype.slice.call(messageBtns);
+var modalBtns = document.querySelectorAll('#container-modal button');
+modalBtns = Array.prototype.slice.call(modalBtns);
+messageBtns.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    if (e.target.innerText == "info") {
+      message('123');
+    } else {
+      message({
+        type: e.target.innerText,
+        time: 100000,
+        content: "\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F" + e.target.innerText + ",\u7B2C" + times++ + "\u6B21",
+        callback: function callback() {
+          console.log('callback', e.target.innerText);
         }
-    },false)
-})
-modalBtns.forEach(btn =>{
-    if(btn.innerText == "Modal"){
-        btn.addEventListener('click',(e)=>{
-            modal({
-                title: `${btn.innerText}的标题`,
-                content: `这个是${e.target.innerText}的内容,第${times++}次`,
-                callback: ()=>console.log('callback',e.target.innerText,"的确认")
-            })
-        },false)
-    }else if(btn.innerText == "ModalInfo"){
-        btn.addEventListener('click',(e)=>{
-            modalInfo('这个是简化版标题！！')
-        },false)
-    }else if(btn.innerText == "ModalConfirm"){
-        btn.addEventListener('click',(e)=>{
-            modalInfo({
-                type: `confirm`,
-                title: `Do you Want to delete these items?`,
-                content: `警告内容`,
-                callback: () => console.log('callback',e.target.innerText,"的确认")
-            })
-        },false)
-    }else if(btn.innerText == "ModalDelete"){
-        btn.addEventListener('click',(e)=>{
-            modalInfo({
-                type: `delete`,
-                title: `Do you Want to delete these items?`,
-                content: `报错内容`,
-                callback: () => console.log('callback',e.target.innerText,"的确认")
-            })
-        },false)
+      });
     }
-})
-document.querySelector('.container').addEventListener('click',(e)=>{
-    if(screen.width>768){
-        spin({dom: document.querySelector('.container')})
-        setTimeout(() => {
-            spin({dom: document.querySelector('.container')})
-        }, 2000);
-    }else {
-        spin()
-        setTimeout(() => {
-            spin()
-        }, 2000);
-    }
-},false)
+  }, false);
+});
+modalBtns.forEach(function (btn) {
+  if (btn.innerText == "Modal") {
+    btn.addEventListener('click', function (e) {
+      modal({
+        title: btn.innerText + "\u7684\u6807\u9898",
+        content: "\u8FD9\u4E2A\u662F" + e.target.innerText + "\u7684\u5185\u5BB9,\u7B2C" + times++ + "\u6B21",
+        callback: function callback() {
+          return console.log('callback', e.target.innerText, "的确认");
+        }
+      });
+    }, false);
+  } else if (btn.innerText == "ModalInfo") {
+    btn.addEventListener('click', function (e) {
+      modalInfo('这个是简化版标题！！');
+    }, false);
+  } else if (btn.innerText == "ModalConfirm") {
+    btn.addEventListener('click', function (e) {
+      modalInfo({
+        type: "confirm",
+        title: "Do you Want to delete these items?",
+        content: "\u8B66\u544A\u5185\u5BB9",
+        callback: function callback() {
+          return console.log('callback', e.target.innerText, "的确认");
+        }
+      });
+    }, false);
+  } else if (btn.innerText == "ModalDelete") {
+    btn.addEventListener('click', function (e) {
+      modalInfo({
+        type: "delete",
+        title: "Do you Want to delete these items?",
+        content: "\u62A5\u9519\u5185\u5BB9",
+        callback: function callback() {
+          return console.log('callback', e.target.innerText, "的确认");
+        }
+      });
+    }, false);
+  }
+});
+document.querySelector('.container').addEventListener('click', function (e) {
+  if (screen.width > 768) {
+    spin({ dom: document.querySelector('.container') });
+    setTimeout(function () {
+      spin({ dom: document.querySelector('.container') });
+    }, 2000);
+  } else {
+    spin();
+    setTimeout(function () {
+      spin();
+    }, 2000);
+  }
+}, false);
+
+// add.test.js
+// var match = require('../src/utils/functional.js');
+// var expect = require('chai').expect;
+
+// describe('加法函数的测试', () => {
+//     it('1 加 1 应该等于 2', () => {
+//         expect(match(/\s+/g,"hello world")).to.be.equal([" "]);
+//     });
+// });
 },{}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -235,7 +239,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':60622/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':63869/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -336,4 +340,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,3])
+},{}]},{},[0,2])
