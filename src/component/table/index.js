@@ -7,7 +7,10 @@ const {
     domFunc,
     sleep,
     isDomInPathFunc,
-    domToggleAnimation
+    domToggleAnimation,
+    addArrProp,
+    showDomFunc,
+    addEvent
 } = Dom;
 
 
@@ -119,7 +122,9 @@ const Table = async args => {
     let btns = mask.querySelectorAll('.component-table button');
     btns = Array.prototype.slice.call(btns);
     await btnAddevent({btns,mask,callback})
-
+    // 添加观察者
+    await secTableObserver()
+    await thrTableObserver()
     // all event proxy
     await eventProxy({
         event:'click'
@@ -145,7 +150,6 @@ const putDataToFirTable = async data => {
         let html = `
             ${Icon({type:"wujiaoxing"})}
             <span class="text-container">` + row.name + `</span>
-            ${Icon({type:">"})}
         `;
         div.className = "list";
         div.innerHTML = html;
@@ -241,8 +245,12 @@ const eventProxy = args => {
                 if(isDomInPath){
                     let allList = isDomInPath.parentElement.querySelectorAll('.list')
                     allList = Array.prototype.slice.call(allList);
-                    allList.map(dom=>dom.dataset.active=false);
+                    allList.map(dom=>{
+                        dom.dataset.active=false;
+                        dom.classList.remove('active')
+                    });
                     isDomInPath.dataset.active = true
+                    isDomInPath.classList.add('active')
                 }
             })
             // empty
@@ -297,6 +305,83 @@ const eventProxy = args => {
         document.body.addEventListener(event, handleAllEvent, false)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+const secTableObserver =  (args) => {
+    let fir_table_container = document.querySelector('.component-table-body-side .list-container');
+    let sec_table_container = document.querySelector('.component-table-body-container .sec-table .tb-container');
+    let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    let observer = new MutationObserver((mutations) => {
+        let target = mutations.filter(mutation => mutation.target.dataset.active=='true')
+        if(!target.length) return 
+        let index = target[0].target.dataset.type
+        let allDom = sec_table_container.querySelectorAll('input');
+        allDom = addArrProp(allDom).map(dom=>dom.parentElement);
+        let showDom = sec_table_container.querySelectorAll('input');
+        showDom = addArrProp(showDom).map(dom=> dom.parentElement).filter(dom=> dom.dataset.type==index);
+        showDomFunc({
+            allDom,
+            showDom
+        });
+    });
+    // 配置观察选项:
+    let config = { 
+        subtree: true,
+        childList: true, 
+        attributes: true, 
+        characterData: true
+    }
+    observer.observe(fir_table_container, config);
+}
+
+const thrTableObserver = (args) => {
+    ////不适合单独监听啊，，直接复制选中的元素好了，垃圾算法
+    let sec_table_container = document.querySelector('.component-table-body-container .sec-table .tb-container');
+    let thr_table_container = document.querySelector('.component-table-body-container .thr-table .tb-container');
+    let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    let observer = new MutationObserver((mutations) => {
+        let inputGroupAll = thr_table_container.querySelectorAll('input');
+        inputGroupAll = Array.prototype.slice.call(inputGroupAll);
+        inputGroupAll.map((input,i)=>{
+            input.parentElement.remove()
+        })
+        let inputGroup = sec_table_container.querySelectorAll('input:checked');
+        inputGroup = Array.prototype.slice.call(inputGroup);
+        inputGroup.map((input,i) => {
+            console.log(input);
+            let div = input.parentElement;
+            let newChild = div.cloneNode(true);
+            let oldChild = thr_table_container.querySelector('div:nth-child('+ (i+1) +')');
+            newChild.style.display = "flex";
+            addEvent({
+                dom: newChild,
+                envet: "click",
+                func: e=>e.path.filter(e=>e.className=='tb')[0].remove()
+            })
+            thr_table_container.insertBefore(newChild,oldChild);
+            newChild.scrollIntoView({behavior: "instant", block: "end", inline: "nearest"})
+        })
+    });
+    let config = { 
+        attributes: true, 
+        childList: true, 
+        characterData: true ,
+        subtree: true
+    }
+    observer.observe(sec_table_container, config);
+}
+
+
 
 
 

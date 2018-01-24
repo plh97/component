@@ -78,6 +78,7 @@
                     flex: 1;
 
                     .list {
+                        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
                         height: 30px;
                         padding: 0 10px;
                         font-weight: bold;
@@ -94,6 +95,10 @@
                             font-size: 12px;
                             font-weight: 500;
                             font-size: 14px;
+                        }
+                        &.active {
+                            background-color: @lightBlue8;
+                            color: #fff;
                         }
                     }
                 }

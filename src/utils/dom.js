@@ -49,13 +49,38 @@ const domToggleAnimation = args => {
     }
 }
 // ===============Tool==============
+//feature function
+const showDomFunc = (args) => {
+    const {
+        allDom,
+        showDom
+    } = args;
+    allDom.map(dom => {
+        dom.style.display = "none";
+    })
+    showDom.map(dom => {
+        dom.style.display = "flex";
+    })
+}
+// 添加事件
+const addEvent = (e) => {
+    const { 
+        dom,
+        event,
+        func
+    } = e
+    dom.addEventListener(event,func,false)
+    return dom
+}
 
 const Dom = {
     domFunc,
     sleep,
     isDomInPathFunc,
     domToggleAnimation,
-    addArrProp
+    addArrProp,
+    showDomFunc,
+    addEvent
 }
 
 export default Dom;
