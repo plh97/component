@@ -37,6 +37,7 @@ var modalInfo  =pc.modalInfo;
 var message  =pc.message;
 var spin  =pc.spin;
 var container  =pc.container;
+var table  =pc.table;
 
 var button = container.button;
 var icon = container.icon;
@@ -79,10 +80,22 @@ document.querySelector('#container-message').innerHTML = `
         text:"warning"
     }).outerHTML}
 `;
+document.querySelector('#container-table').innerHTML = `
+    ${button({
+        className:"table btn-danger",
+        text:"table"
+    }).outerHTML}
+    ${button({
+        className:"treeTable btn-danger",
+        text:"tableTree"
+    }).outerHTML}
+`;
 let messageBtns = document.querySelectorAll('#container-message button');
 messageBtns = Array.prototype.slice.call(messageBtns)
 let modalBtns = document.querySelectorAll('#container-modal button');
 modalBtns = Array.prototype.slice.call(modalBtns)
+let tableBtns = document.querySelectorAll('#container-table button');
+tableBtns = Array.prototype.slice.call(tableBtns)
 messageBtns.forEach(btn =>{
     btn.addEventListener('click',(e)=>{
         if(e.target.innerText=="info"){
@@ -91,7 +104,7 @@ messageBtns.forEach(btn =>{
             message({
                 type: e.target.innerText,
                 time: 100000,
-                content: `这个是这个是这个是这个是这个是这个是这个是这个是这个是这个是这个是这个是${e.target.innerText},第${times++}次`,
+                content: `是这个是这个是这个是这个是${e.target.innerText},第${times++}次`,
                 callback: ()=>{
                     console.log('callback',e.target.innerText);
                 }
@@ -146,6 +159,32 @@ document.querySelector('.container').addEventListener('click',(e)=>{
     }
 },false)
 
+
+
+tableBtns.forEach(btn =>{
+    btn.addEventListener('click',(e)=>{
+        table({
+            type: e.target.innerText,
+            data: [{
+                number:"231123fwef",
+                name:"法斯特"
+            },{
+                number:"231123fwef",
+                name:"法斯特"
+            },{
+                number:"231123fwef",
+                name:"法斯特"
+            },{
+                number:"231123fwef",
+                name:"法斯特"
+            },{
+                number:"231123fwef",
+                name:"法斯特"
+            }],
+            callback: () => console.log('callback',e.target.innerText,"的确认")
+        })
+    },false)
+})
 
 
 

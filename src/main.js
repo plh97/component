@@ -3,6 +3,7 @@ import Modal from "./component/modal";
 import Message from "./component/message";
 import ModalInfo from "./component/modalInfo";
 import Spin from "./component/spin";
+import Table from "./component/table";
 import Button from "./container/button";
 import Icon from "./container/icon";
 
@@ -12,6 +13,7 @@ const Component = {
         message: Message,
         spin: Spin,
         modal: Modal,
+        table: Table,
         modalInfo: ModalInfo,
         container: {
             button: Button,

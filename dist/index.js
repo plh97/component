@@ -447,11 +447,113 @@ const Spin = args => {
     }
 };
 
+var css$14 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 50;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-mask .component-modalInfo {\n  top: 16vh;\n  width: 80vw;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  max-width: 416px;\n  z-index: 50;\n  min-height: 120px;\n  position: absolute;\n  border-radius: 4px;\n  background-color: #fff;\n  box-sizing: border-box;\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  background-clip: padding-box;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n@media screen and (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    left: 10vw;\n  }\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 32px 32px 24px 18px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 15px;\n  }\n}\n.component-mask .component-modalInfo .component-model-header {\n  margin-bottom: 8px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  color: rgba(0, 0, 0, 0.65);\n}\n.component-mask .component-modalInfo .component-model-header .icon {\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 15%;\n          flex: 2 2 15%;\n}\n.component-mask .component-modalInfo .component-model-header .title {\n  color: rgba(0, 0, 0, 0.85);\n  font-weight: bold;\n  font-size: 16px;\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 85%;\n          flex: 2 2 85%;\n  color: #212121;\n}\n.component-mask .component-modalInfo .component-model-body {\n  font-size: 14px;\n  color: rgba(0, 0, 0, 0.65);\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  word-break: break-word;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 55px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 38px;\n  }\n}\n.component-mask .component-modalInfo .component-modalInfo-footer {\n  margin-top: 10px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.component-mask .component-modalInfo .component-modalInfo-footer .component-btn {\n  margin-left: 5px;\n}\n";
+__$$styleInject(css$14);
+
+const ModalInfo$2 = (() => {
+    var _ref = asyncToGenerator(function* (args) {
+        const {
+            domFunc,
+            sleep
+        } = Dom;
+        let {
+            data,
+            callback,
+            type
+        } = args;
+        if (data == undefined) {
+            console.error(`必须要有数据啊`);
+            console.error(`{
+            data:[1,2,3,4,5,6]
+        }`);
+        }
+        if (type == undefined) {
+            console.error(`{
+            type: table/treeTable
+        }`);
+        }
+        if (callback == undefined) {
+            callback = function () {};
+        }
+        let mask = document.createElement('div');
+        mask.className = 'component-mask';
+        mask.innerHTML = `
+        <div class="component-modalInfo">
+            <div class="component-model-header">
+                ${Icon({
+            type
+        })}
+                <span class="title">${title}</span>
+            </div>
+            <div class="component-model-body">
+                ${content}
+            </div>
+            <div class="component-modalInfo-footer">
+                ${type == "confirm" || type == "delete" ? Button({
+            className: "cancal",
+            text: "取消"
+        }).outerHTML : ""}
+                ${Button({
+            className: `confirm ${type == "delete" ? "btn-danger" : "btn-primary"}`,
+            text: "确认"
+        }).outerHTML}
+            </div>
+        </div>
+    `;
+        domFunc({
+            dom: document.querySelector('html'),
+            style: {
+                paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+                overflow: "hidden"
+            }
+        });
+        document.body.appendChild(mask);
+        yield sleep(300);
+        mask.addEventListener('click', function (e) {
+            e.stopPropagation();
+            // e.preventDefault()
+            // return false
+            if (e.path[0].classList.contains('component-mask')) {
+                mask.remove();
+                domFunc({
+                    dom: document.querySelector('html'),
+                    style: {
+                        paddingRight: `0px`,
+                        overflow: "auto"
+                    }
+                });
+            }
+        }, false);
+        let btns = mask.querySelectorAll('.component-modalInfo button');
+        btns = Array.prototype.slice.call(btns);
+        btns.forEach(function (dom) {
+            dom.addEventListener('click', function () {
+                mask.remove();
+                domFunc({
+                    dom: document.querySelector('html'),
+                    style: {
+                        paddingRight: `0px`,
+                        overflow: "auto"
+                    }
+                });
+                if (dom.classList.contains('confirm')) {
+                    callback();
+                }
+            });
+        });
+    });
+
+    return function ModalInfo(_x) {
+        return _ref.apply(this, arguments);
+    };
+})();
+
 const Component = {
     pc: {
         message: Message,
         spin: Spin,
         modal: Modal,
+        table: ModalInfo$2,
         modalInfo: ModalInfo,
         container: {
             button: Button,
@@ -470,4 +572,4 @@ const Component = {
     }
 };
 
-// module.exports = Component;
+module.exports = Component;

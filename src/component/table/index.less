@@ -1,0 +1,90 @@
+@import './assets/common/@common.less';
+
+.component-mask {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    z-index: 50;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    animation-fill-mode: forwards;
+
+    .component-modalInfo {
+        @media screen and (max-width: 768px) {
+            left: 10vw;
+        }
+        top: 16vh;
+        width: 80vw;
+        display: flex;
+        max-width: 416px;
+        z-index: 50;
+        min-height: 120px;
+        position: absolute;
+        border-radius: 4px;
+        background-color: #fff;
+        box-sizing: border-box;
+        @media (min-width: 768px) {
+            padding: 32px 32px 24px 18px;
+        }
+        @media (max-width: 768px) {
+            padding: 15px;
+        }
+        // transform-origin: -6px 182px 0px;
+        animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);
+        animation-fill-mode: forwards;
+        background-clip: padding-box;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .component-model-header {
+            margin-bottom: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
+            color: rgba(0, 0, 0, 0.65);
+            
+            .icon {
+                flex: 2 2 15%;
+            }
+            .title {
+                color: rgba(0, 0, 0, 0.85);
+                font-weight: bold;
+                font-size: 16px;
+                flex: 2 2 85%;
+                color: @grey9;
+            }
+        }
+        .component-model-body {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.65);
+            // margin-top: 8px;
+            flex: 1;
+            @media (min-width: 768px) {
+                margin-left: 55px;
+            }
+            @media (max-width: 768px) {
+                margin-left: 38px;
+            }
+            word-break: break-word;
+            display: inline-flex;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .component-modalInfo-footer {
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-end;
+            
+            .component-btn {
+                margin-left: 5px;
+            }
+        }
+    }
+}
