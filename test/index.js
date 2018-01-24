@@ -52,15 +52,19 @@ document.querySelector('#container-modal').innerHTML = `
     }).outerHTML}
     ${button({
         className:"confirm btn-primary",
-        text:"ModalInfo"
+        text:"info"
     }).outerHTML}
     ${button({
         className:"confirm btn-primary",
-        text:"ModalConfirm"
+        text:"confirm"
     }).outerHTML}
     ${button({
-        className:"confirm btn-primary",
-        text:"ModalDelete"
+        className:"confirm btn-danger",
+        text:"delete"
+    }).outerHTML}
+    ${button({
+        className:"wait btn-primary",
+        text:"wait"
     }).outerHTML}
 `
 document.querySelector('#container-message').innerHTML = `
@@ -104,7 +108,7 @@ messageBtns.forEach(btn =>{
         }else{
             message({
                 type: e.target.innerText,
-                time: 100000,
+                time: 1000,
                 content: `这个是这是这个是${e.target.innerText},第${times++}次`,
                 callback: ()=>{
                     console.log('callback',e.target.innerText);
@@ -122,11 +126,11 @@ modalBtns.forEach(btn =>{
                 callback: ()=>console.log('callback',e.target.innerText,"的确认")
             })
         },false)
-    }else if(btn.innerText == "ModalInfo"){
+    }else if(btn.innerText == "info"){
         btn.addEventListener('click',(e)=>{
             modalInfo('这个是简化版标题！！')
         },false)
-    }else if(btn.innerText == "ModalConfirm"){
+    }else if(btn.innerText == "confirm"){
         btn.addEventListener('click',(e)=>{
             modalInfo({
                 type: `confirm`,
@@ -135,7 +139,7 @@ modalBtns.forEach(btn =>{
                 callback: () => console.log('callback',e.target.innerText,"的确认")
             })
         },false)
-    }else if(btn.innerText == "ModalDelete"){
+    }else if(btn.innerText == "delete"){
         btn.addEventListener('click',(e)=>{
             modalInfo({
                 type: `delete`,
@@ -143,6 +147,13 @@ modalBtns.forEach(btn =>{
                 content: `报错内容`,
                 callback: () => console.log('callback',e.target.innerText,"的确认")
             })
+        },false)
+    }else if(btn.innerText == "wait"){
+        btn.addEventListener('click',(e)=>{
+            spin({dom: document.querySelector('.wait')})
+            setTimeout(() => {
+                spin({dom: document.querySelector('.wait')})
+            },3000);
         },false)
     }
 })
@@ -162,30 +173,30 @@ document.querySelector('.container').addEventListener('click',(e)=>{
 
 
 
-tableBtns.forEach(btn =>{
-    btn.addEventListener('click',(e)=>{
-        table({
-            type: e.target.innerText,
-            data: [{
-                number:"231123fwef",
-                name:"法斯特"
-            },{
-                number:"231123fwef",
-                name:"法斯特"
-            },{
-                number:"231123fwef",
-                name:"法斯特"
-            },{
-                number:"231123fwef",
-                name:"法斯特"
-            },{
-                number:"231123fwef",
-                name:"法斯特"
-            }],
-            callback: () => console.log('callback',e.target.innerText,"的确认")
-        })
-    },false)
-})
+// tableBtns.forEach(btn =>{
+//     btn.addEventListener('click',(e)=>{
+//         table({
+//             type: e.target.innerText,
+//             data: [{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             },{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             },{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             },{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             },{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             }],
+//             callback: () => console.log('callback',e.target.innerText,"的确认")
+//         })
+//     },false)
+// })
 
 
 

@@ -65,7 +65,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({3:[function(require,module,exports) {
+})({2:[function(require,module,exports) {
 'use strict';
 
 var _pc;
@@ -183,7 +183,7 @@ var showDomFunc = function showDomFunc(args) {
   });
 };
 // 添加事件
-var addEvent$1 = function addEvent$1(e) {
+var addEvent = function addEvent(e) {
   var dom = e.dom,
       event = e.event,
       func = e.func;
@@ -199,7 +199,7 @@ var Dom = {
   domToggleAnimation: domToggleAnimation,
   addArrProp: addArrProp,
   showDomFunc: showDomFunc,
-  addEvent: addEvent$1
+  addEvent: addEvent
 };
 
 var asyncToGenerator = function asyncToGenerator(fn) {
@@ -323,7 +323,7 @@ var Modal = function () {
   };
 }();
 
-var css$6 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: fixed;\n  z-index: 50;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n.component-mask .component-table {\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  height: 100vh;\n  width: 100%;\n}\n.component-mask .component-table .component-table-header {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background-color: #980e0c;\n  color: #fff;\n  height: 45px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  padding: 0 40px;\n}\n.component-mask .component-table .component-table-body {\n  height: calc(100% - 45px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.component-mask .component-table .component-table-body .component-table-body-side {\n  width: 200px;\n  -ms-flex-negative: 0;\n      flex-shrink: 0;\n  overflow-x: hidden;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  background-color: #fafafa;\n}\n.component-mask .component-table .component-table-body .component-table-body-side svg {\n  font-size: inherit;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .iconfont {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-size: 16px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  height: 60%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .text-container {\n  height: 60%;\n  -webkit-box-flex: 5;\n      -ms-flex: 5;\n          flex: 5;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .all {\n  height: 30px;\n  padding: 0 10px;\n  font-weight: bold;\n  overflow-y: hidden;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  cursor: pointer;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container {\n  overflow-y: hidden;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list {\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  height: 30px;\n  padding: 0 10px;\n  font-weight: bold;\n  overflow-y: hidden;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list .text-container {\n  font-weight: 500;\n  font-size: 15px;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list .icon-wujiaoxing {\n  font-size: 12px;\n  font-weight: 500;\n  font-size: 14px;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list.active {\n  background-color: #0277bd;\n  color: #fff;\n}\n.component-mask .component-table .component-table-body .component-table-body-container {\n  background-color: #fff;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .breadcrumb {\n  background-color: #fafafa;\n  height: 45px;\n  font-size: 14px;\n  padding: 0px 32px;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  border: 1px solid #ccc;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .container-breadcrumb {\n  width: 200px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .container-breadcrumb svg {\n  font-size: 1rem;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container {\n  background-color: #fafafa;\n  height: 45px;\n  padding: 0 23px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  border-radius: 5px;\n  margin: 10px 10px 0 10px;\n  border: 1px solid #ccc;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search {\n  width: 400px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  max-width: 400px;\n  text-align: center;\n  border: 1px solid #707070;\n  border-radius: 5px;\n  cursor: pointer;\n  height: 27px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search input {\n  width: calc(100% - 45px);\n  border: none;\n  outline: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search span {\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  font-size: 13px;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  margin: 10px;\n  border: 2px solid #ccc;\n  border-radius: 5px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb {\n  text-align: center;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 0 10px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .select {\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 110px;\n          flex: 0 0 110px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .num {\n  -webkit-box-flex: 0;\n      -ms-flex: 0 1 100px;\n          flex: 0 1 100px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .name {\n  -webkit-box-flex: 1;\n      -ms-flex: 1 0 auto;\n          flex: 1 0 auto;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.tb {\n  height: 30px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.tb.tb:nth-child(even) {\n  background-color: #f9f9f9;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.th {\n  height: 40px;\n  padding: 0 30px 0 10px;\n  background-color: #eee;\n  position: relative;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb-container,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb-container {\n  height: calc(100% - 50px);\n  overflow-y: scroll;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .group-btn {\n  margin: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  height: 70px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.component-mask .component-table .component-table-body .empty {\n  position: absolute;\n  color: #980e0c;\n  font-weight: bold;\n  right: 15px;\n  cursor: pointer;\n}\n.component-mask .component-table .component-table-body .empty .icon {\n  font-size: 18px !important;\n}\n";
+var css$6 = ".component-container {\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 50;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  pointer-events: none;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.component-container .component-container-message {\n  top: 10px;\n  width: auto;\n  font-size: 16px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  margin: 0 10px 10px 10px;\n  padding: 10px 16px;\n  position: relative;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.75);\n  border-radius: 4px;\n  background-color: #fff;\n}\n.component-container .component-container-message.info,\n.component-container .component-container-message.success,\n.component-container .component-container-message.warning {\n  -webkit-animation: slide-in 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: slide-in 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-container .component-container-message.error {\n  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n}\n.component-container .component-container-message .icon {\n  min-width: 28px;\n}\n";
 __$$styleInject(css$6);
 
 var css$8 = "svg {\n  font-size: 28px;\n  min-width: 28px;\n}\nsvg.icon {\n  width: 1em;\n  height: 1em;\n  vertical-align: -0.15em;\n  fill: currentColor;\n  overflow: hidden;\n}\nsvg.icon.icon-success {\n  color: #52c41a;\n}\nsvg.icon.icon-error {\n  color: #f5222d;\n}\nsvg.icon.icon-warning {\n  color: #faad14;\n}\nsvg.icon.icon-info {\n  color: #039be5;\n}\nsvg.icon.icon-trash {\n  color: #980e0c;\n}\n";
@@ -372,20 +372,215 @@ var Icon = function Icon(args) {
   }
 };
 
+var Message = function () {
+  var _ref = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(args) {
+    var domFunc, sleep, type, content, callback, time, container, message;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            domFunc = Dom.domFunc, sleep = Dom.sleep;
+            type = args.type, content = args.content, callback = args.callback, time = args.time;
+
+            typeof args == 'string' && (content = args);
+            type = type == undefined ? "info" : type;
+            time = time == undefined ? 3000 : time;
+            content = content == undefined ? "{content: 请输入content参数}" : content;
+            callback = callback == undefined ? function () {} : callback;
+
+            if (document.querySelector('.component-container')) {
+              container = document.querySelector('.component-container');
+            } else {
+              container = document.createElement('div');
+
+              container.className = 'component-container';
+              document.body.appendChild(container);
+            }
+            message = document.createElement('div');
+
+            message.className = "component-container-message " + type;
+            message.innerHTML = "\n        " + Icon({ type: type }) + "\n        &nbsp;\n        " + content + "\n    ";
+            container.appendChild(message);
+            _context2.next = 14;
+            return sleep(time);
+
+          case 14:
+            message.remove();
+
+          case 15:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, this);
+  }));
+
+  return function Message(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var css$10 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 50;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-mask .component-modalInfo {\n  top: 16vh;\n  width: 80vw;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  max-width: 416px;\n  z-index: 50;\n  min-height: 120px;\n  position: absolute;\n  border-radius: 4px;\n  background-color: #fff;\n  box-sizing: border-box;\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  background-clip: padding-box;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n@media screen and (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    left: 10vw;\n  }\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 32px 32px 24px 18px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 15px;\n  }\n}\n.component-mask .component-modalInfo .component-model-header {\n  margin-bottom: 8px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  color: rgba(0, 0, 0, 0.65);\n}\n.component-mask .component-modalInfo .component-model-header .icon {\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 15%;\n          flex: 2 2 15%;\n}\n.component-mask .component-modalInfo .component-model-header .title {\n  color: rgba(0, 0, 0, 0.85);\n  font-weight: bold;\n  font-size: 16px;\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 85%;\n          flex: 2 2 85%;\n  color: #212121;\n}\n.component-mask .component-modalInfo .component-model-body {\n  font-size: 14px;\n  color: rgba(0, 0, 0, 0.65);\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  word-break: break-word;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 55px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 38px;\n  }\n}\n.component-mask .component-modalInfo .component-modalInfo-footer {\n  margin-top: 10px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.component-mask .component-modalInfo .component-modalInfo-footer .component-btn {\n  margin-left: 5px;\n}\n";
+__$$styleInject(css$10);
+
+var ModalInfo = function () {
+  var _ref = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(args) {
+    var domFunc, sleep, type, content, title, callback, mask, btns;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            domFunc = Dom.domFunc, sleep = Dom.sleep;
+            type = args.type, content = args.content, title = args.title, callback = args.callback;
+
+            typeof args == 'string' && (content = args, type = 'info');
+            if (type == undefined) {
+              type = "info";
+            }
+            if (title == undefined) {
+              title = "提示";
+            }
+            if (content == undefined) {
+              content = "{content: 请输入content参数}";
+            }
+            if (callback == undefined) {
+              callback = function callback() {};
+            }
+            if (!type.match(/(info|success|error|warning|confirm|delete)/)) {
+              type = "info";
+            }
+            mask = document.createElement('div');
+
+            mask.className = 'component-mask';
+            mask.innerHTML = "\n        <div class=\"component-modalInfo\">\n            <div class=\"component-model-header\">\n                " + Icon({
+              type: type
+            }) + "\n                <span class=\"title\">" + title + "</span>\n            </div>\n            <div class=\"component-model-body\">\n                " + content + "\n            </div>\n            <div class=\"component-modalInfo-footer\">\n                " + (type == "confirm" || type == "delete" ? Button({
+              className: "cancal",
+              text: "取消"
+            }).outerHTML : "") + "\n                " + Button({
+              className: "confirm " + (type == "delete" ? "btn-danger" : "btn-primary"),
+              text: "确认"
+            }).outerHTML + "\n            </div>\n        </div>\n    ";
+            domFunc({
+              dom: document.querySelector('html'),
+              style: {
+                paddingRight: window.innerWidth - document.body.clientWidth + "px",
+                overflow: "hidden"
+              }
+            });
+            document.body.appendChild(mask);
+            _context3.next = 15;
+            return sleep(300);
+
+          case 15:
+            mask.addEventListener('click', function (e) {
+              e.stopPropagation();
+              // e.preventDefault()
+              // return false
+              if (e.path[0].classList.contains('component-mask')) {
+                mask.remove();
+                domFunc({
+                  dom: document.querySelector('html'),
+                  style: {
+                    paddingRight: "0px",
+                    overflow: "auto"
+                  }
+                });
+              }
+            }, false);
+            btns = mask.querySelectorAll('.component-modalInfo button');
+
+            btns = Array.prototype.slice.call(btns);
+            btns.forEach(function (dom) {
+              dom.addEventListener('click', function () {
+                mask.remove();
+                domFunc({
+                  dom: document.querySelector('html'),
+                  style: {
+                    paddingRight: "0px",
+                    overflow: "auto"
+                  }
+                });
+                if (dom.classList.contains('confirm')) {
+                  callback();
+                }
+              });
+            });
+
+          case 19:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, this);
+  }));
+
+  return function ModalInfo(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var css$12 = "@media (min-width: 768px) {\n  .component-container-spin {\n    width: 100%;\n    height: 100%;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    position: absolute;\n    background-color: rgba(255, 255, 255, 0.6);\n    top: 0;\n    left: 0;\n    z-index: 50;\n    cursor: wait;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n  }\n  .component-container-spin.component-container-global {\n    height: 100vh;\n    position: fixed;\n    z-index: 50;\n    pointer-events: none;\n    top: 0;\n  }\n  .component-container-spin.component-container-global .spin-container {\n    position: absolute;\n    top: 25%;\n  }\n  .component-container-spin .spin-container {\n    height: 60px;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n  }\n  .component-container-spin .spin-container .icon {\n    -webkit-animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n            animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n  }\n  .component-container-spin .spin-container span {\n    color: #0277bd;\n    text-shadow: 0 1px 2px #fff;\n  }\n}\n@media (max-width: 768px) {\n  .component-container-spin {\n    width: 100%;\n    height: 100%;\n    z-index: 50;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    position: fixed;\n    top: 0;\n    left: 0;\n  }\n  .component-container-spin.component-container-global {\n    height: 100vh;\n    z-index: 50;\n    -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n            animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n  }\n  .component-container-spin .spin-container {\n    bottom: 10vh;\n    -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n            animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n    position: relative;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    width: 40vw;\n    max-width: 130px;\n    height: 40vw;\n    max-height: 130px;\n    background-color: rgba(0, 0, 0, 0.5);\n    border-radius: 5px;\n  }\n  .component-container-spin .spin-container .icon {\n    font-size: 40px;\n    color: #fff;\n    -webkit-animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n            animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n  }\n  .component-container-spin .spin-container span {\n    font-size: 20px;\n    color: #fff;\n    padding-top: 5px;\n    text-shadow: 0 1px 2px #fff;\n  }\n}\n";
+__$$styleInject(css$12);
+
+var Spin = function Spin(args) {
+  var domFunc = Dom.domFunc;
+
+  if (args == undefined) {
+    var dom = document.body;
+  } else {
+    var dom = args.dom;
+
+    dom = dom == undefined ? document.body : dom;
+  }
+  if (!!dom.querySelector('.component-container-spin')) {
+    dom.querySelector('.component-container-spin').remove();
+    domFunc({
+      dom: document.querySelector('html'),
+      style: {
+        paddingRight: "0px",
+        overflow: "auto"
+      }
+    });
+  } else {
+    dom.style.position = "relative";
+    var container = document.createElement('div');
+    container.className = "component-container-spin " + (dom == document.body ? "component-container-global" : "");
+    container.innerHTML = "\n            <div class=\"spin-container\">\n                " + Icon({ type: 'spin' }) + "\n                <span>Loading...</span>\n            </div>\n        ";
+    container.addEventListener('click', function (e) {
+      e.stopPropagation();
+      // e.preventDefault()
+      // return false
+    });
+    domFunc({
+      dom: document.querySelector('html'),
+      style: {
+        paddingRight: window.innerWidth - document.body.clientWidth + "px",
+        overflow: "hidden"
+      }
+    });
+    dom.appendChild(container);
+  }
+};
+
+var css$14 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: fixed;\n  z-index: 50;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n.component-mask .component-table {\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  height: 100vh;\n  width: 100%;\n}\n.component-mask .component-table .component-table-header {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background-color: #980e0c;\n  color: #fff;\n  height: 45px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  padding: 0 40px;\n}\n.component-mask .component-table .component-table-body {\n  height: calc(100% - 45px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.component-mask .component-table .component-table-body .component-table-body-side {\n  width: 200px;\n  -ms-flex-negative: 0;\n      flex-shrink: 0;\n  overflow-x: hidden;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  background-color: #fafafa;\n}\n.component-mask .component-table .component-table-body .component-table-body-side svg {\n  font-size: inherit;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .iconfont {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-size: 16px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  height: 60%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .text-container {\n  height: 60%;\n  -webkit-box-flex: 5;\n      -ms-flex: 5;\n          flex: 5;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .all {\n  height: 30px;\n  padding: 0 10px;\n  font-weight: bold;\n  overflow-y: hidden;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  cursor: pointer;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container {\n  overflow-y: hidden;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list {\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  height: 30px;\n  padding: 0 10px;\n  font-weight: bold;\n  overflow-y: hidden;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list .text-container {\n  font-weight: 500;\n  font-size: 15px;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list .icon-wujiaoxing {\n  font-size: 12px;\n  font-weight: 500;\n  font-size: 14px;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list.active {\n  background-color: #0277bd;\n  color: #fff;\n}\n.component-mask .component-table .component-table-body .component-table-body-container {\n  background-color: #fff;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .breadcrumb {\n  background-color: #fafafa;\n  height: 45px;\n  font-size: 14px;\n  padding: 0px 32px;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  border: 1px solid #ccc;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .container-breadcrumb {\n  width: 200px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .container-breadcrumb svg {\n  font-size: 1rem;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container {\n  background-color: #fafafa;\n  height: 45px;\n  padding: 0 23px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  border-radius: 5px;\n  margin: 10px 10px 0 10px;\n  border: 1px solid #ccc;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search {\n  width: 400px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  max-width: 400px;\n  text-align: center;\n  border: 1px solid #707070;\n  border-radius: 5px;\n  cursor: pointer;\n  height: 27px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search input {\n  width: calc(100% - 45px);\n  border: none;\n  outline: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search span {\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  font-size: 13px;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  margin: 10px;\n  border: 2px solid #ccc;\n  border-radius: 5px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb {\n  text-align: center;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 0 10px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .select {\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 110px;\n          flex: 0 0 110px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .num {\n  -webkit-box-flex: 0;\n      -ms-flex: 0 1 100px;\n          flex: 0 1 100px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .name {\n  -webkit-box-flex: 1;\n      -ms-flex: 1 0 auto;\n          flex: 1 0 auto;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.tb {\n  height: 30px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.tb.tb:nth-child(even) {\n  background-color: #f9f9f9;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.th {\n  height: 40px;\n  padding: 0 30px 0 10px;\n  background-color: #eee;\n  position: relative;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb-container,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb-container {\n  height: calc(100% - 50px);\n  overflow-y: scroll;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .group-btn {\n  margin: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  height: 70px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.component-mask .component-table .component-table-body .empty {\n  position: absolute;\n  color: #980e0c;\n  font-weight: bold;\n  right: 15px;\n  cursor: pointer;\n}\n.component-mask .component-table .component-table-body .empty .icon {\n  font-size: 18px !important;\n}\n";
+__$$styleInject(css$14);
+
 var domFunc$1 = Dom.domFunc,
     sleep$1 = Dom.sleep,
     isDomInPathFunc$1 = Dom.isDomInPathFunc,
     domToggleAnimation$1 = Dom.domToggleAnimation,
     addArrProp$1 = Dom.addArrProp,
-    showDomFunc$1 = Dom.showDomFunc;
+    showDomFunc$1 = Dom.showDomFunc,
+    addEvent$1 = Dom.addEvent;
 
 
 var Table = function () {
-  var _ref = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(args) {
+  var _ref = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(args) {
     var data, callback, mask, btns;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
             data = args.data, callback = args.callback;
 
@@ -411,50 +606,50 @@ var Table = function () {
               }
             });
             document.body.appendChild(mask);
-            _context2.next = 9;
+            _context4.next = 9;
             return sleep$1(300);
 
           case 9:
-            _context2.next = 11;
+            _context4.next = 11;
             return putDataToFirTable(data.title);
 
           case 11:
-            _context2.next = 13;
+            _context4.next = 13;
             return putDataToSecTable(data.content);
 
           case 13:
             btns = mask.querySelectorAll('.component-table button');
 
             btns = Array.prototype.slice.call(btns);
-            _context2.next = 17;
+            _context4.next = 17;
             return btnAddevent({ btns: btns, mask: mask, callback: callback });
 
           case 17:
-            _context2.next = 19;
+            _context4.next = 19;
             return secTableObserver();
 
           case 19:
-            _context2.next = 21;
+            _context4.next = 21;
             return thrTableObserver();
 
           case 21:
-            _context2.next = 23;
+            _context4.next = 23;
             return eventProxy({
               event: 'click'
             });
 
           case 23:
-            _context2.next = 25;
+            _context4.next = 25;
             return eventProxy({
               event: 'change'
             });
 
           case 25:
           case "end":
-            return _context2.stop();
+            return _context4.stop();
         }
       }
-    }, _callee2, this);
+    }, _callee4, this);
   }));
 
   return function Table(_x) {
@@ -463,11 +658,11 @@ var Table = function () {
 }();
 
 var putDataToFirTable = function () {
-  var _ref2 = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(data) {
+  var _ref2 = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(data) {
     var arr;
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
             arr = data.map(function (row, i) {
               var div = document.createElement('div');
@@ -483,10 +678,10 @@ var putDataToFirTable = function () {
 
           case 1:
           case "end":
-            return _context3.stop();
+            return _context5.stop();
         }
       }
-    }, _callee3, this);
+    }, _callee5, this);
   }));
 
   return function putDataToFirTable(_x2) {
@@ -495,11 +690,11 @@ var putDataToFirTable = function () {
 }();
 
 var putDataToSecTable = function () {
-  var _ref3 = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(data) {
+  var _ref3 = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(data) {
     var secTableInputs;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
             // 将数据传入data之前先清空 container
             secTableInputs = document.querySelector('.component-table-body-container .sec-table .tb-container');
@@ -509,7 +704,7 @@ var putDataToSecTable = function () {
               return input.parentElement.remove();
             });
 
-            return _context4.abrupt("return", data.map(function (row, i) {
+            return _context6.abrupt("return", data.map(function (row, i) {
               var sec_table = document.querySelector('.component-table-body-container .sec-table .tb-container');
               var div = document.createElement('div');
               div.className = "tb";
@@ -524,10 +719,10 @@ var putDataToSecTable = function () {
 
           case 4:
           case "end":
-            return _context4.stop();
+            return _context6.stop();
         }
       }
-    }, _callee4, this);
+    }, _callee6, this);
   }));
 
   return function putDataToSecTable(_x3) {
@@ -700,11 +895,12 @@ var thrTableObserver = function thrTableObserver(args) {
     var inputGroup = sec_table_container.querySelectorAll('input:checked');
     inputGroup = Array.prototype.slice.call(inputGroup);
     inputGroup.map(function (input, i) {
+      console.log(input);
       var div = input.parentElement;
       var newChild = div.cloneNode(true);
       var oldChild = thr_table_container.querySelector('div:nth-child(' + (i + 1) + ')');
       newChild.style.display = "flex";
-      addEvent({
+      addEvent$1({
         dom: newChild,
         envet: "click",
         func: function func(e) {
@@ -726,300 +922,12 @@ var thrTableObserver = function thrTableObserver(args) {
   observer.observe(sec_table_container, config);
 };
 
-var css$10 = ".component-container {\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 50;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  pointer-events: none;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.component-container .component-container-message {\n  top: 10px;\n  width: auto;\n  font-size: 16px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  margin: 0 10px 10px 10px;\n  padding: 10px 16px;\n  position: relative;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.75);\n  border-radius: 4px;\n  background-color: #fff;\n}\n.component-container .component-container-message.info,\n.component-container .component-container-message.success,\n.component-container .component-container-message.warning {\n  -webkit-animation: slide-in 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: slide-in 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-container .component-container-message.error {\n  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n}\n.component-container .component-container-message .icon {\n  min-width: 28px;\n}\n";
-__$$styleInject(css$10);
-
-var Message = function () {
-  var _ref = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(args) {
-    var domFunc, sleep, type, content, callback, time, container, message;
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            domFunc = Dom.domFunc, sleep = Dom.sleep;
-            type = args.type, content = args.content, callback = args.callback, time = args.time;
-
-            typeof args == 'string' && (content = args);
-            type = type == undefined ? "info" : type;
-            time = time == undefined ? 3000 : time;
-            content = content == undefined ? "{content: 请输入content参数}" : content;
-            callback = callback == undefined ? function () {} : callback;
-
-            if (document.querySelector('.component-container')) {
-              container = document.querySelector('.component-container');
-            } else {
-              container = document.createElement('div');
-
-              container.className = 'component-container';
-              document.body.appendChild(container);
-            }
-            message = document.createElement('div');
-
-            message.className = "component-container-message " + type;
-            message.innerHTML = "\n        " + Icon({ type: type }) + "\n        &nbsp;\n        " + content + "\n    ";
-            container.appendChild(message);
-            _context5.next = 14;
-            return sleep(time);
-
-          case 14:
-            message.remove();
-
-          case 15:
-          case "end":
-            return _context5.stop();
-        }
-      }
-    }, _callee5, this);
-  }));
-
-  return function Message(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-var css$12 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 50;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-mask .component-modalInfo {\n  top: 16vh;\n  width: 80vw;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  max-width: 416px;\n  z-index: 50;\n  min-height: 120px;\n  position: absolute;\n  border-radius: 4px;\n  background-color: #fff;\n  box-sizing: border-box;\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  background-clip: padding-box;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n@media screen and (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    left: 10vw;\n  }\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 32px 32px 24px 18px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 15px;\n  }\n}\n.component-mask .component-modalInfo .component-model-header {\n  margin-bottom: 8px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  color: rgba(0, 0, 0, 0.65);\n}\n.component-mask .component-modalInfo .component-model-header .icon {\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 15%;\n          flex: 2 2 15%;\n}\n.component-mask .component-modalInfo .component-model-header .title {\n  color: rgba(0, 0, 0, 0.85);\n  font-weight: bold;\n  font-size: 16px;\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 85%;\n          flex: 2 2 85%;\n  color: #212121;\n}\n.component-mask .component-modalInfo .component-model-body {\n  font-size: 14px;\n  color: rgba(0, 0, 0, 0.65);\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  word-break: break-word;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 55px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 38px;\n  }\n}\n.component-mask .component-modalInfo .component-modalInfo-footer {\n  margin-top: 10px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.component-mask .component-modalInfo .component-modalInfo-footer .component-btn {\n  margin-left: 5px;\n}\n";
-__$$styleInject(css$12);
-
-var ModalInfo = function () {
-  var _ref = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(args) {
-    var domFunc, sleep, type, content, title, callback, mask, btns;
-    return regeneratorRuntime.wrap(function _callee6$(_context6) {
-      while (1) {
-        switch (_context6.prev = _context6.next) {
-          case 0:
-            domFunc = Dom.domFunc, sleep = Dom.sleep;
-            type = args.type, content = args.content, title = args.title, callback = args.callback;
-
-            typeof args == 'string' && (content = args, type = 'info');
-            if (type == undefined) {
-              type = "info";
-            }
-            if (title == undefined) {
-              title = "提示";
-            }
-            if (content == undefined) {
-              content = "{content: 请输入content参数}";
-            }
-            if (callback == undefined) {
-              callback = function callback() {};
-            }
-            if (!type.match(/(info|success|error|warning|confirm|delete)/)) {
-              type = "info";
-            }
-            mask = document.createElement('div');
-
-            mask.className = 'component-mask';
-            mask.innerHTML = "\n        <div class=\"component-modalInfo\">\n            <div class=\"component-model-header\">\n                " + Icon({
-              type: type
-            }) + "\n                <span class=\"title\">" + title + "</span>\n            </div>\n            <div class=\"component-model-body\">\n                " + content + "\n            </div>\n            <div class=\"component-modalInfo-footer\">\n                " + (type == "confirm" || type == "delete" ? Button({
-              className: "cancal",
-              text: "取消"
-            }).outerHTML : "") + "\n                " + Button({
-              className: "confirm " + (type == "delete" ? "btn-danger" : "btn-primary"),
-              text: "确认"
-            }).outerHTML + "\n            </div>\n        </div>\n    ";
-            domFunc({
-              dom: document.querySelector('html'),
-              style: {
-                paddingRight: window.innerWidth - document.body.clientWidth + "px",
-                overflow: "hidden"
-              }
-            });
-            document.body.appendChild(mask);
-            _context6.next = 15;
-            return sleep(300);
-
-          case 15:
-            mask.addEventListener('click', function (e) {
-              e.stopPropagation();
-              // e.preventDefault()
-              // return false
-              if (e.path[0].classList.contains('component-mask')) {
-                mask.remove();
-                domFunc({
-                  dom: document.querySelector('html'),
-                  style: {
-                    paddingRight: "0px",
-                    overflow: "auto"
-                  }
-                });
-              }
-            }, false);
-            btns = mask.querySelectorAll('.component-modalInfo button');
-
-            btns = Array.prototype.slice.call(btns);
-            btns.forEach(function (dom) {
-              dom.addEventListener('click', function () {
-                mask.remove();
-                domFunc({
-                  dom: document.querySelector('html'),
-                  style: {
-                    paddingRight: "0px",
-                    overflow: "auto"
-                  }
-                });
-                if (dom.classList.contains('confirm')) {
-                  callback();
-                }
-              });
-            });
-
-          case 19:
-          case "end":
-            return _context6.stop();
-        }
-      }
-    }, _callee6, this);
-  }));
-
-  return function ModalInfo(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-var css$14 = "@media (min-width: 768px) {\n  .component-container-spin {\n    width: 100%;\n    height: 100%;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    position: absolute;\n    background-color: rgba(255, 255, 255, 0.6);\n    top: 0;\n    left: 0;\n    z-index: 50;\n    cursor: wait;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n  }\n  .component-container-spin.component-container-global {\n    height: 100vh;\n    position: fixed;\n    z-index: 50;\n    pointer-events: none;\n    top: 0;\n  }\n  .component-container-spin.component-container-global .spin-container {\n    position: absolute;\n    top: 25%;\n  }\n  .component-container-spin .spin-container {\n    height: 60px;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n  }\n  .component-container-spin .spin-container .icon {\n    -webkit-animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n            animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n  }\n  .component-container-spin .spin-container span {\n    color: #0277bd;\n    text-shadow: 0 1px 2px #fff;\n  }\n}\n@media (max-width: 768px) {\n  .component-container-spin {\n    width: 100%;\n    height: 100%;\n    z-index: 50;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    position: fixed;\n    top: 0;\n    left: 0;\n  }\n  .component-container-spin.component-container-global {\n    height: 100vh;\n    z-index: 50;\n    -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n            animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n  }\n  .component-container-spin .spin-container {\n    bottom: 10vh;\n    -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n            animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n    position: relative;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    width: 40vw;\n    max-width: 130px;\n    height: 40vw;\n    max-height: 130px;\n    background-color: rgba(0, 0, 0, 0.5);\n    border-radius: 5px;\n  }\n  .component-container-spin .spin-container .icon {\n    font-size: 40px;\n    color: #fff;\n    -webkit-animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n            animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n  }\n  .component-container-spin .spin-container span {\n    font-size: 20px;\n    color: #fff;\n    padding-top: 5px;\n    text-shadow: 0 1px 2px #fff;\n  }\n}\n";
-__$$styleInject(css$14);
-
-var Spin = function Spin(args) {
-  var domFunc = Dom.domFunc;
-
-  if (args == undefined) {
-    var dom = document.body;
-  } else {
-    var dom = args.dom;
-
-    dom = dom == undefined ? document.body : dom;
-  }
-  if (!!dom.querySelector('.component-container-spin')) {
-    dom.querySelector('.component-container-spin').remove();
-    domFunc({
-      dom: document.querySelector('html'),
-      style: {
-        paddingRight: "0px",
-        overflow: "auto"
-      }
-    });
-  } else {
-    dom.style.position = "relative";
-    var container = document.createElement('div');
-    container.className = "component-container-spin " + (dom == document.body ? "component-container-global" : "");
-    container.innerHTML = "\n            <div class=\"spin-container\">\n                " + Icon({ type: 'spin' }) + "\n                <span>Loading...</span>\n            </div>\n        ";
-    container.addEventListener('click', function (e) {
-      e.stopPropagation();
-      // e.preventDefault()
-      // return false
-    });
-    domFunc({
-      dom: document.querySelector('html'),
-      style: {
-        paddingRight: window.innerWidth - document.body.clientWidth + "px",
-        overflow: "hidden"
-      }
-    });
-    dom.appendChild(container);
-  }
-};
-
-var css$14 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 50;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-mask .component-modalInfo {\n  top: 16vh;\n  width: 80vw;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  max-width: 416px;\n  z-index: 50;\n  min-height: 120px;\n  position: absolute;\n  border-radius: 4px;\n  background-color: #fff;\n  box-sizing: border-box;\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  background-clip: padding-box;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n@media screen and (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    left: 10vw;\n  }\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 32px 32px 24px 18px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 15px;\n  }\n}\n.component-mask .component-modalInfo .component-model-header {\n  margin-bottom: 8px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  color: rgba(0, 0, 0, 0.65);\n}\n.component-mask .component-modalInfo .component-model-header .icon {\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 15%;\n          flex: 2 2 15%;\n}\n.component-mask .component-modalInfo .component-model-header .title {\n  color: rgba(0, 0, 0, 0.85);\n  font-weight: bold;\n  font-size: 16px;\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 85%;\n          flex: 2 2 85%;\n  color: #212121;\n}\n.component-mask .component-modalInfo .component-model-body {\n  font-size: 14px;\n  color: rgba(0, 0, 0, 0.65);\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  word-break: break-word;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 55px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 38px;\n  }\n}\n.component-mask .component-modalInfo .component-modalInfo-footer {\n  margin-top: 10px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.component-mask .component-modalInfo .component-modalInfo-footer .component-btn {\n  margin-left: 5px;\n}\n";
-__$$styleInject(css$14);
-
-var ModalInfo$2 = function () {
-  var _ref = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(args) {
-    var domFunc, sleep, data, callback, type, mask, btns;
-    return regeneratorRuntime.wrap(function _callee7$(_context7) {
-      while (1) {
-        switch (_context7.prev = _context7.next) {
-          case 0:
-            domFunc = Dom.domFunc, sleep = Dom.sleep;
-            data = args.data, callback = args.callback, type = args.type;
-
-            if (data == undefined) {
-              console.error("\u5FC5\u987B\u8981\u6709\u6570\u636E\u554A");
-              console.error("{\n            data:[1,2,3,4,5,6]\n        }");
-            }
-            if (type == undefined) {
-              console.error("{\n            type: table/treeTable\n        }");
-            }
-            if (callback == undefined) {
-              callback = function callback() {};
-            }
-            mask = document.createElement('div');
-
-            mask.className = 'component-mask';
-            mask.innerHTML = "\n        <div class=\"component-modalInfo\">\n            <div class=\"component-model-header\">\n                " + Icon({
-              type: type
-            }) + "\n                <span class=\"title\">" + title + "</span>\n            </div>\n            <div class=\"component-model-body\">\n                " + content + "\n            </div>\n            <div class=\"component-modalInfo-footer\">\n                " + (type == "confirm" || type == "delete" ? Button({
-              className: "cancal",
-              text: "取消"
-            }).outerHTML : "") + "\n                " + Button({
-              className: "confirm " + (type == "delete" ? "btn-danger" : "btn-primary"),
-              text: "确认"
-            }).outerHTML + "\n            </div>\n        </div>\n    ";
-            domFunc({
-              dom: document.querySelector('html'),
-              style: {
-                paddingRight: window.innerWidth - document.body.clientWidth + "px",
-                overflow: "hidden"
-              }
-            });
-            document.body.appendChild(mask);
-            _context7.next = 12;
-            return sleep(300);
-
-          case 12:
-            mask.addEventListener('click', function (e) {
-              e.stopPropagation();
-              // e.preventDefault()
-              // return false
-              if (e.path[0].classList.contains('component-mask')) {
-                mask.remove();
-                domFunc({
-                  dom: document.querySelector('html'),
-                  style: {
-                    paddingRight: "0px",
-                    overflow: "auto"
-                  }
-                });
-              }
-            }, false);
-            btns = mask.querySelectorAll('.component-modalInfo button');
-
-            btns = Array.prototype.slice.call(btns);
-            btns.forEach(function (dom) {
-              dom.addEventListener('click', function () {
-                mask.remove();
-                domFunc({
-                  dom: document.querySelector('html'),
-                  style: {
-                    paddingRight: "0px",
-                    overflow: "auto"
-                  }
-                });
-                if (dom.classList.contains('confirm')) {
-                  callback();
-                }
-              });
-            });
-
-          case 16:
-          case "end":
-            return _context7.stop();
-        }
-      }
-    }, _callee7, this);
-  }));
-
-  return function ModalInfo(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
 var Component = {
   pc: (_pc = {
     message: Message,
     spin: Spin,
     modal: Modal,
-    table: ModalInfo$2,
+    table: Table,
     modalInfo: ModalInfo
   }, _defineProperty(_pc, "table", Table), _defineProperty(_pc, "container", {
     button: Button,
@@ -1056,7 +964,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent) {
-  var ws = new WebSocket('ws://localhost:50906/');
+  var ws = new WebSocket('ws://localhost:50750/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -1157,4 +1065,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,3])
+},{}]},{},[0,2])

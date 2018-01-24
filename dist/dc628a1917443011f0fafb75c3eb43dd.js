@@ -65,7 +65,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({2:[function(require,module,exports) {
+})({3:[function(require,module,exports) {
 // // import {
 // //     pc,
 // //     mobile
@@ -219,32 +219,31 @@ document.querySelector('.container').addEventListener('click', function (e) {
   }
 }, false);
 
-tableBtns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    table({
-      type: e.target.innerText,
-      data: [{
-        number: "231123fwef",
-        name: "法斯特"
-      }, {
-        number: "231123fwef",
-        name: "法斯特"
-      }, {
-        number: "231123fwef",
-        name: "法斯特"
-      }, {
-        number: "231123fwef",
-        name: "法斯特"
-      }, {
-        number: "231123fwef",
-        name: "法斯特"
-      }],
-      callback: function callback() {
-        return console.log('callback', e.target.innerText, "的确认");
-      }
-    });
-  }, false);
-});
+// tableBtns.forEach(btn =>{
+//     btn.addEventListener('click',(e)=>{
+//         table({
+//             type: e.target.innerText,
+//             data: [{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             },{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             },{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             },{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             },{
+//                 number:"231123fwef",
+//                 name:"法斯特"
+//             }],
+//             callback: () => console.log('callback',e.target.innerText,"的确认")
+//         })
+//     },false)
+// })
+
 
 popupBoxBtns.forEach(function (btn) {
   btn.addEventListener('click', function (e) {
@@ -289,7 +288,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent) {
-  var ws = new WebSocket('ws://localhost:50906/');
+  var ws = new WebSocket('ws://localhost:50750/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -390,4 +389,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,2])
+},{}]},{},[0,3])

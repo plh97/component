@@ -110,7 +110,7 @@ const showDomFunc = args => {
     });
 };
 // 添加事件
-const addEvent$1 = e => {
+const addEvent = e => {
     const {
         dom,
         event,
@@ -127,7 +127,7 @@ const Dom = {
     domToggleAnimation,
     addArrProp,
     showDomFunc,
-    addEvent: addEvent$1
+    addEvent
 };
 
 var asyncToGenerator = function (fn) {
@@ -216,7 +216,7 @@ const Modal = (() => {
             }
         });
         document.body.appendChild(mask);
-        yield sleep(300);
+        yield sleep(500);
         mask.addEventListener('click', function (e) {
             e.stopPropagation();
             // e.preventDefault()
@@ -256,7 +256,7 @@ const Modal = (() => {
     };
 })();
 
-var css$6 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: fixed;\n  z-index: 50;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n.component-mask .component-table {\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  height: 100vh;\n  width: 100%;\n}\n.component-mask .component-table .component-table-header {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background-color: #980e0c;\n  color: #fff;\n  height: 45px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  padding: 0 40px;\n}\n.component-mask .component-table .component-table-body {\n  height: calc(100% - 45px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.component-mask .component-table .component-table-body .component-table-body-side {\n  width: 200px;\n  -ms-flex-negative: 0;\n      flex-shrink: 0;\n  overflow-x: hidden;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  background-color: #fafafa;\n}\n.component-mask .component-table .component-table-body .component-table-body-side svg {\n  font-size: inherit;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .iconfont {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-size: 16px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  height: 60%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .text-container {\n  height: 60%;\n  -webkit-box-flex: 5;\n      -ms-flex: 5;\n          flex: 5;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .all {\n  height: 30px;\n  padding: 0 10px;\n  font-weight: bold;\n  overflow-y: hidden;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  cursor: pointer;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container {\n  overflow-y: hidden;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list {\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  height: 30px;\n  padding: 0 10px;\n  font-weight: bold;\n  overflow-y: hidden;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list .text-container {\n  font-weight: 500;\n  font-size: 15px;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list .icon-wujiaoxing {\n  font-size: 12px;\n  font-weight: 500;\n  font-size: 14px;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list.active {\n  background-color: #0277bd;\n  color: #fff;\n}\n.component-mask .component-table .component-table-body .component-table-body-container {\n  background-color: #fff;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .breadcrumb {\n  background-color: #fafafa;\n  height: 45px;\n  font-size: 14px;\n  padding: 0px 32px;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  border: 1px solid #ccc;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .container-breadcrumb {\n  width: 200px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .container-breadcrumb svg {\n  font-size: 1rem;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container {\n  background-color: #fafafa;\n  height: 45px;\n  padding: 0 23px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  border-radius: 5px;\n  margin: 10px 10px 0 10px;\n  border: 1px solid #ccc;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search {\n  width: 400px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  max-width: 400px;\n  text-align: center;\n  border: 1px solid #707070;\n  border-radius: 5px;\n  cursor: pointer;\n  height: 27px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search input {\n  width: calc(100% - 45px);\n  border: none;\n  outline: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search span {\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  font-size: 13px;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  margin: 10px;\n  border: 2px solid #ccc;\n  border-radius: 5px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb {\n  text-align: center;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 0 10px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .select {\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 110px;\n          flex: 0 0 110px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .num {\n  -webkit-box-flex: 0;\n      -ms-flex: 0 1 100px;\n          flex: 0 1 100px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .name {\n  -webkit-box-flex: 1;\n      -ms-flex: 1 0 auto;\n          flex: 1 0 auto;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.tb {\n  height: 30px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.tb.tb:nth-child(even) {\n  background-color: #f9f9f9;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.th {\n  height: 40px;\n  padding: 0 30px 0 10px;\n  background-color: #eee;\n  position: relative;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb-container,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb-container {\n  height: calc(100% - 50px);\n  overflow-y: scroll;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .group-btn {\n  margin: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  height: 70px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.component-mask .component-table .component-table-body .empty {\n  position: absolute;\n  color: #980e0c;\n  font-weight: bold;\n  right: 15px;\n  cursor: pointer;\n}\n.component-mask .component-table .component-table-body .empty .icon {\n  font-size: 18px !important;\n}\n";
+var css$6 = ".component-container {\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 50;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  pointer-events: none;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.component-container .component-container-message {\n  top: 10px;\n  width: auto;\n  font-size: 16px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  margin: 0 10px 10px 10px;\n  padding: 10px 16px;\n  position: relative;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.75);\n  border-radius: 4px;\n  background-color: #fff;\n}\n.component-container .component-container-message.info,\n.component-container .component-container-message.success,\n.component-container .component-container-message.warning {\n  -webkit-animation: slide-in 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: slide-in 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-container .component-container-message.error {\n  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n}\n.component-container .component-container-message .icon {\n  min-width: 28px;\n}\n";
 __$$styleInject(css$6);
 
 var css$8 = "svg {\n  font-size: 28px;\n  min-width: 28px;\n}\nsvg.icon {\n  width: 1em;\n  height: 1em;\n  vertical-align: -0.15em;\n  fill: currentColor;\n  overflow: hidden;\n}\nsvg.icon.icon-success {\n  color: #52c41a;\n}\nsvg.icon.icon-error {\n  color: #f5222d;\n}\nsvg.icon.icon-warning {\n  color: #faad14;\n}\nsvg.icon.icon-info {\n  color: #039be5;\n}\nsvg.icon.icon-trash {\n  color: #980e0c;\n}\n";
@@ -380,13 +380,212 @@ const Icon = args => {
 	}
 };
 
+const Message = (() => {
+    var _ref = asyncToGenerator(function* (args) {
+        const {
+            domFunc,
+            sleep
+        } = Dom;
+        let {
+            type,
+            content,
+            callback,
+            time
+        } = args;
+        typeof args == 'string' && (content = args);
+        type = type == undefined ? "info" : type;
+        time = time == undefined ? 3000 : time;
+        content = content == undefined ? "{content: 请输入content参数}" : content;
+        callback = callback == undefined ? function () {} : callback;
+
+        if (document.querySelector('.component-container')) {
+            var container = document.querySelector('.component-container');
+        } else {
+            var container = document.createElement('div');
+            container.className = 'component-container';
+            document.body.appendChild(container);
+        }
+        let message = document.createElement('div');
+        message.className = `component-container-message ${type}`;
+        message.innerHTML = `
+        ${Icon({ type })}
+        &nbsp;
+        ${content}
+    `;
+        container.appendChild(message);
+        yield sleep(time);
+        message.remove();
+    });
+
+    return function Message(_x) {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+var css$10 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.65);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 50;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-mask .component-modalInfo {\n  top: 16vh;\n  width: 80vw;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  max-width: 416px;\n  z-index: 50;\n  min-height: 120px;\n  position: absolute;\n  border-radius: 4px;\n  background-color: #fff;\n  box-sizing: border-box;\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  background-clip: padding-box;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n@media screen and (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    left: 10vw;\n  }\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 32px 32px 24px 18px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 15px;\n  }\n}\n.component-mask .component-modalInfo .component-model-header {\n  margin-bottom: 8px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  color: rgba(0, 0, 0, 0.65);\n}\n.component-mask .component-modalInfo .component-model-header .icon {\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 15%;\n          flex: 2 2 15%;\n}\n.component-mask .component-modalInfo .component-model-header .title {\n  color: rgba(0, 0, 0, 0.85);\n  font-weight: bold;\n  font-size: 16px;\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 85%;\n          flex: 2 2 85%;\n  color: #212121;\n}\n.component-mask .component-modalInfo .component-model-body {\n  font-size: 14px;\n  color: rgba(0, 0, 0, 0.65);\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  word-break: break-word;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 55px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 38px;\n  }\n}\n.component-mask .component-modalInfo .component-modalInfo-footer {\n  margin-top: 10px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.component-mask .component-modalInfo .component-modalInfo-footer .component-btn {\n  margin-left: 5px;\n}\n";
+__$$styleInject(css$10);
+
+const ModalInfo = (() => {
+    var _ref = asyncToGenerator(function* (args) {
+        const {
+            domFunc,
+            sleep
+        } = Dom;
+        let {
+            type,
+            content,
+            title,
+            callback
+        } = args;
+        typeof args == 'string' && (content = args, type = 'info');
+        if (type == undefined) {
+            type = "info";
+        }
+        if (title == undefined) {
+            title = "提示";
+        }
+        if (content == undefined) {
+            content = "{content: 请输入content参数}";
+        }
+        if (callback == undefined) {
+            callback = function () {};
+        }
+        if (!type.match(/(info|success|error|warning|confirm|delete)/)) {
+            type = "info";
+        }
+        let mask = document.createElement('div');
+        mask.className = 'component-mask';
+        mask.innerHTML = `
+        <div class="component-modalInfo">
+            <div class="component-model-header">
+                ${Icon({
+            type
+        })}
+                <span class="title">${title}</span>
+            </div>
+            <div class="component-model-body">
+                ${content}
+            </div>
+            <div class="component-modalInfo-footer">
+                ${type == "confirm" || type == "delete" ? Button({
+            className: "cancal",
+            text: "取消"
+        }).outerHTML : ""}
+                ${Button({
+            className: `confirm ${type == "delete" ? "btn-danger" : "btn-primary"}`,
+            text: "确认"
+        }).outerHTML}
+            </div>
+        </div>
+    `;
+        domFunc({
+            dom: document.querySelector('html'),
+            style: {
+                paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+                overflow: "hidden"
+            }
+        });
+        document.body.appendChild(mask);
+        yield sleep(500);
+        mask.addEventListener('click', function (e) {
+            e.stopPropagation();
+            // e.preventDefault()
+            // return false
+            if (e.path[0].classList.contains('component-mask')) {
+                mask.remove();
+                domFunc({
+                    dom: document.querySelector('html'),
+                    style: {
+                        paddingRight: `0px`,
+                        overflow: "auto"
+                    }
+                });
+            }
+        }, false);
+        let btns = mask.querySelectorAll('.component-modalInfo button');
+        btns = Array.prototype.slice.call(btns);
+        btns.forEach(function (dom) {
+            dom.addEventListener('click', function () {
+                mask.remove();
+                domFunc({
+                    dom: document.querySelector('html'),
+                    style: {
+                        paddingRight: `0px`,
+                        overflow: "auto"
+                    }
+                });
+                if (dom.classList.contains('confirm')) {
+                    callback();
+                }
+            });
+        });
+    });
+
+    return function ModalInfo(_x) {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+var css$12 = "@media (min-width: 768px) {\n  .component-container-spin {\n    width: 100%;\n    height: 100%;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    position: absolute;\n    background-color: rgba(255, 255, 255, 0.6);\n    top: 0;\n    left: 0;\n    z-index: 50;\n    cursor: wait;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n  }\n  .component-container-spin.component-container-global {\n    height: 100vh;\n    position: fixed;\n    z-index: 50;\n    pointer-events: none;\n    top: 0;\n  }\n  .component-container-spin.component-container-global .spin-container {\n    position: absolute;\n    top: 25%;\n  }\n  .component-container-spin .spin-container {\n    height: 60px;\n    max-height: 66%;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n  }\n  .component-container-spin .spin-container .icon {\n    -webkit-animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n            animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n  }\n  .component-container-spin .spin-container span {\n    color: #0277bd;\n    text-shadow: 0 1px 2px #fff;\n  }\n}\n@media (max-width: 768px) {\n  .component-container-spin {\n    width: 100%;\n    height: 100%;\n    z-index: 50;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    position: fixed;\n    top: 0;\n    left: 0;\n  }\n  .component-container-spin.component-container-global {\n    height: 100vh;\n    z-index: 50;\n    -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n            animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n  }\n  .component-container-spin .spin-container {\n    bottom: 10vh;\n    -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n            animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n    position: relative;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    width: 40vw;\n    max-width: 130px;\n    height: 40vw;\n    max-height: 130px;\n    background-color: rgba(0, 0, 0, 0.5);\n    border-radius: 5px;\n  }\n  .component-container-spin .spin-container .icon {\n    font-size: 40px;\n    color: #fff;\n    -webkit-animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n            animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n  }\n  .component-container-spin .spin-container span {\n    font-size: 20px;\n    color: #fff;\n    padding-top: 5px;\n    text-shadow: 0 1px 2px #fff;\n  }\n}\n";
+__$$styleInject(css$12);
+
+const Spin = args => {
+    const {
+        domFunc
+    } = Dom;
+    if (args == undefined) {
+        var dom = document.body;
+    } else {
+        var { dom } = args;
+        dom = dom == undefined ? document.body : dom;
+    }
+    if (!!dom.querySelector('.component-container-spin')) {
+        dom.querySelector('.component-container-spin').remove();
+        domFunc({
+            dom: document.querySelector('html'),
+            style: {
+                paddingRight: `0px`,
+                overflow: "auto"
+            }
+        });
+    } else {
+        dom.style.position = "relative";
+        let container = document.createElement('div');
+        container.className = `component-container-spin ${dom == document.body ? "component-container-global" : ""}`;
+        console.log(dom.clientHeight);
+        container.innerHTML = `
+            <div class="spin-container">
+                ${Icon({ type: 'spin' })}
+                ${dom.clientHeight > 50 ? `<span>Loading...</span>` : ""}
+            </div>
+        `;
+        container.addEventListener('click', e => {
+            e.stopPropagation();
+            // e.preventDefault()
+            // return false
+        });
+        domFunc({
+            dom: document.querySelector('html'),
+            style: {
+                paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+                overflow: "hidden"
+            }
+        });
+        dom.appendChild(container);
+    }
+};
+
+var css$14 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: fixed;\n  z-index: 50;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n.component-mask .component-table {\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  height: 100vh;\n  width: 100%;\n}\n.component-mask .component-table .component-table-header {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background-color: #980e0c;\n  color: #fff;\n  height: 45px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  padding: 0 40px;\n}\n.component-mask .component-table .component-table-body {\n  height: calc(100% - 45px);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.component-mask .component-table .component-table-body .component-table-body-side {\n  width: 200px;\n  -ms-flex-negative: 0;\n      flex-shrink: 0;\n  overflow-x: hidden;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  background-color: #fafafa;\n}\n.component-mask .component-table .component-table-body .component-table-body-side svg {\n  font-size: inherit;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .iconfont {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-size: 16px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  height: 60%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .text-container {\n  height: 60%;\n  -webkit-box-flex: 5;\n      -ms-flex: 5;\n          flex: 5;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .all {\n  height: 30px;\n  padding: 0 10px;\n  font-weight: bold;\n  overflow-y: hidden;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  cursor: pointer;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container {\n  overflow-y: hidden;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list {\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  height: 30px;\n  padding: 0 10px;\n  font-weight: bold;\n  overflow-y: hidden;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list .text-container {\n  font-weight: 500;\n  font-size: 15px;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list .icon-wujiaoxing {\n  font-size: 12px;\n  font-weight: 500;\n  font-size: 14px;\n}\n.component-mask .component-table .component-table-body .component-table-body-side .list-container .list.active {\n  background-color: #0277bd;\n  color: #fff;\n}\n.component-mask .component-table .component-table-body .component-table-body-container {\n  background-color: #fff;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .breadcrumb {\n  background-color: #fafafa;\n  height: 45px;\n  font-size: 14px;\n  padding: 0px 32px;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  border: 1px solid #ccc;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .container-breadcrumb {\n  width: 200px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .container-breadcrumb svg {\n  font-size: 1rem;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container {\n  background-color: #fafafa;\n  height: 45px;\n  padding: 0 23px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  border-radius: 5px;\n  margin: 10px 10px 0 10px;\n  border: 1px solid #ccc;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search {\n  width: 400px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  max-width: 400px;\n  text-align: center;\n  border: 1px solid #707070;\n  border-radius: 5px;\n  cursor: pointer;\n  height: 27px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search input {\n  width: calc(100% - 45px);\n  border: none;\n  outline: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .search-container .search span {\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  font-size: 13px;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  margin: 10px;\n  border: 2px solid #ccc;\n  border-radius: 5px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb {\n  text-align: center;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 0 10px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .select,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .select {\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 110px;\n          flex: 0 0 110px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .num,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .num {\n  -webkit-box-flex: 0;\n      -ms-flex: 0 1 100px;\n          flex: 0 1 100px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb .name,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb .name {\n  -webkit-box-flex: 1;\n      -ms-flex: 1 0 auto;\n          flex: 1 0 auto;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.tb,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.tb {\n  height: 30px;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.tb.tb:nth-child(even),\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.tb.tb:nth-child(even) {\n  background-color: #f9f9f9;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .th.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .th.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb.th,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb.th {\n  height: 40px;\n  padding: 0 30px 0 10px;\n  background-color: #eee;\n  position: relative;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .table .sec-table .tb-container,\n.component-mask .component-table .component-table-body .component-table-body-container .table .thr-table .tb-container {\n  height: calc(100% - 50px);\n  overflow-y: scroll;\n}\n.component-mask .component-table .component-table-body .component-table-body-container .group-btn {\n  margin: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n  height: 70px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.component-mask .component-table .component-table-body .empty {\n  position: absolute;\n  color: #980e0c;\n  font-weight: bold;\n  right: 15px;\n  cursor: pointer;\n}\n.component-mask .component-table .component-table-body .empty .icon {\n  font-size: 18px !important;\n}\n";
+__$$styleInject(css$14);
+
 const {
     domFunc: domFunc$1,
     sleep: sleep$1,
     isDomInPathFunc: isDomInPathFunc$1,
     domToggleAnimation: domToggleAnimation$1,
     addArrProp: addArrProp$1,
-    showDomFunc: showDomFunc$1
+    showDomFunc: showDomFunc$1,
+    addEvent: addEvent$1
 } = Dom;
 
 const Table = (() => {
@@ -725,11 +924,12 @@ const thrTableObserver = args => {
         let inputGroup = sec_table_container.querySelectorAll('input:checked');
         inputGroup = Array.prototype.slice.call(inputGroup);
         inputGroup.map((input, i) => {
+            console.log(input);
             let div = input.parentElement;
             let newChild = div.cloneNode(true);
             let oldChild = thr_table_container.querySelector('div:nth-child(' + (i + 1) + ')');
             newChild.style.display = "flex";
-            addEvent({
+            addEvent$1({
                 dom: newChild,
                 envet: "click",
                 func: e => e.path.filter(e => e.className == 'tb')[0].remove()
@@ -747,310 +947,12 @@ const thrTableObserver = args => {
     observer.observe(sec_table_container, config);
 };
 
-var css$10 = ".component-container {\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  z-index: 50;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  pointer-events: none;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.component-container .component-container-message {\n  top: 10px;\n  width: auto;\n  font-size: 16px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  margin: 0 10px 10px 10px;\n  padding: 10px 16px;\n  position: relative;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.75);\n  border-radius: 4px;\n  background-color: #fff;\n}\n.component-container .component-container-message.info,\n.component-container .component-container-message.success,\n.component-container .component-container-message.warning {\n  -webkit-animation: slide-in 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: slide-in 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-container .component-container-message.error {\n  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n}\n.component-container .component-container-message .icon {\n  min-width: 28px;\n}\n";
-__$$styleInject(css$10);
-
-const Message = (() => {
-    var _ref = asyncToGenerator(function* (args) {
-        const {
-            domFunc,
-            sleep
-        } = Dom;
-        let {
-            type,
-            content,
-            callback,
-            time
-        } = args;
-        typeof args == 'string' && (content = args);
-        type = type == undefined ? "info" : type;
-        time = time == undefined ? 3000 : time;
-        content = content == undefined ? "{content: 请输入content参数}" : content;
-        callback = callback == undefined ? function () {} : callback;
-
-        if (document.querySelector('.component-container')) {
-            var container = document.querySelector('.component-container');
-        } else {
-            var container = document.createElement('div');
-            container.className = 'component-container';
-            document.body.appendChild(container);
-        }
-        let message = document.createElement('div');
-        message.className = `component-container-message ${type}`;
-        message.innerHTML = `
-        ${Icon({ type })}
-        &nbsp;
-        ${content}
-    `;
-        container.appendChild(message);
-        yield sleep(time);
-        message.remove();
-    });
-
-    return function Message(_x) {
-        return _ref.apply(this, arguments);
-    };
-})();
-
-var css$12 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 50;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-mask .component-modalInfo {\n  top: 16vh;\n  width: 80vw;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  max-width: 416px;\n  z-index: 50;\n  min-height: 120px;\n  position: absolute;\n  border-radius: 4px;\n  background-color: #fff;\n  box-sizing: border-box;\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  background-clip: padding-box;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n@media screen and (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    left: 10vw;\n  }\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 32px 32px 24px 18px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 15px;\n  }\n}\n.component-mask .component-modalInfo .component-model-header {\n  margin-bottom: 8px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  color: rgba(0, 0, 0, 0.65);\n}\n.component-mask .component-modalInfo .component-model-header .icon {\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 15%;\n          flex: 2 2 15%;\n}\n.component-mask .component-modalInfo .component-model-header .title {\n  color: rgba(0, 0, 0, 0.85);\n  font-weight: bold;\n  font-size: 16px;\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 85%;\n          flex: 2 2 85%;\n  color: #212121;\n}\n.component-mask .component-modalInfo .component-model-body {\n  font-size: 14px;\n  color: rgba(0, 0, 0, 0.65);\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  word-break: break-word;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 55px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 38px;\n  }\n}\n.component-mask .component-modalInfo .component-modalInfo-footer {\n  margin-top: 10px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.component-mask .component-modalInfo .component-modalInfo-footer .component-btn {\n  margin-left: 5px;\n}\n";
-__$$styleInject(css$12);
-
-const ModalInfo = (() => {
-    var _ref = asyncToGenerator(function* (args) {
-        const {
-            domFunc,
-            sleep
-        } = Dom;
-        let {
-            type,
-            content,
-            title,
-            callback
-        } = args;
-        typeof args == 'string' && (content = args, type = 'info');
-        if (type == undefined) {
-            type = "info";
-        }
-        if (title == undefined) {
-            title = "提示";
-        }
-        if (content == undefined) {
-            content = "{content: 请输入content参数}";
-        }
-        if (callback == undefined) {
-            callback = function () {};
-        }
-        if (!type.match(/(info|success|error|warning|confirm|delete)/)) {
-            type = "info";
-        }
-        let mask = document.createElement('div');
-        mask.className = 'component-mask';
-        mask.innerHTML = `
-        <div class="component-modalInfo">
-            <div class="component-model-header">
-                ${Icon({
-            type
-        })}
-                <span class="title">${title}</span>
-            </div>
-            <div class="component-model-body">
-                ${content}
-            </div>
-            <div class="component-modalInfo-footer">
-                ${type == "confirm" || type == "delete" ? Button({
-            className: "cancal",
-            text: "取消"
-        }).outerHTML : ""}
-                ${Button({
-            className: `confirm ${type == "delete" ? "btn-danger" : "btn-primary"}`,
-            text: "确认"
-        }).outerHTML}
-            </div>
-        </div>
-    `;
-        domFunc({
-            dom: document.querySelector('html'),
-            style: {
-                paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
-                overflow: "hidden"
-            }
-        });
-        document.body.appendChild(mask);
-        yield sleep(300);
-        mask.addEventListener('click', function (e) {
-            e.stopPropagation();
-            // e.preventDefault()
-            // return false
-            if (e.path[0].classList.contains('component-mask')) {
-                mask.remove();
-                domFunc({
-                    dom: document.querySelector('html'),
-                    style: {
-                        paddingRight: `0px`,
-                        overflow: "auto"
-                    }
-                });
-            }
-        }, false);
-        let btns = mask.querySelectorAll('.component-modalInfo button');
-        btns = Array.prototype.slice.call(btns);
-        btns.forEach(function (dom) {
-            dom.addEventListener('click', function () {
-                mask.remove();
-                domFunc({
-                    dom: document.querySelector('html'),
-                    style: {
-                        paddingRight: `0px`,
-                        overflow: "auto"
-                    }
-                });
-                if (dom.classList.contains('confirm')) {
-                    callback();
-                }
-            });
-        });
-    });
-
-    return function ModalInfo(_x) {
-        return _ref.apply(this, arguments);
-    };
-})();
-
-var css$14 = "@media (min-width: 768px) {\n  .component-container-spin {\n    width: 100%;\n    height: 100%;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    position: absolute;\n    background-color: rgba(255, 255, 255, 0.6);\n    top: 0;\n    left: 0;\n    z-index: 50;\n    cursor: wait;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n  }\n  .component-container-spin.component-container-global {\n    height: 100vh;\n    position: fixed;\n    z-index: 50;\n    pointer-events: none;\n    top: 0;\n  }\n  .component-container-spin.component-container-global .spin-container {\n    position: absolute;\n    top: 25%;\n  }\n  .component-container-spin .spin-container {\n    height: 60px;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n  }\n  .component-container-spin .spin-container .icon {\n    -webkit-animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n            animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n  }\n  .component-container-spin .spin-container span {\n    color: #0277bd;\n    text-shadow: 0 1px 2px #fff;\n  }\n}\n@media (max-width: 768px) {\n  .component-container-spin {\n    width: 100%;\n    height: 100%;\n    z-index: 50;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    position: fixed;\n    top: 0;\n    left: 0;\n  }\n  .component-container-spin.component-container-global {\n    height: 100vh;\n    z-index: 50;\n    -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n            animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n  }\n  .component-container-spin .spin-container {\n    bottom: 10vh;\n    -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n            animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n    position: relative;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    width: 40vw;\n    max-width: 130px;\n    height: 40vw;\n    max-height: 130px;\n    background-color: rgba(0, 0, 0, 0.5);\n    border-radius: 5px;\n  }\n  .component-container-spin .spin-container .icon {\n    font-size: 40px;\n    color: #fff;\n    -webkit-animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n            animation: spin 1s cubic-bezier(0.97, 0.54, 0.46, 0.48) infinite;\n  }\n  .component-container-spin .spin-container span {\n    font-size: 20px;\n    color: #fff;\n    padding-top: 5px;\n    text-shadow: 0 1px 2px #fff;\n  }\n}\n";
-__$$styleInject(css$14);
-
-const Spin = args => {
-    const {
-        domFunc
-    } = Dom;
-    if (args == undefined) {
-        var dom = document.body;
-    } else {
-        var { dom } = args;
-        dom = dom == undefined ? document.body : dom;
-    }
-    if (!!dom.querySelector('.component-container-spin')) {
-        dom.querySelector('.component-container-spin').remove();
-        domFunc({
-            dom: document.querySelector('html'),
-            style: {
-                paddingRight: `0px`,
-                overflow: "auto"
-            }
-        });
-    } else {
-        dom.style.position = "relative";
-        let container = document.createElement('div');
-        container.className = `component-container-spin ${dom == document.body ? "component-container-global" : ""}`;
-        container.innerHTML = `
-            <div class="spin-container">
-                ${Icon({ type: 'spin' })}
-                <span>Loading...</span>
-            </div>
-        `;
-        container.addEventListener('click', e => {
-            e.stopPropagation();
-            // e.preventDefault()
-            // return false
-        });
-        domFunc({
-            dom: document.querySelector('html'),
-            style: {
-                paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
-                overflow: "hidden"
-            }
-        });
-        dom.appendChild(container);
-    }
-};
-
-var css$14 = ".component-mask {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 50;\n  position: fixed;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n          animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n}\n.component-mask .component-modalInfo {\n  top: 16vh;\n  width: 80vw;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  max-width: 416px;\n  z-index: 50;\n  min-height: 120px;\n  position: absolute;\n  border-radius: 4px;\n  background-color: #fff;\n  box-sizing: border-box;\n  -webkit-animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n          animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  background-clip: padding-box;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n@media screen and (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    left: 10vw;\n  }\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 32px 32px 24px 18px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo {\n    padding: 15px;\n  }\n}\n.component-mask .component-modalInfo .component-model-header {\n  margin-bottom: 8px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  color: rgba(0, 0, 0, 0.65);\n}\n.component-mask .component-modalInfo .component-model-header .icon {\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 15%;\n          flex: 2 2 15%;\n}\n.component-mask .component-modalInfo .component-model-header .title {\n  color: rgba(0, 0, 0, 0.85);\n  font-weight: bold;\n  font-size: 16px;\n  -webkit-box-flex: 2;\n      -ms-flex: 2 2 85%;\n          flex: 2 2 85%;\n  color: #212121;\n}\n.component-mask .component-modalInfo .component-model-body {\n  font-size: 14px;\n  color: rgba(0, 0, 0, 0.65);\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  word-break: break-word;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n@media (min-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 55px;\n  }\n}\n@media (max-width: 768px) {\n  .component-mask .component-modalInfo .component-model-body {\n    margin-left: 38px;\n  }\n}\n.component-mask .component-modalInfo .component-modalInfo-footer {\n  margin-top: 10px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.component-mask .component-modalInfo .component-modalInfo-footer .component-btn {\n  margin-left: 5px;\n}\n";
-__$$styleInject(css$14);
-
-const ModalInfo$2 = (() => {
-    var _ref = asyncToGenerator(function* (args) {
-        const {
-            domFunc,
-            sleep
-        } = Dom;
-        let {
-            data,
-            callback,
-            type
-        } = args;
-        if (data == undefined) {
-            console.error(`必须要有数据啊`);
-            console.error(`{
-            data:[1,2,3,4,5,6]
-        }`);
-        }
-        if (type == undefined) {
-            console.error(`{
-            type: table/treeTable
-        }`);
-        }
-        if (callback == undefined) {
-            callback = function () {};
-        }
-        let mask = document.createElement('div');
-        mask.className = 'component-mask';
-        mask.innerHTML = `
-        <div class="component-modalInfo">
-            <div class="component-model-header">
-                ${Icon({
-            type
-        })}
-                <span class="title">${title}</span>
-            </div>
-            <div class="component-model-body">
-                ${content}
-            </div>
-            <div class="component-modalInfo-footer">
-                ${type == "confirm" || type == "delete" ? Button({
-            className: "cancal",
-            text: "取消"
-        }).outerHTML : ""}
-                ${Button({
-            className: `confirm ${type == "delete" ? "btn-danger" : "btn-primary"}`,
-            text: "确认"
-        }).outerHTML}
-            </div>
-        </div>
-    `;
-        domFunc({
-            dom: document.querySelector('html'),
-            style: {
-                paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
-                overflow: "hidden"
-            }
-        });
-        document.body.appendChild(mask);
-        yield sleep(300);
-        mask.addEventListener('click', function (e) {
-            e.stopPropagation();
-            // e.preventDefault()
-            // return false
-            if (e.path[0].classList.contains('component-mask')) {
-                mask.remove();
-                domFunc({
-                    dom: document.querySelector('html'),
-                    style: {
-                        paddingRight: `0px`,
-                        overflow: "auto"
-                    }
-                });
-            }
-        }, false);
-        let btns = mask.querySelectorAll('.component-modalInfo button');
-        btns = Array.prototype.slice.call(btns);
-        btns.forEach(function (dom) {
-            dom.addEventListener('click', function () {
-                mask.remove();
-                domFunc({
-                    dom: document.querySelector('html'),
-                    style: {
-                        paddingRight: `0px`,
-                        overflow: "auto"
-                    }
-                });
-                if (dom.classList.contains('confirm')) {
-                    callback();
-                }
-            });
-        });
-    });
-
-    return function ModalInfo(_x) {
-        return _ref.apply(this, arguments);
-    };
-})();
-
 const Component = {
     pc: {
         message: Message,
         spin: Spin,
         modal: Modal,
-        table: ModalInfo$2,
+        table: Table,
         modalInfo: ModalInfo,
         table: Table,
         container: {
