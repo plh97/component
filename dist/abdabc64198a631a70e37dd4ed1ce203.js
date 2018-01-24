@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({2:[function(require,module,exports) {
+})({3:[function(require,module,exports) {
 // // import {
 // //     pc,
 // //     mobile
@@ -107,6 +107,7 @@ var modal = pc.modal;
 var modalInfo = pc.modalInfo;
 var message = pc.message;
 var spin = pc.spin;
+var table = pc.table;
 var container = pc.container;
 
 var button = container.button;
@@ -139,10 +140,19 @@ document.querySelector('#container-message').innerHTML = "\n    " + button({
   className: "confirm btn-primary",
   text: "warning"
 }).outerHTML + "\n";
+document.querySelector('#container-popupBox').innerHTML = "\n    " + button({
+  className: "table btn-danger",
+  text: "table"
+}).outerHTML + "\n    " + button({
+  className: "treeTable btn-danger",
+  text: "treeTable"
+}).outerHTML + "\n";
 var messageBtns = document.querySelectorAll('#container-message button');
 messageBtns = Array.prototype.slice.call(messageBtns);
 var modalBtns = document.querySelectorAll('#container-modal button');
 modalBtns = Array.prototype.slice.call(modalBtns);
+var popupBoxBtns = document.querySelectorAll('#container-popupBox button');
+popupBoxBtns = Array.prototype.slice.call(popupBoxBtns);
 messageBtns.forEach(function (btn) {
   btn.addEventListener('click', function (e) {
     if (e.target.innerText == "info") {
@@ -151,7 +161,7 @@ messageBtns.forEach(function (btn) {
       message({
         type: e.target.innerText,
         time: 100000,
-        content: "\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F\u8FD9\u4E2A\u662F" + e.target.innerText + ",\u7B2C" + times++ + "\u6B21",
+        content: "\u8FD9\u4E2A\u662F\u8FD9\u662F\u8FD9\u4E2A\u662F" + e.target.innerText + ",\u7B2C" + times++ + "\u6B21",
         callback: function callback() {
           console.log('callback', e.target.innerText);
         }
@@ -212,6 +222,19 @@ document.querySelector('.container').addEventListener('click', function (e) {
   }
 }, false);
 
+popupBoxBtns.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    table({
+      type: e.target.innerText,
+      time: 100000,
+      content: "\u8FD9\u4E2A\u662F\u8FD9\u662F\u8FD9\u4E2A\u662F" + e.target.innerText + ",\u7B2C" + times++ + "\u6B21",
+      callback: function callback() {
+        console.log('callback', e.target.innerText);
+      }
+    });
+  }, false);
+});
+
 // add.test.js
 // var match = require('../src/utils/functional.js');
 // var expect = require('chai').expect;
@@ -239,7 +262,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':63869/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':52830/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -340,4 +363,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,2])
+},{}]},{},[0,3])
