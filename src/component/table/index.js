@@ -21,7 +21,9 @@ const Table = async args => {
         data,
         callback
     } = args;
-    
+    console.log(
+        args
+    );
     let mask = document.createElement('div');
     mask.className = 'component-mask';
     mask.innerHTML = `
@@ -133,9 +135,39 @@ const Table = async args => {
 }
 
 
-
-
-
+const btnAddevent = args => {
+    const {
+        btns,
+        mask,
+        callback
+    } = args;
+    btns.forEach(dom=>{
+        if(dom.classList.contains('confirm')) {
+            dom.addEventListener('click',() => {
+                callback()
+                mask.remove()
+                domFunc({
+                    dom:document.querySelector('html'),
+                    style: {
+                        paddingRight: `0`,
+                        overflow: "auto"
+                    }
+                })
+            })
+        }else if(dom.classList.contains('return')){
+            dom.addEventListener('click',() => {
+                mask.remove()
+                domFunc({
+                    dom:document.querySelector('html'),
+                    style: {
+                        paddingRight: `0`,
+                        overflow: "auto"
+                    }
+                })
+            })
+        }
+    })
+}
 
 
 
@@ -183,22 +215,6 @@ const putDataToSecTable = async data => {
     })
 }
 
-
-const btnAddevent = args => {
-    const {
-        btns,
-        mask,
-        callback
-    } = args;
-    btns.forEach(dom=>{
-        if(dom.classList.contains('confirm')) {
-            dom.addEventListener('click',()=>{
-                callback()
-                mask.remove()
-            })
-        }
-    })
-}
 
 
 

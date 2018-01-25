@@ -623,7 +623,7 @@ const Table = (() => {
             data,
             callback
         } = args;
-
+        console.log(args);
         let mask = document.createElement('div');
         mask.className = 'component-mask';
         mask.innerHTML = `
@@ -739,6 +739,40 @@ const Table = (() => {
     };
 })();
 
+const btnAddevent = args => {
+    const {
+        btns,
+        mask,
+        callback
+    } = args;
+    btns.forEach(dom => {
+        if (dom.classList.contains('confirm')) {
+            dom.addEventListener('click', () => {
+                callback();
+                mask.remove();
+                domFunc$1({
+                    dom: document.querySelector('html'),
+                    style: {
+                        paddingRight: `0`,
+                        overflow: "auto"
+                    }
+                });
+            });
+        } else if (dom.classList.contains('return')) {
+            dom.addEventListener('click', () => {
+                mask.remove();
+                domFunc$1({
+                    dom: document.querySelector('html'),
+                    style: {
+                        paddingRight: `0`,
+                        overflow: "auto"
+                    }
+                });
+            });
+        }
+    });
+};
+
 const putDataToFirTable = (() => {
     var _ref2 = asyncToGenerator(function* (data) {
         let arr = data.map(function (row, i) {
@@ -793,22 +827,6 @@ const putDataToSecTable = (() => {
         return _ref3.apply(this, arguments);
     };
 })();
-
-const btnAddevent = args => {
-    const {
-        btns,
-        mask,
-        callback
-    } = args;
-    btns.forEach(dom => {
-        if (dom.classList.contains('confirm')) {
-            dom.addEventListener('click', () => {
-                callback();
-                mask.remove();
-            });
-        }
-    });
-};
 
 const eventProxy = args => {
     const { event } = args;
@@ -1013,4 +1031,4 @@ const Component = {
     }
 };
 
-window.parent.Component = Component;
+window.Component = Component;
