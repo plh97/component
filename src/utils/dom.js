@@ -14,7 +14,7 @@ const sleep = (ms) => {
 
 // 添加Array属性
 const addArrProp = e => Array.prototype.slice.call(e)
-
+// 只能判断精确到个体dom元素，无法判断一个系列的dom是否处于点击范围
 const isDomInPathFunc = args => {
     const {
         path,
@@ -23,6 +23,22 @@ const isDomInPathFunc = args => {
     for (let i = 0; i < path.length; i++) {
         if(path[i]== document.querySelector(selector)){
             return path[i]
+        }else if(path[i] == document.body){
+            return false
+        }
+    }
+}
+// aims -->  wanan to check whether click the list of dom element?
+// i put params of the class name with the list 
+// how to relize it? just put dom to check whether click ,,,not put the selectorName to check?>>>> 
+const isDomFunc = args => {
+    const {
+        path,
+        dom
+    } = args;
+    for (let i = 0; i < path.length; i++) {
+        if(path[i]== dom){
+            return dom
         }else if(path[i] == document.body){
             return false
         }
@@ -73,14 +89,25 @@ const addEvent = (e) => {
     return dom
 }
 
+// 字符串转Boolean
+const transformStringToBool = e => {
+    if(e == 'true'){
+        return true
+    } else {
+        return false
+    }
+}
+
 const Dom = {
     domFunc,
     sleep,
     isDomInPathFunc,
     domToggleAnimation,
+    transformStringToBool,
     addArrProp,
     showDomFunc,
-    addEvent
+    addEvent,
+    isDomFunc
 }
 
 export default Dom;

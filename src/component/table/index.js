@@ -4,13 +4,15 @@ import Icon from "../../container/icon";
 import Dom from "../../utils/dom.js";
 
 const {
-    domFunc,
     sleep,
-    isDomInPathFunc,
-    domToggleAnimation,
+    domFunc,
+    addEvent,
+    isDomFunc,
     addArrProp,
     showDomFunc,
-    addEvent
+    isDomInPathFunc,
+    domToggleAnimation,
+    transformStringToBool
 } = Dom;
 
 
@@ -19,9 +21,7 @@ const Table = async args => {
         data,
         callback
     } = args;
-    if(callback==undefined){
-        callback=()=>{}
-    }
+    
     let mask = document.createElement('div');
     mask.className = 'component-mask';
     mask.innerHTML = `
@@ -86,9 +86,7 @@ const Table = async args => {
                                     清空
                                 </span>
                             </div>
-                            <div class="tb-container">
-                                <div class="tb"></div>
-                            </div>
+                            <div class="tb-container"></div>
                         </div>
                     </div>
                     <div class="group-btn">
@@ -186,19 +184,19 @@ const putDataToSecTable = async data => {
 }
 
 
-const btnAddevent = (args) => {
+const btnAddevent = args => {
     const {
         btns,
         mask,
         callback
     } = args;
     btns.forEach(dom=>{
-        dom.addEventListener('click',()=>{
-            mask.remove()
-            if(dom.classList.contains('confirm')) {
-                callback();
-            }
-        })
+        if(dom.classList.contains('confirm')) {
+            dom.addEventListener('click',()=>{
+                callback()
+                mask.remove()
+            })
+        }
     })
 }
 
@@ -268,6 +266,23 @@ const eventProxy = args => {
                     }
                 })
             }
+            // 为第二个第三个表格每一个列表添加点击事件，tb-container
+            document.querySelectorAll(".tb-container .tb").forEach(dom=>{
+                let isTableList = isDomFunc({
+                    path: e.path,
+                    dom
+                })
+                if(isTableList){
+                    if(e.path[0].type=='checkbox') return
+                    if(isTableList.querySelector('input').checked==true){
+                        isTableList.querySelector('input').checked = false
+                        isTableList.querySelector('input').dataset.type = false
+                    }else{
+                        isTableList.querySelector('input').checked = true
+                        isTableList.querySelector('input').dataset.type = true
+                    }
+                }
+            })
         }
         document.body.addEventListener(event, handleAllEvent, false)
     }
@@ -358,7 +373,6 @@ const thrTableObserver = (args) => {
         let inputGroup = sec_table_container.querySelectorAll('input:checked');
         inputGroup = Array.prototype.slice.call(inputGroup);
         inputGroup.map((input,i) => {
-            console.log(input);
             let div = input.parentElement;
             let newChild = div.cloneNode(true);
             let oldChild = thr_table_container.querySelector('div:nth-child('+ (i+1) +')');
