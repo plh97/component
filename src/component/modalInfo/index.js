@@ -5,14 +5,10 @@ import Dom from "../../utils/dom.js";
 
 const ModalInfo = async args => {
     const {
-        domFunc,
-        sleep
+        domFunc,sleep
     } = Dom;
     let {
-        type,
-        content,
-        title,
-        callback
+        type,content,title,callback
     } = args;
     typeof(args)=='string' && (
         content = args,

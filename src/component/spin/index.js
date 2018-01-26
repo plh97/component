@@ -25,13 +25,10 @@ const Spin = args => {
         dom.style.position="relative";
         let container = document.createElement('div')
         container.className = `component-container-spin ${dom==document.body?"component-container-global":""}`;
-        console.log(
-            dom.clientHeight
-        );
         container.innerHTML = `
             <div class="spin-container">
                 ${Icon({type:'spin'})}
-                ${dom.clientHeight>50?`<span>Loading...</span>`:""}
+                ${(screen.width>768&&dom.clientHeight<50)?"":`<span>Loading...</span>`}
             </div>
         `;
         container.addEventListener('click',(e)=>{
