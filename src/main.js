@@ -34,3 +34,4 @@ const Component = {
 }
 
 export default Component;
+window.Component = Component;

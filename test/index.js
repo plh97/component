@@ -213,7 +213,6 @@ popupBoxBtns.forEach(btn =>{
     btn.addEventListener('click',(e)=>{
         table({
             type: e.target.innerText,
-            content: `这个是这是这个是${e.target.innerText},第${times++}次`,
             data: {
                 title:[
                     {id: "1", name: "供应商"},
@@ -235,7 +234,11 @@ popupBoxBtns.forEach(btn =>{
                 ]
             },
             callback: ()=>{
-                console.log('callback',e.target.innerText);
+                let doms = document.querySelectorAll('.thr-table .tb-container input');
+                doms = addArrProp(doms)
+                doms = doms.map(dom=>dom.parentElement.querySelector('.name').textContent)
+                doms = doms.join('，')
+                console.log(doms);
             }
         })
     },false)

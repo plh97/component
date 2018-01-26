@@ -300,6 +300,26 @@ table { border-collapse:collapse; border-spacing:0; }
 		max-height: 100%;
 	}
 }
+
+
+@keyframes slideout1 {
+	from {
+		max-height: 1000px;
+	}
+	to {
+		overflow: hidden;
+		max-height: 30px;
+	}
+}
+@keyframes slidein1 {
+	from {
+		overflow: hidden;
+		max-height: 30px;
+	}
+	to {
+		max-height: 1000px;
+	}
+}
 @keyframes rotate90 {
 	from {
 		transform: rotate(0deg);
