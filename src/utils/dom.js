@@ -98,6 +98,17 @@ const transformStringToBool = e => {
     }
 }
 
+// 将阿拉伯数字转英文 first . second . third
+const numToEng = e => {
+    if(e==1){
+        return "first"
+    }else if(e==2){
+        return "second"
+    }else if(e==3){
+        return "third"
+    }
+}
+
 const Dom = {
     domFunc,
     sleep,

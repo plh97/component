@@ -35,7 +35,7 @@
             flex-direction: row;
 
             .component-table-body-side {
-                width: 200px;
+                min-width: 200px;
                 flex-shrink: 0;
                 overflow-x: hidden;
                 display: inline-flex;
@@ -62,45 +62,53 @@
                     justify-content: flex-start;
                 }
                 .all {
+                    overflow-x: hidden;
                     height: 30px;
-                    padding: 0 10px;
-                    font-weight: bold;
+                    cursor: pointer;
+                    display: inline-flex;
+                    padding: 10px 0px 10px 10px;
                     overflow-y: hidden;
+                    font-weight: bold;
                     align-items: center;
                     flex-direction: row;
-                    display: inline-flex;
-                    cursor: pointer;
                 }
-                .list-container {
+                .tree-container {
                     overflow-y: hidden;
                     display: inline-flex;
                     flex-direction: column;
                     flex: 1;
 
-                    .list {
-                        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-                        height: 30px;
-                        padding: 0 10px;
-                        font-weight: bold;
-                        overflow-y: hidden;
-                        align-items: center;
-                        flex-direction: row;
-                        display: inline-flex;
+                    .tree-container-list {
+                        padding-left: 10px;
+                        display: flex;
+                        flex-direction: column;
 
-                        .text-container {
-                            font-weight: 500;
-                            font-size: 15px;
-                        }
-                        .icon-wujiaoxing {
-                            font-size: 12px;
-                            font-weight: 500;
-                            font-size: 14px;
-                        }
-                        &.active {
-                            background-color: @lightBlue8;
-                            color: #fff;
+                        .tree-container-list-div {
+                            overflow-x: hidden;
+                            transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+                            min-height: 30px;
+                            font-weight: bold;
+                            overflow-y: hidden;
+                            align-items: center;
+                            flex-direction: row;
+                            display: inline-flex;
+    
+                            .text-container {
+                                font-weight: 500;
+                                font-size: 15px;
+                            }
+                            .icon-wujiaoxing {
+                                font-size: 12px;
+                                font-weight: 500;
+                                font-size: 14px;
+                            }
+                            &.active {
+                                background-color: @lightBlue8;
+                                color: #fff;
+                            }
                         }
                     }
+
                 }
             }
             .component-table-body-container {

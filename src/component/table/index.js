@@ -21,9 +21,6 @@ const Table = async args => {
         data,
         callback
     } = args;
-    console.log(
-        args
-    );
     let mask = document.createElement('div');
     mask.className = 'component-mask';
     mask.innerHTML = `
@@ -38,7 +35,7 @@ const Table = async args => {
                         <span class="text-container">全部</span>
                         ${Icon({ type:'unfold' })}
                     </div>
-                    <div class="list-container"></div>
+                    <div class="tree-container"></div>
                     <div class="flex-container"></div>
                 </div>
                 <div class="component-table-body-container">
@@ -68,7 +65,7 @@ const Table = async args => {
                                     <input id="select-reverse" type="checkbox"/> 
                                     <label for="select-reverse">反选</label>
                                 </span>
-                                <span class="num">编号</span>
+                                ${data.content[0].code ? `<span class="num">编号</span>` : ""}
                                 <span class="name">名称</span>
                             </div>
                             <div class="tb-container"></div>
@@ -81,7 +78,7 @@ const Table = async args => {
                                     <input id="thr-select-reverse" type="checkbox"/> 
                                     <label for="thr-select-reverse">反选</label>
                                 </span>
-                                <span class="num">编号</span>
+                                ${data.content[0].code ? `<span class="num">编号</span>` : ""}
                                 <span class="name">名称</span>
                                 <span class="empty">
                                     ${Icon({ type:'trash' })}
@@ -117,7 +114,10 @@ const Table = async args => {
     })
     document.body.appendChild(mask);
     await sleep(300);
-    await putDataToFirTable(data.title)
+    await putDataToFirTable({
+        data:data.title,
+        container:document.querySelector('.component-table .component-table-body-side .tree-container')
+    })
     await putDataToSecTable(data.content)
     let btns = mask.querySelectorAll('.component-table button');
     btns = Array.prototype.slice.call(btns);
@@ -174,19 +174,31 @@ const btnAddevent = args => {
 
 
 
-const putDataToFirTable = async data => {
+const putDataToFirTable = async args => {
+    const {
+        data,
+        container
+    } = args;
     let arr = data.map((row,i) => {
         let div = document.createElement('div');
         let html = `
-            ${Icon({type:"wujiaoxing"})}
-            <span class="text-container">` + row.name + `</span>
+            <div class="tree-container-list-div">
+                ${Icon({type:"wujiaoxing"})}
+                <span class="text-container">${row.name}</span>
+                ${row.hasOwnProperty('children') ? Icon({type:"unfold"}) : ""}
+            <div>
         `;
-        div.className = "list";
-        div.innerHTML = html;
+        div.className = "tree-container-list";
+        div.innerHTML += html;
         div.id = "sec"+i;
         div.dataset.type = i+1;
         div.style.cursor = "pointer";
-        let container = document.querySelector('.component-table .component-table-body-side .list-container'); 
+        if(row.hasOwnProperty('children')){
+            putDataToFirTable({
+                data:row.children,
+                container:div
+            })
+        }
         container.appendChild(div);
     });
 }
@@ -203,7 +215,7 @@ const putDataToSecTable = async data => {
         div.className = "tb";
         let html = `
             <input class="select" type="checkbox"/>
-            <span class="num">` + row.dept_code + `</span>
+            ${row.dept_code? `<span class="num">${row.dept_code}</span>`: ""}
             <span class="name">` + row.name + `</span>
         `;
         div.innerHTML = html;
@@ -225,6 +237,7 @@ const putDataToSecTable = async data => {
 const eventProxy = args => {
     const { event } = args;
     if(event=="click"){
+        console.log('click');
         let handleAllEvent = e => {
             // toggle show all with first table 
             let isShowAllInPath = isDomInPathFunc({
@@ -240,7 +253,7 @@ const eventProxy = args => {
                     animationFillMode: "forwards",
                     animationName: ["rotate-90","rotate90"]
                 })
-                let listContainer = isShowAllInPath.parentElement.querySelector('.list-container');
+                let listContainer = isShowAllInPath.parentElement.querySelector('.tree-container');
                 domToggleAnimation({
                     dom: listContainer,
                     animationDuration: "0.3s",
@@ -248,13 +261,38 @@ const eventProxy = args => {
                     animationName: ["slidein","slideout"]
                 })
             }
+            // toggle show all with first table 
+            let openList = document.querySelectorAll('.tree-container .icon-unfold')
+            openList = Array.prototype.slice.call(openList)
+            openList.forEach(dom=>{
+                let isShowAllInPath = isDomFunc({
+                    path: e.path,
+                    dom:dom.parentElement
+                })
+                if(isShowAllInPath){
+                    // add some animation
+                    domToggleAnimation({
+                        dom: dom,
+                        animationDuration: "0.3s",
+                        animationFillMode: "forwards",
+                        animationName: ["rotate-90","rotate90"]
+                    })
+                    let listContainer = isShowAllInPath.parentElement;
+                    domToggleAnimation({
+                        dom: listContainer,
+                        animationDuration: "0.3s",
+                        animationFillMode: "forwards",
+                        animationName: ["slidein1","slideout1"]
+                    })
+                }
+            })
             // filter second table
-            let firstTableLists = document.querySelectorAll('.list-container .list')
+            let firstTableLists = document.querySelectorAll('.tree-container .list')
             firstTableLists = Array.prototype.slice.call(firstTableLists)
             firstTableLists.map((list,i)=>{
                 let isDomInPath = isDomInPathFunc({
                     path: e.path,
-                    selector: ".list-container .list:nth-child(" + (i+1) + ")"
+                    selector: ".tree-container .list:nth-child(" + (i+1) + ")"
                 })
                 if(isDomInPath){
                     let allList = isDomInPath.parentElement.querySelectorAll('.list')
@@ -283,10 +321,11 @@ const eventProxy = args => {
                 })
             }
             // 为第二个第三个表格每一个列表添加点击事件，tb-container
+            console.log('dom');
             document.querySelectorAll(".tb-container .tb").forEach(dom=>{
+                console.log('dom',dom);
                 let isTableList = isDomFunc({
-                    path: e.path,
-                    dom
+                    path: e.path, dom
                 })
                 if(isTableList){
                     if(e.path[0].type=='checkbox') return
@@ -349,7 +388,7 @@ const eventProxy = args => {
 
 
 const secTableObserver =  (args) => {
-    let fir_table_container = document.querySelector('.component-table-body-side .list-container');
+    let fir_table_container = document.querySelector('.component-table-body-side .tree-container');
     let sec_table_container = document.querySelector('.component-table-body-container .sec-table .tb-container');
     let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     let observer = new MutationObserver((mutations) => {
