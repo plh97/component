@@ -4,6 +4,8 @@ import Message from "./component/message";
 import ModalInfo from "./component/modalInfo";
 import Spin from "./component/spin";
 import Table from "./component/table";
+import TreeTable from "./component/treeTable";
+import Tree from "./component/tree";
 import Button from "./container/button";
 import Icon from "./container/icon";
 
@@ -14,8 +16,9 @@ const Component = {
         spin: Spin,
         modal: Modal,
         table: Table,
+        tree: Tree,
+        treeTable: TreeTable,
         modalInfo: ModalInfo,
-        table: Table,
         container: {
             button: Button,
             icon: Icon,
