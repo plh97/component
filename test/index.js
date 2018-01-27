@@ -290,8 +290,8 @@ popupBoxBtns.forEach(btn =>{
     btn.addEventListener('click',(e)=>{
         if(e.target.innerText=="treeTable"){
             treeTable({
+                select_model:"checkbox",
                 data: {
-                    select_model:"radio",
                     title:[
                         {id: "1", name: "供应商"},
                         {id: "2", name: "客户"},
@@ -321,6 +321,7 @@ popupBoxBtns.forEach(btn =>{
             })
         }else if(e.target.innerText=="tree") {
             tree({
+                // select_model: "checkbox",
                 select_model: "radio",
                 data: [
                     {id: "05", name: "法塞特家族酒庄仓库", pId: "", sid: 527, type: ""},
@@ -347,7 +348,8 @@ popupBoxBtns.forEach(btn =>{
             })
         }else if(e.target.innerText=="table") {
             table({
-                select_model:"radio",
+                select_model: "checkbox",
+                // select_model:"radio",
                 data: [
                     {"id":"01d167cc9e864b038a3b9b26737d7e2d","parent_ids":"0","name":"111","sort":30,"code":"001001014013","type":"4","grade":"1","USEABLE":"1","del_flag":"0","corp_code":"001001014","corp_name":"法塞特酒业（上海）","dept_id":"c7f76ff996244d08907911cba86597fc","dept_code":"001001014","dept_name":"法塞特酒业（上海）","edu_user_id":"11521","edu_user_name":"111"},
                     {"id":"32f08cdc623f41f99c614fe1b88c1c60","parent_ids":"0","name":"法塞特银川商贸有限公司","sort":30,"area_id":"76401","code":"001001014012","type":"5","grade":"1","address":"","zip_code":"","master":"","phone":"","fax":"","email":"","USEABLE":"1","PRIMARY_PERSON":"","DEPUTY_PERSON":"","update_by":"30900","update_date":1514874616000,"remarks":"","del_flag":"0","corp_code":"001001014","corp_name":"法塞特酒业（上海）","dept_id":"c7f76ff996244d08907911cba86597fc","dept_code":"001001014","dept_name":"法塞特酒业（上海）","edu_user_id":"11406","edu_user_name":"银川品牌店"},

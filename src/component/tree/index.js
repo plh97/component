@@ -22,11 +22,7 @@ const Tree = async args => {
         select_model,
         callback
     } = args;
-
-    console.log(
-        select_model
-    );
-
+    console.log(select_model);
     let mask = document.createElement('div');
     mask.className = 'component-mask';
     mask.innerHTML = `
@@ -67,7 +63,8 @@ const Tree = async args => {
     })
     // all event proxy
     await eventProxy({
-        event:'click'
+        event:'click',
+        select_model
     });
     let btns = mask.querySelectorAll('.component-tree button');
     btns = Array.prototype.slice.call(btns);
@@ -150,7 +147,10 @@ const putDataToFirTable = async args => {
 
 
 const eventProxy = args => {
-    const { event } = args;
+    const { 
+        event,
+        select_model
+     } = args;
     if(event=="click"){
         let handleAllEvent = e => {
             // toggle show all with first table 
@@ -207,23 +207,23 @@ const eventProxy = args => {
             })
             selectInput.forEach(dom=>{
                 let isSelectDomInPath = isDomFunc({
-                    path: e.path,dom
+                    path: e.path, dom
                 })
                 if(isSelectDomInPath){
                     // if select one
-                    addArrProp(document.querySelectorAll('.component-tree-container .active')).forEach(dom=>{
-                        dom.classList.remove('active')
-                    })
-                    console.log(
-                        select_model
-                    );
-                    isSelectDomInPath.classList.add('active')
-                    // if select more
-                    // isSelectDomInPath.classList.toggle('active')
+                    if(select_model=="radio"){
+                        addArrProp(document.querySelectorAll('.component-tree-container .active')).forEach(dom=>{
+                            dom.classList.remove('active')
+                        })
+                        isSelectDomInPath.classList.add('active')
+                    }else if(select_model=="checkbox"){
+                        console.log(select_model);
+                        // if select more
+                        isSelectDomInPath.classList.toggle('active')
+                    }
                 }
             })
             // click mask remove tree
-            // await sleep(500);
             if(e.path[0].classList.contains('component-mask')){
                 document.querySelector('.component-mask').remove()
                 domFunc({

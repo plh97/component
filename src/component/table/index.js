@@ -15,11 +15,11 @@ const {
     transformStringToBool
 } = Dom;
 
-
 const Table = async args => {
     let {
         data,
         callback,
+        select_model
     } = args;
 
     let mask = document.createElement('div');
@@ -114,13 +114,13 @@ const Table = async args => {
     await thrTableObserver()
     // all event proxy
     await eventProxy({
-        event:'click'
+        event:'click',
+        select_model
     })
     await eventProxy({
         event:'change'
     })
 }
-
 
 const btnAddevent = args => {
     const {
@@ -181,10 +181,8 @@ const putDataToSecTable = async data => {
     })
 }
 
-
-
 const eventProxy = args => {
-    const { event } = args;
+    const { event,select_model } = args;
     if(event=="click"){
         let handleAllEvent = e => {
             // empty
@@ -209,10 +207,17 @@ const eventProxy = args => {
                 })
                 if(isTableList){
                     if(e.path[0].type=='checkbox') return
-                    if(isTableList.querySelector('input').checked==true){
-                        isTableList.querySelector('input').checked = false
-                        isTableList.querySelector('input').dataset.type = false
-                    }else{
+                    if(select_model=="checkbox"){
+                        if(isTableList.querySelector('input').checked==true){
+                            isTableList.querySelector('input').checked = false
+                            isTableList.querySelector('input').dataset.type = false
+                        }else{
+                            isTableList.querySelector('input').checked = true
+                            isTableList.querySelector('input').dataset.type = true
+                        }
+                    }else if(select_model=="radio"){
+                        // 先清空所有
+                        document.querySelectorAll(".tb-container .tb").forEach(dom=>dom.querySelector('input').checked=false)
                         isTableList.querySelector('input').checked = true
                         isTableList.querySelector('input').dataset.type = true
                     }
@@ -291,9 +296,5 @@ const thrTableObserver = (args) => {
     }
     observer.observe(sec_table_container, config);
 }
-
-
-
-
 
 export default Table;

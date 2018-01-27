@@ -617,7 +617,8 @@ const Table = (() => {
     var _ref = asyncToGenerator(function* (args) {
         let {
             data,
-            callback
+            callback,
+            select_model
         } = args;
 
         let mask = document.createElement('div');
@@ -712,7 +713,8 @@ const Table = (() => {
         yield thrTableObserver();
         // all event proxy
         yield eventProxy({
-            event: 'click'
+            event: 'click',
+            select_model
         });
         yield eventProxy({
             event: 'change'
@@ -791,7 +793,7 @@ const putDataToSecTable = (() => {
 })();
 
 const eventProxy = args => {
-    const { event } = args;
+    const { event, select_model } = args;
     if (event == "click") {
         let handleAllEvent = e => {
             // empty
@@ -816,10 +818,17 @@ const eventProxy = args => {
                 });
                 if (isTableList) {
                     if (e.path[0].type == 'checkbox') return;
-                    if (isTableList.querySelector('input').checked == true) {
-                        isTableList.querySelector('input').checked = false;
-                        isTableList.querySelector('input').dataset.type = false;
-                    } else {
+                    if (select_model == "checkbox") {
+                        if (isTableList.querySelector('input').checked == true) {
+                            isTableList.querySelector('input').checked = false;
+                            isTableList.querySelector('input').dataset.type = false;
+                        } else {
+                            isTableList.querySelector('input').checked = true;
+                            isTableList.querySelector('input').dataset.type = true;
+                        }
+                    } else if (select_model == "radio") {
+                        // 先清空所有
+                        document.querySelectorAll(".tb-container .tb").forEach(dom => dom.querySelector('input').checked = false);
                         isTableList.querySelector('input').checked = true;
                         isTableList.querySelector('input').dataset.type = true;
                     }
@@ -921,9 +930,8 @@ const treeTable = (() => {
             callback,
             select_model
         } = args;
-
+        console.log(args);
         let mask = document.createElement('div');
-        console.log(select_model);
         mask.className = 'component-mask';
         mask.innerHTML = `
         <div class="component-treeTable">
@@ -1029,7 +1037,8 @@ const treeTable = (() => {
         yield thrTableObserver$1();
         // all event proxy
         yield eventProxy$1({
-            event: 'click'
+            event: 'click',
+            select_model
         });
         yield eventProxy$1({
             event: 'change'
@@ -1141,7 +1150,7 @@ const putDataToSecTable$1 = (() => {
 })();
 
 const eventProxy$1 = args => {
-    const { event } = args;
+    const { event, select_model } = args;
     if (event == "click") {
         let handleAllEvent = e => {
             // toggle show all with first table 
@@ -1232,10 +1241,17 @@ const eventProxy$1 = args => {
                 });
                 if (isTableList) {
                     if (e.path[0].type == 'checkbox') return;
-                    if (isTableList.querySelector('input').checked == true) {
-                        isTableList.querySelector('input').checked = false;
-                        isTableList.querySelector('input').dataset.type = false;
-                    } else {
+                    if (select_model == "checkbox") {
+                        if (isTableList.querySelector('input').checked == true) {
+                            isTableList.querySelector('input').checked = false;
+                            isTableList.querySelector('input').dataset.type = false;
+                        } else {
+                            isTableList.querySelector('input').checked = true;
+                            isTableList.querySelector('input').dataset.type = true;
+                        }
+                    } else if (select_model == "radio") {
+                        // 先清空所有
+                        document.querySelectorAll(".tb-container .tb").forEach(dom => dom.querySelector('input').checked = false);
                         isTableList.querySelector('input').checked = true;
                         isTableList.querySelector('input').dataset.type = true;
                     }
@@ -1365,9 +1381,7 @@ const Tree = (() => {
             select_model,
             callback
         } = args;
-
         console.log(select_model);
-
         let mask = document.createElement('div');
         mask.className = 'component-mask';
         mask.innerHTML = `
@@ -1408,7 +1422,8 @@ const Tree = (() => {
         });
         // all event proxy
         yield eventProxy$2({
-            event: 'click'
+            event: 'click',
+            select_model
         });
         let btns = mask.querySelectorAll('.component-tree button');
         btns = Array.prototype.slice.call(btns);
@@ -1493,7 +1508,10 @@ const putDataToFirTable$1 = (() => {
 })();
 
 const eventProxy$2 = args => {
-    const { event } = args;
+    const {
+        event,
+        select_model
+    } = args;
     if (event == "click") {
         let handleAllEvent = e => {
             // toggle show all with first table 
@@ -1554,17 +1572,19 @@ const eventProxy$2 = args => {
                 });
                 if (isSelectDomInPath) {
                     // if select one
-                    addArrProp$3(document.querySelectorAll('.component-tree-container .active')).forEach(dom => {
-                        dom.classList.remove('active');
-                    });
-                    console.log(select_model);
-                    isSelectDomInPath.classList.add('active');
-                    // if select more
-                    // isSelectDomInPath.classList.toggle('active')
+                    if (select_model == "radio") {
+                        addArrProp$3(document.querySelectorAll('.component-tree-container .active')).forEach(dom => {
+                            dom.classList.remove('active');
+                        });
+                        isSelectDomInPath.classList.add('active');
+                    } else if (select_model == "checkbox") {
+                        console.log(select_model);
+                        // if select more
+                        isSelectDomInPath.classList.toggle('active');
+                    }
                 }
             });
             // click mask remove tree
-            // await sleep(500);
             if (e.path[0].classList.contains('component-mask')) {
                 document.querySelector('.component-mask').remove();
                 domFunc$3({
