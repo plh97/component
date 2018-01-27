@@ -16,21 +16,34 @@ const {
 } = Dom;
 
 
-const Table = async args => {
+const treeTable = async args => {
     let {
         data,
         callback,
+        select_model
     } = args;
 
     let mask = document.createElement('div');
+    console.log(
+        select_model
+    );
     mask.className = 'component-mask';
     mask.innerHTML = `
-        <div class="component-table">
-            <header class="component-table-header">
+        <div class="component-treeTable">
+            <header class="component-treeTable-header">
                 请选择
             </header>
-            <div class="component-table-body">
-                <div class="component-table-body-container">
+            <div class="component-treeTable-body">
+                <div class="component-treeTable-body-side" id="side">
+                    <div class="all" id="all">
+                        ${Icon({ type:'navlist' })}
+                        <span class="text-container">全部</span>
+                        ${Icon({ type:'unfold' })}
+                    </div>
+                    <div class="tree-container"></div>
+                    <div class="flex-container"></div>
+                </div>
+                <div class="component-treeTable-body-container">
                     <span class="breadcrumb">
                         <span class="container-breadcrumb">
                             ${Icon({ type:'location' })}
@@ -57,7 +70,7 @@ const Table = async args => {
                                     <input id="select-reverse" type="checkbox"/> 
                                     <label for="select-reverse">反选</label>
                                 </span>
-                                ${data[0].code ? `<span class="num">编号</span>` : ""}
+                                ${data.content[0].code ? `<span class="num">编号</span>` : ""}
                                 <span class="name">名称</span>
                             </div>
                             <div class="tb-container"></div>
@@ -70,7 +83,7 @@ const Table = async args => {
                                     <input id="thr-select-reverse" type="checkbox"/> 
                                     <label for="thr-select-reverse">反选</label>
                                 </span>
-                                ${data[0].code ? `<span class="num">编号</span>` : ""}
+                                ${data.content[0].code ? `<span class="num">编号</span>` : ""}
                                 <span class="name">名称</span>
                                 <span class="empty">
                                     ${Icon({ type:'trash' })}
@@ -106,11 +119,16 @@ const Table = async args => {
     })
     document.body.appendChild(mask);
     await sleep(300);
-    await putDataToSecTable(data)
-    let btns = mask.querySelectorAll('.component-table button');
+    await putDataToFirTable({
+        data:data.title,
+        container:document.querySelector('.component-treeTable .component-treeTable-body-side .tree-container')
+    })
+    await putDataToSecTable(data.content)
+    let btns = mask.querySelectorAll('.component-treeTable button');
     btns = Array.prototype.slice.call(btns);
     await btnAddevent({btns,mask,callback})
     // 添加观察者
+    await secTableObserver()
     await thrTableObserver()
     // all event proxy
     await eventProxy({
@@ -157,14 +175,45 @@ const btnAddevent = args => {
 }
 
 
+
+
+
+
+const putDataToFirTable = async args => {
+    const {
+        data,
+        container
+    } = args;
+    let arr = data.map((row,i) => {
+        let div = document.createElement('div');
+        let html = `
+            <div class="tree-container-list-div" data-type="${row.id}">
+                ${Icon({type:"wujiaoxing"})}
+                <span class="text-container">${row.name}</span>
+                ${row.hasOwnProperty('children') ? Icon({type:"unfold"}) : ""}
+            <div>
+        `;
+        div.className = "tree-container-list";
+        div.innerHTML += html;
+        div.id = "sec"+i;
+        if(row.hasOwnProperty('children')){
+            putDataToFirTable({
+                data:row.children,
+                container:div
+            })
+        }
+        container.appendChild(div);
+    });
+}
+
 const putDataToSecTable = async data => {
     // 将数据传入data之前先清空 container
-    let secTableInputs = document.querySelector('.component-table-body-container .sec-table .tb-container');
+    let secTableInputs = document.querySelector('.component-treeTable-body-container .sec-table .tb-container');
     secTableInputs = Array.prototype.slice.call(secTableInputs);
     secTableInputs.map(input => input.parentElement.remove())
     
     return data.map((row,i)=>{
-        let sec_table = document.querySelector('.component-table-body-container .sec-table .tb-container');
+        let sec_table = document.querySelector('.component-treeTable-body-container .sec-table .tb-container');
         let div = document.createElement('div');
         div.className = "tb";
         let html = `
@@ -183,10 +232,81 @@ const putDataToSecTable = async data => {
 
 
 
+
+
+
+
+
 const eventProxy = args => {
     const { event } = args;
     if(event=="click"){
         let handleAllEvent = e => {
+            // toggle show all with first table 
+            let isShowAllInPath = isDomInPathFunc({
+                path: e.path,
+                selector: "#all"
+            })
+            if(isShowAllInPath){
+                // add some animation
+                let more = isShowAllInPath.querySelector('.icon-unfold');
+                domToggleAnimation({
+                    dom: more,
+                    animationDuration: "0.3s",
+                    animationFillMode: "forwards",
+                    animationName: ["rotate-90","rotate90"]
+                })
+                let listContainer = isShowAllInPath.parentElement.querySelector('.tree-container');
+                domToggleAnimation({
+                    dom: listContainer,
+                    animationDuration: "0.3s",
+                    animationFillMode: "forwards",
+                    animationName: ["slidein","slideout"]
+                })
+            }
+            // toggle show the tree list in first table
+            let openList = document.querySelectorAll('.tree-container .icon-unfold')
+            openList = Array.prototype.slice.call(openList)
+            openList.forEach(dom=>{
+                let isShowAllInPath = isDomFunc({
+                    path: e.path,
+                    dom:dom.parentElement
+                })
+                if(isShowAllInPath){
+                    // add some animation
+                    domToggleAnimation({
+                        dom: dom,
+                        animationDuration: "0.3s",
+                        animationFillMode: "forwards",
+                        animationName: ["rotate-90","rotate90"]
+                    })
+                    let listContainer = isShowAllInPath.parentElement;
+                    domToggleAnimation({
+                        dom: listContainer,
+                        animationDuration: "0.3s",
+                        animationFillMode: "forwards",
+                        animationName: ["slidein1","slideout1"]
+                    })
+                }
+            })
+            // filter second table
+            let firstTableLists = document.querySelectorAll('.component-treeTable-body-side .tree-container .tree-container-list-div')
+            firstTableLists = Array.prototype.slice.call(firstTableLists)
+            firstTableLists.map((list,i)=>{
+                let isDomInPath = isDomFunc({
+                    path: e.path,
+                    dom: list
+                })
+                if(isDomInPath){
+                    let allList = document.querySelectorAll('.component-treeTable-body-side .tree-container .active')
+                    allList = Array.prototype.slice.call(allList);
+                    allList.map(dom=>{
+                        dom.dataset.active=false;
+                        dom.classList.remove('active')
+                    });
+                    isDomInPath.dataset.active = true
+                    isDomInPath.classList.add('active')
+                }
+            })
             // empty
             let isEmptyDom = isDomInPathFunc({
                 path: e.path,
@@ -256,10 +376,49 @@ const eventProxy = args => {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+const secTableObserver =  (args) => {
+    let fir_table_container = document.querySelector('.component-treeTable-body-side .tree-container');
+    let sec_table_container = document.querySelector('.component-treeTable-body-container .sec-table .tb-container');
+    let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    let observer = new MutationObserver((mutations) => {
+        let target = mutations.filter(mutation => mutation.target.dataset.active=='true')
+        if(!target.length) return 
+        let index = target[0].target.dataset.type
+        let allDom = sec_table_container.querySelectorAll('input');
+        
+        allDom = addArrProp(allDom).map(dom=>dom.parentElement);
+        let showDom = sec_table_container.querySelectorAll('input');
+        showDom = addArrProp(showDom).map(dom=> dom.parentElement).filter(dom=> dom.dataset.type==index);
+        showDomFunc({
+            allDom,
+            showDom
+        });
+    });
+    // 配置观察选项:
+    let config = { 
+        subtree: true,
+        childList: true, 
+        attributes: true, 
+        characterData: true
+    }
+    observer.observe(fir_table_container, config);
+}
+
 const thrTableObserver = (args) => {
     ////不适合单独监听啊，，直接复制选中的元素好了，垃圾算法
-    let sec_table_container = document.querySelector('.component-table-body-container .sec-table .tb-container');
-    let thr_table_container = document.querySelector('.component-table-body-container .thr-table .tb-container');
+    let sec_table_container = document.querySelector('.component-treeTable-body-container .sec-table .tb-container');
+    let thr_table_container = document.querySelector('.component-treeTable-body-container .thr-table .tb-container');
     let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     let observer = new MutationObserver((mutations) => {
         let inputGroupAll = thr_table_container.querySelectorAll('input');
@@ -296,4 +455,4 @@ const thrTableObserver = (args) => {
 
 
 
-export default Table;
+export default treeTable;
