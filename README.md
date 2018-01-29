@@ -127,10 +127,10 @@ var spin = pc.spin;
 - tree 树形图组件
 	```js
 	tree({
-		// ifselect: false,
-		beforeSelect:["法塞特家族酒庄品鉴酒仓库","法塞特家族酒庄配件仓库"],
-		// select_model: "checkbox",
-		select_model: "radio",
+		// ifselect: false,是否加载之前选好的，默认true
+		beforeSelect:["法塞特家族酒庄品鉴酒仓库","法塞特家族酒庄配件仓库"],// 之前选好的内容
+		// select_model: "checkbox", //多选
+		select_model: "radio", //单选
 		data: [
 			{id: "05", name: "法塞特家族酒庄仓库", pId: "", sid: 527, type: ""},
 			{id: "0501", name: "法塞特家族酒庄正品仓库", pId: "05", sid: 528, type: "正品"},
