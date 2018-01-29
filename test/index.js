@@ -1,184 +1,112 @@
-// // import {
-// //     pc,
-// //     mobile
-// // } from "peng-component";
-// // } from "../dist/index.js";
+// // // import {
+// // //     pc,
+// // //     mobile
+// // // } from "peng-component";
+// // // } from "../dist/index.js";
 
-// // if(screen.width>768){
-// //     var {
-// //         modal,
-// //         modalInfo,
-// //         message,
-// //         spin,
-// //         container
-// //     } = pc;
-// // }else{
-// //     var {
-// //         modal,
-// //         modalInfo,
-// //         message,
-// //         spin,
-// //         container
-// //     } = mobile;
-// // }
+// // // if(screen.width>768){
+// // //     var {
+// // //         modal,
+// // //         modalInfo,
+// // //         message,
+// // //         spin,
+// // //         container
+// // //     } = pc;
+// // // }else{
+// // //     var {
+// // //         modal,
+// // //         modalInfo,
+// // //         message,
+// // //         spin,
+// // //         container
+// // //     } = mobile;
+// // // }
 
-// // const {
-// //     modal,
-// //     modalInfo,
-// //     message,
-// //     spin,
-// //     container
-// // } = pc;
-const pc = Component.pc
-
-
-var modal  =pc.modal;
-var modalInfo  =pc.modalInfo;
-var message  =pc.message;
-var spin  =pc.spin;
-var table  =pc.table;
-var tree  =pc.tree;
-var container  =pc.container;
-var table  =pc.table;
-
-var button = container.button;
-var icon = container.icon;
+// // // const {
+// // //     modal,
+// // //     modalInfo,
+// // //     message,
+// // //     spin,
+// // //     container
+// // // } = pc;
+// const pc = Component.pc
 
 
-var times = 0;
-document.querySelector('#container-modal').innerHTML = `
-    ${button({
-        className:"btn-primary",
-        text:"Modal"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"info"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"confirm"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-danger",
-        text:"delete"
-    }).outerHTML}
-    ${button({
-        className:"wait btn-primary",
-        text:"wait"
-    }).outerHTML}
-`
-document.querySelector('#container-message').innerHTML = `
-    ${button({
-        className:"confirm btn-primary",
-        text:"info"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"success"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"error"
-    }).outerHTML}
-    ${button({
-        className:"confirm btn-primary",
-        text:"warning"
-    }).outerHTML}
-`;
-document.querySelector('#container-popupBox').innerHTML = `
-    ${button({
-        className:"tree btn-danger",
-        text:"tree"
-    }).outerHTML}
-    ${button({
-        className:"table btn-danger",
-        text:"table"
-    }).outerHTML}
-    ${button({
-        className:"treeTable btn-danger",
-        text:"treeTable"
-    }).outerHTML}
-`;
-let messageBtns = document.querySelectorAll('#container-message button');
-messageBtns = Array.prototype.slice.call(messageBtns)
-let modalBtns = document.querySelectorAll('#container-modal button');
-modalBtns = Array.prototype.slice.call(modalBtns)
-let popupBoxBtns = document.querySelectorAll('#container-popupBox button');
-popupBoxBtns = Array.prototype.slice.call(popupBoxBtns)
-messageBtns.forEach(btn =>{
-    btn.addEventListener('click',(e)=>{
-        if(e.target.innerText=="info"){
-            message('123')
-        }else{
-            message({
-                type: e.target.innerText,
-                time: 1000,
-                content: `这个是这是这个是${e.target.innerText},第${times++}次`,
-                callback: ()=>{
-                    console.log('callback',e.target.innerText);
-                }
-            })
-        }
-    },false)
-})
-modalBtns.forEach(btn =>{
-    if(btn.innerText == "Modal"){
-        btn.addEventListener('click',(e)=>{
-            modal({
-                title: `${btn.innerText}的标题`,
-                content: `这个是${e.target.innerText}的内容,第${times++}次`,
-                callback: ()=>console.log('callback',e.target.innerText,"的确认")
-            })
-        },false)
-    }else if(btn.innerText == "info"){
-        btn.addEventListener('click',(e)=>{
-            modalInfo('这个是简化版标题！！')
-        },false)
-    }else if(btn.innerText == "confirm"){
-        btn.addEventListener('click',(e)=>{
-            modalInfo({
-                type: `confirm`,
-                title: `Do you Want to delete these items?`,
-                content: `警告内容`,
-                callback: () => console.log('callback',e.target.innerText,"的确认")
-            })
-        },false)
-    }else if(btn.innerText == "delete"){
-        btn.addEventListener('click',(e)=>{
-            modalInfo({
-                type: `delete`,
-                title: `Do you Want to delete these items?`,
-                content: `报错内容`,
-                callback: () => console.log('callback',e.target.innerText,"的确认")
-            })
-        },false)
-    }else if(btn.innerText == "wait"){
-        btn.addEventListener('click',(e)=>{
-            spin({dom: document.querySelector('.wait')})
-            setTimeout(() => {
-                spin({dom: document.querySelector('.wait')})
-            },3000);
-        },false)
-    }
-})
-document.querySelector('.container').addEventListener('click',(e)=>{
-    if(screen.width>768){
-        spin({dom: document.querySelector('.container')})
-        setTimeout(() => {
-            spin({dom: document.querySelector('.container')})
-        }, 2000);
-    }else {
-        spin()
-        setTimeout(() => {
-            spin()
-        }, 2000);
-    }
-},false)
+// var modal  =pc.modal;
+// var modalInfo  =pc.modalInfo;
+// var message  =pc.message;
+// var spin  =pc.spin;
+// var table  =pc.table;
+// var tree  =pc.tree;
+// var container  =pc.container;
+// var table  =pc.table;
+
+// var button = container.button;
+// var icon = container.icon;
 
 
-
-// tableBtns.forEach(btn =>{
+// var times = 0;
+// document.querySelector('#container-modal').innerHTML = `
+//     ${button({
+//         className:"btn-primary",
+//         text:"Modal"
+//     }).outerHTML}
+//     ${button({
+//         className:"confirm btn-primary",
+//         text:"info"
+//     }).outerHTML}
+//     ${button({
+//         className:"confirm btn-primary",
+//         text:"confirm"
+//     }).outerHTML}
+//     ${button({
+//         className:"confirm btn-danger",
+//         text:"delete"
+//     }).outerHTML}
+//     ${button({
+//         className:"wait btn-primary",
+//         text:"wait"
+//     }).outerHTML}
+// `
+// document.querySelector('#container-message').innerHTML = `
+//     ${button({
+//         className:"confirm btn-primary",
+//         text:"info"
+//     }).outerHTML}
+//     ${button({
+//         className:"confirm btn-primary",
+//         text:"success"
+//     }).outerHTML}
+//     ${button({
+//         className:"confirm btn-primary",
+//         text:"error"
+//     }).outerHTML}
+//     ${button({
+//         className:"confirm btn-primary",
+//         text:"warning"
+//     }).outerHTML}
+// `;
+// document.querySelector('#container-popupBox').innerHTML = `
+//     ${button({
+//         className:"tree btn-danger",
+//         text:"tree"
+//     }).outerHTML}
+//     ${button({
+//         className:"table btn-danger",
+//         text:"table"
+//     }).outerHTML}
+//     ${button({
+//         className:"treeTable btn-danger",
+//         text:"treeTable"
+//     }).outerHTML}
+// `;
+// let messageBtns = document.querySelectorAll('#container-message button');
+// messageBtns = Array.prototype.slice.call(messageBtns)
+// let modalBtns = document.querySelectorAll('#container-modal button');
+// modalBtns = Array.prototype.slice.call(modalBtns)
+// let popupBoxBtns = document.querySelectorAll('#container-popupBox button');
+// popupBoxBtns = Array.prototype.slice.call(popupBoxBtns)
+// messageBtns.forEach(btn =>{
 //     btn.addEventListener('click',(e)=>{
 //         if(e.target.innerText=="info"){
 //             message('123')
@@ -252,28 +180,100 @@ document.querySelector('.container').addEventListener('click',(e)=>{
 
 // // tableBtns.forEach(btn =>{
 // //     btn.addEventListener('click',(e)=>{
-// //         table({
-// //             type: e.target.innerText,
-// //             data: [{
-// //                 number:"231123fwef",
-// //                 name:"法斯特"
-// //             },{
-// //                 number:"231123fwef",
-// //                 name:"法斯特"
-// //             },{
-// //                 number:"231123fwef",
-// //                 name:"法斯特"
-// //             },{
-// //                 number:"231123fwef",
-// //                 name:"法斯特"
-// //             },{
-// //                 number:"231123fwef",
-// //                 name:"法斯特"
-// //             }],
-// //             callback: () => console.log('callback',e.target.innerText,"的确认")
-// //         })
+// //         if(e.target.innerText=="info"){
+// //             message('123')
+// //         }else{
+// //             message({
+// //                 type: e.target.innerText,
+// //                 time: 1000,
+// //                 content: `这个是这是这个是${e.target.innerText},第${times++}次`,
+// //                 callback: ()=>{
+// //                     console.log('callback',e.target.innerText);
+// //                 }
+// //             })
+// //         }
 // //     },false)
 // // })
+// // modalBtns.forEach(btn =>{
+// //     if(btn.innerText == "Modal"){
+// //         btn.addEventListener('click',(e)=>{
+// //             modal({
+// //                 title: `${btn.innerText}的标题`,
+// //                 content: `这个是${e.target.innerText}的内容,第${times++}次`,
+// //                 callback: ()=>console.log('callback',e.target.innerText,"的确认")
+// //             })
+// //         },false)
+// //     }else if(btn.innerText == "info"){
+// //         btn.addEventListener('click',(e)=>{
+// //             modalInfo('这个是简化版标题！！')
+// //         },false)
+// //     }else if(btn.innerText == "confirm"){
+// //         btn.addEventListener('click',(e)=>{
+// //             modalInfo({
+// //                 type: `confirm`,
+// //                 title: `Do you Want to delete these items?`,
+// //                 content: `警告内容`,
+// //                 callback: () => console.log('callback',e.target.innerText,"的确认")
+// //             })
+// //         },false)
+// //     }else if(btn.innerText == "delete"){
+// //         btn.addEventListener('click',(e)=>{
+// //             modalInfo({
+// //                 type: `delete`,
+// //                 title: `Do you Want to delete these items?`,
+// //                 content: `报错内容`,
+// //                 callback: () => console.log('callback',e.target.innerText,"的确认")
+// //             })
+// //         },false)
+// //     }else if(btn.innerText == "wait"){
+// //         btn.addEventListener('click',(e)=>{
+// //             spin({dom: document.querySelector('.wait')})
+// //             setTimeout(() => {
+// //                 spin({dom: document.querySelector('.wait')})
+// //             },3000);
+// //         },false)
+// //     }
+// // })
+// // document.querySelector('.container').addEventListener('click',(e)=>{
+// //     if(screen.width>768){
+// //         spin({dom: document.querySelector('.container')})
+// //         setTimeout(() => {
+// //             spin({dom: document.querySelector('.container')})
+// //         }, 2000);
+// //     }else {
+// //         spin()
+// //         setTimeout(() => {
+// //             spin()
+// //         }, 2000);
+// //     }
+// // },false)
+
+
+
+// // // tableBtns.forEach(btn =>{
+// // //     btn.addEventListener('click',(e)=>{
+// // //         table({
+// // //             type: e.target.innerText,
+// // //             data: [{
+// // //                 number:"231123fwef",
+// // //                 name:"法斯特"
+// // //             },{
+// // //                 number:"231123fwef",
+// // //                 name:"法斯特"
+// // //             },{
+// // //                 number:"231123fwef",
+// // //                 name:"法斯特"
+// // //             },{
+// // //                 number:"231123fwef",
+// // //                 name:"法斯特"
+// // //             },{
+// // //                 number:"231123fwef",
+// // //                 name:"法斯特"
+// // //             }],
+// // //             callback: () => console.log('callback',e.target.innerText,"的确认")
+// // //         })
+// // //     },false)
+// // // })
 
 
 
@@ -290,6 +290,8 @@ popupBoxBtns.forEach(btn =>{
     btn.addEventListener('click',(e)=>{
         if(e.target.innerText=="treeTable"){
             treeTable({
+                ifselect: true,
+                beforeSelect:["法塞特银川商贸有限公司","宁夏一带一路供应链股份有限公司"],
                 select_model:"checkbox",
                 data: {
                     title:[
@@ -321,6 +323,8 @@ popupBoxBtns.forEach(btn =>{
             })
         }else if(e.target.innerText=="tree") {
             tree({
+                // ifselect: false,
+                beforeSelect:["法塞特家族酒庄品鉴酒仓库","法塞特家族酒庄配件仓库"],
                 // select_model: "checkbox",
                 select_model: "radio",
                 data: [
@@ -348,6 +352,8 @@ popupBoxBtns.forEach(btn =>{
             })
         }else if(e.target.innerText=="table") {
             table({
+                ifselect: true,
+                beforeSelect:["法塞特银川商贸有限公司","宁夏一带一路供应链股份有限公司"],
                 select_model: "checkbox",
                 // select_model:"radio",
                 data: [

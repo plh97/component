@@ -7,9 +7,9 @@ const {
 let compose = (x,y) => g => x(y(g))
 
 
-// let compose = (f,g) => x => f(g(x))
+var hi = e => e+"hi~"
 
-let add = e => e+x
+
 // var add1 = 
 var last = compose(head, reverse);
 

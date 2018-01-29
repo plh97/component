@@ -19,9 +19,11 @@ const Table = async args => {
     let {
         data,
         callback,
-        select_model
+        select_model,
+        ifselect,
+        beforeSelect
     } = args;
-
+    ifselect == undefined ? (ifselect=true) : "";
     let mask = document.createElement('div');
     mask.className = 'component-mask';
     mask.innerHTML = `
@@ -31,16 +33,19 @@ const Table = async args => {
             </header>
             <div class="component-table-body">
                 <div class="component-table-body-container">
-                    <span class="breadcrumb">
-                        <span class="container-breadcrumb">
-                            ${Icon({ type:'location' })}
-                            全部 
-                            ${Icon({ type:'>>' })}
-                            红酒 
-                            ${Icon({ type:'>>' })}
-                            法斯特
-                        </span>
-                    </span>
+                    ${
+                        ''
+                    // <span class="breadcrumb">
+                    //     <span class="container-breadcrumb">
+                    //         ${Icon({ type:'location' })}
+                    //         全部 
+                    //         ${Icon({ type:'>>' })}
+                    //         红酒 
+                    //         ${Icon({ type:'>>' })}
+                    //         法斯特
+                    //     </span>
+                    // </span>
+                    }
                     <span class="search-container">
                         <span>商品搜索：</span>
                         <span class="search">
@@ -119,6 +124,24 @@ const Table = async args => {
     })
     await eventProxy({
         event:'change'
+    })
+    ifselect && selectBeforeFunc({
+        beforeSelect
+    })
+}
+
+const selectBeforeFunc = args => {
+    const {
+        beforeSelect
+    } = args;
+    let contents = document.querySelectorAll('.component-table .sec-table .tb-container >div');
+    addArrProp(contents).forEach(content=>{
+        beforeSelect.forEach(select=>{
+            let name = content.querySelector(".name")
+            if(name.innerText==select){
+                content.click()
+            }
+        })
     })
 }
 

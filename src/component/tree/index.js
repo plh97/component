@@ -20,9 +20,11 @@ const Tree = async args => {
     let {
         data,
         select_model,
-        callback
+        callback,
+        ifselect,
+        beforeSelect
     } = args;
-    console.log(select_model);
+    ifselect == undefined ? (ifselect=true) : "";
     let mask = document.createElement('div');
     mask.className = 'component-mask';
     mask.innerHTML = `
@@ -61,6 +63,9 @@ const Tree = async args => {
         data,
         container: document.querySelector('.component-tree .component-tree-container')
     })
+    ifselect && selectBeforeFunc({
+        beforeSelect
+    })
     // all event proxy
     await eventProxy({
         event:'click',
@@ -73,6 +78,21 @@ const Tree = async args => {
         mask,
         callback
     });
+}
+
+
+const selectBeforeFunc = args => {
+    const {
+        beforeSelect
+    } = args;
+    let contents = document.querySelectorAll('.component-tree-container .text-container');
+    addArrProp(contents).forEach(content=>{
+        beforeSelect.forEach(select=>{
+            if(content.innerText==select){
+                content.parentElement.classList.add('active')
+            }
+        })
+    })
 }
 
 
