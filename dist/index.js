@@ -145,7 +145,6 @@ const transformStringToBool = e => {
     }
 };
 
-// 将阿拉伯数字转英文 first . second . third
 const Dom = {
     domFunc,
     sleep,
