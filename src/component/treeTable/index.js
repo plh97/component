@@ -20,8 +20,11 @@ const treeTable = async args => {
     let {
         data,
         callback,
-        select_model
+        select_model,
+        ifselect,
+        beforeSelect
     } = args;
+    ifselect == undefined ? (ifselect=true) : "";
     console.log(args);
     let mask = document.createElement('div');
     mask.className = 'component-mask';
@@ -41,16 +44,19 @@ const treeTable = async args => {
                     <div class="flex-container"></div>
                 </div>
                 <div class="component-treeTable-body-container">
-                    <span class="breadcrumb">
-                        <span class="container-breadcrumb">
-                            ${Icon({ type:'location' })}
-                            全部 
-                            ${Icon({ type:'>>' })}
-                            红酒 
-                            ${Icon({ type:'>>' })}
-                            法斯特
-                        </span>
-                    </span>
+                    ${
+                        ''
+                    // <span class="breadcrumb">
+                    //     <span class="container-breadcrumb">
+                    //         ${Icon({ type:'location' })}
+                    //         全部 
+                    //         ${Icon({ type:'>>' })}
+                    //         红酒 
+                    //         ${Icon({ type:'>>' })}
+                    //         法斯特
+                    //     </span>
+                    // </span>
+                    }
                     <span class="search-container">
                         <span>商品搜索：</span>
                         <span class="search">
@@ -135,8 +141,25 @@ const treeTable = async args => {
     await eventProxy({
         event:'change'
     })
+    ifselect && selectBeforeFunc({
+        beforeSelect
+    })
 }
 
+const selectBeforeFunc = args => {
+    const {
+        beforeSelect
+    } = args;
+    let contents = document.querySelectorAll('.component-treeTable .sec-table .tb-container >div');
+    addArrProp(contents).forEach(content=>{
+        beforeSelect.forEach(select=>{
+            let name = content.querySelector(".name")
+            if(name.innerText==select){
+                content.click()
+            }
+        })
+    })
+}
 
 const btnAddevent = args => {
     const {
