@@ -8,7 +8,8 @@
 		"t": "parcel test/index.html",
 		"w": "rollup --config build/rollup.config.dev.js -w",
 		"b": "rollup --config build/rollup.config.dev.js",
-		"p": "rollup --config build/rollup.config.prod.js"
+		"p": "rollup --config build/rollup.config.prod.js",
+		"parcel": "parcel build test/index.html --public-url ./"
 	},
 	"repository": {
 		"type": "git",
@@ -39,10 +40,13 @@
 		"rollup-plugin-uglify": "^2.0.1"
 	},
 	"dependencies": {
+		"amfe-flexible": "^2.2.1",
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-es2017": "^6.24.1",
 		"chai": "^4.1.2",
+		"i": "^0.3.6",
 		"mocha": "^5.0.0",
+		"npm": "^5.6.0",
 		"peng-component": "^1.0.5",
 		"ramda": "^0.25.0",
 		"rollup-plugin-async": "^1.2.0",
