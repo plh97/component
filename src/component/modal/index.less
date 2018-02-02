@@ -18,13 +18,14 @@
         animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);
         animation-fill-mode: forwards;
         top: 16vh;
-        @media screen and (max-width: 768px) {
-            left: 10vw;
+        @media screen and (min-width: 1300px) {
+            max-width: 520px;
         }
-        width: 80vw;
+        @media screen and (max-width: 1300px) {
+        }
+        width: 95vw;
         // min-height: 220px;
         position: absolute;
-        max-width: 520px;
         border-radius: 4px;
         background-color: #fff;
         background-clip: padding-box;
@@ -33,13 +34,13 @@
         justify-content: space-between;
 
         .component-model-header {
-            @media (min-width: 768px) {
+            @media (min-width: 1300px) {
                 padding: 0 0 0 24px;
                 height: 55px;
             }
-            @media (max-width: 768px) {
-                padding: 0 0 0 18px;
-                height: 40px;
+            @media (max-width: 1300px) {
+                padding: 0 0 0 0.8rem;
+                height: 1.5rem;
             }
             display: inline-flex;
             align-items: center;
@@ -50,16 +51,19 @@
 
             .title {
                 color: @grey9;
+                // font-family: "宋体";
+                .font-dpr(32px);
+                font-weight: bold;
             }
 
             .btn-close{
                 border: 0;
-                width: 56px;
-                @media (min-width: 768px) {
+                width: 1.5rem;
+                @media (min-width: 1300px) {
                     width: 56px;
                 }
-                @media (max-width: 768px) {
-                    width: 46px;
+                @media (max-width: 1300px) {
+                    width: 112px;
                 }
                 height: 100%;
                 color: @grey6;
@@ -78,25 +82,23 @@
         .component-model-body {
             flex: 1;
             padding: 24px;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: flex-start;
-            flex-direction: column;
-            @media (min-width: 768px) {
+            font-weight: 300;
+            .font-dpr(24px);
+            @media (min-width: 1300px) {
                 padding: 24px;
             }
-            @media (max-width: 768px) {
-                padding: 18px;
+            @media (max-width: 1300px) {
+                padding: 0.6rem 0.8rem;
             }
         }
         .component-model-footer {
-            @media (min-width: 768px) {
+            @media (min-width: 1300px) {
                 padding: 0 24px;
             }
-            @media (max-width: 768px) {
-                padding: 0 12px;
+            @media (max-width: 1300px) {
+                padding: 0 0.5rem;
             }
-            height: 55px;
+            height: 1.5rem;
             display: inline-flex;
             align-items: center;
             justify-content: flex-end;

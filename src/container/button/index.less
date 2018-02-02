@@ -5,12 +5,20 @@
 	outline: none;
 	cursor: pointer;
 	touch-action: manipulation;
-	height: 32px;
 	font-weight: 400;
-	font-size: 14px;
+	@media screen and (min-width: 1300px) {
+		font-size: 14px;
+		height: 34px;
+		border-radius: 4px;
+		padding: 0 15px;
+	}
+	@media screen and (max-width: 1300px) {
+		height: 1rem;
+		.font-dpr(32px);
+		border-radius: 0.1rem;
+		padding: 0 0.5rem;
+	}
 	user-select: none;
-	padding: 0px 15px;
-	border-radius: 4px;
 	white-space: nowrap;
 	display: inline-flex;
 	background-color: #fff;

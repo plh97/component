@@ -3,10 +3,7 @@ import Icon from "../../container/icon";
 import Dom from "../../utils/dom.js";
 
 const Message = async args => {
-    const {
-        domFunc,
-        sleep
-    } = Dom;
+    const { domFunc, sleep } = Dom;
     let {
         type,
         content,
@@ -18,7 +15,6 @@ const Message = async args => {
     time = (time == undefined ? 3000 : time);
     content = (content == undefined ? "{content: 请输入content参数}" : content);
     callback = (callback == undefined ? ()=>{} : callback);
-
     if(document.querySelector('.component-container')){
         var container = document.querySelector('.component-container');
     } else {

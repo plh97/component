@@ -39,6 +39,7 @@
 		"rollup-plugin-uglify": "^2.0.1"
 	},
 	"dependencies": {
+		"amfe-flexible": "^2.2.1",
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-es2017": "^6.24.1",
 		"chai": "^4.1.2",

@@ -69,34 +69,52 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({2:[function(require,module,exports) {
-// add.test.js
-// var last = require('../src/utils/functional.js');
-// var expect = require('chai').expect;
+})({50:[function(require,module,exports) {
+(function flexible (window, document) {
+  var docEl = document.documentElement
+  var dpr = window.devicePixelRatio || 1
 
-// describe('变成大写字母+！', () => {
-//     it('["tori_spelling", "tori amos"] 有空格 "tori amos"', () => {
-//         expect(last(['jumpkick', 'roundhouse', 'uppercut'])).to.be.equal("uppercut");
-//     });
-// });
+  // adjust body font size
+  function setBodyFontSize () {
+    if (document.body) {
+      document.body.style.fontSize = (12 * dpr) + 'px'
+    }
+    else {
+      document.addEventListener('DOMContentLoaded', setBodyFontSize)
+    }
+  }
+  setBodyFontSize();
 
+  // set 1rem = viewWidth / 10
+  function setRemUnit () {
+    var rem = docEl.clientWidth / 10
+    docEl.style.fontSize = rem + 'px'
+  }
 
-// import Component from '../dist/index.js'
+  setRemUnit()
 
+  // reset rem unit on page resize
+  window.addEventListener('resize', setRemUnit)
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      setRemUnit()
+    }
+  })
 
-window.onload = function (e) {
-  var container = document.createElement('div');
-  container.className = "btn-container1";
-  container.innerHTML = "\n        " + Button({
-    text: "按钮",
-    className: "btn-primary"
-  }).outerHTML + "\n    ";
-  document.querySelector('.btn-container').appendChild(container);
+  // detect 0.5px supports
+  if (dpr >= 2) {
+    var fakeBody = document.createElement('body')
+    var testElement = document.createElement('div')
+    testElement.style.border = '.5px solid transparent'
+    fakeBody.appendChild(testElement)
+    docEl.appendChild(fakeBody)
+    if (testElement.offsetHeight === 1) {
+      docEl.classList.add('hairlines')
+    }
+    docEl.removeChild(fakeBody)
+  }
+}(window, document))
 
-  document.querySelector('Button').addEventListener('click', function (e) {
-    ModalInfo('密码错误！');
-  }, false);
-};
 },{}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -216,4 +234,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,2])
+},{}]},{},[0,50])
