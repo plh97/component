@@ -28,7 +28,7 @@ const Spin = args => {
         container.innerHTML = `
             <div class="spin-container">
                 ${Icon({type:'spin'})}
-                ${(screen.width>768&&dom.clientHeight<50)?"":`<span>Loading...</span>`}
+                ${(screen.width>1300&&dom.clientHeight<50)?"":`<span>Loading...</span>`}
             </div>
         `;
         container.addEventListener('click',(e)=>{

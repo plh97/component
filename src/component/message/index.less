@@ -15,16 +15,17 @@
     .component-container-message {
         top: 10px;
         width: auto;
-        font-size: 16px;
+        // font-size: 16px;
+        .font-dpr(30px);
         display: inline-flex;
         flex-direction: row;
         align-items: center;
         transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-        margin: 0 10px 10px 10px;
-        padding: 10px 16px;
+        margin: 0 0.3rem 0.3rem 0.3rem;
+        padding: 0.2rem 0.3rem;
         position: relative;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.75);
-        border-radius: 4px;
+        box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.25);
+        border-radius: 0.1rem;
         background-color: #fff;
 
         &.info,&.success,&.warning {
@@ -37,7 +38,8 @@
         }
 
         .icon{
-            min-width: 28px;
+            min-width: 0.5rem;
+            .font-dpr(48px);
         }
     }
 }

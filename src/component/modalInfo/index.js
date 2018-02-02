@@ -21,7 +21,7 @@ const ModalInfo = async args => {
         title="提示"
     }
     if(content==undefined){
-        content="{content: 请输入content参数}"
+        content="content不能为空"
     }
     if(callback==undefined){
         callback=()=>{}
@@ -33,24 +33,22 @@ const ModalInfo = async args => {
     mask.className = 'component-mask';
     mask.innerHTML = `
         <div class="component-modalInfo">
-            <div class="component-model-header">
-                ${Icon({
-                    type
-                })}
-                <span class="title">${title}</span>
-            </div>
-            <div class="component-model-body">
-                ${content}
-            </div>
-            <div class="component-modalInfo-footer">
-                ${(type=="confirm"||type=="delete") ? Button({
-                    className:"cancal",
-                    text:"取消"
-                }).outerHTML:""}
-                ${Button({
-                    className:`confirm ${type=="delete" ? "btn-danger":"btn-primary"}`,
-                    text:"确认"
-                }).outerHTML}
+            ${Icon({
+                type
+            })}
+            <div class="component-modelInfo-container">
+                <span class="component-modelInfo-container-title">${title}</span>
+                <span class="component-modelInfo-container-content">${content}</span>
+                <span class="component-modelInfo-container-footer">
+                    ${(type=="confirm"||type=="delete") ? Button({
+                        className:"cancal",
+                        text:"取消"
+                    }).outerHTML:""}
+                    ${Button({
+                        className:`confirm ${type=="delete" ? "btn-danger":"btn-primary"}`,
+                        text:"确认"
+                    }).outerHTML}
+                </span>
             </div>
         </div>
     `;
