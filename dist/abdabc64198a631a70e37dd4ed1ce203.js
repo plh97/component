@@ -69,30 +69,33 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({4:[function(require,module,exports) {
-// add.test.js
-// var last = require('../src/utils/functional.js');
-// var expect = require('chai').expect;
+})({8:[function(require,module,exports) {
+impoir;
 
-// describe('变成大写字母+！', () => {
-//     it('["tori_spelling", "tori amos"] 有空格 "tori amos"', () => {
-//         expect(last(['jumpkick', 'roundhouse', 'uppercut'])).to.be.equal("uppercut");
-//     });
-// });
+var hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+var minute = [];
+var second = [];
 
+// for (let i = 1; 1 <= 60; i++) {
+//     minute[i] = i;
+//     second[i] = i;
+// }
 
-// import Component from '../dist/index.js'
-
+console.log(hour, minute, second);
 
 window.onload = function (e) {
-  document.querySelector('input#data').addEventListener('click', function (e) {
-    var div = document.createElement('div');
-    var html = "\n            <div class=\"dateTimePicker-header\">\u9009\u62E9\u51FA\u751F\u65E5\u671F</div>\n            <div class=\"dateTimePicker-body\">\n                <div class=\"dateTimePicker-body-year\"></div>\n                <div class=\"dateTimePicker-body-month\"></div>\n                <div class=\"dateTimePicker-body-day\"></div>\n            </div>\n        ";
-    div.className = 'dateTimePicker';
 
-    div.innerHTML = html;
-    document.body.appendChild(div);
-  }, false);
+  var input = document.querySelector('input#data');
+  input.addEventListener('click', clickEventFunc, false);
+};
+
+var clickEventFunc = function clickEventFunc(e) {
+  var dataTimePicker = document.createElement('div');
+  var html = "\n        <div class=\"hour list\"></div>\n        <div class=\"minute list\"></div>\n        <div class=\"second list\"></div>\n    ";
+  dataTimePicker.innerHTML = html;
+  dataTimePicker.className = 'dataTimePicker';
+  document.body.appendChild(dataTimePicker);
+  // dataTimePicker.
 };
 },{}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
@@ -112,7 +115,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':59916/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':64593/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -213,4 +216,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,4])
+},{}]},{},[0,8])

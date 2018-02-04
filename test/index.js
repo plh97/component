@@ -1,30 +1,33 @@
-// add.test.js
-// var last = require('../src/utils/functional.js');
-// var expect = require('chai').expect;
-
-// describe('变成大写字母+！', () => {
-//     it('["tori_spelling", "tori amos"] 有空格 "tori amos"', () => {
-//         expect(last(['jumpkick', 'roundhouse', 'uppercut'])).to.be.equal("uppercut");
-//     });
-// });
+import style from '../less/index.less'
 
 
-// import Component from '../dist/index.js'
 
+let hour = [1,2,3,4,5,6,7,8,9,10,11,12]
+let minute = []
+let second = []
+
+// for (let i = 1; 1 <= 60; i++) {
+//     minute[i] = i;
+//     second[i] = i;
+// }
+
+console.log(hour,minute,second);
 
 window.onload = e =>{
-    document.querySelector('input#data').addEventListener('click',(e)=>{
-        let div = document.createElement('div')
-        let html = `
-            <div class="dateTimePicker-header">选择出生日期</div>
-            <div class="dateTimePicker-body">
-                <div class="dateTimePicker-body-year"></div>
-                <div class="dateTimePicker-body-month"></div>
-                <div class="dateTimePicker-body-day"></div>
-            </div>
-        `
-        div.className='dateTimePicker'
-        div.innerHTML=html;
-        document.body.appendChild(div);
-    },false)
+
+    let input = document.querySelector('input#data')
+    input.addEventListener('click',clickEventFunc,false)
+}
+
+let clickEventFunc = e =>{
+    let dataTimePicker = document.createElement('div');
+    let html = `
+        <div class="hour list"></div>
+        <div class="minute list"></div>
+        <div class="second list"></div>
+    `;
+    dataTimePicker.innerHTML = html;
+    dataTimePicker.className = 'dataTimePicker';
+    document.body.appendChild(dataTimePicker)
+    // dataTimePicker.
 }
