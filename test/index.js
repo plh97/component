@@ -1,39 +1,29 @@
-// add.test.js
-// var last = require('../src/utils/functional.js');
-// var expect = require('chai').expect;
+let hour = [1,2,3,4,5,6,7,8,9,10,11,12]
+let minute = []
+let second = []
 
-// describe('变成大写字母+！', () => {
-//     it('["tori_spelling", "tori amos"] 有空格 "tori amos"', () => {
-//         expect(last(['jumpkick', 'roundhouse', 'uppercut'])).to.be.equal("uppercut");
-//     });
-// });
+// for (let i = 1; 1 <= 60; i++) {
+//     minute[i] = i;
+//     second[i] = i;
+// }
 
-
-// import Component from '../dist/index.js'
-
+console.log(hour,minute,second);
 
 window.onload = e =>{
-    let container = document.createElement('div');
-    container.className = "btn-container1";
-    container.innerHTML = `
-        ${Button({
-            text:"按钮",
-            className:"btn-primary"
-        }).outerHTML}
-    `;
-    document.querySelector('.btn-container').appendChild(container);
 
-    document.querySelector('Button').addEventListener('click',(e)=>{
-        ModalInfo({
-            title:"删除",
-            content:`
-                <p>12321</p>
-                <p>12321</p>
-                <p>12321</p>
-                <p>12321</p>
-            `,
-            type:"delete"
-        })
-        // Spin(1111111)
-    },false)
+    let input = document.querySelector('input#data')
+    input.addEventListener('click',clickEventFunc,false)
+}
+
+let clickEventFunc = e =>{
+    let dataTimePicker = document.createElement('div');
+    let html = `
+        <div class="hour list"></div>
+        <div class="minute list"></div>
+        <div class="second list"></div>
+    `;
+    dataTimePicker.innerHTML = html;
+    dataTimePicker.className = 'dataTimePicker';
+    document.body.appendChild(dataTimePicker)
+    // dataTimePicker.
 }

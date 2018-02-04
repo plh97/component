@@ -12,33 +12,21 @@ import scrollBind from "./utils/scrollBind.js";
 
 
 const Component = {
-    pc:{
-        message: Message,
-        spin: Spin,
-        modal: Modal,
-        table: Table,
-        tree: Tree,
-        treeTable: TreeTable,
-        modalInfo: ModalInfo,
-        container: {
-            button: Button,
-            icon: Icon,
-        }
-    },
-    tool:{
-        scrollBind
-    }
-    // mobile:{
-    //     message: Message,
-    //     spin: Spin,
-    //     modal: Modal,
-    //     modalInfo: ModalInfo,
-    //     container: {
-    //         button: Button,
-    //         icon: Icon,
-    //     }
-    // }
+    Message,
+    Spin,
+    Modal,
+    Table,
+    Tree,
+    TreeTable,
+    ModalInfo,
+    Button,
+    Icon,
+    scrollBind
 }
 
+console.log(
+    Component
+);
+
 export default Component;
-window.Component = Component;
+// window.Component = Component;

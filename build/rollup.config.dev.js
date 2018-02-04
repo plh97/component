@@ -2,7 +2,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import postcss from 'rollup-plugin-postcss'
-// import async from 'rollup-plugin-async'
+import async from 'rollup-plugin-async'
 
 export default {
     input: 'src/main.js',
@@ -14,10 +14,10 @@ export default {
     plugins: [
         resolve(),
         postcss({
-            modules: true,
-            extract: true
+            // modules: false,
+            // extract: false
         }),
-        // async(),
+        async(),
         babel({
             exclude: 'node_modules/**'
         }),
