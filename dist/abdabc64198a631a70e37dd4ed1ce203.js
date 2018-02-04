@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({2:[function(require,module,exports) {
+})({4:[function(require,module,exports) {
 // add.test.js
 // var last = require('../src/utils/functional.js');
 // var expect = require('chai').expect;
@@ -85,16 +85,13 @@ require = (function (modules, cache, entry) {
 
 
 window.onload = function (e) {
-  var container = document.createElement('div');
-  container.className = "btn-container1";
-  container.innerHTML = "\n        " + Button({
-    text: "按钮",
-    className: "btn-primary"
-  }).outerHTML + "\n    ";
-  document.querySelector('.btn-container').appendChild(container);
+  document.querySelector('input#data').addEventListener('click', function (e) {
+    var div = document.createElement('div');
+    var html = "\n            <div class=\"dateTimePicker-header\">\u9009\u62E9\u51FA\u751F\u65E5\u671F</div>\n            <div class=\"dateTimePicker-body\">\n                <div class=\"dateTimePicker-body-year\"></div>\n                <div class=\"dateTimePicker-body-month\"></div>\n                <div class=\"dateTimePicker-body-day\"></div>\n            </div>\n        ";
+    div.className = 'dateTimePicker';
 
-  document.querySelector('Button').addEventListener('click', function (e) {
-    ModalInfo('密码错误！');
+    div.innerHTML = html;
+    document.body.appendChild(div);
   }, false);
 };
 },{}],0:[function(require,module,exports) {
@@ -115,7 +112,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':54804/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':59916/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -216,4 +213,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,2])
+},{}]},{},[0,4])

@@ -13,27 +13,18 @@
 
 
 window.onload = e =>{
-    let container = document.createElement('div');
-    container.className = "btn-container1";
-    container.innerHTML = `
-        ${Button({
-            text:"按钮",
-            className:"btn-primary"
-        }).outerHTML}
-    `;
-    document.querySelector('.btn-container').appendChild(container);
-
-    document.querySelector('Button').addEventListener('click',(e)=>{
-        ModalInfo({
-            title:"删除",
-            content:`
-                <p>12321</p>
-                <p>12321</p>
-                <p>12321</p>
-                <p>12321</p>
-            `,
-            type:"delete"
-        })
-        // Spin(1111111)
+    document.querySelector('input#data').addEventListener('click',(e)=>{
+        let div = document.createElement('div')
+        let html = `
+            <div class="dateTimePicker-header">选择出生日期</div>
+            <div class="dateTimePicker-body">
+                <div class="dateTimePicker-body-year"></div>
+                <div class="dateTimePicker-body-month"></div>
+                <div class="dateTimePicker-body-day"></div>
+            </div>
+        `
+        div.className='dateTimePicker'
+        div.innerHTML=html;
+        document.body.appendChild(div);
     },false)
 }

@@ -1,4 +1,4 @@
-import "./index.less";
+import style from "./index.less";
 
 const Button = args => {
 	const {
@@ -6,7 +6,7 @@ const Button = args => {
 		text
 	} = args
 	let btn = document.createElement('button');
-	btn.className = `component-btn ${className?className:""}`;
+	btn.className = `${style['component-btn']} ${style[className?className:""]}`;
 	btn.innerText = text;
 	return btn;
 }

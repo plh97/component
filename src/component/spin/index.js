@@ -1,6 +1,10 @@
-import './index.less'
+import style from './index.less'
 import Icon from "../../container/icon";
 import Dom from "../../utils/dom.js";
+
+console.log(
+    style
+);
 
 const Spin = args => {
     const {
@@ -26,7 +30,7 @@ const Spin = args => {
         let container = document.createElement('div')
         container.className = `component-container-spin ${dom==document.body?"component-container-global":""}`;
         container.innerHTML = `
-            <div class="spin-container">
+            <div class="${style['spin-container']}">
                 ${Icon({type:'spin'})}
                 ${(screen.width>1300&&dom.clientHeight<50)?"":`<span>Loading...</span>`}
             </div>
