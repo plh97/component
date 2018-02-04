@@ -14,10 +14,10 @@ export default {
     plugins: [
         resolve(),
         postcss({
-            // modules: false,
-            // extract: false
+            // extract: true,
+            modules: true,
         }),
-        async(),
+        // async(),
         babel({
             exclude: 'node_modules/**'
         }),

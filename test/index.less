@@ -1,15 +1,35 @@
-.dataTimePicker {
-	background-color: "#eee";
-	width: '100%';
-	height: "20vh";
-	bottom: "0";
-	position: "fixed";
+.dataTimePicker{
+    left: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 20vh;
+	position: fixed;
 	display: inline-flex;
 	flex-direction: row;
+	background-color: #eee;
 	justify-content: space-around;
+	overflow-y: hidden;
+	align-items: center;
 
+	// .list + .list {
+	// 	border-left: 1px solid red;
+	// }
+	
 	.list {
-		flex: 1 1 33%;
-		height: 100%;
+		border: 1px solid gray;
+		margin: auto 40px;
+		flex: 1 1 ;
+		// height: min-content;
+		height: 16px;
+		display: inline-flex;
+		flex-direction: column;
+		// justify-content: center;
+		align-items: stretch;
+		position: relative;
+		top: 0px;
+
+		.num{
+			text-align: center;
+		}
 	}
 }

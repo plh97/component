@@ -6,6 +6,7 @@
 // anything defined in a previous bundle is accessed via the
 // orig method which is the require for previous bundles
 
+// eslint-disable-next-line no-global-assign
 require = (function (modules, cache, entry) {
   // Save the require from previous bundle to this closure if any
   var previousRequire = typeof require === "function" && require;
@@ -33,20 +34,23 @@ require = (function (modules, cache, entry) {
         err.code = 'MODULE_NOT_FOUND';
         throw err;
       }
-
-      function localRequire(x) {
-        return newRequire(localRequire.resolve(x));
-      }
-
-      localRequire.resolve = function (x) {
-        return modules[name][1][x] || x;
-      };
+      
+      localRequire.resolve = resolve;
 
       var module = cache[name] = new newRequire.Module;
+
       modules[name][0].call(module.exports, localRequire, module, module.exports);
     }
 
     return cache[name].exports;
+
+    function localRequire(x){
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x){
+      return modules[name][1][x] || x;
+    }
   }
 
   function Module() {
@@ -80,7 +84,7 @@ function getBundleURL() {
   try {
     throw new Error;
   } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^\)\n]+/g);
+    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
     if (matches) {
       return getBaseURL(matches[0]);
     }
@@ -90,7 +94,7 @@ function getBundleURL() {
 }
 
 function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^\/]+$/, '$1') + '/';
+  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
 }
 
 exports.getBundleURL = getBundleURLCached;
@@ -124,11 +128,98 @@ function reloadCSS() {
 
     cssTimeout = null;
   }, 50);
-};
+}
 
 module.exports = reloadCSS;
 
-},{"./bundle-url":6}],0:[function(require,module,exports) {
+},{"./bundle-url":6}],4:[function(require,module,exports) {
+
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      module.exports = {
+  "dataTimePicker": "_dataTimePicker_17hs5_1",
+  "list": "_list_17hs5_14",
+  "num": "_num_17hs5_25"
+};
+},{"_css_loader":5}],2:[function(require,module,exports) {
+"use strict";
+
+var _index = require("./index.less");
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+var minute = [];
+var second = [];
+
+for (var i = 1; i <= 60; i++) {
+  minute.push(i);
+  second.push(i);
+}
+
+window.onload = function (e) {
+  var input = document.querySelector('input#data');
+  input.addEventListener('click', clickEventFunc, false);
+};
+
+var clickEventFunc = function clickEventFunc(e) {
+  var dataTimePicker = initHTML({
+    hour: hour, minute: minute, second: second
+  });
+  document.body.appendChild(dataTimePicker);
+  var sliders = dataTimePicker.children;
+  sliders = Array.prototype.slice.call(sliders);
+  sliders.forEach(function (dom) {
+    slideEventProxy({
+      event: "mousedown",
+      dom: dom
+    });
+  });
+};
+
+var slideEventProxy = function slideEventProxy(args) {
+  var event = args.event,
+      dom = args.dom;
+
+  var eventProxy = function eventProxy(mousedown_e) {
+    var div = dom.querySelector('span:nth-child(1)');
+    var mousemoveFunc = function mousemoveFunc(e) {
+      var move_coord = mousedown_e.screenY - e.screenY;
+
+      console.log('move_coord', move_coord);
+    };
+    document.addEventListener('mousemove', mousemoveFunc, false);
+    document.removeEventListener('mouseup', mousemoveFunc, false);
+  };
+  dom.addEventListener(event, eventProxy, false);
+};
+
+var initHTML = function initHTML(data) {
+  var dataTimePicker = document.createElement('div');
+  dataTimePicker.className = "" + _index2.default.dataTimePicker;
+
+  var _loop = function _loop(Data) {
+    var container = document.createElement('div');
+    container.className = Data + " " + _index2.default.list;
+    data[Data].forEach(function (num, i) {
+      var span = document.createElement('span');
+      span.className = _index2.default.num;
+      span.innerHTML = num;
+      container.appendChild(span);
+    });
+    dataTimePicker.appendChild(container);
+  };
+
+  for (var Data in data) {
+    _loop(Data);
+  }
+
+  return dataTimePicker;
+};
+},{"./index.less":4}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -145,8 +236,13 @@ function Module() {
 
 module.bundle.Module = Module;
 
+<<<<<<< HEAD:dist/4057f806ce174ea6cb6ce58020185c8a.js
 if (!module.bundle.parent) {
   var ws = new WebSocket('ws://localhost:51284/');
+=======
+if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
+  var ws = new WebSocket('ws://' + window.location.hostname + ':65261/');
+>>>>>>> 0d335731311ba5887f95b58757926657c9504502:dist/abdabc64198a631a70e37dd4ed1ce203.js
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -164,7 +260,7 @@ if (!module.bundle.parent) {
 
     if (data.type === 'reload') {
       ws.close();
-      ws.onclose = () => {
+      ws.onclose = function () {
         window.location.reload();
       }
     }
@@ -247,4 +343,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0])
+},{}]},{},[0,2])

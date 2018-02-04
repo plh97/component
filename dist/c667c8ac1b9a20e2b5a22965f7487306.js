@@ -6,6 +6,7 @@
 // anything defined in a previous bundle is accessed via the
 // orig method which is the require for previous bundles
 
+// eslint-disable-next-line no-global-assign
 require = (function (modules, cache, entry) {
   // Save the require from previous bundle to this closure if any
   var previousRequire = typeof require === "function" && require;
@@ -33,20 +34,23 @@ require = (function (modules, cache, entry) {
         err.code = 'MODULE_NOT_FOUND';
         throw err;
       }
-
-      function localRequire(x) {
-        return newRequire(localRequire.resolve(x));
-      }
-
-      localRequire.resolve = function (x) {
-        return modules[name][1][x] || x;
-      };
+      
+      localRequire.resolve = resolve;
 
       var module = cache[name] = new newRequire.Module;
+
       modules[name][0].call(module.exports, localRequire, module, module.exports);
     }
 
     return cache[name].exports;
+
+    function localRequire(x){
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x){
+      return modules[name][1][x] || x;
+    }
   }
 
   function Module() {
@@ -198,8 +202,13 @@ function Module() {
 
 module.bundle.Module = Module;
 
+<<<<<<< HEAD:dist/7b64292a8d4ccfa14f985dd7fb63dada.js
 if (!module.bundle.parent) {
   var ws = new WebSocket('ws://localhost:51284/');
+=======
+if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
+  var ws = new WebSocket('ws://' + window.location.hostname + ':65261/');
+>>>>>>> 0d335731311ba5887f95b58757926657c9504502:dist/c667c8ac1b9a20e2b5a22965f7487306.js
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -217,7 +226,7 @@ if (!module.bundle.parent) {
 
     if (data.type === 'reload') {
       ws.close();
-      ws.onclose = () => {
+      ws.onclose = function () {
         window.location.reload();
       }
     }
