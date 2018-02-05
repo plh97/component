@@ -65,157 +65,123 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({10:[function(require,module,exports) {
-var bundleURL = null;
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
+})({6:[function(require,module,exports) {
+;(function (win, lib) {
+  var doc = win.document;
+  var docEl = doc.documentElement;
+  var metaEl = doc.querySelector('meta[name="viewport"]');
+  var flexibleEl = doc.querySelector('meta[name="flexible"]');
+  var dpr = 0;
+  var scale = 0;
+  var tid;
+  var flexible = lib.flexible || (lib.flexible = {});
 
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error;
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^\)\n]+/g);
-    if (matches) {
-      return getBaseURL(matches[0]);
+  if (metaEl) {
+    console.warn('将根据已有的meta标签来设置缩放比例');
+    var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
+    if (match) {
+      scale = parseFloat(match[1]);
+      dpr = parseInt(1 / scale);
     }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^\/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-
-},{}],9:[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-  newLink.onload = function () {
-    link.remove();
-  };
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+  } else if (flexibleEl) {
+    var content = flexibleEl.getAttribute('content');
+    if (content) {
+      var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+      var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+      if (initialDpr) {
+        dpr = parseFloat(initialDpr[1]);
+        scale = parseFloat((1 / dpr).toFixed(2));
+      }
+      if (maximumDpr) {
+        dpr = parseFloat(maximumDpr[1]);
+        scale = parseFloat((1 / dpr).toFixed(2));
       }
     }
-
-    cssTimeout = null;
-  }, 50);
-};
-
-module.exports = reloadCSS;
-
-},{"./bundle-url":10}],8:[function(require,module,exports) {
-
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      module.exports = {
-  "dataTimePicker": "_dataTimePicker_17hs5_1",
-  "list": "_list_17hs5_14",
-  "num": "_num_17hs5_25"
-};
-},{"_css_loader":9}],5:[function(require,module,exports) {
-"use strict";
-
-var _index = require("./index.less");
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-var minute = [];
-var second = [];
-
-for (var i = 1; i <= 60; i++) {
-  minute.push(i);
-  second.push(i);
-}
-
-window.onload = function (e) {
-  var input = document.querySelector('input#data');
-  input.addEventListener('click', clickEventFunc, false);
-};
-
-var clickEventFunc = function clickEventFunc(e) {
-  var dataTimePicker = initHTML({
-    hour: hour, minute: minute, second: second
-  });
-  document.body.appendChild(dataTimePicker);
-  var sliders = dataTimePicker.children;
-  sliders = Array.prototype.slice.call(sliders);
-  sliders.forEach(function (dom) {
-    slideEventProxy({
-      event: "mousedown",
-      dom: dom
-    });
-  });
-};
-
-var slideEventProxy = function slideEventProxy(args) {
-  var event = args.event,
-      dom = args.dom;
-
-  var eventProxy = function eventProxy(mousedown_e) {
-    var div = dom.querySelector('span:nth-child(1)');
-    var mousemoveFunc = function mousemoveFunc(e) {
-      var move_coord = mousedown_e.screenY - e.screenY;
-
-      console.log('move_coord', move_coord);
-    };
-    document.addEventListener('mousemove', mousemoveFunc, false);
-    document.removeEventListener('mouseup', mousemoveFunc, false);
-  };
-  dom.addEventListener(event, eventProxy, false);
-};
-
-var initHTML = function initHTML(data) {
-  var dataTimePicker = document.createElement('div');
-  dataTimePicker.className = "" + _index2.default.dataTimePicker;
-
-  var _loop = function _loop(Data) {
-    var container = document.createElement('div');
-    container.className = Data + " " + _index2.default.list;
-    data[Data].forEach(function (num, i) {
-      var span = document.createElement('span');
-      span.className = _index2.default.num;
-      span.innerHTML = num;
-      container.appendChild(span);
-    });
-    dataTimePicker.appendChild(container);
-  };
-
-  for (var Data in data) {
-    _loop(Data);
   }
 
-  return dataTimePicker;
-};
-},{"./index.less":8}],0:[function(require,module,exports) {
+  if (!dpr && !scale) {
+    var isAndroid = win.navigator.appVersion.match(/android/gi);
+    var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+    var devicePixelRatio = win.devicePixelRatio;
+    if (isIPhone) {
+      // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+      if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+        dpr = 3;
+      } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
+        dpr = 2;
+      } else {
+        dpr = 1;
+      }
+    } else {
+      // 其他设备下，仍旧使用1倍的方案
+      dpr = 1;
+    }
+    scale = 1 / dpr;
+  }
+
+  docEl.setAttribute('data-dpr', dpr);
+  if (!metaEl) {
+    metaEl = doc.createElement('meta');
+    metaEl.setAttribute('name', 'viewport');
+    metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+    if (docEl.firstElementChild) {
+      docEl.firstElementChild.appendChild(metaEl);
+    } else {
+      var wrap = doc.createElement('div');
+      wrap.appendChild(metaEl);
+      doc.write(wrap.innerHTML);
+    }
+  }
+
+  function refreshRem() {
+    var width = docEl.getBoundingClientRect().width;
+    if (width / dpr > 540) {
+      width = 540 * dpr;
+    }
+    var rem = width / 10;
+    docEl.style.fontSize = rem + 'px';
+    flexible.rem = win.rem = rem;
+  }
+
+  win.addEventListener('resize', function () {
+    clearTimeout(tid);
+    tid = setTimeout(refreshRem, 300);
+  }, false);
+  win.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      clearTimeout(tid);
+      tid = setTimeout(refreshRem, 300);
+    }
+  }, false);
+
+  if (doc.readyState === 'complete') {
+    doc.body.style.fontSize = 12 * dpr + 'px';
+  } else {
+    doc.addEventListener('DOMContentLoaded', function (e) {
+      doc.body.style.fontSize = 12 * dpr + 'px';
+    }, false);
+  }
+
+  refreshRem();
+
+  flexible.dpr = win.dpr = dpr;
+  flexible.refreshRem = refreshRem;
+  flexible.rem2px = function (d) {
+    var val = parseFloat(d) * this.rem;
+    if (typeof d === 'string' && d.match(/rem$/)) {
+      val += 'px';
+    }
+    return val;
+  };
+  flexible.px2rem = function (d) {
+    var val = parseFloat(d) / this.rem;
+    if (typeof d === 'string' && d.match(/px$/)) {
+      val += 'rem';
+    }
+    return val;
+  };
+})(window, window['lib'] || (window['lib'] = {}));
+},{}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -334,4 +300,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,5])
+},{}]},{},[0,6])

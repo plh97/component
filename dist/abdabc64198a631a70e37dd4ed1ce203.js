@@ -174,7 +174,7 @@ var clickEventFunc = function clickEventFunc(e) {
   sliders = Array.prototype.slice.call(sliders);
   sliders.forEach(function (dom) {
     slideEventProxy({
-      event: "mousedown",
+      event: "touchstart",
       dom: dom
     });
   });
@@ -184,17 +184,59 @@ var slideEventProxy = function slideEventProxy(args) {
   var event = args.event,
       dom = args.dom;
 
-  var eventProxy = function eventProxy(mousedown_e) {
+  var eventProxy = function eventProxy(touchstart) {
     var div = dom.querySelector('span:nth-child(1)');
-    var mousemoveFunc = function mousemoveFunc(e) {
-      var move_coord = mousedown_e.screenY - e.screenY;
-
-      console.log('move_coord', move_coord);
+    var beforeValue = Number(dom.querySelector('span:nth-child(1)').style.marginTop.match(/\d+/));
+    var lastmousey = touchstart.changedTouches[0].screenY;
+    var touchmoveFunc = function touchmoveFunc(touchmove) {
+      var currentMarginTop = -Number(dom.querySelector('span:nth-child(1)').style.marginTop.replace(/(px|rem|%|vw|vh)/, ''));
+      var move_coord = touchstart.changedTouches[0].screenY - touchmove.changedTouches[0].screenY;
+      var _move_coord = lastmousey - touchmove.changedTouches[0].screenY;
+      var totalListHeight = div.getBoundingClientRect().height * (dom.children.length - 1);
+      if (_move_coord != 0) {
+        div.style.marginTop = -beforeValue - move_coord + "px";
+      }
+      if (_move_coord > 0) {
+        // 向上相对位移
+        // 1.不能超过总高度
+        if (move_coord < 0) {
+          div.style.marginTop = "0px";
+        }
+        if (currentMarginTop >= totalListHeight) {
+          div.style.marginTop = -totalListHeight + "px";
+        }
+      } else if (_move_coord < 0) {
+        // 向下相对位移
+        // 1.不能<0
+        if (move_coord > totalListHeight) {
+          div.style.marginTop = -totalListHeight + "px";
+        }
+        if (currentMarginTop <= 0) {
+          div.style.marginTop = "0px";
+        }
+      }
+      Math.round(1.879823123213);
+      domRound({
+        dom: div,
+        totalLength: totalListHeight,
+        length: div.getBoundingClientRect().height
+      });
+      lastmousey = touchmove.changedTouches[0].screenY;
     };
-    document.addEventListener('mousemove', mousemoveFunc, false);
-    document.removeEventListener('mouseup', mousemoveFunc, false);
+    document.addEventListener('touchmove', touchmoveFunc, false);
+    document.addEventListener('touchend', function (e) {
+      document.removeEventListener('touchmove', touchmoveFunc, false);
+    }, false);
   };
   dom.addEventListener(event, eventProxy, false);
+};
+
+var domRound = function domRound(args) {
+  var dom = args.dom,
+      length = args.length,
+      totalLength = args.totalLength;
+
+  console.log(dom.style.marginTop);
 };
 
 var initHTML = function initHTML(data) {
@@ -241,8 +283,12 @@ if (!module.bundle.parent) {
   var ws = new WebSocket('ws://localhost:51284/');
 =======
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
+<<<<<<< HEAD
   var ws = new WebSocket('ws://' + window.location.hostname + ':65261/');
 >>>>>>> 0d335731311ba5887f95b58757926657c9504502:dist/abdabc64198a631a70e37dd4ed1ce203.js
+=======
+  var ws = new WebSocket('ws://' + window.location.hostname + ':64235/');
+>>>>>>> b3a1439ca13987082e462e2f04aea8f0d3557bfc
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
