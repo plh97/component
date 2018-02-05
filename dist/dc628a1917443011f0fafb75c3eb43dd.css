@@ -1,8 +1,8 @@
-._dataTimePicker_17hs5_1 {
+._dataTimePicker_bxrg2_1 {
   left: 0;
   bottom: 0;
   width: 100vw;
-  height: 20vh;
+  height: 40vh;
   position: fixed;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -19,13 +19,13 @@
       -ms-flex-align: center;
           align-items: center;
 }
-._dataTimePicker_17hs5_1 ._list_17hs5_14 {
-  border: 1px solid gray;
-  margin: auto 40px;
+._dataTimePicker_bxrg2_1 ._list_bxrg2_14 {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 ;
           flex: 1 1 ;
-  height: 16px;
+  height: 1rem;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -39,6 +39,13 @@
   position: relative;
   top: 0px;
 }
-._dataTimePicker_17hs5_1 ._list_17hs5_14 ._num_17hs5_25 {
+._dataTimePicker_bxrg2_1 ._list_bxrg2_14 ._num_bxrg2_25 {
+  font-size: 60px;
   text-align: center;
+}
+[data-dpr="1"] ._dataTimePicker_bxrg2_1 ._list_bxrg2_14 ._num_bxrg2_25 {
+  font-size: 30px;
+}
+[data-dpr="3"] ._dataTimePicker_bxrg2_1 ._list_bxrg2_14 ._num_bxrg2_25 {
+  font-size: 90px;
 }

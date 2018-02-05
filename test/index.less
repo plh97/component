@@ -1,8 +1,10 @@
+@import '../assets/common/@common.less';
+
 .dataTimePicker{
     left: 0;
 	bottom: 0;
 	width: 100vw;
-	height: 20vh;
+	height: 40vh;
 	position: fixed;
 	display: inline-flex;
 	flex-direction: row;
@@ -16,20 +18,20 @@
 	// }
 	
 	.list {
-		border: 1px solid gray;
-		margin: auto 40px;
+		border-top: 1px solid gray;
+		border-bottom: 1px solid gray;
 		flex: 1 1 ;
-		// height: min-content;
-		height: 16px;
+		height: 1rem;
 		display: inline-flex;
 		flex-direction: column;
-		// justify-content: center;
 		align-items: stretch;
 		position: relative;
 		top: 0px;
 
 		.num{
+			.font-dpr(60px);
 			text-align: center;
 		}
 	}
 }
+
