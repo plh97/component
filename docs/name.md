@@ -146,13 +146,5 @@
 
 - #### 方法(驼峰命名,参考js自有方法)
     `Object.prototype.hasOwnProperty()`
-    ```js
-    class RectangleRange {
-        constructor(height, width) {
-            this.height = height;
-            this.width = width;
-        }
-    }
-    ```
 
 #### 参考mdn
