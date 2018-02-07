@@ -1,34 +1,34 @@
 ## 项目命名
 `my_project_name`
 ## 项目目录结构
-- ```js
-    my_project_name
-    |-- config //存放配置以及保密文件
-    |-- dist //存放打包后的文件，不打包就不要
-    |-- client //存放前端文件
-    |   |-- index.html
-    |   |-- page_one.html
-    |   |-- page_tow.html
-    |   |-- common //存放公共文件
-    |   |   |-- commonStyle.less
-    |   |   |-- iconfont
-    |   |   |   |-- ...
-    |   |   |   |-- ...
-    |   |   |   |-- ...
-    |   |-- js
-    |   |   |-- index.js
-    |   |   |-- page_one.js
-    |   |   |-- page_tow.js
-    |   |-- less
-    |   |   |-- global.less // 入口文件？将全部css打包在一个文件？
-    |   |   |-- index.less
-    |   |   |-- page_one.less
-    |   |   |-- page_tow.less
-    |   |-- utils // 自己写的插件或者jq之类
-    |   |   |-- jquery.js
-    |   |   |-- opera_dom.js
-    |-- server //存放后端文件
-    ```
+```js
+my_project_name
+|-- config //存放配置以及保密文件
+|-- dist //存放打包后的文件，不打包就不要
+|-- client //存放前端文件
+|   |-- index.html
+|   |-- page_one.html
+|   |-- page_tow.html
+|   |-- common //存放公共文件
+|   |   |-- commonStyle.less
+|   |   |-- iconfont
+|   |   |   |-- ...
+|   |   |   |-- ...
+|   |   |   |-- ...
+|   |-- js
+|   |   |-- index.js
+|   |   |-- page_one.js
+|   |   |-- page_tow.js
+|   |-- less
+|   |   |-- global.less // 入口文件？将全部css打包在一个文件？
+|   |   |-- index.less
+|   |   |-- page_one.less
+|   |   |-- page_tow.less
+|   |-- utils // 自己写的插件或者jq之类
+|   |   |-- jquery.js
+|   |   |-- opera_dom.js
+|-- server //存放后端文件
+```
 ## html文件命名
 `account_model.html`
 ## css文件命名
