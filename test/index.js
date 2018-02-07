@@ -12,7 +12,7 @@ for (var i = 1; i <= 60; i++) {
 }
 
 window.onload = e =>{
-    let input = document.querySelector('input#data')
+    let input = document.querySelector('#data')
     input.addEventListener('click',clickEventFunc,false)
 }
 
@@ -72,7 +72,7 @@ let slideEventProxy = args =>{
                 dom:div
             })
             let currentMarginTop = -Number(dom.querySelector('span:nth-child(1)').style.marginTop.replace(/(px|rem|%|vw|vh)/,''));
-            div.style.transition = "all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)";
+            div.style.transition = "all 0.3s cubic-bezier(0, 0.58, 0.46, 0.63)";
             setTimeout(() => {
                 div.style.transition = "";
             }, 300);
@@ -96,19 +96,26 @@ let mouseSpeedLessFunc = async e =>{
     } = e;
     let beforeValue = Number(dom.style.marginTop.match(/\d+/));
     let totalListHeight = dom.getBoundingClientRect().height * (dom.parentElement.children.length-1)
-    console.log(
-        dom,
-        mouseSpeed
-    );
-    if(beforeValue+mouseSpeed*2>totalListHeight){
+    dom.style.transition = `all ${(Math.abs(mouseSpeed))*10}s cubic-bezier(0.645, 0.045, 0.355, 1)`;
+    // 向上滑动？
+    // 向下滑动？
+    if(beforeValue+mouseSpeed*10>totalListHeight-beforeValue){
+        console.log(
+            `当前位置${beforeValue}`,
+            `位移速度${mouseSpeed}`,
+            `总高度${totalListHeight}`,
+        );
         dom.style.marginTop = -totalListHeight+"px";
-    }else if(beforeValue+mouseSpeed*2<0){
+    }else if(beforeValue+mouseSpeed*10<-beforeValue){
+        console.log(22222);
         dom.style.marginTop = "0px";
     }else{
-        dom.style.marginTop = -beforeValue-mouseSpeed*2+"px";
+        console.log(
+            `滑动了${beforeValue+mouseSpeed*10}px`
+        );
+        dom.style.marginTop = -beforeValue-mouseSpeed*10+"px";
     }
-    dom.style.transition = `all ${(Math.abs(mouseSpeed))*2}s cubic-bezier(0.645, 0.045, 0.355, 1)`;
-    await sleep(Math.abs(mouseSpeed)*2);
+    await sleep(Math.abs(mouseSpeed)*10);
 }
 
 let sleep = ms => new Promise(resolve=>setTimeout(() => resolve, ms))

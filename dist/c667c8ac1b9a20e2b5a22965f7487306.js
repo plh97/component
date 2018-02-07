@@ -202,17 +202,8 @@ function Module() {
 
 module.bundle.Module = Module;
 
-<<<<<<< HEAD:dist/7b64292a8d4ccfa14f985dd7fb63dada.js
-if (!module.bundle.parent) {
-  var ws = new WebSocket('ws://localhost:51284/');
-=======
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-<<<<<<< HEAD
-  var ws = new WebSocket('ws://' + window.location.hostname + ':65261/');
->>>>>>> 0d335731311ba5887f95b58757926657c9504502:dist/c667c8ac1b9a20e2b5a22965f7487306.js
-=======
-  var ws = new WebSocket('ws://' + window.location.hostname + ':64235/');
->>>>>>> b3a1439ca13987082e462e2f04aea8f0d3557bfc
+  var ws = new WebSocket('ws://' + window.location.hostname + ':57931/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
