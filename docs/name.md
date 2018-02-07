@@ -19,14 +19,14 @@
     |   |   |-- index.js
     |   |   |-- page_one.js
     |   |   |-- page_tow.js
-    |   |-- utils // 自己写的插件或者jquery之类，iconfont等工具类，
-    |   |   |-- jquery.js
-    |   |   |-- opera_dom.js
     |   |-- less
     |   |   |-- global.less // 入口文件？将全部css打包在一个文件？
     |   |   |-- index.less
     |   |   |-- page_one.less
     |   |   |-- page_tow.less
+    |   |-- utils // 自己写的插件或者jq之类
+    |   |   |-- jquery.js
+    |   |   |-- opera_dom.js
     |-- server //存放后端文件
     ```
 ## html文件命名
@@ -122,28 +122,100 @@
     
 - #### 杂项
     不允许有空的规则；
-
-    元素选择器用小写字母；
-
-    去掉小数点前面的0；
+    ```css
+    style {
+        
+    }
+    ```
 
     去掉数字中不必要的小数点和末尾的0；
+    ```css
+    style {
+        width: 1.0rem;  // bad
+        width: 1rem;    // good
+    }
+    ```
 
     属性值'0'后面不要加单位；
+    ```css
+    style {
+        padding: 0px;   // bad
+        padding: 0;     // good
+    }
+    ```
 
-    同个属性不同前缀的写法需要在垂直方向保持对齐，具体参照右边的写法；
+    同个属性不同前缀的写法需要在垂直方向保持对齐，具体参照右边的写法；(交给自动化工具去做这个)
+    ```css
+    // bad
+    ._list_bxrg2_14 {
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
 
-    无前缀的标准属性应该写在有前缀的属性后面；
-
-    不要在同个规则里出现重复的属性，如果重复的属性是连续的则没关系；
+    // good
+    ._list_bxrg2_14 {
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    ```
+    无前缀的标准属性应该写在有前缀的属性后面；（参考同上）
 
     不要在一个文件里出现两个相同的规则；
-
+    ```css
+    // bad 
+    style {
+        color: red;
+        color: red;
+    }
+    // good 
+    style {
+        color: red;
+    }
+    ```
     用 border: 0; 代替 border: none;；
-    选择器不要超过4层（在scss中如果超过4层应该考虑用嵌套的方式来写）；
+    ```css
+    // bad 
+    style {
+        border: 0;
+    }
+    // good 
+    style {
+        border: none;
+    }
+    ```
 
-    发布的代码中不要有 @import；
+    选择器不要超过4层（在less中如果超过4层应该考虑用嵌套的方式来写）；
+    ```css
+    // bad
+    body div span em i {
+        color: red;
+    }
+    // good 
+    body {
+        div {
+            span {
+                em {
+                    i
+                }
+            }
+        }
+    }
+    ```
+
+    发布的代码中不要有 @import；过深的@import 容易丢失找不到
     尽量少用'*'选择器。
+    ```css
+    // bad
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    // good 
+    body, h1, h2, h3, h4, h5, h6, hr, p,blockquote, dl, dt, dd, ul, ol, li, pre,form, fieldset, legend, button, input, textarea, th, td { 
+        margin: 0; 
+        padding: 0; 
+    }
+    ```
 ## javaScript
 - #### 变量(使用驼峰命名 nameString)
     ```js
