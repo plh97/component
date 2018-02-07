@@ -110,12 +110,12 @@
     发布的代码中不要有 @import；
     尽量少用'*'选择器。
 ## javaScript
-- #### 变量(使用驼峰命名 nameString)[参考](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+- #### 变量(使用驼峰命名 nameString)
     ```js
     var myVariable = 'Bob';
     myVariable = 'Steve';
     ```
-- #### 函数(使用驼峰命名 nameString)[参考](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+- #### 函数(使用驼峰命名 nameString)
     ```js
     function addSquares(a,b) {
         function square(x) {
