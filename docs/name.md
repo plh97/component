@@ -27,7 +27,7 @@ my_project_name
 |   |-- utils // 自己写的插件或者jq之类
 |   |   |-- jquery.js
 |   |   |-- opera_dom.js
-|-- server //存放后端文件
+|-- server //存放nodejs文件
 ```
 ## html文件命名
 `account_model.html`
