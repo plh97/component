@@ -1,45 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        body,html{
-            margin: 0;
-            padding: 0;
-        }
-        nav{
-            display: inline-flex;
-            flex-direction: row;
-            max-width: 100vw;
-            overflow-x: auto;
-            position: fixed;
-            text-align: center;
-        }
-        nav .active,nav .on{
-            color: red;
-            border-bottom: 1px solid red;
-        }
-        .row-container a {
-            min-width: 100px;
-            padding: 10px 20px;
-        }
-        .column-container {
-            padding-top: 30px;
-        }
-        .column-container section{
-            height: 40vh;
-        }
-
-    </style>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
+
 <body>
-    <div class="btn-container"></div>
-    <input type="text" id="data">
-    <script src="../assets/flexible.js"></script>
-    <!-- <script src="../dist/index.js"></script> -->
+    <div class="wrapper">
+        <nav class="main-nav">
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Top Container -->
+        <section class="top-container">
+            <header class="showcase">
+                <h1>Your Web Prence</h1>
+                <p>Lorem insum dolor sit amt container adsfa insum dolor sit amt container adsfa.</p>
+                <a class="btn" href="#">read more</a>
+            </header>
+            <div class="top-box top-box-a">
+                <h4>MemberShip</h4>
+                <p class="price">$199/mo</p>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+            <div class="top-box top-box-b">
+                <h4>Pro MemberShip</h4>
+                <p class="price">$299/mo</p>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+        </section>
+
+        <!-- Boxes Section -->
+        <section class="boxes">
+            <div class="box">
+                <i class="fas fa-chart-pie fa-4x"></i>
+                <h3>Analytics</h3>
+                <p>Lorem insum dolor sit amt container adsfa insum dolor sit amt container adsfa.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-globe fa-4x"></i>
+                <h3>Marketing</h3>
+                <p>Lorem insum dolor sit amt container adsfa insum dolor sit amt container adsfa.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-cog fa-4x"></i>
+                <h3>Development</h3>
+                <p>Lorem insum dolor sit amt container adsfa insum dolor sit amt container adsfa.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-users fa-4x"></i>
+                <h3>Support</h3>
+                <p>Lorem insum dolor sit amt container adsfa insum dolor sit amt container adsfa.</p>
+            </div>
+        </section>
+
+        <!-- Info Section -->
+        <section class="info">
+            <img src="https://img.buzzfeed.com/buzzfeed-static/static/2017-06/5/14/enhanced/buzzfeed-prod-fastlane-03/enhanced-16699-1496686790-13.jpg?downsize=715:*&output-format=auto&output-quality=auto"
+                alt="">
+            <div>
+                <h3>Your Business On The Web</h3>
+                <p>Lorem insum dolor sit amt container adsfa insum dolor sit amt container adsfa.Lorem insum dolor sit amt container
+                    adsfa insum dolor sit amt container adsfa.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </section>
+
+        <!-- Protfolio -->
+        <section class="protfolio">
+            <img src="https://source.unsplash.com/random/200x200" alt="">
+            <img src="https://source.unsplash.com/random/201x200" alt="">
+            <img src="https://source.unsplash.com/random/202x200" alt="">
+            <img src="https://source.unsplash.com/random/203x200" alt="">
+            <img src="https://source.unsplash.com/random/204x200" alt="">
+
+            <img src="https://source.unsplash.com/random/205x200" alt="">
+            <img src="https://source.unsplash.com/random/206x200" alt="">
+            <img src="https://source.unsplash.com/random/207x200" alt="">
+            <img src="https://source.unsplash.com/random/208x200" alt="">
+            <img src="https://source.unsplash.com/random/209x200" alt="">
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>GridBiz &copy; 2018</p>
+        </footer>
+    </div>
+    <!-- <script src="../assets/flexible.js"></script> -->
     <script src="./index.js"></script>
 </body>
+
 </html>

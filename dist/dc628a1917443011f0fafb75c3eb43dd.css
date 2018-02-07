@@ -1,51 +1,144 @@
-._dataTimePicker_bxrg2_1 {
-  left: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 40vh;
-  position: fixed;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  background-color: #eee;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  overflow-y: hidden;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+:root {
+  --primary: #ddd;
+  --dark: #333;
+  --light: #fff;
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
 }
-._dataTimePicker_bxrg2_1 ._list_bxrg2_14 {
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 ;
-          flex: 1 1 ;
-  height: 1rem;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+html {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark);
+}
+html body {
+  background: #ccc;
+  margin: 30px 50px;
+  line-height: 1.4;
+}
+html body .btn {
+  background-color: var(--dark);
+  color: var(--light);
+  padding: 0.6rem 1.3rem;
+  text-decoration: none;
+  border: 0;
+}
+html body img {
+  max-width: 100%;
+}
+html body .wrapper {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 20px;
+}
+html body .wrapper .main-nav ul {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 20px;
+  padding: 0;
+  list-style: none;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+}
+html body .wrapper .main-nav ul a {
+  background-color: var(--primary);
+  display: block;
+  text-decoration: none;
+  padding: 0.8rem;
+  text-align: center;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow);
+}
+html body .wrapper .main-nav ul a:hover {
+  color: var(--light);
+  background-color: var(--dark);
+}
+html body .wrapper .top-container {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas: 'showcase showcase top-box-a' 'showcase showcase top-box-b';
+}
+html body .wrapper .top-container .showcase {
+  grid-area: showcase;
+  min-height: 400px;
+  background: url(https://sixcolors.com/images/content/2017/macbook-6c.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  position: relative;
-  top: 0px;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  box-shadow: var(--shadow);
 }
-._dataTimePicker_bxrg2_1 ._list_bxrg2_14 ._num_bxrg2_25 {
-  font-size: 60px;
+html body .wrapper .top-container .showcase h1 {
+  font-size: 4rem;
+  margin-bottom: 0rem;
+  color: var(--light);
+}
+html body .wrapper .top-container .showcase p {
+  font-size: 1.3rem;
+  margin-top: 0;
+  color: var(--light);
+}
+html body .wrapper .top-container .top-box {
+  background: var(--primary);
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+html body .wrapper .top-container .top-box .price {
+  font-size: 2.5rem;
+}
+html body .wrapper .top-container .top-box.top-box-a {
+  grid-area: top-box-a;
+}
+html body .wrapper .top-container .top-box.top-box-b {
+  grid-area: top-box-b;
+}
+html body .wrapper .boxes {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 20px;
+  -ms-grid-columns: (minmax(200px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+html body .wrapper .boxes .box {
+  background: var(--primary);
   text-align: center;
+  padding: 1.5rem 2rem;
 }
-[data-dpr="1"] ._dataTimePicker_bxrg2_1 ._list_bxrg2_14 ._num_bxrg2_25 {
-  font-size: 30px;
+html body .wrapper .info {
+  background: var(--primary);
+  box-shadow: var(--shadow);
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 30px;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  padding: 3rem;
 }
-[data-dpr="3"] ._dataTimePicker_bxrg2_1 ._list_bxrg2_14 ._num_bxrg2_25 {
-  font-size: 90px;
+html body .wrapper .portfolio {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 20px;
+  -ms-grid-columns: (minmax(200px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+html body .wrapper .portfolio wid img {
+  width: 100%;
 }

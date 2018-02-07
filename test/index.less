@@ -1,36 +1,148 @@
 @import '../assets/common/@common.less';
 
-.dataTimePicker{
-    left: 0;
-	bottom: 0;
-	width: 100vw;
-	height: 40vh;
-	position: fixed;
-	display: inline-flex;
-	flex-direction: row;
-	background-color: #eee;
-	justify-content: space-around;
-	overflow-y: hidden;
-	align-items: center;
+:root {
+	--primary: #ddd;
+	--dark: #333;
+	--light: #fff;
+	--shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
 
-	// .list + .list {
-	// 	border-left: 1px solid red;
-	// }
+
+html {
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--dark);
+	body {
+		background: #ccc;
+		margin: 30px 50px;
+		line-height: 1.4;
+
+		.btn{
+			background-color: var(--dark);
+			color: var(--light);
+			padding: 0.6rem 1.3rem;
+			text-decoration: none;
+			border: 0;
+		}
+		img{
+			max-width: 100%;
+		}
+		.wrapper{
+			display: grid;
+			grid-gap: 20px;
+
+			
+			.main-nav ul {
+				display: grid;
+				grid-gap: 20px;
+				padding: 0;
+				list-style: none;
+				grid-template-columns: repeat(4, 1fr);
+				
+				a{
+					background-color: var(--primary);
+					display: block;
+					text-decoration: none;
+					padding: 0.8rem;
+					text-align: center;
+					color: var(--dark);
+					text-transform: uppercase;
+					font-size: 1.1rem;
+					box-shadow: var(--shadow);
 	
-	.list {
-		border-top: 1px solid gray;
-		border-bottom: 1px solid gray;
-		flex: 1 1 ;
-		height: 1rem;
-		display: inline-flex;
-		flex-direction: column;
-		align-items: stretch;
-		position: relative;
-		top: 0px;
+					&:hover {
+						color: var(--light);
+						background-color: var(--dark);
+					}
+				}
+			}
 
-		.num{
-			.font-dpr(60px);
-			text-align: center;
+			.top-container {
+				display: grid;
+				grid-gap: 20px;
+				grid-template-areas: 
+					'showcase showcase top-box-a'
+					'showcase showcase top-box-b';
+					
+				.showcase {
+					grid-area: showcase;
+					min-height: 400px;
+					background: url(https://sixcolors.com/images/content/2017/macbook-6c.jpg);
+					background-size: cover;
+					background-position: center;
+					padding: 3rem;
+					display: flex;
+					flex-direction: column;
+					align-items: start;
+					box-shadow: var(--shadow);
+
+					h1{
+						font-size: 4rem;
+						margin-bottom: 0rem;
+						color: var(--light);
+					}
+					p{
+						font-size: 1.3rem;
+						margin-top: 0;
+						color: var(--light);
+					}
+				}
+				.top-box{
+					background: var(--primary);
+					display: grid;
+					align-items: center;
+					justify-content: center;
+					box-shadow: var(--shadow);
+					padding: 1.5rem;
+
+					.price {
+						font-size: 2.5rem;
+					}
+
+					&.top-box-a {
+						grid-area: top-box-a;
+					}
+					&.top-box-b {
+						grid-area: top-box-b;
+					}
+				}
+			}
+
+			// Section Boxes
+			.boxes {
+				display: grid;
+				grid-gap: 20px;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+				.box {
+					background: var(--primary);
+					text-align: center;
+					padding: 1.5rem 2rem;
+				}
+			}
+
+			// info
+			.info{
+				background: var(--primary);
+				box-shadow: var(--shadow);
+				display: grid;
+				grid-gap: 30px;
+				grid-template-columns: repeat(2,1fr);
+				padding: 3rem;
+			}
+
+			// Portfolio
+			.portfolio {
+				display: grid;
+				grid-gap: 20px;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				wid
+
+				img {
+					width: 100%;
+				
+				}
+			}
 		}
 	}
 }
