@@ -166,4 +166,4 @@
         ...
     }
     ```
-#### 参考mdn
+#### 参考[mdn](https://developer.mozilla.org/zh-CN/)[腾讯alloyteam团队前端代码规范](https://www.kancloud.cn/digest/code-guide/42604)
