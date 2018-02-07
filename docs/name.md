@@ -11,14 +11,19 @@
     |   |-- page_tow.html
     |   |-- common //存放公共文件
     |   |   |-- commonStyle.less
+    |   |   |-- iconfont
+    |   |   |   |-- ...
+    |   |   |   |-- ...
+    |   |   |   |-- ...
     |   |-- js
     |   |   |-- index.js
     |   |   |-- page_one.js
     |   |   |-- page_tow.js
-    |   |-- utils // 自己写的插件或者jquery之类
+    |   |-- utils // 自己写的插件或者jquery之类，iconfont等工具类，
     |   |   |-- jquery.js
     |   |   |-- opera_dom.js
     |   |-- less
+    |   |   |-- global.less // 入口文件？将全部css打包在一个文件？
     |   |   |-- index.less
     |   |   |-- page_one.less
     |   |   |-- page_tow.less
