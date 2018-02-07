@@ -1,3 +1,8 @@
-import styles from './index.less'
-import 'babel-polyfill';
+
+// import(`./utils_${locale}.js`)
+
+
+// import styles from './index.less'
+
+import $ from "jquery";
 

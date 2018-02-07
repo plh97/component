@@ -63,7 +63,7 @@ html {
 				grid-template-areas: 
 					'showcase showcase top-box-a'
 					'showcase showcase top-box-b';
-					
+				
 				.showcase {
 					grid-area: showcase;
 					min-height: 400px;
@@ -77,7 +77,7 @@ html {
 					box-shadow: var(--shadow);
 
 					h1{
-						font-size: 4rem;
+						font-size: 2rem;
 						margin-bottom: 0rem;
 						color: var(--light);
 					}
@@ -96,7 +96,7 @@ html {
 					padding: 1.5rem;
 
 					.price {
-						font-size: 2.5rem;
+						font-size: 1.5rem;
 					}
 
 					&.top-box-a {
@@ -118,6 +118,7 @@ html {
 					background: var(--primary);
 					text-align: center;
 					padding: 1.5rem 2rem;
+					box-shadow: var(--shadow);
 				}
 			}
 
@@ -136,11 +137,48 @@ html {
 				display: grid;
 				grid-gap: 20px;
 				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-				wid
 
 				img {
 					width: 100%;
-				
+					box-shadow: var(--shadow);
+				}
+			}
+
+			footer {
+				margin-top: 2rem;
+				background: var(--dark);
+				color: var(--light);
+				text-align: center;
+				padding: 1rem;
+			}
+
+			// Media Queries
+			@media screen and (max-width: 800px) {
+				.top-container {
+					grid-template-areas: 
+						'showcase showcase'
+						'top-box-a top-box-b';
+					h1 {
+						font-size: 1.5rem;
+					}
+				}
+				.main-nav ul {
+					grid-template-columns: 1fr;
+				}
+				.info {
+					grid-template-columns: 1fr;
+					.btn{
+						display: block;
+						text-align: center;
+					}
+				}
+			}
+			@media screen and (max-width: 600px) {
+				.top-container {
+					grid-template-areas: 
+						'showcase'
+						'top-box-a'
+						'top-box-b';
 				}
 			}
 		}
