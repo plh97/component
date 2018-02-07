@@ -142,6 +142,13 @@
             this.width = width;
         }
     }
+    // es6
+    function RectangleRange(){}
+    RectangleRange.prototype.fangfa = {
+        ????
+        ????
+        ????
+    }
     ```
 
 - #### 方法(驼峰命名,参考js自有方法)
