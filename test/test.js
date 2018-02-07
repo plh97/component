@@ -1,16 +1,12 @@
-var assert = require('assert');
 
-function a(a){
-    return a+1;
-}
-function a(a){
-    return a+2;
+window.color='red';
+var o = {color:"blue"}
+
+function sayColor(){
+  return this.color
 }
 
-describe('Array', () => {
-    describe('#indexOf()', () => {
-        it('what?', () => {
-            assert.equal(a(1), 3);
-        });
-    });
-});
+var objectSayColor = sayColor.bind(o);
+console.log(
+  objectSayColor()
+);
