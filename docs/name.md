@@ -1,5 +1,11 @@
 ## 项目命名
 `my_project_name`
+## html文件命名
+`account_model.html`
+## css文件命名
+`account_model.css`
+## js文件命名
+`account_model.js`
 
 ## css
 - #### class,id...
