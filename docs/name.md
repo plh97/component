@@ -2,7 +2,7 @@
 `my_project_name`
 
 ## css
-- ###### class,id...
+- #### class,id...
     ```css
     /* class */
     .element-content {
@@ -32,7 +32,7 @@
         ...
     }
     ```
-- ###### 颜色
+- #### 颜色
     ```css
     /* not good */
     .element {
@@ -46,7 +46,7 @@
         background-color: #012;
     }
     ```
-- ###### 属性简写(除了margin,padding以外，其他不要使用简写)
+- #### 属性简写(除了margin,padding以外，其他不要使用简写)
     ```css
     <!-- margin padding -->
     margin {
@@ -82,10 +82,10 @@
         transition-property: opacity;
     }
     ```
-- ###### 媒介查询
+- #### 媒介查询
     尽量将媒体查询的规则靠近与他们相关的规则，不要将他们一起放到一个独立的样式文件中，或者丢在文档的最底部，这样做只会让大家以后更容易忘记他们。
     
-- ###### 杂项
+- #### 杂项
     不允许有空的规则；
 
     元素选择器用小写字母；
@@ -110,12 +110,12 @@
     发布的代码中不要有 @import；
     尽量少用'*'选择器。
 ## javaScript
-- 变量(使用驼峰命名 nameString)
+- #### 变量(使用驼峰命名 nameString)
     ```js
     var myVariable = 'Bob';
     myVariable = 'Steve';
     ```
-- 函数(使用驼峰命名 nameString)
+- #### 函数(使用驼峰命名 nameString)
     ```js
     function addSquares(a,b) {
         function square(x) {
@@ -129,12 +129,12 @@
         return square(a) + square(b);
     };
     ```
-- 常量(大写来区分,不可改变)[示例](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+- #### 常量(大写来区分,不可改变)[示例](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
     ```js
     const MY_FAV = 7;
     ```
 
-- class类(首字母大写)[示例](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+- #### class类(首字母大写)[示例](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
     ```js
     class RectangleRange {
         constructor(height, width) {
@@ -144,7 +144,7 @@
     }
     ```
 
-- 方法(驼峰命名,参考js自有方法)
+- #### 方法(驼峰命名,参考js自有方法)
     `Object.prototype.hasOwnProperty()`
     ```js
     class RectangleRange {
