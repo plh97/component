@@ -27,7 +27,7 @@
     |   |   |-- index.less
     |   |   |-- page_one.less
     |   |   |-- page_tow.less
-    |-- client //存放后端文件
+    |-- server //存放后端文件
     ```
 ## html文件命名
 `account_model.html`
