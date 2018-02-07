@@ -136,13 +136,13 @@
 
 - #### class类(首字母大写)[参考](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
     ```js
+    // es6
     class RectangleRange {
         constructor(height, width) {
             this.height = height;
             this.width = width;
         }
     }
-    // es6
     function RectangleRange(){}
     RectangleRange.prototype.fangfa = {
         ????
