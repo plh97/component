@@ -172,7 +172,7 @@
             color: red;
         }
         ```
-        用 border: 0; 代替 border: none;；
+    - 用 border: 0; 代替 border: none;；
         ```css
         // bad 
         style {
