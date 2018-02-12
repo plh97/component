@@ -1,4 +1,4 @@
-@import '../assets/common/@common.less';
+@import '../assets/common/common.less';
 
 :root {
 	--primary: #ddd;
@@ -12,10 +12,11 @@ html {
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
 	color: var(--dark);
+	height: 100%;
 	body {
 		background: #ccc;
-		margin: 30px 50px;
 		line-height: 1.4;
+		height: 100%;
 
 		.btn{
 			background-color: var(--dark);
@@ -28,34 +29,6 @@ html {
 			max-width: 100%;
 		}
 		.wrapper{
-			display: grid;
-			grid-gap: 20px;
-
-			
-			.main-nav ul {
-				display: grid;
-				grid-gap: 20px;
-				padding: 0;
-				list-style: none;
-				grid-template-columns: repeat(4, 1fr);
-				
-				a{
-					background-color: var(--primary);
-					display: block;
-					text-decoration: none;
-					padding: 0.8rem;
-					text-align: center;
-					color: var(--dark);
-					text-transform: uppercase;
-					font-size: 1.1rem;
-					box-shadow: var(--shadow);
-	
-					&:hover {
-						color: var(--light);
-						background-color: var(--dark);
-					}
-				}
-			}
 
 			.top-container {
 				display: grid;
@@ -144,14 +117,6 @@ html {
 				}
 			}
 
-			footer {
-				margin-top: 2rem;
-				background: var(--dark);
-				color: var(--light);
-				text-align: center;
-				padding: 1rem;
-			}
-
 			// Media Queries
 			@media screen and (max-width: 800px) {
 				.top-container {
@@ -184,4 +149,3 @@ html {
 		}
 	}
 }
-
