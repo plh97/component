@@ -7,7 +7,7 @@
 ```
 ##### 当你直接引入的时候，组件将作为全局变量直接可以获取，
 
-- 用法
+- ### 用法
 	```js
 	Message('消息');
 	// 或者
@@ -74,7 +74,7 @@ var modalInfo = pc.modalInfo;
 var spin = pc.spin;
 ```
 用法
-- message 消息组件
+- ### message 消息组件
 	```js
 	//简单用法
 	message('你好吗~');
@@ -87,7 +87,7 @@ var spin = pc.spin;
 		content: `弹出框内容！`
 	})
 	```
-- modal / modalInfo 弹出框组件
+- ### modal / modalInfo 弹出框组件
 	```js
 	// 简洁用法
 	modalInfo('说点什么吧！');
@@ -108,7 +108,7 @@ var spin = pc.spin;
 		}
 	})
 	```
-- spin 加载中...组件
+- ### spin 加载中...组件
 	```js
 	//如果不输入参数，默认给全屏加载中...
 	spin();
@@ -124,7 +124,7 @@ var spin = pc.spin;
 		dom:document.querySelector('.container')
 	})
 	```
-- tree 树形图组件
+- ### tree 树形图组件
 	```js
 	tree({
 		// ifselect: false,是否加载之前选好的，默认true
@@ -155,7 +155,7 @@ var spin = pc.spin;
 		}
 	})
 	```
-- table 表格组件
+- ### table 表格组件
 	```js
 	table({
 		ifselect: true,
@@ -181,7 +181,7 @@ var spin = pc.spin;
 		}
 	})
 	```
-- treetable 树表组件
+- ### treetable 树表组件
 	```js
 	treeTable({
 		ifselect: true,
