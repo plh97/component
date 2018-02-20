@@ -237,7 +237,6 @@ const eventProxy = args => {
                         })
                         isSelectDomInPath.classList.add('active')
                     }else if(select_model=="checkbox"){
-                        console.log(select_model);
                         // if select more
                         isSelectDomInPath.classList.toggle('active')
                     }

@@ -10,7 +10,6 @@ import Button from "./container/button";
 import Icon from "./container/icon";
 import scrollBind from "./utils/scrollBind.js";
 
-
 const Component = {
     Message,
     Spin,
@@ -24,9 +23,4 @@ const Component = {
     scrollBind
 }
 
-console.log(
-    Component
-);
-
 export default Component;
-// window.Component = Component;

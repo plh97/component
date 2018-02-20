@@ -9,9 +9,10 @@
     z-index: 50;
     align-items: center;
     justify-content: center;
-    animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    animation-fill-mode: forwards;
-    animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-color: rgba(0, 0, 0, 0.65);
+    // animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    // animation-fill-mode: forwards;
+    // animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
     .component-model {
         // transform-origin: -6px 182px 0px;
@@ -39,8 +40,8 @@
                 height: 55px;
             }
             @media (max-width: 1300px) {
-                padding: 0 0 0 0.8rem;
-                height: 1.5rem;
+                padding: 0 0 0 0.6rem;
+                height: 1.3rem;
             }
             display: inline-flex;
             align-items: center;
@@ -52,7 +53,7 @@
             .title {
                 color: @grey9;
                 // font-family: "宋体";
-                .font-dpr(32px);
+                .font-dpr(36px);
                 font-weight: bold;
             }
 
@@ -60,10 +61,10 @@
                 border: 0;
                 width: 1.5rem;
                 @media (min-width: 1300px) {
-                    width: 56px;
+                    width: 0.7rem;
                 }
                 @media (max-width: 1300px) {
-                    width: 112px;
+                    width: 1.5rem;
                 }
                 height: 100%;
                 color: @grey6;
@@ -81,14 +82,13 @@
         }
         .component-model-body {
             flex: 1;
-            padding: 24px;
             font-weight: 300;
-            .font-dpr(24px);
+            .font-dpr(36px);
             @media (min-width: 1300px) {
                 padding: 24px;
             }
             @media (max-width: 1300px) {
-                padding: 0.6rem 0.8rem;
+                padding: 0.4rem 0.6rem;
             }
         }
         .component-model-footer {
@@ -96,9 +96,9 @@
                 padding: 0 24px;
             }
             @media (max-width: 1300px) {
-                padding: 0 0.5rem;
+                padding: 0 0.3rem;
             }
-            height: 1.5rem;
+            height: 1.4rem;
             display: inline-flex;
             align-items: center;
             justify-content: flex-end;

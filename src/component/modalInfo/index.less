@@ -11,21 +11,17 @@
     position: fixed;
     align-items: center;
     justify-content: center;
-    animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    animation-fill-mode: forwards;
+    // animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    // animation-fill-mode: forwards;
 
     .component-modalInfo {
-        // @media screen and (max-width: 768px) {
-        //     // left: 10vw;
-        // }
         @media screen and (min-width: 1300px) {
             padding: 32px 32px 24px 18px;
             max-width: 416px;
         }
         @media screen and (max-width: 1300px) {
-            padding: 5vw;
+            padding: 4vw;
         }
-
         top: 16vh;
         width: 95vw;
         display: flex;
@@ -34,19 +30,19 @@
         border-radius: 0.1rem;
         background-color: #fff;
         box-sizing: border-box;
-        // transform-origin: -6px 182px 0px;
         animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);
         animation-fill-mode: forwards;
         background-clip: padding-box;
         flex-direction: row;
         justify-content: space-between;
 
-        .icon {
-            flex: 0 0 15%;
+        svg {
+            // flex: 0 0 15%;
             .font-dpr(62px);
         }
         .component-modelInfo-container {
             flex: 1 1 80%;
+            margin-left: 0.3rem;
             display: inline-flex;
             flex-direction: column;
             
@@ -65,7 +61,7 @@
                 flex: 1;
             }
             .component-modelInfo-container-footer {
-                margin-top: 3vw;
+                margin-top: 1vw;
                 display: inline-flex;
                 align-items: center;
                 justify-content: flex-end;

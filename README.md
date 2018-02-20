@@ -16,7 +16,10 @@
 		type: "info",				
 		// 间隔多久消失。默认3s
 		time: 1000,					
-		content: `弹出框内容！`
+		content: `弹出框内容！`,
+		next: function(){
+			// to do something
+		}
 	})
 	```
 	```js
@@ -33,16 +36,24 @@
 	```js
 	Modal({
 		title: `标题`,
-		content: `内容`,
-		callback: function(){
+		content: `
+			<p>Some contents...</p>
+			<p>Some contents...</p>
+			<p>Some contents...</p>
+		`,
+		next: function(){
 			console.log("回调函数")
 		}
 	})
 	ModalInfo({
 		type: `error`, // info/success/error/warning/delete/confirm
 		title: `标题`,
-		content: `内容`,
-		callback: function(){
+		content: `
+			<p>Some contents...</p>
+			<p>Some contents...</p>
+			<p>Some contents...</p>
+		`,
+		next: function(){
 			console.log("确认")
 		}
 	})
@@ -84,7 +95,10 @@ var spin = pc.spin;
 		type: "info",				
 		// 间隔多久消失。默认3s
 		time: 1000,					
-		content: `弹出框内容！`
+		content: `弹出框内容！`,
+		next: function(){
+			// to do something
+		}
 	})
 	```
 - ### modal / modalInfo 弹出框组件
@@ -94,16 +108,24 @@ var spin = pc.spin;
 	// 完整用法
 	modal({
 		title: `标题`,
-		content: `内容`,
-		callback: function(){
+		content: `
+			<p>Some contents...</p>
+			<p>Some contents...</p>
+			<p>Some contents...</p>
+		`,
+		next: function(){
 			console.log("确认")
 		}
 	})
 	modalInfo({
 		type: `error`, // info/success/error/warning
 		title: `标题`,
-		content: `内容`,
-		callback: function(){
+		content: `
+			<p>Some contents...</p>
+			<p>Some contents...</p>
+			<p>Some contents...</p>
+		`,
+		next: function(){
 			console.log("确认")
 		}
 	})
@@ -146,7 +168,7 @@ var spin = pc.spin;
 			{id: "0511", name: "上海酒庄门店样酒仓", pId: "05", sid: 618, type: "正品"},
 			{id: "0512", name: "上海代保管仓", pId: "05", sid: 619, type: "正品"}
 		],
-		callback: ()=>{
+		next: ()=>{
 			let doms = document.querySelectorAll('.component-tree .active');
 			doms = addArrProp(doms)
 			doms = doms.map(dom=>dom.parentElement.querySelector('.text-container').textContent)
@@ -172,7 +194,7 @@ var spin = pc.spin;
 			{"id":"ff8080816082dae40160960dd02e0451","parent_ids":"0","name":"宁夏圣路易.丁葡萄酒庄（有限公司）","sort":30,"area_id":"76401","code":"","type":"2","grade":"1","address":"","zip_code":"","master":"","phone":"","fax":"","email":"","USEABLE":"1","PRIMARY_PERSON":"","DEPUTY_PERSON":"","create_by":"30158","create_date":1514345975000,"update_by":"30158","update_date":1514345975000,"remarks":"","del_flag":"0","corp_code":"001001014","corp_name":"法塞特酒业（上海）","dept_id":"c7f76ff996244d08907911cba86597fc","dept_code":"001001014","dept_name":"法塞特酒业（上海）","edu_user_id":"","edu_user_name":"宁夏圣路易.丁葡萄酒庄（有限公司）"},
 			{"id":"ff808081609b096a01609b3e493c0033","parent_ids":"0","name":"顺丰快递","sort":30,"area_id":"11101","code":"","type":"6","grade":"1","address":"","zip_code":"","master":"","phone":"","fax":"","email":"","USEABLE":"1","PRIMARY_PERSON":"","DEPUTY_PERSON":"","create_by":"30150","create_date":1514433038000,"update_by":"30150","update_date":1514433038000,"remarks":"","del_flag":"0","corp_code":"001001014","corp_name":"法塞特酒业（上海）","dept_id":"c7f76ff996244d08907911cba86597fc","dept_code":"001001014","dept_name":"法塞特酒业（上海）","edu_user_id":"","edu_user_name":"顺丰快递"}
 		],
-		callback: ()=>{
+		next: function(){
 			let doms = document.querySelectorAll('.thr-table .tb-container input');
 			doms = addArrProp(doms)
 			doms = doms.map(dom=>dom.parentElement.querySelector('.name').textContent)
@@ -207,7 +229,7 @@ var spin = pc.spin;
 				{"id":"ff808081609b096a01609b3e493c0033","parent_ids":"0","name":"顺丰快递","sort":30,"area_id":"11101","code":"","type":"6","grade":"1","address":"","zip_code":"","master":"","phone":"","fax":"","email":"","USEABLE":"1","PRIMARY_PERSON":"","DEPUTY_PERSON":"","create_by":"30150","create_date":1514433038000,"update_by":"30150","update_date":1514433038000,"remarks":"","del_flag":"0","corp_code":"001001014","corp_name":"法塞特酒业（上海）","dept_id":"c7f76ff996244d08907911cba86597fc","dept_code":"001001014","dept_name":"法塞特酒业（上海）","edu_user_id":"","edu_user_name":"顺丰快递"}
 			]
 		},
-		callback: ()=>{
+		next: ()=>{
 			let doms = document.querySelectorAll('.thr-table .tb-container input');
 			doms = addArrProp(doms)
 			doms = doms.map(dom=>dom.parentElement.querySelector('.name').textContent)

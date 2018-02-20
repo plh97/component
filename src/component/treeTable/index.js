@@ -25,7 +25,6 @@ const treeTable = async args => {
         beforeSelect
     } = args;
     ifselect == undefined ? (ifselect=true) : "";
-    console.log(args);
     let mask = document.createElement('div');
     mask.className = 'component-mask';
     mask.innerHTML = `

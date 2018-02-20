@@ -1,4 +1,4 @@
-import './index.less'
+import styles from './index.less';
 import Button from "../../container/button";
 import Dom from "../../utils/dom.js";
 
@@ -10,7 +10,7 @@ const Modal = async args => {
     let {
         title,
         content,
-        callback
+        next
     } = args;
     typeof(args)=='string' && (
         content = args,
@@ -22,24 +22,24 @@ const Modal = async args => {
     if(content==undefined){
         content="{content: 请输入content参数}"
     }
-    if(callback==undefined){
-        callback=()=>{}
+    if(next==undefined){
+        next=()=>{}
     }
     let mask = document.createElement('div');
-    mask.className = 'component-mask';
+    mask.className = styles['component-mask'];
     mask.innerHTML = `
-        <div class="component-model">
-            <div class="component-model-header">
-                <span class="title">${title}</span>
+        <div class="${styles['component-model']}">
+            <div class="${styles['component-model-header']}">
+                <span class="${styles['title']}">${title}</span>
                 ${Button({
-                    className:"confirm btn-close",
+                    className:`confirm ${styles['btn-close']}`,
                     text:"X"
                 }).outerHTML}
             </div>
-            <div class="component-model-body">
-                    ${content}
+            <div class="${styles['component-model-body']}">
+                ${content}
             </div>
-            <div class="component-model-footer">
+            <div class="${styles['component-model-footer']}">
                 ${Button({
                     className:"return",
                     text:"返回"
@@ -47,8 +47,9 @@ const Modal = async args => {
                 &nbsp;
                 &nbsp;
                 ${Button({
-                    className:"confirm btn-primary",
-                    text:"确认"
+                    className:"confirm",
+                    text:"确认",
+                    type:"btn-primary"
                 }).outerHTML}
             </div>
         </div>
@@ -67,7 +68,7 @@ const Modal = async args => {
         // e.preventDefault()
         // return false
         if(
-            e.path[0].classList.contains('component-mask')
+            e.path[0].classList.contains(styles['component-mask'])
         ){
             mask.remove()
             domFunc({
@@ -79,7 +80,7 @@ const Modal = async args => {
             })
         }
 	},false)
-    let btns = mask.querySelectorAll('.component-model button');
+    let btns = mask.querySelectorAll(`.${styles['component-model']} button`);
     btns = Array.prototype.slice.call(btns);
     btns.forEach(dom=>{
         dom.addEventListener('click',()=>{
@@ -92,7 +93,7 @@ const Modal = async args => {
                 }
             })
             if(dom.classList.contains('confirm')) {
-                callback();
+                next();
             }
         })
     })

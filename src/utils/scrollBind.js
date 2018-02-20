@@ -79,5 +79,4 @@ let navIntoViewFunc = e => {
 	})
 }
 let addArrayProp = e => Array.prototype.slice.call(e)
-window.scrollBind = scrollBind;
 export default scrollBind;
