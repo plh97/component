@@ -1,4 +1,5 @@
 @import './assets/common/@common.less';
+
 .component-mask {
     top: 0;
     left: 0;
@@ -180,7 +181,12 @@
                     flex-direction: row;
                     justify-content: space-around;
                     .sec-table , .thr-table {
-                        flex: 1;
+                        &.sec-table {
+                            flex: 1 1 500px;
+                        }
+                        &.thr-table {
+                            flex: 1 10 500px;
+                        }
                         margin: 10px;
                         border: 2px solid #ccc;
                         border-radius: 5px;
@@ -223,7 +229,7 @@
                         }
                         .tb-container {
                             height: calc(~'100% - 50px');
-                            overflow-y: scroll;
+                            overflow-y: auto;
                         }
                         
                     }
@@ -238,11 +244,13 @@
                 }
             }
             .empty {
-                position: absolute;
-                color: rgb(152,14,12);
-                font-weight: bold;
                 right: 15px;
                 cursor: pointer;
+                font-weight: bold;
+                position: absolute;
+                align-items: center;
+                display: inline-flex;
+                color: rgb(152,14,12);
                 .icon{
                     font-size: 18px !important;
                 }

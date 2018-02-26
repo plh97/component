@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({3:[function(require,module,exports) {
+})({8:[function(require,module,exports) {
 window.Component.pc.tree({
     // ifselect: false,是否加载之前选好的，默认true
     beforeSelect:["法塞特家族酒庄品鉴酒仓库","法塞特家族酒庄配件仓库"],// 之前选好的内容
@@ -90,12 +90,11 @@ window.Component.pc.tree({
         {id: "0511", name: "上海酒庄门店样酒仓", pId: "05", sid: 618, type: "正品"},
         {id: "0512", name: "上海代保管仓", pId: "05", sid: 619, type: "正品"}
     ],
-    next: ()=>{
-        let doms = document.querySelectorAll('.component-tree .active');
-        doms = addArrProp(doms)
-        doms = doms.map(dom=>dom.parentElement.querySelector('.text-container').textContent)
+    next: (styles) => {
+        let doms = document.querySelectorAll(`.${styles.active}`);
+        doms = Array.prototype.slice.call(doms);
+        doms = doms.map(dom => dom.querySelector(`.${styles['text-container']}`).textContent)
         doms = doms.join('，')
-        console.log(doms);
     }
 })
 },{}],0:[function(require,module,exports) {
@@ -116,7 +115,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':56036/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':49656/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -217,4 +216,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,3])
+},{}]},{},[0,8])

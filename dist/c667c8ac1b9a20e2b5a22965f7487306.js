@@ -69,35 +69,122 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({3:[function(require,module,exports) {
-window.Component.pc.tree({
-    // ifselect: false,是否加载之前选好的，默认true
-    beforeSelect:["法塞特家族酒庄品鉴酒仓库","法塞特家族酒庄配件仓库"],// 之前选好的内容
-    // select_model: "checkbox", //多选
-    select_model: "radio", //单选
-    data: [
-        {id: "05", name: "法塞特家族酒庄仓库", pId: "", sid: 527, type: ""},
-        {id: "0501", name: "法塞特家族酒庄正品仓库", pId: "05", sid: 528, type: "正品"},
-        {id: "0502", name: "法塞特家族酒庄业务用酒仓库", pId: "05", sid: 529, type: "赠品"},
-        {id: "0503", name: "法塞特家族酒庄品鉴酒仓库", pId: "05", sid: 530, type: "试用装"},
-        {id: "0504", name: "法塞特家族酒庄物料仓库", pId: "05", sid: 531, type: "物料"},
-        {id: "0505", name: "法塞特家族酒庄配件仓库", pId: "05", sid: 532, type: "配件"},
-        {id: "0506", name: "法塞特家族酒庄包材仓库", pId: "05", sid: 533, type: "包材"},
-        {id: "0507", name: "上海酒庄门店正品库", pId: "05", sid: 614, type: "正品"},
-        {id: "0508", name: "上海酒庄门店业务用酒仓", pId: "05", sid: 615, type: "正品"},
-        {id: "0509", name: "上海酒庄门店品鉴酒仓", pId: "05", sid: 616, type: "正品"},
-        {id: "0510", name: "上海酒庄门店厨房用品仓", pId: "05", sid: 617, type: "正品"},
-        {id: "0511", name: "上海酒庄门店样酒仓", pId: "05", sid: 618, type: "正品"},
-        {id: "0512", name: "上海代保管仓", pId: "05", sid: 619, type: "正品"}
-    ],
-    next: ()=>{
-        let doms = document.querySelectorAll('.component-tree .active');
-        doms = addArrProp(doms)
-        doms = doms.map(dom=>dom.parentElement.querySelector('.text-container').textContent)
-        doms = doms.join('，')
-        console.log(doms);
+})({7:[function(require,module,exports) {
+;(function (win, lib) {
+  var doc = win.document;
+  var docEl = doc.documentElement;
+  var metaEl = doc.querySelector('meta[name="viewport"]');
+  var flexibleEl = doc.querySelector('meta[name="flexible"]');
+  var dpr = 0;
+  var scale = 0;
+  var tid;
+  var flexible = lib.flexible || (lib.flexible = {});
+
+  if (metaEl) {
+    console.warn('将根据已有的meta标签来设置缩放比例');
+    var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
+    if (match) {
+      scale = parseFloat(match[1]);
+      dpr = parseInt(1 / scale);
     }
-})
+  } else if (flexibleEl) {
+    var content = flexibleEl.getAttribute('content');
+    if (content) {
+      var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+      var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+      if (initialDpr) {
+        dpr = parseFloat(initialDpr[1]);
+        scale = parseFloat((1 / dpr).toFixed(2));
+      }
+      if (maximumDpr) {
+        dpr = parseFloat(maximumDpr[1]);
+        scale = parseFloat((1 / dpr).toFixed(2));
+      }
+    }
+  }
+
+  if (!dpr && !scale) {
+    var isAndroid = win.navigator.appVersion.match(/android/gi);
+    var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+    var devicePixelRatio = win.devicePixelRatio;
+    if (isIPhone) {
+      // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+      if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+        dpr = 3;
+      } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
+        dpr = 2;
+      } else {
+        dpr = 1;
+      }
+    } else {
+      // 其他设备下，仍旧使用1倍的方案
+      dpr = 1;
+    }
+    scale = 1 / dpr;
+  }
+
+  docEl.setAttribute('data-dpr', dpr);
+  if (!metaEl) {
+    metaEl = doc.createElement('meta');
+    metaEl.setAttribute('name', 'viewport');
+    metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+    if (docEl.firstElementChild) {
+      docEl.firstElementChild.appendChild(metaEl);
+    } else {
+      var wrap = doc.createElement('div');
+      wrap.appendChild(metaEl);
+      doc.write(wrap.innerHTML);
+    }
+  }
+
+  function refreshRem() {
+    var width = docEl.getBoundingClientRect().width;
+    if (width / dpr > 540) {
+      width = 540 * dpr;
+    }
+    var rem = width / 10;
+    docEl.style.fontSize = rem + 'px';
+    flexible.rem = win.rem = rem;
+  }
+
+  win.addEventListener('resize', function () {
+    clearTimeout(tid);
+    tid = setTimeout(refreshRem, 300);
+  }, false);
+  win.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      clearTimeout(tid);
+      tid = setTimeout(refreshRem, 300);
+    }
+  }, false);
+
+  if (doc.readyState === 'complete') {
+    doc.body.style.fontSize = 12 * dpr + 'px';
+  } else {
+    doc.addEventListener('DOMContentLoaded', function (e) {
+      doc.body.style.fontSize = 12 * dpr + 'px';
+    }, false);
+  }
+
+  refreshRem();
+
+  flexible.dpr = win.dpr = dpr;
+  flexible.refreshRem = refreshRem;
+  flexible.rem2px = function (d) {
+    var val = parseFloat(d) * this.rem;
+    if (typeof d === 'string' && d.match(/rem$/)) {
+      val += 'px';
+    }
+    return val;
+  };
+  flexible.px2rem = function (d) {
+    var val = parseFloat(d) / this.rem;
+    if (typeof d === 'string' && d.match(/px$/)) {
+      val += 'rem';
+    }
+    return val;
+  };
+})(window, window['lib'] || (window['lib'] = {}));
 },{}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -116,7 +203,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':56036/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':49656/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -217,4 +304,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,3])
+},{}]},{},[0,7])
