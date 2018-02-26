@@ -1,10 +1,6 @@
-import style from './index.less'
+import styles from './index.less'
 import Icon from "../../container/icon";
 import Dom from "../../utils/dom.js";
-
-console.log(
-    style
-);
 
 const Spin = args => {
     const {
@@ -16,8 +12,9 @@ const Spin = args => {
         var {dom} = args;
         dom = (dom == undefined ? document.body : dom);
     }
-    if(!!dom.querySelector('.component-container-spin')){
-        dom.querySelector('.component-container-spin').remove()
+    console.log(styles);
+    if(!!dom.querySelector(`.${styles['component-container-spin']}`)){
+        dom.querySelector(`.${styles['component-container-spin']}`).remove()
         domFunc({
             dom:document.querySelector('html'),
             style: {
@@ -28,9 +25,9 @@ const Spin = args => {
     }else{
         dom.style.position="relative";
         let container = document.createElement('div')
-        container.className = `component-container-spin ${dom==document.body?"component-container-global":""}`;
+        container.className = `${styles['component-container-spin']} ${dom==document.body ? styles['component-container-global'] : ""}`;
         container.innerHTML = `
-            <div class="${style['spin-container']}">
+            <div class="${styles['spin-container']}">
                 ${Icon({type:'spin'})}
                 ${(screen.width>1300&&dom.clientHeight<50)?"":`<span>Loading...</span>`}
             </div>

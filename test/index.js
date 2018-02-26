@@ -129,20 +129,7 @@ let domRound = args =>{
 }
 
 
-let initHTML = data =>{
-    let dataTimePicker = document.createElement('div');
-    dataTimePicker.className = `${styles.dataTimePicker}`;
-    for(let Data in data){
-        let container = document.createElement('div');
-        container.className = `${Data} ${styles.list}`;
-        data[Data].forEach((num,i) => {
-            let span = document.createElement('span');
-            span.className = styles.num
-            span.innerHTML=num
-            container.appendChild(span)
-        })
-        dataTimePicker.appendChild(container)
-    }
 
-    return dataTimePicker
-}
+console.log(
+	reverseString('hello')
+);

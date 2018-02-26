@@ -1,12 +1,8 @@
+import component from '../dist/index.js'
 
-window.color='red';
-var o = {color:"blue"}
+console.log(component);
 
-function sayColor(){
-  return this.color
-}
+window.component = component;
 
-var objectSayColor = sayColor.bind(o);
-console.log(
-  objectSayColor()
-);
+
+component.Spin()

@@ -10,7 +10,6 @@ import Button from "./container/button";
 import Icon from "./container/icon";
 import scrollBind from "./utils/scrollBind.js";
 
-
 const Component = {
     Message,
     Spin,
@@ -21,12 +20,30 @@ const Component = {
     ModalInfo,
     Button,
     Icon,
-    scrollBind
+    scrollBind,
+    pc: {
+        message: Message,
+        spin: Spin,
+        modal: Modal,
+        table: Table,
+        tree: Tree,
+        treeTable: treeTable,
+        modalInfo: ModalInfo,
+        container: {
+            button: Button,
+            icon: Icon
+        }
+    },
+    mobile: {
+        message: Message,
+        spin: Spin,
+        modal: Modal,
+        modalInfo: ModalInfo,
+        container: {
+            button: Button,
+            icon: Icon
+        }
+    }
 }
 
-console.log(
-    Component
-);
-
 export default Component;
-// window.Component = Component;
