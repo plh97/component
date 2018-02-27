@@ -32,11 +32,17 @@ const btnAddevent = (args) => {
     btns,
     mask,
     next,
+    data,
   } = args;
   btns.forEach((dom) => {
     if (dom.classList.contains('confirm')) {
       dom.addEventListener('click', () => {
-        next(styles);
+        let doms = document.querySelectorAll(`.${styles.active}`);
+        doms = Array.prototype.slice.call(doms);
+        doms = doms.map((activeDom) => {
+          return JSON.parse(activeDom.dataset.json);
+        });
+        next(doms);
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -70,7 +76,7 @@ const putDataToFirTable = async (args) => {
   data.map((row, i) => {
     const div = document.createElement('div');
     const html = `
-      <div class="${styles['component-tree-container-list-div']}" data-type="${row.id}">
+      <div data-index="${i}" data-json=${JSON.stringify(row)} class="${styles['component-tree-container-list-div']}" data-type="${row.id}">
           ${Icon({ type: 'wujiaoxing' })}
           <span class="${styles['text-container']}">${row.name}</span>
           ${row.hasOwnProperty('children') ? Icon({ type: 'unfold' }) : ''}
@@ -234,6 +240,7 @@ const Tree = async (args) => {
     btns,
     mask,
     next,
+    data,
   });
 };
 

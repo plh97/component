@@ -1,7 +1,7 @@
 import styles from './index.less';
-import Button from '../../container/button';
-import Icon from '../../container/icon';
 import Dom from '../../utils/dom';
+import Icon from '../../container/icon';
+import Button from '../../container/button';
 
 const {
   sleep,
@@ -13,114 +13,6 @@ const {
   isDomInPathFunc,
   domToggleAnimation,
 } = Dom;
-
-const treeTable = async (args) => {
-  let {
-    data,
-    next,
-    select_model,
-    ifselect,
-    beforeSelect,
-  } = args;
-  ifselect == undefined ? (ifselect = true) : '';
-  const mask = document.createElement('div');
-  mask.className = styles['component-mask'];
-  mask.innerHTML = `
-      <div class="${styles['component-treeTable']}">
-        <header class="${styles['component-treeTable-header']}">
-          请选择
-        </header>
-        <div class="${styles['component-treeTable-body']}">
-          <div class="${styles['component-treeTable-body-side']}" id="side">
-            <div class="${styles.all}" id="all">
-              ${Icon({ type: 'navlist' })}
-              <span class="${styles['text-container']}">全部</span>
-              ${Icon({ type: 'unfold' })}
-            </div>
-            <div class="${styles['tree-container']}"></div>
-            <div class="${styles['flex-container']}"></div>
-          </div>
-          <div class="${styles['component-treeTable-body-container']}">
-            <span class="${styles['search-container']}">
-              <span>商品搜索：</span>
-              <span class="${styles.search}">
-                <input type="text">
-                <span>搜索</span>
-              </span>
-            </span>
-            <div class="${styles.table}">
-              <div class="${styles['sec-table']}" id="sec-table">
-                  <div class="${styles.th}">
-                    <span class="${styles.select}">
-                      ${select_model == 'checkbox' ? `
-                        <input id="select-all" type="checkbox"/> 
-                        <label for="select-all">全选</label>
-                        <input id="select-reverse" type="checkbox"/> 
-                        <label for="select-reverse">反选</label>
-                      ` : ''}
-                    </span>
-                    ${data.content[0].code ? `<span class="${styles.num}">编号</span>` : ''}
-                    <span class="${styles.name}">名称</span>
-                  </div>
-                  <div class="${styles['tb-container']}" id="sec-table-tb-container"></div>
-                </div>
-                <div class="${styles['thr-table']}" id="thr-table">
-                  <div class="${styles.th}">
-                    <span class="${styles.select}">
-                    </span>
-                    ${data.content[0].code ? `<span class="${styles.num}">编号</span>` : ''}
-                    <span class="${styles.name}">名称</span>
-                    <span class="${styles.empty}">
-                      ${Icon({ type: 'trash' })}
-                      清空
-                    </span>
-                  </div>
-                  <div class="${styles['tb-container']}" id="thr-table-tb-container"></div>
-                </div>
-            </div>
-            <div class="${styles['group-btn']}">
-              ${Button({ className: 'return', text: '返回' }).outerHTML}
-              &nbsp;
-              &nbsp;
-              ${Button({ className: 'confirm btn-danger', text: '确认' }).outerHTML}
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-  domFunc({
-    dom: document.querySelector('html'),
-    style: {
-      paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
-      overflow: 'hidden',
-    },
-  });
-  document.body.appendChild(mask);
-  await sleep(300);
-  await putDataToFirTable({
-    data: data.title,
-    container: document.querySelector(`.${styles['tree-container']}`),
-  });
-  await putDataToSecTable(data.content);
-  let btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
-  btns = Array.prototype.slice.call(btns);
-  await btnAddevent({ btns, mask, next });
-  // 添加观察者
-  await secTableObserver();
-  await thrTableObserver();
-  // all event proxy
-  await eventProxy({
-    event: 'click',
-    select_model,
-  });
-  await eventProxy({
-    event: 'change',
-  });
-  ifselect && selectBeforeFunc({
-    beforeSelect,
-  });
-};
 
 const selectBeforeFunc = (args) => {
   const {
@@ -142,11 +34,15 @@ const btnAddevent = (args) => {
     btns,
     mask,
     next,
+    data,
   } = args;
   btns.forEach((dom) => {
     if (dom.classList.contains('confirm')) {
       dom.addEventListener('click', () => {
-        next(styles);
+        let doms = document.querySelectorAll('#thr-table-tb-container input');
+        doms = Array.prototype.slice.call(doms);
+        doms = doms.map(activeDom => data[activeDom.parentElement.dataset.index]);
+        next(doms);
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -209,6 +105,7 @@ const putDataToSecTable = async (data) => {
     const secTable = document.querySelector('#sec-table-tb-container');
     const div = document.createElement('div');
     div.className = styles.tb;
+    div.dataset.index = i;
     const html = `
             <input class="${styles.select}" type="checkbox"/>
             ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
@@ -302,10 +199,10 @@ const eventProxy = (args) => {
       if (isEmptyDom) {
         let inputs = isEmptyDom.parentElement.parentElement.querySelectorAll(`.${styles['tb-container']} .${styles.select}`);
         inputs.forEach((input) => {
-          if (input.parentElement.style.display != 'none') {
+          if (input.parentElement.style.display !== 'none') {
             input.parentElement.remove();
             inputs = document.querySelectorAll(`.${styles['sec-table']} input`);
-            inputs.forEach(input => input.checked = false);
+            inputs.forEach(inputDom => inputDom.checked = false );
           }
         });
       }
@@ -317,7 +214,7 @@ const eventProxy = (args) => {
         if (isTableList) {
           if (e.path[0].type === 'checkbox') return;
           if (select_model === 'checkbox') {
-            if (isTableList.querySelector('input').checked == true) {
+            if (isTableList.querySelector('input').checked === true) {
               isTableList.querySelector('input').checked = false;
               isTableList.querySelector('input').dataset.type = false;
             } else {
@@ -407,7 +304,7 @@ const thrTableObserver = () => {
   const observer = new MutationObserver(() => {
     let inputGroupAll = thrTableContainer.querySelectorAll('input');
     inputGroupAll = Array.prototype.slice.call(inputGroupAll);
-    inputGroupAll.map((input) => {
+    inputGroupAll.forEach((input) => {
       input.parentElement.remove();
     });
     let inputGroup = secTableContainer.querySelectorAll('input:checked');
@@ -420,7 +317,7 @@ const thrTableObserver = () => {
       addEvent({
         dom: newChild,
         envet: 'click',
-        func: e => e.path.filter(e => e.className === styles.tb)[0].remove(),
+        func: e => e.path.filter(ee => ee.className === styles.tb)[0].remove(),
       });
       thrTableContainer.insertBefore(newChild, oldChild);
       newChild.scrollIntoView({ behavior: 'instant', block: 'end', inline: 'nearest' });
@@ -435,5 +332,113 @@ const thrTableObserver = () => {
   observer.observe(secTableContainer, config);
 };
 
+
+const treeTable = async (args) => {
+  const {
+    data,
+    next,
+    select_model,
+    beforeSelect,
+  } = args;
+  const ifselect = args.ifselect || true;
+  // ifselect == undefined ? (ifselect = true) : '';
+  const mask = document.createElement('div');
+  mask.className = styles['component-mask'];
+  mask.innerHTML = `
+      <div class="${styles['component-treeTable']}">
+        <header class="${styles['component-treeTable-header']}">
+          请选择
+        </header>
+        <div class="${styles['component-treeTable-body']}">
+          <div class="${styles['component-treeTable-body-side']}" id="side">
+            <div class="${styles.all}" id="all">
+              ${Icon({ type: 'navlist' })}
+              <span class="${styles['text-container']}">全部</span>
+              ${Icon({ type: 'unfold' })}
+            </div>
+            <div class="${styles['tree-container']}"></div>
+            <div class="${styles['flex-container']}"></div>
+          </div>
+          <div class="${styles['component-treeTable-body-container']}">
+            <span class="${styles['search-container']}">
+              <span>商品搜索：</span>
+              <span class="${styles.search}">
+                <input type="text">
+                <span>搜索</span>
+              </span>
+            </span>
+            <div class="${styles.table}">
+              <div class="${styles['sec-table']}" id="sec-table">
+                  <div class="${styles.th}">
+                    <span class="${styles.select}">
+                      ${select_model === 'checkbox' ? `
+                        <input id="select-all" type="checkbox"/> 
+                        <label for="select-all">全选</label>
+                        <input id="select-reverse" type="checkbox"/> 
+                        <label for="select-reverse">反选</label>
+                      ` : ''}
+                    </span>
+                    ${data.content[0].code ? `<span class="${styles.num}">编号</span>` : ''}
+                    <span class="${styles.name}">名称</span>
+                  </div>
+                  <div class="${styles['tb-container']}" id="sec-table-tb-container"></div>
+                </div>
+                <div class="${styles['thr-table']}" id="thr-table">
+                  <div class="${styles.th}">
+                    <span class="${styles.select}">
+                    </span>
+                    ${data.content[0].code ? `<span class="${styles.num}">编号</span>` : ''}
+                    <span class="${styles.name}">名称</span>
+                    <span class="${styles.empty}">
+                      ${Icon({ type: 'trash' })}
+                      清空
+                    </span>
+                  </div>
+                  <div class="${styles['tb-container']}" id="thr-table-tb-container"></div>
+                </div>
+            </div>
+            <div class="${styles['group-btn']}">
+              ${Button({ className: 'return', text: '返回' }).outerHTML}
+              &nbsp;
+              &nbsp;
+              ${Button({ className: 'confirm btn-danger', text: '确认' }).outerHTML}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+  domFunc({
+    dom: document.querySelector('html'),
+    style: {
+      paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+      overflow: 'hidden',
+    },
+  });
+  document.body.appendChild(mask);
+  await sleep(300);
+  await putDataToFirTable({
+    data: data.title,
+    container: document.querySelector(`.${styles['tree-container']}`),
+  });
+  await putDataToSecTable(data.content);
+  let btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
+  btns = Array.prototype.slice.call(btns);
+  await btnAddevent({ btns, mask, data: data.content, next });
+  // 添加观察者
+  await secTableObserver();
+  await thrTableObserver();
+  // all event proxy
+  await eventProxy({
+    event: 'click',
+    select_model,
+  });
+  await eventProxy({
+    event: 'change',
+  });
+  ifselect && selectBeforeFunc({
+    beforeSelect,
+  });
+};
 
 export default treeTable;

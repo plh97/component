@@ -31,12 +31,16 @@ const btnAddevent = (args) => {
   const {
     btns,
     mask,
+    data,
     next,
   } = args;
   btns.forEach((dom) => {
     if (dom.classList.contains('confirm')) {
       dom.addEventListener('click', () => {
-        next();
+        let doms = document.querySelectorAll('#thr-table-tb-container input');
+        doms = Array.prototype.slice.call(doms);
+        doms = doms.map(activeDom => data[activeDom.parentElement.dataset.index]);
+        next(doms);
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -79,6 +83,7 @@ const putDataToSecTable = async (data) => {
         `;
     div.innerHTML = html;
     div.id = `sec${i}`;
+    div.dataset.index = i;
     div.dataset.type = row.type;
     div.style.color = '#000';
     div.style.cursor = 'pointer';
@@ -282,7 +287,7 @@ const Table = async (args) => {
   await putDataToSecTable(data);
   let btns = mask.querySelectorAll(`.${styles['component-table']} button`);
   btns = Array.prototype.slice.call(btns);
-  await btnAddevent({ btns, mask, next });
+  await btnAddevent({ btns, mask, data, next });
   // 添加观察者
   await thrTableObserver();
   // all event proxy
