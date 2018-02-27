@@ -10,6 +10,7 @@ const {
   addArrProp,
   isDomInPathFunc,
   domToggleAnimation,
+  coverDataToTree,
 } = Dom;
 
 const selectBeforeFunc = (args) => {
@@ -195,6 +196,9 @@ const Tree = async (args) => {
     beforeSelect,
   } = args;
   let { ifselect } = args;
+  console.log(
+    coverDataToTree(data)
+  );
   ifselect == undefined ? (ifselect = true) : '';
   const mask = document.createElement('div');
   mask.className = styles['component-mask'];

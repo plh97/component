@@ -159,6 +159,52 @@ const transformStringToBool = e => {
 };
 
 // 将阿拉伯数字转英文 first . second . third
+const coverDataToTree = function (data) {
+  const titleArray = [];
+  const newData = data.map(arr => arr.id).sort().map(id => data.find(list => list.id === id));
+  if (data[0].hasOwnProperty('code')) {
+    newData.forEach(arr => {
+      // treetable
+      if (titleArray.length === 0) {
+        // 初次循环默认push 到root节点
+        titleArray.push(arr);
+      } else {
+        if (titleArray[titleArray.length - 1].code.length === arr.code.length) {
+          titleArray.push(arr);
+        } else if (titleArray[titleArray.length - 1].code.length === arr.code.length - 3) {
+          if (!titleArray[titleArray.length - 1].hasOwnProperty('children')) {
+            titleArray[titleArray.length - 1].children = [];
+          }
+          titleArray[titleArray.length - 1].children.push(arr);
+        } else if (titleArray[titleArray.length - 1].code.length === arr.code.length - 6) {
+          if (!titleArray[titleArray.length - 1].children[titleArray[titleArray.length - 1].children.length - 1].hasOwnProperty('children')) {
+            titleArray[titleArray.length - 1].children[titleArray[titleArray.length - 1].children.length - 1].children = [];
+          }
+          // 最后一个元素的children，
+          titleArray[titleArray.length - 1].children[titleArray[titleArray.length - 1].children.length - 1].children.push(arr);
+        }
+      }
+    });
+    return titleArray;
+  } else {
+    newData.forEach(function (arr) {
+      if (titleArray.length === 0) {
+        titleArray.push(arr);
+      } else {
+        if (titleArray[titleArray.length - 1].id.length === arr.id.length) {
+          titleArray.push(arr);
+        } else if (titleArray[titleArray.length - 1].id.length === arr.id.length - 2) {
+          if (!titleArray[titleArray.length - 1].hasOwnProperty('children')) {
+            titleArray[titleArray.length - 1].children = [];
+          }
+          titleArray[0].children.push(arr);
+        }
+      }
+    });
+    return titleArray;
+  }
+};
+
 const Dom = {
   domFunc,
   sleep,
@@ -168,7 +214,8 @@ const Dom = {
   addArrProp,
   showDomFunc,
   addEvent,
-  isDomFunc
+  isDomFunc,
+  coverDataToTree
 };
 
 const Modal = args => __async(function* () {
@@ -1315,7 +1362,8 @@ const {
   isDomFunc: isDomFunc$3,
   addArrProp: addArrProp$3,
   isDomInPathFunc: isDomInPathFunc$3,
-  domToggleAnimation: domToggleAnimation$2
+  domToggleAnimation: domToggleAnimation$2,
+  coverDataToTree: coverDataToTree$1
 } = Dom;
 
 const selectBeforeFunc$2 = args => {
@@ -1497,6 +1545,7 @@ const Tree = args => __async(function* () {
     beforeSelect
   } = args;
   let { ifselect } = args;
+  console.log(coverDataToTree$1(data));
   ifselect == undefined ? ifselect = true : '';
   const mask = document.createElement('div');
   mask.className = styles$8['component-mask'];

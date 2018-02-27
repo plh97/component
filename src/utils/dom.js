@@ -106,6 +106,82 @@ const numToEng = (e) => {
   }
 };
 
+
+
+
+
+
+
+
+const coverDataToTree = function (data) {
+  const titleArray = [];
+  const newData = data
+    .map(arr => arr.id)
+    .sort()
+    .map(id => data.find(list => list.id === id));
+  if (data[0].hasOwnProperty('code')) {
+    newData.forEach((arr) => {
+      // treetable
+      if (titleArray.length === 0) {
+        // 初次循环默认push 到root节点
+        titleArray.push(arr);
+      } else {
+        if (titleArray[titleArray.length - 1].code.length === arr.code.length) {
+          titleArray.push(arr)
+        } else if (
+          titleArray[titleArray.length - 1].code.length === arr.code.length - 3
+        ) {
+          if (
+            !titleArray[titleArray.length - 1].hasOwnProperty('children')
+          ) {
+            titleArray[titleArray.length - 1].children = []
+          }
+          titleArray[titleArray.length - 1].children.push(arr)
+        } else if (
+          titleArray[titleArray.length - 1].code.length === arr.code.length - 6
+        ) {
+          if (!titleArray[titleArray.length - 1].children[
+            titleArray[titleArray.length - 1].children.length - 1
+          ].hasOwnProperty('children')) {
+            titleArray[titleArray.length - 1].children[
+              titleArray[titleArray.length - 1].children.length - 1
+            ].children = []
+          }
+          // 最后一个元素的children，
+          titleArray[titleArray.length - 1].children[
+            titleArray[titleArray.length - 1].children.length - 1
+          ].children.push(arr)
+        }
+      }
+    })
+    return titleArray
+  } else {
+    newData.forEach(function (arr) {
+      if (titleArray.length === 0) {
+        titleArray.push(arr)
+      } else {
+        if (
+          titleArray[titleArray.length - 1].id.length === arr.id.length
+        ) {
+          titleArray.push(arr)
+        } else if (
+          titleArray[titleArray.length - 1].id.length === arr.id.length - 2
+        ) {
+          if (
+            !titleArray[titleArray.length - 1].hasOwnProperty('children')
+          ) {
+            titleArray[titleArray.length - 1].children = []
+          }
+          titleArray[0].children.push(arr)
+        }
+      }
+    })
+    return titleArray
+  }
+}
+
+
+
 const Dom = {
   domFunc,
   sleep,
@@ -116,6 +192,7 @@ const Dom = {
   showDomFunc,
   addEvent,
   isDomFunc,
+  coverDataToTree,
 };
 
 export default Dom;
