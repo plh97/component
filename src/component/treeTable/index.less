@@ -75,12 +75,14 @@
                 }
                 .tree-container {
                     flex: 1;
-                    overflow-y: auto;
+                    overflow-y: scroll;
                     user-select: none;
                     display: inline-flex;
                     flex-direction: column;
 
                     .tree-container-list {
+                        min-height: 30px;
+                        overflow-y: hidden;
                         padding-left: 10px;
                         display: flex;
                         flex-shrink: 0;

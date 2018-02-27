@@ -107,10 +107,10 @@ const putDataToSecTable = async (data) => {
     div.className = styles.tb;
     div.dataset.index = i;
     const html = `
-            <input class="${styles.select}" type="checkbox"/>
-            ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
-            <span class="${styles.name}">${row.name}</span>
-        `;
+        <input class="${styles.select}" type="checkbox"/>
+        ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
+        <span class="${styles.name}">${row.name}</span>
+    `;
     div.innerHTML = html;
     div.id = `sec${i}`;
     div.dataset.type = row.type;
@@ -148,7 +148,7 @@ const eventProxy = (args) => {
         });
       }
       // toggle show the tree list in first table
-      let openList = document.querySelectorAll('.tree-container .icon-unfold');
+      let openList = document.querySelectorAll(`.${styles['tree-container']} .icon-unfold`);
       openList = Array.prototype.slice.call(openList);
       openList.forEach((dom) => {
         const isShowAllInPath = isDomFunc({
@@ -202,7 +202,7 @@ const eventProxy = (args) => {
           if (input.parentElement.style.display !== 'none') {
             input.parentElement.remove();
             inputs = document.querySelectorAll(`.${styles['sec-table']} input`);
-            inputs.forEach(inputDom => inputDom.checked = false );
+            inputs.forEach(inputDom => inputDom.checked = false);
           }
         });
       }
@@ -378,7 +378,7 @@ const treeTable = async (args) => {
                         <label for="select-reverse">反选</label>
                       ` : ''}
                     </span>
-                    ${data.content[0].code ? `<span class="${styles.num}">编号</span>` : ''}
+                    ${data.content[0] ? (data.content[0].code ? `<span class="${styles.num}">编号</span>` : '') : ""}
                     <span class="${styles.name}">名称</span>
                   </div>
                   <div class="${styles['tb-container']}" id="sec-table-tb-container"></div>
@@ -387,7 +387,7 @@ const treeTable = async (args) => {
                   <div class="${styles.th}">
                     <span class="${styles.select}">
                     </span>
-                    ${data.content[0].code ? `<span class="${styles.num}">编号</span>` : ''}
+                    ${data.content[0] ? (data.content[0].code ? `<span class="${styles.num}">编号</span>` : '') : ""}
                     <span class="${styles.name}">名称</span>
                     <span class="${styles.empty}">
                       ${Icon({ type: 'trash' })}

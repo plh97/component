@@ -15,11 +15,11 @@
     user-select: none;
 
     .component-tree {
-        height: 100%;
+        height: 59%;
         display: flex;
         position: relative;
         padding: 25px 43px 60px;
-        max-height: 450px;
+        min-height: 580px;
         border-radius: 6px;
         box-sizing: border-box;
         flex-direction: column;
@@ -59,13 +59,15 @@
             flex-direction: row;
         }
         .component-tree-container {
-            overflow-y: hidden;
+            overflow-y: auto;
             display: inline-flex;
             flex-direction: column;
             flex: 1;
 
             .component-tree-container-list {
                 padding-left: 10px;
+                overflow-y: hidden;
+                min-height: 30px;
                 display: flex;
                 flex-direction: column;
 

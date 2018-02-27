@@ -146,7 +146,7 @@ const eventProxy = (args) => {
             dom: listContainer,
             animationDuration: '0.3s',
             animationFillMode: 'forwards',
-            animationName: [styles.slidein, styles.slideout],
+            animationName: [styles.slidein1, styles.slideout1],
           });
         }
       });
