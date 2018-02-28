@@ -18,7 +18,8 @@
         height: 59%;
         display: flex;
         position: relative;
-        padding: 25px 43px 60px;
+        min-width: 300px;
+        padding: 25px 43px 70px;
         min-height: 580px;
         border-radius: 6px;
         box-sizing: border-box;
@@ -65,6 +66,8 @@
             flex: 1;
 
             .component-tree-container-list {
+                height: 0;
+                flex-shrink: 0;
                 padding-left: 10px;
                 overflow-y: hidden;
                 min-height: 30px;

@@ -9,6 +9,7 @@ const domFunc = (e) => {
 };
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const isNumeric = n => !isNaN(parseFloat(n)) && isFinite(n);
 
 // 添加Array属性
 const addArrProp = e => Array.prototype.slice.call(e);
@@ -19,9 +20,9 @@ const isDomInPathFunc = (args) => {
     selector,
   } = args;
   for (let i = 0; i < path.length; i++) {
-    if (path[i] == document.querySelector(selector)) {
+    if (path[i] === document.querySelector(selector)) {
       return path[i];
-    } else if (path[i] == document.body) {
+    } else if (path[i] === document.body) {
       return false;
     }
   }
@@ -35,9 +36,9 @@ const isDomFunc = (args) => {
     dom,
   } = args;
   for (let i = 0; i < path.length; i++) {
-    if (path[i] == dom) {
+    if (path[i] === dom) {
       return dom;
-    } else if (path[i] == document.body) {
+    } else if (path[i] === document.body) {
       return false;
     }
   }
@@ -51,7 +52,7 @@ const domToggleAnimation = (args) => {
     animationFillMode,
   } = args;
   if (
-    dom.style.animationName == animationName[1]
+    dom.style.animationName === animationName[1]
   ) {
     dom.style.animationDuration = animationDuration;
     dom.style.animationFillMode = animationFillMode;
@@ -69,10 +70,10 @@ const showDomFunc = (args) => {
     allDom,
     showDom,
   } = args;
-  allDom.map((dom) => {
+  allDom.forEach((dom) => {
     dom.style.display = 'none';
   });
-  showDom.map((dom) => {
+  showDom.forEach((dom) => {
     dom.style.display = 'flex';
   });
 };
@@ -89,7 +90,7 @@ const addEvent = (e) => {
 
 // 字符串转Boolean
 const transformStringToBool = (e) => {
-  if (e == 'true') {
+  if (e === 'true') {
     return true;
   }
   return false;
@@ -97,20 +98,14 @@ const transformStringToBool = (e) => {
 
 // 将阿拉伯数字转英文 first . second . third
 const numToEng = (e) => {
-  if (e == 1) {
+  if (e === 1) {
     return 'first';
-  } else if (e == 2) {
+  } else if (e === 2) {
     return 'second';
-  } else if (e == 3) {
+  } else if (e === 3) {
     return 'third';
   }
 };
-
-
-
-
-
-
 
 
 const coverDataToTree = function (data) {
@@ -119,67 +114,76 @@ const coverDataToTree = function (data) {
     .map(arr => arr.id)
     .sort()
     .map(id => data.find(list => list.id === id));
-  if (data[0].hasOwnProperty('code')) {
-    newData.forEach((arr) => {
-      // treetable
-      if (titleArray.length === 0) {
-        // 初次循环默认push 到root节点
-        titleArray.push(arr);
-      } else {
-        if (titleArray[titleArray.length - 1].code.length === arr.code.length) {
-          titleArray.push(arr)
-        } else if (
-          titleArray[titleArray.length - 1].code.length === arr.code.length - 3
-        ) {
-          if (
-            !titleArray[titleArray.length - 1].hasOwnProperty('children')
+  const lenDiff = data
+    .map(arr=>arr.id.length)
+    .sort()
+  const unique = arr => Array.from(new Set(arr));
+    
+  if(unique(lenDiff).length>1){
+    let _lenDiff_ = unique(lenDiff)[1] - unique(lenDiff)[0];
+    if (data[0].hasOwnProperty('code')) {
+      newData.forEach((arr) => {
+        // treetable
+        if (titleArray.length === 0) {
+          // 初次循环默认push 到root节点
+          titleArray.push(arr);
+        } else {
+          if (titleArray[titleArray.length - 1].code.length === arr.code.length) {
+            titleArray.push(arr)
+          } else if (
+            titleArray[titleArray.length - 1].code.length === arr.code.length - _lenDiff_
           ) {
-            titleArray[titleArray.length - 1].children = []
-          }
-          titleArray[titleArray.length - 1].children.push(arr)
-        } else if (
-          titleArray[titleArray.length - 1].code.length === arr.code.length - 6
-        ) {
-          if (!titleArray[titleArray.length - 1].children[
-            titleArray[titleArray.length - 1].children.length - 1
-          ].hasOwnProperty('children')) {
+            if (
+              !titleArray[titleArray.length - 1].hasOwnProperty('children')
+            ) {
+              titleArray[titleArray.length - 1].children = []
+            }
+            titleArray[titleArray.length - 1].children.push(arr)
+          } else if (
+            titleArray[titleArray.length - 1].code.length === arr.code.length - _lenDiff_*2
+          ) {
+            if (!titleArray[titleArray.length - 1].children[
+              titleArray[titleArray.length - 1].children.length - 1
+            ].hasOwnProperty('children')) {
+              titleArray[titleArray.length - 1].children[
+                titleArray[titleArray.length - 1].children.length - 1
+              ].children = []
+            }
+            // 最后一个元素的children，
             titleArray[titleArray.length - 1].children[
               titleArray[titleArray.length - 1].children.length - 1
-            ].children = []
+            ].children.push(arr)
           }
-          // 最后一个元素的children，
-          titleArray[titleArray.length - 1].children[
-            titleArray[titleArray.length - 1].children.length - 1
-          ].children.push(arr)
         }
-      }
-    })
-    return titleArray
-  } else {
-    newData.forEach(function (arr) {
-      if (titleArray.length === 0) {
-        titleArray.push(arr)
-      } else {
-        if (
-          titleArray[titleArray.length - 1].id.length === arr.id.length
-        ) {
+      })
+      return titleArray
+    } else {
+      newData.forEach(function (arr) {
+        if (titleArray.length === 0) {
           titleArray.push(arr)
-        } else if (
-          titleArray[titleArray.length - 1].id.length === arr.id.length - 2
-        ) {
+        } else {
           if (
-            !titleArray[titleArray.length - 1].hasOwnProperty('children')
+            titleArray[titleArray.length - 1].id.length === arr.id.length
           ) {
-            titleArray[titleArray.length - 1].children = []
+            titleArray.push(arr)
+          } else if (
+            titleArray[titleArray.length - 1].id.length === arr.id.length - _lenDiff_
+          ) {
+            if (
+              !titleArray[titleArray.length - 1].hasOwnProperty('children')
+            ) {
+              titleArray[titleArray.length - 1].children = []
+            }
+            titleArray[titleArray.length - 1].children.push(arr)
           }
-          titleArray[0].children.push(arr)
         }
-      }
-    })
-    return titleArray
+      })
+      return titleArray
+    }
+  } else {
+    return data
   }
 }
-
 
 
 const Dom = {
@@ -193,6 +197,7 @@ const Dom = {
   addEvent,
   isDomFunc,
   coverDataToTree,
+  isNumeric,
 };
 
 export default Dom;

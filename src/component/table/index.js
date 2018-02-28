@@ -10,6 +10,7 @@ const {
   isDomFunc,
   addArrProp,
   isDomInPathFunc,
+  isNumeric,
 } = Dom;
 
 const selectBeforeFunc = (args) => {
@@ -40,6 +41,7 @@ const btnAddevent = (args) => {
         let doms = document.querySelectorAll('#thr-table-tb-container input');
         doms = Array.prototype.slice.call(doms);
         doms = doms.map(activeDom => data[activeDom.parentElement.dataset.index]);
+        console.log('输出的数据：',doms);
         next(doms);
         mask.remove();
         domFunc({
@@ -64,7 +66,6 @@ const btnAddevent = (args) => {
     }
   });
 };
-
 
 const putDataToSecTable = async (data) => {
   // 将数据传入data之前先清空 container
@@ -93,6 +94,7 @@ const putDataToSecTable = async (data) => {
 
 const eventProxy = (args) => {
   const { event, select_model } = args;
+  const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`)
   if (event === 'click') {
     const handleAllEvent = (e) => {
       // empty
@@ -134,7 +136,7 @@ const eventProxy = (args) => {
         }
       });
     };
-    document.querySelector(`.${styles['component-mask']}`).addEventListener(event, handleAllEvent, false);
+    domAddEvent.addEventListener(event, handleAllEvent, false);
   }
   if (event === 'change') {
     const handleAllEvent = (e) => {
@@ -167,7 +169,27 @@ const eventProxy = (args) => {
         });
       }
     };
-    document.querySelector(`.${styles['component-mask']}`).addEventListener(event, handleAllEvent, false);
+    domAddEvent.addEventListener(event, handleAllEvent, false);
+  } else if (event === 'keyup') {
+    const handleAllEvent = (e) => {
+      let searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+      const allList = document.querySelector('#sec-table-tb-container').children;
+      let filterList = addArrProp(allList).filter(list=>{
+        if(isNumeric(e.target.value)){
+          console.log('num');
+          var keyValue = list.querySelector(`.${styles.num}`).innerText;
+          var regex = new RegExp(`^${searchValue}`);
+        }else{
+          console.log('name');
+          var keyValue = list.querySelector(`.${styles.name}`).innerText;
+          var regex = new RegExp(`${searchValue}`);
+        }
+        return keyValue.match(regex)
+      })
+      addArrProp(allList).forEach(dom=>dom.style.display="none")
+      addArrProp(filterList).forEach(dom=>dom.style.display="flex")
+    };
+    domAddEvent.addEventListener(event, handleAllEvent, false);
   }
 };
 
@@ -219,6 +241,7 @@ const Table = async (args) => {
   if (ifselect === undefined) {
     ifselect = true;
   }
+  console.log('拿到的数据：', data);
   const mask = document.createElement('div');
   mask.className = styles['component-mask'];
   mask.innerHTML = `
@@ -297,6 +320,10 @@ const Table = async (args) => {
   });
   await eventProxy({
     event: 'change',
+  });
+  await eventProxy({
+    event: 'keyup',
+    domAddEvent: document.querySelector("#search")
   });
   ifselect && selectBeforeFunc({
     beforeSelect,

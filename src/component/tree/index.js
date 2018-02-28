@@ -33,16 +33,14 @@ const btnAddevent = (args) => {
     btns,
     mask,
     next,
-    data,
   } = args;
   btns.forEach((dom) => {
     if (dom.classList.contains('confirm')) {
       dom.addEventListener('click', () => {
         let doms = document.querySelectorAll(`.${styles.active}`);
         doms = Array.prototype.slice.call(doms);
-        doms = doms.map((activeDom) => {
-          return JSON.parse(activeDom.dataset.json);
-        });
+        doms = doms.map((activeDom) => JSON.parse(activeDom.dataset.json) );
+        console.log('输出的数据：',doms);
         next(doms);
         mask.remove();
         domFunc({
@@ -140,14 +138,14 @@ const eventProxy = (args) => {
             dom,
             animationDuration: '0.3s',
             animationFillMode: 'forwards',
-            animationName: [styles['rotate-90'], styles.rotate90],
+            animationName: [styles.rotate90, styles['rotate-90']],
           });
           const listContainer = isShowAllInPath.parentElement;
           domToggleAnimation({
             dom: listContainer,
             animationDuration: '0.3s',
             animationFillMode: 'forwards',
-            animationName: [styles.slidein1, styles.slideout1],
+            animationName: [styles.slideout1, styles.slidein1],
           });
         }
       });
@@ -196,9 +194,7 @@ const Tree = async (args) => {
     beforeSelect,
   } = args;
   let { ifselect } = args;
-  console.log(
-    coverDataToTree(data)
-  );
+  console.log('拿到的数据：',data);
   ifselect == undefined ? (ifselect = true) : '';
   const mask = document.createElement('div');
   mask.className = styles['component-mask'];
@@ -227,7 +223,7 @@ const Tree = async (args) => {
   document.body.appendChild(mask);
   await sleep(300);
   await putDataToFirTable({
-    data,
+    data: coverDataToTree(data),
     container: document.querySelector(`.${styles['component-tree-container']}`),
   });
   ifselect && selectBeforeFunc({
