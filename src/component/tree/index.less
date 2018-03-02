@@ -15,17 +15,19 @@
     user-select: none;
 
     .component-tree {
-        height: 100%;
+        height: 59%;
         display: flex;
-        padding: 25px 43px;
-        max-height: 450px;
+        position: relative;
+        min-width: 300px;
+        padding: 25px 43px 70px;
+        min-height: 580px;
         border-radius: 6px;
         box-sizing: border-box;
         flex-direction: column;
         background-color: #fff;
         border:1px solid #333;
         animation-fill-mode: forwards;
-        justify-content: space-between;
+        justify-content: flex-start;
         animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);
 
         svg {
@@ -57,19 +59,50 @@
             align-items: center;
             flex-direction: row;
         }
+        .component-tree-container > ol {
+            & > li:before{
+                content: '★';
+                font-size: 1.6em;
+                line-height: 30px;
+                height: 30px;
+                width: 1.5em;
+                text-align: center;
+            }
+            & > ol > li:before {
+                content: '◆';
+                font-size: 2.3em;
+                line-height: 30px;
+                height: 30px;
+                width: 1em;
+                text-align: center;
+            }
+            & > ol > ol > li:before {
+                content: '⚫';
+                height: 30px;
+                line-height: 30px;
+                width: 2.2em;
+                text-align: center;
+            }
+        } 
         .component-tree-container {
-            overflow-y: hidden;
+            flex: 1;
+            overflow-y: auto;
+            user-select: none;
             display: inline-flex;
             flex-direction: column;
-            flex: 1;
 
-            .component-tree-container-list {
-                padding-left: 10px;
+            ol {
                 display: flex;
+                flex-shrink: 0;
+                min-height: 30px;
+                overflow-y: hidden;
+                padding-left: 10px;
                 flex-direction: column;
+                margin: 0;
 
-                .component-tree-container-list-div {
+                li {
                     cursor: pointer;
+                    flex-shrink: 0;
                     overflow-x: hidden;
                     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
                     min-height: 30px;
@@ -83,14 +116,14 @@
                         font-weight: 500;
                         font-size: 15px;
                     }
-                    .icon-wujiaoxing {
-                        font-size: 12px;
-                        font-weight: 500;
-                        font-size: 14px;
-                    }
+                    // .icon-wujiaoxing {
+                    //     font-size: 12px;
+                    //     font-weight: 500;
+                    //     font-size: 14px;
+                    // }
                     &.active {
                         transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
-                        background-color: @lightBlue8;
+                        background-color: @daocheng-red;
                         color: #fff;
                     }
                 }
@@ -98,11 +131,14 @@
         }
 
         .btn-group {
-            display: inline-flex;
-            justify-content: space-between;
-            flex-direction: row;
-            align-items: flex-end;
+            width: 75%;
+            bottom: 5%;
             height: 45px;
+            display: inline-flex;
+            position: absolute;
+            align-items: flex-end;
+            flex-direction: row;
+            justify-content: space-between;
         }
     }
 }

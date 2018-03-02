@@ -16,7 +16,7 @@
 @grey2: #eeeeee;
 @grey3: #e0e0e0;
 @grey4: #bdbdbd;
-@grey5: #9e9e9e;
+@grey5: #999999;
 @grey6: #757575;
 @grey7: #616161;
 @grey8: #424242;
@@ -100,5 +100,59 @@
   }
   to {
 		transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate90 {
+  from {
+		transform: rotate(0deg);
+  }
+  to {
+		transform: rotate(-90deg);
+	}
+}
+
+@keyframes rotate-90 {
+  from {
+		transform: rotate(-90deg);
+  }
+  to {
+		transform: rotate(0deg);
+  }
+}
+
+@keyframes slideout {
+  from {
+    max-height: 100%;
+  }
+  to {
+    max-height: 0%;
+  }
+}
+
+@keyframes slidein {
+  from {
+    max-height: 0%;
+  }
+  to {
+    max-height: 100%;
+  }
+}
+
+@keyframes slideout1 {
+  from {
+    height: 100%;
+  }
+  to {
+    height: 0%;
+  }
+}
+
+@keyframes slidein1 {
+  from {
+    height: 0%;
+  }
+  to {
+    height: auto;
   }
 }

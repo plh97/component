@@ -1,16 +1,16 @@
 const R = require('ramda');
 
 
-let compose = (x,y) => g => x(y(g))
+const compose = (x, y) => g => x(y(g));
 
-let add2 = R.add(2);
+const add2 = R.add(2);
 
-var hi = e => e+"hi~"
+const hi = e => `${e}hi~`;
 
 
-// var add1 = 
-var last = compose(head, reverse);
+// var add1 =
+const last = compose(head, reverse);
 
-let yourself = R.curry(addOne,square)
+const yourself = R.curry(addOne, square);
 
 module.exports = yourself;

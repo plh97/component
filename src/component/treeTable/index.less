@@ -1,4 +1,5 @@
 @import './assets/common/@common.less';
+
 .component-mask {
     top: 0;
     left: 0;
@@ -66,24 +67,60 @@
                     height: 30px;
                     cursor: pointer;
                     display: inline-flex;
-                    padding: 0px 0px 0px 10px;
+                    padding: 0px 8px;
                     overflow-y: hidden;
                     font-weight: bold;
                     align-items: center;
                     flex-direction: row;
                 }
+
+                .tree-container > ol {
+                    & > li:before{
+                        content: '★';
+                        font-size: 1.6em;    
+                        height: 30px;
+                        line-height: 30px;
+                        width: 1.5em;
+                        text-align: center;
+                    }
+                    & > ol > li:before {
+                        content: '◆';
+                        font-size: 2.3em;
+                        height: 30px;
+                        line-height: 30px;
+                        width: 1em;
+                        text-align: center;
+                    }
+                    & > ol > ol > li:before {
+                        content: '⚫';
+                        width: 2.2em;
+                        height: 30px;
+                        line-height: 30px;
+                        text-align: center;
+                    }
+                } 
                 .tree-container {
+                    flex: 1;
                     overflow-y: hidden;
+                    user-select: none;
                     display: inline-flex;
                     flex-direction: column;
-                    flex: 1;
+                    padding-right: 8px;
+                    &:hover {
+                        padding-right: 0px;
+                        overflow-y: scroll;
+                    }
 
-                    .tree-container-list {
-                        padding-left: 10px;
+                    ol {
                         display: flex;
+                        flex-shrink: 0;
+                        min-height: 30px;
+                        overflow-y: hidden;
+                        padding-left: 10px;
                         flex-direction: column;
+                        margin: 0;
 
-                        .tree-container-list-div {
+                        li {
                             cursor: pointer;
                             overflow-x: hidden;
                             transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -93,7 +130,7 @@
                             align-items: center;
                             flex-direction: row;
                             display: inline-flex;
-    
+
                             .text-container {
                                 font-weight: 500;
                                 font-size: 15px;
@@ -104,7 +141,7 @@
                                 font-size: 14px;
                             }
                             &.active {
-                                background-color: @lightBlue8;
+                                background-color: @daocheng-red;
                                 color: #fff;
                             }
                         }
@@ -180,7 +217,13 @@
                     flex-direction: row;
                     justify-content: space-around;
                     .sec-table , .thr-table {
-                        flex: 1;
+                        user-select: none;
+                        &.sec-table {
+                            flex: 1 1 500px;
+                        }
+                        &.thr-table {
+                            flex: 1 10 500px;
+                        }
                         margin: 10px;
                         border: 2px solid #ccc;
                         border-radius: 5px;
@@ -210,9 +253,6 @@
                             }
                             &.tb{
                                 height: 30px;
-                                &.tb:nth-child(even) {
-                                    background-color: #f9f9f9;
-                                }
                             }
                             &.th{
                                 height: 40px;
@@ -223,9 +263,23 @@
                         }
                         .tb-container {
                             height: calc(~'100% - 50px');
-                            overflow-y: scroll;
+                            background-image: repeating-linear-gradient(to bottom,
+                            transparent,
+                            transparent 30px, #f9f9f9 30px, #f9f9f9 60px);
+                            overflow: hidden;
+                            padding-right: 8px;
+                            &:hover {
+                                padding-right: 0;
+                                overflow-y: scroll;
+                            }
+                            input {
+                                outline: none;
+                            }
+                            label {
+                                margin-bottom: 0;
+                                font-weight: 500;
+                            }
                         }
-                        
                     }
                 }
     
@@ -238,11 +292,13 @@
                 }
             }
             .empty {
-                position: absolute;
-                color: rgb(152,14,12);
-                font-weight: bold;
                 right: 15px;
                 cursor: pointer;
+                font-weight: bold;
+                position: absolute;
+                align-items: center;
+                display: inline-flex;
+                color: rgb(152,14,12);
                 .icon{
                     font-size: 18px !important;
                 }
