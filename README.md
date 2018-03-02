@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/pengliheng/component.svg?branch=master)](https://travis-ci.org/pengliheng/chatroom)
+[![author](https://img.shields.io/badge/author-peng-blue.svg)](https://www.penlh.com)
+[![Node.js Version](https://img.shields.io/badge/node.js-9.2.0-blue.svg)](http://nodejs.org/download)
+![Size](https://github-size-badge.herokuapp.com/pengliheng/chatroom.svg)
+
+
 ## usage
 [效果预览](./test/index.html)
 
