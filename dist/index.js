@@ -48,7 +48,7 @@ var css$1 = "@-webkit-keyframes index_slide-in__3SL-6 {\n  from {\n    opacity: 
 var styles = { "component-mask": "index_component-mask__2seGY", "component-model": "index_component-model__2Vf6y", "scale-top": "index_scale-top__2KWTt", "component-model-header": "index_component-model-header__1pOwh", "title": "index_title__12_Xu", "btn-close": "index_btn-close__3E-M4", "component-model-body": "index_component-model-body__25-2f", "component-model-footer": "index_component-model-footer__15YVN", "slide-in": "index_slide-in__3SL-6", "shake": "index_shake__-HmC7", "mask-show": "index_mask-show__ZUDR5", "spin": "index_spin__1g9Ol", "rotate90": "index_rotate90__1zK1n", "rotate-90": "index_rotate-90__2mwEk", "slideout": "index_slideout__1jGAW", "slidein": "index_slidein__1VCb3", "slideout1": "index_slideout1__1tMFD", "slidein1": "index_slidein1__2GSFn" };
 __$$styleInject(css$1);
 
-var css$2 = "@-webkit-keyframes index_slide-in__1rNqg {\n  from {\n    opacity: 0;\n    top: -1rem;\n  }\n  to {\n    opacity: 1;\n    top: 0.2rem;\n  }\n}\n@keyframes index_slide-in__1rNqg {\n  from {\n    opacity: 0;\n    top: -1rem;\n  }\n  to {\n    opacity: 1;\n    top: 0.2rem;\n  }\n}\n@-webkit-keyframes index_shake__3FRHz {\n  10%,\n  90% {\n    -webkit-transform: translate3d(-0.02rem, 0, 0);\n            transform: translate3d(-0.02rem, 0, 0);\n  }\n  20%,\n  80% {\n    -webkit-transform: translate3d(0.04rem, 0, 0);\n            transform: translate3d(0.04rem, 0, 0);\n  }\n  30%,\n  50%,\n  70% {\n    -webkit-transform: translate3d(-0.08rem, 0, 0);\n            transform: translate3d(-0.08rem, 0, 0);\n  }\n  40%,\n  60% {\n    -webkit-transform: translate3d(0.08rem, 0, 0);\n            transform: translate3d(0.08rem, 0, 0);\n  }\n}\n@keyframes index_shake__3FRHz {\n  10%,\n  90% {\n    -webkit-transform: translate3d(-0.02rem, 0, 0);\n            transform: translate3d(-0.02rem, 0, 0);\n  }\n  20%,\n  80% {\n    -webkit-transform: translate3d(0.04rem, 0, 0);\n            transform: translate3d(0.04rem, 0, 0);\n  }\n  30%,\n  50%,\n  70% {\n    -webkit-transform: translate3d(-0.08rem, 0, 0);\n            transform: translate3d(-0.08rem, 0, 0);\n  }\n  40%,\n  60% {\n    -webkit-transform: translate3d(0.08rem, 0, 0);\n            transform: translate3d(0.08rem, 0, 0);\n  }\n}\n@-webkit-keyframes index_scale-top__2mWQ9 {\n  from {\n    -webkit-transform: scale(0.5);\n            transform: scale(0.5);\n  }\n  to {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@keyframes index_scale-top__2mWQ9 {\n  from {\n    -webkit-transform: scale(0.5);\n            transform: scale(0.5);\n  }\n  to {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@-webkit-keyframes index_mask-show__2uwVD {\n  from {\n    background-color: #000000;\n    opacity: 0;\n  }\n  to {\n    background-color: #000000;\n    opacity: 0.6;\n  }\n}\n@keyframes index_mask-show__2uwVD {\n  from {\n    background-color: #000000;\n    opacity: 0;\n  }\n  to {\n    background-color: #000000;\n    opacity: 0.6;\n  }\n}\n@-webkit-keyframes index_spin__3-DAt {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n@keyframes index_spin__3-DAt {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n@-webkit-keyframes index_rotate90__1UXaA {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  to {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n  }\n}\n@keyframes index_rotate90__1UXaA {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  to {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n  }\n}\n@-webkit-keyframes index_rotate-90__1UEvd {\n  from {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n  }\n  to {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n}\n@keyframes index_rotate-90__1UEvd {\n  from {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n  }\n  to {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n}\n@-webkit-keyframes index_slideout__3d2JT {\n  from {\n    max-height: 100%;\n  }\n  to {\n    max-height: 0%;\n  }\n}\n@keyframes index_slideout__3d2JT {\n  from {\n    max-height: 100%;\n  }\n  to {\n    max-height: 0%;\n  }\n}\n@-webkit-keyframes index_slidein__3_Ovy {\n  from {\n    max-height: 0%;\n  }\n  to {\n    max-height: 100%;\n  }\n}\n@keyframes index_slidein__3_Ovy {\n  from {\n    max-height: 0%;\n  }\n  to {\n    max-height: 100%;\n  }\n}\n@-webkit-keyframes index_slideout1__2LSs3 {\n  from {\n    height: 100%;\n  }\n  to {\n    height: 0%;\n  }\n}\n@keyframes index_slideout1__2LSs3 {\n  from {\n    height: 100%;\n  }\n  to {\n    height: 0%;\n  }\n}\n@-webkit-keyframes index_slidein1__3Bt13 {\n  from {\n    height: 0%;\n  }\n  to {\n    height: auto;\n  }\n}\n@keyframes index_slidein1__3Bt13 {\n  from {\n    height: 0%;\n  }\n  to {\n    height: auto;\n  }\n}\n.index_component-btn__RoVle {\n  outline: none;\n  cursor: pointer;\n  -ms-touch-action: manipulation;\n      touch-action: manipulation;\n  font-weight: 400;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  white-space: nowrap;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  background-color: #fff;\n  border: 1px solid #e0e0e0;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n@media screen and (min-width: 1300px) {\n  .index_component-btn__RoVle {\n    font-size: 14px;\n    height: 34px;\n    border-radius: 4px;\n    padding: 0 15px;\n  }\n}\n@media screen and (max-width: 1300px) {\n  .index_component-btn__RoVle {\n    height: 1rem;\n    font-size: 32px;\n    border-radius: 0.1rem;\n    padding: 0 0.5rem;\n  }\n  [data-dpr=\"1\"] .index_component-btn__RoVle {\n    font-size: 16px;\n  }\n  [data-dpr=\"3\"] .index_component-btn__RoVle {\n    font-size: 48px;\n  }\n}\n.index_component-btn__RoVle:hover {\n  color: #29b6f6;\n  border: 1px solid #29b6f6;\n}\n.index_component-btn__RoVle:active {\n  color: #0277bd;\n  border: 1px solid #0277bd;\n}\n.index_component-btn__RoVle.index_btn-primary__1LS5Y {\n  color: #fff;\n  border: 1px solid #039be5;\n  background-color: #039be5;\n}\n.index_component-btn__RoVle.index_btn-primary__1LS5Y:hover {\n  background-color: #29b6f6;\n  border: 1px solid #29b6f6;\n}\n.index_component-btn__RoVle.index_btn-primary__1LS5Y:active {\n  background-color: #0277bd;\n  border: 1px solid #0277bd;\n}\n.index_component-btn__RoVle.index_btn-danger__3IKAG {\n  color: #fff;\n  border: 1px solid #ff4d4f;\n  background-color: #ff4d4f;\n}\n.index_component-btn__RoVle.index_btn-danger__3IKAG:hover {\n  background-color: #ff737e;\n  border: 1px solid #ff737e;\n}\n.index_component-btn__RoVle.index_btn-danger__3IKAG:active {\n  background-color: #ff1c2f;\n  border: 1px solid #ff1c2f;\n}\n.index_component-btn__RoVle.index_daocheng-confirm__ESOEO {\n  color: #ca1523;\n  border: 1px solid #ca1523;\n  background-color: #fff;\n}\n.index_component-btn__RoVle.index_daocheng-confirm__ESOEO:hover {\n  color: #fff;\n  background-color: #ca1523;\n  border: 1px solid #ca1523;\n}\n.index_component-btn__RoVle.index_daocheng-cancel__I5SJr {\n  color: #999999;\n  border: 1px solid #999999;\n  background-color: #fff;\n}\n.index_component-btn__RoVle.index_daocheng-cancel__I5SJr:hover {\n  color: #fff;\n  background-color: #999999;\n  border: 1px solid #999999;\n}\n";
+var css$2 = "@-webkit-keyframes index_slide-in__1rNqg {\n  from {\n    opacity: 0;\n    top: -1rem;\n  }\n  to {\n    opacity: 1;\n    top: 0.2rem;\n  }\n}\n@keyframes index_slide-in__1rNqg {\n  from {\n    opacity: 0;\n    top: -1rem;\n  }\n  to {\n    opacity: 1;\n    top: 0.2rem;\n  }\n}\n@-webkit-keyframes index_shake__3FRHz {\n  10%,\n  90% {\n    -webkit-transform: translate3d(-0.02rem, 0, 0);\n            transform: translate3d(-0.02rem, 0, 0);\n  }\n  20%,\n  80% {\n    -webkit-transform: translate3d(0.04rem, 0, 0);\n            transform: translate3d(0.04rem, 0, 0);\n  }\n  30%,\n  50%,\n  70% {\n    -webkit-transform: translate3d(-0.08rem, 0, 0);\n            transform: translate3d(-0.08rem, 0, 0);\n  }\n  40%,\n  60% {\n    -webkit-transform: translate3d(0.08rem, 0, 0);\n            transform: translate3d(0.08rem, 0, 0);\n  }\n}\n@keyframes index_shake__3FRHz {\n  10%,\n  90% {\n    -webkit-transform: translate3d(-0.02rem, 0, 0);\n            transform: translate3d(-0.02rem, 0, 0);\n  }\n  20%,\n  80% {\n    -webkit-transform: translate3d(0.04rem, 0, 0);\n            transform: translate3d(0.04rem, 0, 0);\n  }\n  30%,\n  50%,\n  70% {\n    -webkit-transform: translate3d(-0.08rem, 0, 0);\n            transform: translate3d(-0.08rem, 0, 0);\n  }\n  40%,\n  60% {\n    -webkit-transform: translate3d(0.08rem, 0, 0);\n            transform: translate3d(0.08rem, 0, 0);\n  }\n}\n@-webkit-keyframes index_scale-top__2mWQ9 {\n  from {\n    -webkit-transform: scale(0.5);\n            transform: scale(0.5);\n  }\n  to {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@keyframes index_scale-top__2mWQ9 {\n  from {\n    -webkit-transform: scale(0.5);\n            transform: scale(0.5);\n  }\n  to {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@-webkit-keyframes index_mask-show__2uwVD {\n  from {\n    background-color: #000000;\n    opacity: 0;\n  }\n  to {\n    background-color: #000000;\n    opacity: 0.6;\n  }\n}\n@keyframes index_mask-show__2uwVD {\n  from {\n    background-color: #000000;\n    opacity: 0;\n  }\n  to {\n    background-color: #000000;\n    opacity: 0.6;\n  }\n}\n@-webkit-keyframes index_spin__3-DAt {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n@keyframes index_spin__3-DAt {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n@-webkit-keyframes index_rotate90__1UXaA {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  to {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n  }\n}\n@keyframes index_rotate90__1UXaA {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  to {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n  }\n}\n@-webkit-keyframes index_rotate-90__1UEvd {\n  from {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n  }\n  to {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n}\n@keyframes index_rotate-90__1UEvd {\n  from {\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n  }\n  to {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n}\n@-webkit-keyframes index_slideout__3d2JT {\n  from {\n    max-height: 100%;\n  }\n  to {\n    max-height: 0%;\n  }\n}\n@keyframes index_slideout__3d2JT {\n  from {\n    max-height: 100%;\n  }\n  to {\n    max-height: 0%;\n  }\n}\n@-webkit-keyframes index_slidein__3_Ovy {\n  from {\n    max-height: 0%;\n  }\n  to {\n    max-height: 100%;\n  }\n}\n@keyframes index_slidein__3_Ovy {\n  from {\n    max-height: 0%;\n  }\n  to {\n    max-height: 100%;\n  }\n}\n@-webkit-keyframes index_slideout1__2LSs3 {\n  from {\n    height: 100%;\n  }\n  to {\n    height: 0%;\n  }\n}\n@keyframes index_slideout1__2LSs3 {\n  from {\n    height: 100%;\n  }\n  to {\n    height: 0%;\n  }\n}\n@-webkit-keyframes index_slidein1__3Bt13 {\n  from {\n    height: 0%;\n  }\n  to {\n    height: auto;\n  }\n}\n@keyframes index_slidein1__3Bt13 {\n  from {\n    height: 0%;\n  }\n  to {\n    height: auto;\n  }\n}\n.index_component-btn__RoVle {\n  outline: none;\n  cursor: pointer;\n  -ms-touch-action: manipulation;\n      touch-action: manipulation;\n  font-weight: 400;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  white-space: nowrap;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  background-color: #fff;\n  border: 1px solid #e0e0e0;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n@media screen and (min-width: 768px) {\n  .index_component-btn__RoVle {\n    font-size: 14px;\n    height: 34px;\n    border-radius: 4px;\n    padding: 0 15px;\n  }\n}\n@media screen and (max-width: 768px) {\n  .index_component-btn__RoVle {\n    height: 1rem;\n    font-size: 32px;\n    border-radius: 0.1rem;\n    padding: 0 0.5rem;\n  }\n  [data-dpr=\"1\"] .index_component-btn__RoVle {\n    font-size: 16px;\n  }\n  [data-dpr=\"3\"] .index_component-btn__RoVle {\n    font-size: 48px;\n  }\n}\n.index_component-btn__RoVle:hover {\n  color: #29b6f6;\n  border: 1px solid #29b6f6;\n}\n.index_component-btn__RoVle:active {\n  color: #0277bd;\n  border: 1px solid #0277bd;\n}\n.index_component-btn__RoVle.index_btn-primary__1LS5Y {\n  color: #fff;\n  border: 1px solid #039be5;\n  background-color: #039be5;\n}\n.index_component-btn__RoVle.index_btn-primary__1LS5Y:hover {\n  background-color: #29b6f6;\n  border: 1px solid #29b6f6;\n}\n.index_component-btn__RoVle.index_btn-primary__1LS5Y:active {\n  background-color: #0277bd;\n  border: 1px solid #0277bd;\n}\n.index_component-btn__RoVle.index_btn-danger__3IKAG {\n  color: #fff;\n  border: 1px solid #ff4d4f;\n  background-color: #ff4d4f;\n}\n.index_component-btn__RoVle.index_btn-danger__3IKAG:hover {\n  background-color: #ff737e;\n  border: 1px solid #ff737e;\n}\n.index_component-btn__RoVle.index_btn-danger__3IKAG:active {\n  background-color: #ff1c2f;\n  border: 1px solid #ff1c2f;\n}\n.index_component-btn__RoVle.index_daocheng-confirm__ESOEO {\n  color: #ca1523;\n  border: 1px solid #ca1523;\n  background-color: #fff;\n}\n.index_component-btn__RoVle.index_daocheng-confirm__ESOEO:hover {\n  color: #fff;\n  background-color: #ca1523;\n  border: 1px solid #ca1523;\n}\n.index_component-btn__RoVle.index_daocheng-cancel__I5SJr {\n  color: #999999;\n  border: 1px solid #999999;\n  background-color: #fff;\n}\n.index_component-btn__RoVle.index_daocheng-cancel__I5SJr:hover {\n  color: #fff;\n  background-color: #999999;\n  border: 1px solid #999999;\n}\n";
 var styles$1 = { "component-btn": "index_component-btn__RoVle", "btn-primary": "index_btn-primary__1LS5Y", "btn-danger": "index_btn-danger__3IKAG", "daocheng-confirm": "index_daocheng-confirm__ESOEO", "daocheng-cancel": "index_daocheng-cancel__I5SJr", "slide-in": "index_slide-in__1rNqg", "shake": "index_shake__3FRHz", "scale-top": "index_scale-top__2mWQ9", "mask-show": "index_mask-show__2uwVD", "spin": "index_spin__3-DAt", "rotate90": "index_rotate90__1UXaA", "rotate-90": "index_rotate-90__1UEvd", "slideout": "index_slideout__3d2JT", "slidein": "index_slidein__3_Ovy", "slideout1": "index_slideout1__2LSs3", "slidein1": "index_slidein1__3Bt13" };
 __$$styleInject(css$2);
 
@@ -62,6 +62,8 @@ const Button = args => {
   btn.id = id;
   return btn;
 };
+
+const sortBy = require('lodash.sortby');
 
 const domFunc = e => {
   const {
@@ -159,16 +161,15 @@ const transformStringToBool = e => {
   return false;
 };
 
-// 将阿拉伯数字转英文 first . second . third
-const coverDataToTree = function (data) {
+const coverDataToTree = data => {
   const titleArray = [];
-  const newData = data.map(arr => arr.id).sort().map(id => data.find(list => list.id === id));
-  const lenDiff = data.map(arr => arr.id.length).sort();
+  const newData = sortBy(data, o => o.id);
+  const lenDiff = newData.map(e => e.id.length);
+  console.log(lenDiff);
   const unique = arr => Array.from(new Set(arr));
-
   if (unique(lenDiff).length > 1) {
     let _lenDiff_ = unique(lenDiff)[1] - unique(lenDiff)[0];
-    if (data[0].hasOwnProperty('code')) {
+    if (Object.prototype.hasOwnProperty.call(data[0], 'code')) {
       newData.forEach(arr => {
         // treetable
         if (titleArray.length === 0) {
@@ -1017,7 +1018,7 @@ const putDataToFirTable = args => __async(function* () {
     const ol = document.createElement('ol');
     const isChildren = Object.prototype.hasOwnProperty.call(row, 'children');
     const html = `
-      <li class='tree-container-list-div' data-type="${row.id}">
+      <li class='tree-container-list-div' data-type="${row.code || row.id}">
         <span class="${styles$7['text-container']}">${row.name}</span>
         ${isChildren ? Icon({ type: 'unfold' }) : ''}
       </li>
@@ -1054,7 +1055,7 @@ const putDataToSecTable$1 = data => __async(function* () {
     `;
     div.innerHTML = html;
     div.id = `sec${i}`;
-    div.dataset.type = row.type;
+    div.dataset.type = row.type || row.goods_code || row.corp_code || row.id;
     div.style.color = '#000';
     div.style.cursor = 'pointer';
     secTable.appendChild(div);
@@ -1237,8 +1238,11 @@ const secTableObserver = () => {
     const index = target[0].target.dataset.type;
     let allDom = secTableContainer.querySelectorAll('input');
     allDom = addArrProp$2(allDom).map(dom => dom.parentElement);
-    let showDom = secTableContainer.querySelectorAll('input');
-    showDom = addArrProp$2(showDom).map(dom => dom.parentElement).filter(dom => dom.dataset.type === index);
+    let showDom = secTableContainer.querySelectorAll('label');
+    showDom = addArrProp$2(showDom).filter(dom => {
+      console.log(dom.dataset.type, index, dom.dataset.type.match(index));
+      return dom.dataset.type.match(index);
+    });
     showDomFunc$1({
       allDom,
       showDom
@@ -1299,6 +1303,7 @@ const treeTable = args => __async(function* () {
   } = args;
   window.select_model = args.select_model;
   console.log('拿到的数据：', data);
+  window.top.dataa = data;
   const ifselect = args.ifselect || true;
   // ifselect == undefined ? (ifselect = true) : '';
   const mask = document.createElement('div');
@@ -1337,7 +1342,7 @@ const treeTable = args => __async(function* () {
                       <label for="select-reverse">反选</label>
                     ` : ''}
                   </span>
-                  ${data.content[0] ? data.content[0].code ? `<span class="${styles$7.num}">编号</span>` : '' : ""}
+                  ${data.content[0] ? data.content[0].corp_code ? `<span class="${styles$7.num}">编号</span>` : '' : ""}
                   <span class="${styles$7.name}">名称</span>
                 </div>
                 <form class="${styles$7['tb-container']}" id="sec-table-tb-container"></form>
@@ -1346,7 +1351,7 @@ const treeTable = args => __async(function* () {
                 <div class="${styles$7.th}">
                   <span class="${styles$7.select}">
                   </span>
-                  ${data.content[0] ? data.content[0].code ? `<span class="${styles$7.num}">编号</span>` : '' : ""}
+                  ${data.content[0] ? data.content[0].corp_code ? `<span class="${styles$7.num}">编号</span>` : '' : ""}
                   <span class="${styles$7.name}">名称</span>
                   <span class="${styles$7.empty}" id="empty">
                     ${Icon({ type: 'trash' })}
@@ -1481,13 +1486,13 @@ const putDataToFirTable$1 = args => __async(function* () {
     const html = `
       <li data-index="${i}" data-json=${JSON.stringify(row)} class="${styles$8['component-tree-container-list-div']}" data-type="${row.id}">
           <span class="${styles$8['text-container']}">${row.name}</span>
-          ${row.hasOwnProperty('children') ? Icon({ type: 'unfold' }) : ''}
+          ${Object.prototype.hasOwnProperty.call(row, 'children') ? Icon({ type: 'unfold' }) : ''}
       </li>
     `;
     div.className = styles$8['component-tree-container-list'];
     div.innerHTML += html;
     div.id = `sec${i}`;
-    if (row.hasOwnProperty('children')) {
+    if (Object.prototype.hasOwnProperty.call(row, 'children')) {
       putDataToFirTable$1({
         data: row.children,
         container: div
@@ -1500,7 +1505,7 @@ const putDataToFirTable$1 = args => __async(function* () {
 const eventProxy$2 = args => {
   const {
     event,
-    select_model
+    selectModel
   } = args;
   if (event === 'click') {
     const handleAllEvent = e => {
@@ -1560,12 +1565,12 @@ const eventProxy$2 = args => {
         });
         if (isSelectDomInPath) {
           // if select one
-          if (select_model === 'radio') {
+          if (selectModel === 'radio') {
             addArrProp$3(document.querySelectorAll(`.${styles$8.active}`)).forEach(activeDom => {
               activeDom.classList.remove(`${styles$8.active}`);
             });
             isSelectDomInPath.classList.toggle(`${styles$8.active}`);
-          } else if (select_model === 'checkbox') {
+          } else if (selectModel === 'checkbox') {
             // if select more
             isSelectDomInPath.classList.toggle(`${styles$8.active}`);
           }
@@ -1591,10 +1596,10 @@ const Tree = args => __async(function* () {
   const {
     data,
     next,
-    select_model,
     beforeSelect
   } = args;
   console.log('拿到的数据：', data);
+  const selectModel = args.select_model || 'checkbox';
   const ifselect = args.ifselect || true;
   const mask = document.createElement('div');
   mask.className = styles$8['component-mask'];
@@ -1628,13 +1633,15 @@ const Tree = args => __async(function* () {
     data: coverDataToTree$2(data),
     container: document.querySelector(`.${styles$8['component-tree-container']}`)
   });
-  ifselect && selectBeforeFunc$2({
-    beforeSelect
-  });
+  if (ifselect) {
+    selectBeforeFunc$2({
+      beforeSelect
+    });
+  }
   // all event proxy
   yield eventProxy$2({
     event: 'click',
-    select_model
+    selectModel
   });
   let btns = mask.querySelectorAll(`.${styles$8['component-tree']} button`);
   btns = addArrProp$3(btns);

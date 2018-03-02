@@ -70,7 +70,6 @@ const btnAddevent = (args) => {
   });
 };
 
-
 const putDataToFirTable = async (args) => {
   const {
     data,
@@ -80,7 +79,7 @@ const putDataToFirTable = async (args) => {
     const ol = document.createElement('ol');
     const isChildren = Object.prototype.hasOwnProperty.call(row, 'children');
     const html = `
-      <li class='tree-container-list-div' data-type="${row.id}">
+      <li class='tree-container-list-div' data-type="${row.code || row.id}">
         <span class="${styles['text-container']}">${row.name}</span>
         ${isChildren ? Icon({ type: 'unfold' }) : ''}
       </li>
@@ -117,7 +116,7 @@ const putDataToSecTable = async (data) => {
     `;
     div.innerHTML = html;
     div.id = `sec${i}`;
-    div.dataset.type = row.type;
+    div.dataset.type = row.type || row.goods_code || row.corp_code || row.id;
     div.style.color = '#000';
     div.style.cursor = 'pointer';
     secTable.appendChild(div);
@@ -126,7 +125,7 @@ const putDataToSecTable = async (data) => {
 
 const eventProxy = (args) => {
   const { event } = args;
-  const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`)
+  const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`);
   if (event === 'click') {
     const handleAllEvent = (e) => {
       // toggle show all with first table
@@ -301,10 +300,16 @@ const secTableObserver = () => {
     const index = target[0].target.dataset.type;
     let allDom = secTableContainer.querySelectorAll('input');
     allDom = addArrProp(allDom).map(dom => dom.parentElement);
-    let showDom = secTableContainer.querySelectorAll('input');
+    let showDom = secTableContainer.querySelectorAll('label');
     showDom = addArrProp(showDom)
-      .map(dom => dom.parentElement)
-      .filter(dom => dom.dataset.type === index);
+      .filter(dom => {
+        console.log(
+          dom.dataset.type,
+          index,
+          dom.dataset.type.match(index)
+        );
+        return dom.dataset.type.match(index)
+      });
     showDomFunc({
       allDom,
       showDom,
@@ -366,6 +371,7 @@ const treeTable = async (args) => {
   } = args;
   window.select_model = args.select_model;
   console.log('拿到的数据：', data);
+  window.top.dataa = data;
   const ifselect = args.ifselect || true;
   // ifselect == undefined ? (ifselect = true) : '';
   const mask = document.createElement('div');
@@ -404,7 +410,7 @@ const treeTable = async (args) => {
                       <label for="select-reverse">反选</label>
                     ` : ''}
                   </span>
-                  ${data.content[0] ? (data.content[0].code ? `<span class="${styles.num}">编号</span>` : '') : ""}
+                  ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ""}
                   <span class="${styles.name}">名称</span>
                 </div>
                 <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
@@ -413,7 +419,7 @@ const treeTable = async (args) => {
                 <div class="${styles.th}">
                   <span class="${styles.select}">
                   </span>
-                  ${data.content[0] ? (data.content[0].code ? `<span class="${styles.num}">编号</span>` : '') : ""}
+                  ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ""}
                   <span class="${styles.name}">名称</span>
                   <span class="${styles.empty}" id="empty">
                     ${Icon({ type: 'trash' })}

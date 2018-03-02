@@ -1,3 +1,5 @@
+const sortBy = require('lodash.sortby');
+
 const domFunc = (e) => {
   const {
     dom,
@@ -108,20 +110,15 @@ const numToEng = (e) => {
 };
 
 
-const coverDataToTree = function (data) {
+const coverDataToTree = data => {
   const titleArray = [];
-  const newData = data
-    .map(arr => arr.id)
-    .sort()
-    .map(id => data.find(list => list.id === id));
-  const lenDiff = data
-    .map(arr=>arr.id.length)
-    .sort()
+  const newData = sortBy(data,o=>o.id);
+  const lenDiff = newData.map(e=>e.id.length);
+  console.log(lenDiff);
   const unique = arr => Array.from(new Set(arr));
-    
-  if(unique(lenDiff).length>1){
+  if (unique(lenDiff).length > 1) {
     let _lenDiff_ = unique(lenDiff)[1] - unique(lenDiff)[0];
-    if (data[0].hasOwnProperty('code')) {
+    if ( Object.prototype.hasOwnProperty.call(data[0], 'code') ) {
       newData.forEach((arr) => {
         // treetable
         if (titleArray.length === 0) {
@@ -140,7 +137,7 @@ const coverDataToTree = function (data) {
             }
             titleArray[titleArray.length - 1].children.push(arr)
           } else if (
-            titleArray[titleArray.length - 1].code.length === arr.code.length - _lenDiff_*2
+            titleArray[titleArray.length - 1].code.length === arr.code.length - _lenDiff_ * 2
           ) {
             if (!titleArray[titleArray.length - 1].children[
               titleArray[titleArray.length - 1].children.length - 1

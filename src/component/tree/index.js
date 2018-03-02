@@ -77,13 +77,13 @@ const putDataToFirTable = async (args) => {
     const html = `
       <li data-index="${i}" data-json=${JSON.stringify(row)} class="${styles['component-tree-container-list-div']}" data-type="${row.id}">
           <span class="${styles['text-container']}">${row.name}</span>
-          ${row.hasOwnProperty('children') ? Icon({ type: 'unfold' }) : ''}
+          ${Object.prototype.hasOwnProperty.call(row, 'children') ? Icon({ type: 'unfold' }) : ''}
       </li>
     `;
     div.className = styles['component-tree-container-list'];
     div.innerHTML += html;
     div.id = `sec${i}`;
-    if (row.hasOwnProperty('children')) {
+    if (Object.prototype.hasOwnProperty.call(row, 'children')) {
       putDataToFirTable({
         data: row.children,
         container: div,
@@ -97,7 +97,7 @@ const putDataToFirTable = async (args) => {
 const eventProxy = (args) => {
   const {
     event,
-    select_model,
+    selectModel,
   } = args;
   if (event === 'click') {
     const handleAllEvent = (e) => {
@@ -157,12 +157,12 @@ const eventProxy = (args) => {
         });
         if (isSelectDomInPath) {
           // if select one
-          if (select_model === 'radio') {
+          if (selectModel === 'radio') {
             addArrProp(document.querySelectorAll(`.${styles.active}`)).forEach((activeDom) => {
               activeDom.classList.remove(`${styles.active}`);
             });
             isSelectDomInPath.classList.toggle(`${styles.active}`);
-          } else if (select_model === 'checkbox') {
+          } else if (selectModel === 'checkbox') {
             // if select more
             isSelectDomInPath.classList.toggle(`${styles.active}`);
           }
@@ -189,10 +189,10 @@ const Tree = async (args) => {
   const {
     data,
     next,
-    select_model,
     beforeSelect,
   } = args;
   console.log('拿到的数据：', data);
+  const selectModel = args.select_model || 'checkbox';
   const ifselect = args.ifselect || true;
   const mask = document.createElement('div');
   mask.className = styles['component-mask'];
@@ -226,13 +226,15 @@ const Tree = async (args) => {
     data: coverDataToTree(data),
     container: document.querySelector(`.${styles['component-tree-container']}`),
   });
-  ifselect && selectBeforeFunc({
-    beforeSelect,
-  });
+  if (ifselect) {
+    selectBeforeFunc({
+      beforeSelect,
+    });
+  }
   // all event proxy
   await eventProxy({
     event: 'click',
-    select_model,
+    selectModel,
   });
   let btns = mask.querySelectorAll(`.${styles['component-tree']} button`);
   btns = addArrProp(btns);
