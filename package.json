@@ -1,6 +1,6 @@
 {
 	"name": "peng-component",
-	"version": "1.1.14",
+	"version": "1.1.15",
 	"description": "component use in fast mall",
 	"homepage": "https://www.pipk.top",
 	"main": "dist/index.js",
