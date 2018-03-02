@@ -35,12 +35,12 @@ const btnAddevent = (args) => {
     next,
   } = args;
   btns.forEach((dom) => {
-    if (dom.classList.contains('confirm')) {
+    if (dom.id === 'confirm') {
       dom.addEventListener('click', () => {
         let doms = document.querySelectorAll(`.${styles.active}`);
         doms = Array.prototype.slice.call(doms);
-        doms = doms.map((activeDom) => JSON.parse(activeDom.dataset.json) );
-        console.log('输出的数据：',doms);
+        doms = doms.map(activeDom => JSON.parse(activeDom.dataset.json));
+        console.log('输出的数据：', doms);
         next(doms);
         mask.remove();
         domFunc({
@@ -51,7 +51,7 @@ const btnAddevent = (args) => {
           },
         });
       });
-    } else if (dom.classList.contains('return')) {
+    } else if (dom.id === 'return') {
       dom.addEventListener('click', () => {
         mask.remove();
         domFunc({
@@ -72,14 +72,13 @@ const putDataToFirTable = async (args) => {
     data,
     container,
   } = args;
-  data.map((row, i) => {
-    const div = document.createElement('div');
+  data.forEach((row, i) => {
+    const div = document.createElement('ol');
     const html = `
-      <div data-index="${i}" data-json=${JSON.stringify(row)} class="${styles['component-tree-container-list-div']}" data-type="${row.id}">
-          ${Icon({ type: 'wujiaoxing' })}
+      <li data-index="${i}" data-json=${JSON.stringify(row)} class="${styles['component-tree-container-list-div']}" data-type="${row.id}">
           <span class="${styles['text-container']}">${row.name}</span>
           ${row.hasOwnProperty('children') ? Icon({ type: 'unfold' }) : ''}
-      <div>
+      </li>
     `;
     div.className = styles['component-tree-container-list'];
     div.innerHTML += html;
@@ -128,24 +127,24 @@ const eventProxy = (args) => {
       let openList = document.querySelectorAll(`.${styles['component-tree-container']} .icon-unfold`);
       openList = Array.prototype.slice.call(openList);
       openList.forEach((dom) => {
-        const isShowAllInPath = isDomFunc({
+        const isShowListInPath = isDomFunc({
           path: e.path,
           dom: dom.parentElement,
         });
-        if (isShowAllInPath) {
+        if (isShowListInPath) {
           // add some animation
           domToggleAnimation({
             dom,
             animationDuration: '0.3s',
             animationFillMode: 'forwards',
-            animationName: [styles.rotate90, styles['rotate-90']],
+            animationName: [styles['rotate-90'], styles.rotate90],
           });
-          const listContainer = isShowAllInPath.parentElement;
+          const listContainer = isShowListInPath.parentElement;
           domToggleAnimation({
             dom: listContainer,
             animationDuration: '0.3s',
             animationFillMode: 'forwards',
-            animationName: [styles.slideout1, styles.slidein1],
+            animationName: [styles.slidein, styles.slideout],
           });
         }
       });
@@ -193,9 +192,8 @@ const Tree = async (args) => {
     select_model,
     beforeSelect,
   } = args;
-  let { ifselect } = args;
-  console.log('拿到的数据：',data);
-  ifselect == undefined ? (ifselect = true) : '';
+  console.log('拿到的数据：', data);
+  const ifselect = args.ifselect || true;
   const mask = document.createElement('div');
   mask.className = styles['component-mask'];
   mask.innerHTML = `
@@ -207,8 +205,10 @@ const Tree = async (args) => {
       </div>
       <div class="${styles['component-tree-container']}"></div>
       <div class="${styles['btn-group']}">
-        ${Button({ className: 'return', text: '返回' }).outerHTML}&nbsp;&nbsp;
-        ${Button({ className: 'confirm btn-danger', text: '确认' }).outerHTML}
+        ${Button({ id: 'return', text: '返回', type: 'daocheng-cancel' }).outerHTML}
+        &nbsp;
+        &nbsp;
+        ${Button({ id: 'confirm', text: '确认', type: 'daocheng-confirm' }).outerHTML}
       </div>
     </div>
   `;
@@ -235,7 +235,7 @@ const Tree = async (args) => {
     select_model,
   });
   let btns = mask.querySelectorAll(`.${styles['component-tree']} button`);
-  btns = Array.prototype.slice.call(btns);
+  btns = addArrProp(btns);
   await btnAddevent({
     btns,
     mask,

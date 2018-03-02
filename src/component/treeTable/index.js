@@ -39,12 +39,12 @@ const btnAddevent = (args) => {
     data,
   } = args;
   btns.forEach((dom) => {
-    if (dom.classList.contains('confirm')) {
+    if (dom.id === 'confirm') {
       dom.addEventListener('click', () => {
         let doms = document.querySelectorAll('#thr-table-tb-container input');
         doms = Array.prototype.slice.call(doms);
         doms = doms.map(activeDom => data[activeDom.parentElement.dataset.index]);
-        console.log('输出的数据：',doms);
+        console.log('输出的数据：', doms);
         next(doms);
         mask.remove();
         domFunc({
@@ -55,7 +55,7 @@ const btnAddevent = (args) => {
           },
         });
       });
-    } else if (dom.classList.contains('return')) {
+    } else if (dom.id === 'return') {
       dom.addEventListener('click', () => {
         mask.remove();
         domFunc({
@@ -76,25 +76,26 @@ const putDataToFirTable = async (args) => {
     data,
     container,
   } = args;
-  data.map((row, i) => {
-    const div = document.createElement('div');
+  data.forEach((row, i) => {
+    const ol = document.createElement('ol');
+    const isChildren = Object.prototype.hasOwnProperty.call(row, 'children');
     const html = `
-            <div class="${styles['tree-container-list-div']}" data-type="${row.id}">
-                ${Icon({ type: 'wujiaoxing' })}
-                <span class="${styles['text-container']}">${row.name}</span>
-                ${row.hasOwnProperty('children') ? Icon({ type: 'unfold' }) : ''}
-            <div>
-        `;
-    div.className = styles['tree-container-list'];
-    div.innerHTML += html;
-    div.id = `sec${i}`;
-    if (row.hasOwnProperty('children')) {
+      <li class='tree-container-list-div' data-type="${row.id}">
+        <span class="${styles['text-container']}">${row.name}</span>
+        ${isChildren ? Icon({ type: 'unfold' }) : ''}
+      </li>
+    `;
+    ol.className = 'tree-container-list';
+    // ol.dataset.innerIndex = row.id.length / 2;
+    ol.innerHTML += html;
+    ol.id = `sec${i}`;
+    if (isChildren) {
       putDataToFirTable({
         data: row.children,
-        container: div,
+        container: ol,
       });
     }
-    container.appendChild(div);
+    container.appendChild(ol);
   });
 };
 
@@ -103,14 +104,14 @@ const putDataToSecTable = async (data) => {
   let secTableInputs = document.querySelector('#sec-table-tb-container');
   secTableInputs = Array.prototype.slice.call(secTableInputs);
   secTableInputs.map(input => input.parentElement.remove());
-
-  return data.map((row, i) => {
+  data.forEach((row, i) => {
     const secTable = document.querySelector('#sec-table-tb-container');
-    const div = document.createElement('div');
+    const div = document.createElement('label');
     div.className = styles.tb;
     div.dataset.index = i;
+    div.htmlFor = `select-second-${i}`;
     const html = `
-        <input class="${styles.select}" type="checkbox"/>
+        <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
         ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
         <span class="${styles.name}">${row.name}</span>
     `;
@@ -124,7 +125,7 @@ const putDataToSecTable = async (data) => {
 };
 
 const eventProxy = (args) => {
-  const { event, select_model } = args;
+  const { event } = args;
   const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`)
   if (event === 'click') {
     const handleAllEvent = (e) => {
@@ -154,11 +155,11 @@ const eventProxy = (args) => {
       let openList = document.querySelectorAll(`.${styles['tree-container']} .icon-unfold`);
       openList = Array.prototype.slice.call(openList);
       openList.forEach((dom) => {
-        const isShowAllInPath = isDomFunc({
+        const isListInPath = isDomFunc({
           path: e.path,
           dom: dom.parentElement,
         });
-        if (isShowAllInPath) {
+        if (isListInPath) {
           // add some animation
           domToggleAnimation({
             dom,
@@ -166,7 +167,7 @@ const eventProxy = (args) => {
             animationFillMode: 'forwards',
             animationName: [styles['rotate-90'], styles.rotate90],
           });
-          const listContainer = isShowAllInPath.parentElement;
+          const listContainer = isListInPath.parentElement;
           domToggleAnimation({
             dom: listContainer,
             animationDuration: '0.3s',
@@ -176,9 +177,9 @@ const eventProxy = (args) => {
         }
       });
       // filter second table
-      let firstTableLists = document.querySelectorAll(`.${styles['tree-container-list-div']}`);
+      let firstTableLists = document.querySelectorAll('.tree-container-list-div');
       firstTableLists = Array.prototype.slice.call(firstTableLists);
-      firstTableLists.map((list) => {
+      firstTableLists.forEach((list) => {
         const isDomInPath = isDomFunc({
           path: e.path,
           dom: list,
@@ -186,7 +187,7 @@ const eventProxy = (args) => {
         if (isDomInPath) {
           let allList = document.querySelectorAll(`.${styles['tree-container']} .${styles.active}`);
           allList = Array.prototype.slice.call(allList);
-          allList.map((dom) => {
+          allList.forEach((dom) => {
             dom.dataset.active = false;
             dom.classList.remove(styles.active);
           });
@@ -209,32 +210,24 @@ const eventProxy = (args) => {
           }
         });
       }
-      // 为第二个第三个表格每一个列表添加点击事件，tb-container
-      document.querySelectorAll(`.${styles.tb}`).forEach((dom) => {
+      // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
+      document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
         const isTableList = isDomFunc({
           path: e.path, dom,
         });
         if (isTableList) {
-          if (e.path[0].type === 'checkbox') return;
-          if (select_model === 'checkbox') {
-            if (isTableList.querySelector('input').checked === true) {
-              isTableList.querySelector('input').checked = false;
-              isTableList.querySelector('input').dataset.type = false;
-            } else {
-              isTableList.querySelector('input').checked = true;
-              isTableList.querySelector('input').dataset.type = true;
-            }
-          } else if (select_model === 'radio') {
-            // 先清空所有
-            document.querySelectorAll(`.${styles.tb}`).forEach(dom => dom.querySelector('input').checked = false);
-            isTableList.querySelector('input').checked = true;
-            isTableList.querySelector('input').dataset.type = true;
+          let tableListIndex = isTableList.dataset.index;
+          if (select_model === 'radio') {
+            document.querySelector('#empty').click();
+          } else if (select_model === 'checkbox') {
+            document.querySelector(`#sec-table-tb-container label:nth-child(${Number(tableListIndex) + 1})`).click();
           }
         }
       });
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   } else if (event === 'change') {
+    // change 事件
     const handleAllEvent = (e) => {
       // selectAll
       const isSelectAllDom = isDomInPathFunc({
@@ -264,26 +257,34 @@ const eventProxy = (args) => {
           }
         });
       }
+      // 为第二个表格每一个列表添加点击事件，tb-container
+      const isTableList = isDomFunc({
+        path: e.path,
+        dom: document.querySelector('#sec-table-tb-container'),
+      });
+      if (isTableList) {
+        isTableList.dataset.select = Math.random();
+      }
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   } else if (event === 'keyup') {
     const handleAllEvent = (e) => {
-      let searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+      const activeDom = document.querySelector(`.${styles.active}`);
+      activeDom && activeDom.classList.remove(styles.active);
+      const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
       const allList = document.querySelector('#sec-table-tb-container').children;
-      let filterList = addArrProp(allList).filter(list=>{
-        if(isNumeric(e.target.value)){
-          console.log('num');
+      const filterList = addArrProp(allList).filter(list => {
+        if (isNumeric(e.target.value)) {
           var keyValue = list.querySelector(`.${styles.num}`).innerText;
           var regex = new RegExp(`^${searchValue}`);
-        }else{
-          console.log('name');
+        } else {
           var keyValue = list.querySelector(`.${styles.name}`).innerText;
           var regex = new RegExp(`${searchValue}`);
         }
         return keyValue.match(regex)
       })
-      addArrProp(allList).forEach(dom=>dom.style.display="none")
-      addArrProp(filterList).forEach(dom=>dom.style.display="flex")
+      addArrProp(allList).forEach(dom => dom.style.display = 'none')
+      addArrProp(filterList).forEach(dom => dom.style.display = 'flex')
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   }
@@ -293,7 +294,7 @@ const eventProxy = (args) => {
 const secTableObserver = () => {
   const firTableContainer = document.querySelector(`.${styles['tree-container']}`);
   const secTableContainer = document.querySelector('#sec-table-tb-container');
-  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+  const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
   const observer = new MutationObserver((mutations) => {
     const target = mutations.filter(mutation => mutation.target.dataset.active === 'true');
     if (!target.length) return;
@@ -301,13 +302,15 @@ const secTableObserver = () => {
     let allDom = secTableContainer.querySelectorAll('input');
     allDom = addArrProp(allDom).map(dom => dom.parentElement);
     let showDom = secTableContainer.querySelectorAll('input');
-    showDom = addArrProp(showDom).map(dom => dom.parentElement).filter(dom => dom.dataset.type === index);
+    showDom = addArrProp(showDom)
+      .map(dom => dom.parentElement)
+      .filter(dom => dom.dataset.type === index);
     showDomFunc({
       allDom,
       showDom,
     });
   });
-    // 配置观察选项:
+  // 配置观察选项:
   const config = {
     subtree: true,
     childList: true,
@@ -318,11 +321,12 @@ const secTableObserver = () => {
 };
 
 const thrTableObserver = () => {
-  // //不适合单独监听啊，，直接复制选中的元素好了，垃圾算法
+  // 监听第二个表格， 当第二个表格属性变化的时候，第三个表格 => 第二个表格input.checked 同步
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const thrTableContainer = document.querySelector('#thr-table-tb-container');
   const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
   const observer = new MutationObserver(() => {
+    // 将第三个表格全部列表移除
     let inputGroupAll = thrTableContainer.querySelectorAll('input');
     inputGroupAll = Array.prototype.slice.call(inputGroupAll);
     inputGroupAll.forEach((input) => {
@@ -330,7 +334,7 @@ const thrTableObserver = () => {
     });
     let inputGroup = secTableContainer.querySelectorAll('input:checked');
     inputGroup = Array.prototype.slice.call(inputGroup);
-    inputGroup.map((input, i) => {
+    inputGroup.forEach((input, i) => {
       const div = input.parentElement;
       const newChild = div.cloneNode(true);
       const oldChild = thrTableContainer.querySelector(`div:nth-child(${i + 1})`);
@@ -358,10 +362,10 @@ const treeTable = async (args) => {
   const {
     data,
     next,
-    select_model,
     beforeSelect,
   } = args;
-  console.log('拿到的数据：',data);
+  window.select_model = args.select_model;
+  console.log('拿到的数据：', data);
   const ifselect = args.ifselect || true;
   // ifselect == undefined ? (ifselect = true) : '';
   const mask = document.createElement('div');
@@ -383,7 +387,7 @@ const treeTable = async (args) => {
         </div>
         <div class="${styles['component-treeTable-body-container']}">
           <span class="${styles['search-container']}">
-            <span>商品搜索：</span>
+            <span>列表搜索：</span>
             <span class="${styles.search}">
               <input id="search" type="text">
               <span>搜索</span>
@@ -403,7 +407,7 @@ const treeTable = async (args) => {
                   ${data.content[0] ? (data.content[0].code ? `<span class="${styles.num}">编号</span>` : '') : ""}
                   <span class="${styles.name}">名称</span>
                 </div>
-                <div class="${styles['tb-container']}" id="sec-table-tb-container"></div>
+                <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
               </div>
               <div class="${styles['thr-table']}" id="thr-table">
                 <div class="${styles.th}">
@@ -411,7 +415,7 @@ const treeTable = async (args) => {
                   </span>
                   ${data.content[0] ? (data.content[0].code ? `<span class="${styles.num}">编号</span>` : '') : ""}
                   <span class="${styles.name}">名称</span>
-                  <span class="${styles.empty}">
+                  <span class="${styles.empty}" id="empty">
                     ${Icon({ type: 'trash' })}
                     清空
                   </span>
@@ -420,10 +424,10 @@ const treeTable = async (args) => {
               </div>
           </div>
           <div class="${styles['group-btn']}">
-            ${Button({ className: 'return', text: '返回' }).outerHTML}
+            ${Button({ id: 'return', text: '返回', type: 'daocheng-cancel' }).outerHTML}
             &nbsp;
             &nbsp;
-            ${Button({ className: 'confirm btn-danger', text: '确认' }).outerHTML}
+            ${Button({ id: 'confirm', text: '确认', type: 'daocheng-confirm' }).outerHTML}
           </div>
         </div>
       </div>
@@ -444,25 +448,28 @@ const treeTable = async (args) => {
   await putDataToSecTable(data.content);
   let btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
   btns = Array.prototype.slice.call(btns);
-  await btnAddevent({btns, mask, data: data.content, next });
+  await btnAddevent({
+    btns, mask, data: data.content, next,
+  });
   // 添加观察者
   await secTableObserver();
   await thrTableObserver();
   // all event proxy
   await eventProxy({
     event: 'click',
-    select_model,
   });
   await eventProxy({
     event: 'change',
   });
   await eventProxy({
     event: 'keyup',
-    domAddEvent: document.querySelector("#search")
+    domAddEvent: document.querySelector('#search'),
   });
-  ifselect && selectBeforeFunc({
-    beforeSelect,
-  });
+  if (ifselect) {
+    selectBeforeFunc({
+      beforeSelect,
+    });
+  }
 };
 
 export default treeTable;

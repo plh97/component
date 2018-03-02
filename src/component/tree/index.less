@@ -59,23 +59,50 @@
             align-items: center;
             flex-direction: row;
         }
+        .component-tree-container > ol {
+            & > li:before{
+                content: '★';
+                font-size: 1.6em;
+                line-height: 30px;
+                height: 30px;
+                width: 1.5em;
+                text-align: center;
+            }
+            & > ol > li:before {
+                content: '◆';
+                font-size: 2.3em;
+                line-height: 30px;
+                height: 30px;
+                width: 1em;
+                text-align: center;
+            }
+            & > ol > ol > li:before {
+                content: '⚫';
+                height: 30px;
+                line-height: 30px;
+                width: 2.2em;
+                text-align: center;
+            }
+        } 
         .component-tree-container {
+            flex: 1;
             overflow-y: auto;
+            user-select: none;
             display: inline-flex;
             flex-direction: column;
-            flex: 1;
 
-            .component-tree-container-list {
-                height: 0;
-                flex-shrink: 0;
-                padding-left: 10px;
-                overflow-y: hidden;
-                min-height: 30px;
+            ol {
                 display: flex;
+                flex-shrink: 0;
+                min-height: 30px;
+                overflow-y: hidden;
+                padding-left: 10px;
                 flex-direction: column;
+                margin: 0;
 
-                .component-tree-container-list-div {
+                li {
                     cursor: pointer;
+                    flex-shrink: 0;
                     overflow-x: hidden;
                     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
                     min-height: 30px;
@@ -89,14 +116,14 @@
                         font-weight: 500;
                         font-size: 15px;
                     }
-                    .icon-wujiaoxing {
-                        font-size: 12px;
-                        font-weight: 500;
-                        font-size: 14px;
-                    }
+                    // .icon-wujiaoxing {
+                    //     font-size: 12px;
+                    //     font-weight: 500;
+                    //     font-size: 14px;
+                    // }
                     &.active {
                         transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
-                        background-color: @lightBlue8;
+                        background-color: @daocheng-red;
                         color: #fff;
                     }
                 }

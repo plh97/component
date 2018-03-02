@@ -21,7 +21,7 @@ const selectBeforeFunc = (args) => {
   addArrProp(contents).forEach((content) => {
     beforeSelect.forEach((select) => {
       const name = content.querySelector(`.${styles.name}`);
-      if (name.innerText == select) {
+      if (name.innerText === select) {
         content.click();
       }
     });
@@ -36,12 +36,12 @@ const btnAddevent = (args) => {
     next,
   } = args;
   btns.forEach((dom) => {
-    if (dom.classList.contains('confirm')) {
+    if (dom.id === 'confirm') {
       dom.addEventListener('click', () => {
         let doms = document.querySelectorAll('#thr-table-tb-container input');
         doms = Array.prototype.slice.call(doms);
         doms = doms.map(activeDom => data[activeDom.parentElement.dataset.index]);
-        console.log('输出的数据：',doms);
+        console.log('输出的数据：', doms);
         next(doms);
         mask.remove();
         domFunc({
@@ -52,7 +52,7 @@ const btnAddevent = (args) => {
           },
         });
       });
-    } else if (dom.classList.contains('return')) {
+    } else if (dom.id === 'return') {
       dom.addEventListener('click', () => {
         mask.remove();
         domFunc({
@@ -73,28 +73,29 @@ const putDataToSecTable = async (data) => {
   secTableInputs = Array.prototype.slice.call(secTableInputs);
   secTableInputs.map(input => input.parentElement.remove());
 
-  return data.map((row, i) => {
-    const sec_table = document.querySelector('#sec-table-tb-container');
-    const div = document.createElement('div');
+  data.forEach((row, i) => {
+    const secTable = document.querySelector('#sec-table-tb-container');
+    const div = document.createElement('label');
     div.className = styles.tb;
     const html = `
-            <input class="${styles.select}" type="checkbox"/>
-            ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
-            <span class="${styles.name}">${row.name}</span>
-        `;
+      <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
+      ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
+      <span class="${styles.name}">${row.name}</span>
+    `;
     div.innerHTML = html;
+    div.htmlFor = `select-second-${i}`;
     div.id = `sec${i}`;
     div.dataset.index = i;
     div.dataset.type = row.type;
     div.style.color = '#000';
     div.style.cursor = 'pointer';
-    sec_table.appendChild(div);
+    secTable.appendChild(div);
   });
 };
 
 const eventProxy = (args) => {
-  const { event, select_model } = args;
-  const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`)
+  const { event } = args;
+  const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`);
   if (event === 'click') {
     const handleAllEvent = (e) => {
       // empty
@@ -108,37 +109,27 @@ const eventProxy = (args) => {
           if (input.parentElement.style.display !== 'none') {
             input.parentElement.remove();
             inputs = document.querySelectorAll(`.${styles['sec-table']} input`);
-            inputs.forEach(input => input.checked = false);
+            inputs.forEach(inputDom => inputDom.checked = false);
           }
         });
       }
-      // 为第二个第三个表格每一个列表添加点击事件，tb-container
-      document.querySelectorAll(`.${styles.tb}`).forEach((dom) => {
+      // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
+      document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
         const isTableList = isDomFunc({
           path: e.path, dom,
         });
         if (isTableList) {
-          if (e.path[0].type === 'checkbox') return;
-          if (select_model === 'checkbox') {
-            if (isTableList.querySelector('input').checked == true) {
-              isTableList.querySelector('input').checked = false;
-              isTableList.querySelector('input').dataset.type = false;
-            } else {
-              isTableList.querySelector('input').checked = true;
-              isTableList.querySelector('input').dataset.type = true;
-            }
-          } else if (select_model === 'radio') {
-            // 先清空所有
-            document.querySelectorAll(`.${styles.tb}`).forEach(dom => dom.querySelector('input').checked = false);
-            isTableList.querySelector('input').checked = true;
-            isTableList.querySelector('input').dataset.type = true;
+          let tableListIndex = isTableList.dataset.index;
+          if (select_model === 'radio') {
+            document.querySelector('#empty').click();
+          } else if (select_model === 'checkbox') {
+            document.querySelector(`#sec-table-tb-container label:nth-child(${Number(tableListIndex) + 1})`).click();
           }
         }
       });
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
-  }
-  if (event === 'change') {
+  } else if (event === 'change') {
     const handleAllEvent = (e) => {
       // selectAll
       const isSelectAllDom = isDomInPathFunc({
@@ -168,26 +159,32 @@ const eventProxy = (args) => {
           }
         });
       }
+      // 为第二个表格每一个列表添加点击事件，tb-container
+      const isTableList = isDomFunc({
+        path: e.path,
+        dom: document.querySelector('#sec-table-tb-container'),
+      });
+      if (isTableList) {
+        isTableList.dataset.select = Math.random();
+      }
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   } else if (event === 'keyup') {
     const handleAllEvent = (e) => {
-      let searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+      const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
       const allList = document.querySelector('#sec-table-tb-container').children;
-      let filterList = addArrProp(allList).filter(list=>{
-        if(isNumeric(e.target.value)){
-          console.log('num');
+      const filterList = addArrProp(allList).filter(list=>{
+        if (isNumeric(e.target.value)) {
           var keyValue = list.querySelector(`.${styles.num}`).innerText;
           var regex = new RegExp(`^${searchValue}`);
-        }else{
-          console.log('name');
+        } else {
           var keyValue = list.querySelector(`.${styles.name}`).innerText;
           var regex = new RegExp(`${searchValue}`);
         }
         return keyValue.match(regex)
       })
-      addArrProp(allList).forEach(dom=>dom.style.display="none")
-      addArrProp(filterList).forEach(dom=>dom.style.display="flex")
+      addArrProp(allList).forEach(dom=>dom.style.display = 'none');
+      addArrProp(filterList).forEach(dom=>dom.style.display='flex');
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   }
@@ -201,7 +198,7 @@ const thrTableObserver = () => {
   const observer = new MutationObserver(() => {
     let inputGroupAll = thrTableContainer.querySelectorAll('input');
     inputGroupAll = Array.prototype.slice.call(inputGroupAll);
-    inputGroupAll.map((input) => {
+    inputGroupAll.forEach((input) => {
       input.parentElement.remove();
     });
     let inputGroup = secTableContainer.querySelectorAll('input:checked');
@@ -214,7 +211,7 @@ const thrTableObserver = () => {
       addEvent({
         dom: newChild,
         envet: 'click',
-        func: e => e.path.filter(e => e.className === styles.tb)[0].remove(),
+        func: e => e.path.filter(_e => _e.className === styles.tb)[0].remove(),
       });
       thrTableContainer.insertBefore(newChild, oldChild);
       newChild.scrollIntoView({ behavior: 'instant', block: 'end', inline: 'nearest' });
@@ -231,16 +228,13 @@ const thrTableObserver = () => {
 
 
 const Table = async (args) => {
-  let {
+  const {
     data,
     next,
-    select_model,
-    ifselect,
     beforeSelect,
   } = args;
-  if (ifselect === undefined) {
-    ifselect = true;
-  }
+  window.select_model = args.select_model;
+  const ifselect = args.ifselect || true;
   console.log('拿到的数据：', data);
   const mask = document.createElement('div');
   mask.className = styles['component-mask'];
@@ -252,7 +246,7 @@ const Table = async (args) => {
             <div class="${styles['component-table-body']}">
                 <div class="${styles['component-table-body-container']}">
                     <span class="${styles['search-container']}">
-                        <span>商品搜索：</span>
+                        <span>列表搜索：</span>
                         <span class="${styles.search}">
                             <input type="${styles.text}">
                             <span>搜索</span>
@@ -272,14 +266,14 @@ const Table = async (args) => {
                                 ${data[0].code ? `<span class="${styles.num}">编号</span>` : ''}
                                 <span class="${styles.name}">名称</span>
                             </div>
-                            <div class="${styles['tb-container']}" id="sec-table-tb-container"></div>
+                            <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
                         </div>
                         <div class="${styles['thr-table']}" id="thr-table">
                             <div class="${styles.th}">
                                 <span class="${styles.select}"></span>
-                                ${data[0].code ? '<span class="num">编号</span>' : ''}
+                                ${data[0].code ? `<span class="${styles.num}">编号</span>` : ''}
                                 <span class="${styles.name}">名称</span>
-                                <span class="${styles.empty}">
+                                <span class="${styles.empty}" id="empty">
                                     ${Icon({ type: 'trash' })}
                                     清空
                                 </span>
@@ -288,10 +282,10 @@ const Table = async (args) => {
                         </div>
                     </div>
                     <div class="${styles['group-btn']}">
-                        ${Button({ className: 'return', text: '返回' }).outerHTML}
-                        &nbsp;
-                        &nbsp;
-                        ${Button({ className: 'confirm btn-danger', text: '确认' }).outerHTML}
+                      ${Button({ id: 'return', text: '返回', type: 'daocheng-cancel' }).outerHTML}
+                      &nbsp;
+                      &nbsp;
+                      ${Button({ id: 'confirm', text: '确认', type: 'daocheng-confirm' }).outerHTML}
                     </div>
                 </div>
             </div>
@@ -310,24 +304,27 @@ const Table = async (args) => {
   await putDataToSecTable(data);
   let btns = mask.querySelectorAll(`.${styles['component-table']} button`);
   btns = Array.prototype.slice.call(btns);
-  await btnAddevent({ btns, mask, data, next });
+  await btnAddevent({
+    btns, mask, data, next,
+  });
   // 添加观察者
   await thrTableObserver();
   // all event proxy
   await eventProxy({
     event: 'click',
-    select_model,
   });
   await eventProxy({
     event: 'change',
   });
   await eventProxy({
     event: 'keyup',
-    domAddEvent: document.querySelector("#search")
+    domAddEvent: document.querySelector('#search'),
   });
-  ifselect && selectBeforeFunc({
-    beforeSelect,
-  });
+  if (ifselect) {
+    selectBeforeFunc({
+      beforeSelect,
+    });
+  }
 };
 
 

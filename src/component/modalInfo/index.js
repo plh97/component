@@ -1,58 +1,43 @@
 import styles from './index.less';
 import Button from '../../container/button';
 import Icon from '../../container/icon';
-import Dom from '../../utils/dom.js';
+import Dom from '../../utils/dom';
 
 const ModalInfo = async (args) => {
   const {
     domFunc, sleep,
   } = Dom;
-  let {
-    type, content, title, next,
-  } = args;
-  typeof (args) === 'string' && (
-    content = args,
-    type = 'info'
-  );
-  if (type == undefined) {
+  // let { next } = args;
+  if (typeof (args) === 'string') {
+    content = args;
     type = 'info';
   }
-  if (title == undefined) {
-    title = '提示';
-  }
-  if (content == undefined) {
-    content = 'content不能为空';
-  }
-  if (next == undefined) {
-    next = () => {};
-  }
+  const type = args.type || 'info';
+  const title = args.title || '提示';
+  const content = args.content || 'content不能为空';
+  const next = args.next || (()=>console.log('nothing to callback'));
   if (!type.match(/(info|success|error|warning|confirm|delete)/)) {
     type = 'info';
   }
   const mask = document.createElement('div');
   mask.className = styles['component-mask'];
   mask.innerHTML = `
-        <div class="${styles['component-modalInfo']}">
-            ${Icon({
-    type,
-  })}
-            <div class="${styles['component-modelInfo-container']}">
-                <span class="${styles['component-modelInfo-container-title']}">${title}</span>
-                <span class="${styles['component-modelInfo-container-content']}">${content}</span>
-                <span class="${styles['component-modelInfo-container-footer']}">
-                    ${(type == 'confirm' || type == 'delete') ? Button({
-    className: 'cancal',
-    text: '取消',
-  }).outerHTML : ''}
-                    ${Button({
-    className: `${styles['component-btn']} confirm}`,
-    text: '确认',
-    type: type == 'delete' ? 'btn-danger' : 'btn-primary',
-  }).outerHTML}
-                </span>
-            </div>
-        </div>
-    `;
+    <div class="${styles['component-modalInfo']}">
+      ${Icon({ type })}
+      <div class="${styles['component-modelInfo-container']}">
+        <span class="${styles['component-modelInfo-container-title']}">${title}</span>
+        <span class="${styles['component-modelInfo-container-content']}">${content}</span>
+        <span class="${styles['component-modelInfo-container-footer']}">
+          ${(type === 'confirm' || type === 'delete') ? Button({ id: 'cancal', text: '取消' }).outerHTML : ''}
+          ${Button({ 
+            className: `${styles['component-btn']}}`, 
+            id: 'confirm',
+            text: '确认', 
+            type: type === 'delete' ? 'btn-danger' : 'btn-primary' 
+          }).outerHTML}
+        </span>
+      </div>
+    </div>`;
   domFunc({
     dom: document.querySelector('html'),
     style: {
@@ -66,9 +51,7 @@ const ModalInfo = async (args) => {
     e.stopPropagation();
     // e.preventDefault()
     // return false
-    if (
-      e.path[0].classList.contains(styles['component-mask'])
-    ) {
+    if (e.path[0].classList.contains(styles['component-mask'])) {
       mask.remove();
       domFunc({
         dom: document.querySelector('html'),
@@ -91,7 +74,7 @@ const ModalInfo = async (args) => {
           overflow: 'auto',
         },
       });
-      if (dom.classList.contains('confirm')) {
+      if (dom.id === 'confirm') {
         next();
       }
     });
