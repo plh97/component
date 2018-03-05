@@ -63,7 +63,7 @@ const Button = args => {
   return btn;
 };
 
-const sortBy = require('lodash.sortby');
+// const sortBy = require('lodash.sortby');
 
 const domFunc = e => {
   const {
@@ -163,23 +163,45 @@ const transformStringToBool = e => {
 
 // 将阿拉伯数字转英文 first . second . third
 const numToEng = e => {
-  if (e === 1) {
-    return 'first';
-  } else if (e === 2) {
-    return 'second';
-  } else if (e === 3) {
-    return 'third';
+  let result;
+  switch (e) {
+    case 1:
+      result = 'first';
+      break;
+    case 2:
+      result = 'second';
+      break;
+    case 3:
+      result = 'third';
+      break;
+    default:
+      result = 'null';
+      break;
   }
+  return result;
+};
+
+const unique = arr => Array.from(new Set(arr));
+
+const sortBy = (data, func) => {
+  const newData = data;
+  return newData.map(func).sort().map(arr => {
+    const filterArr = data.filter(Data => arr === Data.id)[0];
+    return filterArr;
+  });
+};
+
+const getIndexLevelFunc = data => {
+  const lenDiff = sortBy(data, o => o.id).map(e => e.id.length);
+  return unique(lenDiff)[1] - unique(lenDiff)[0];
 };
 
 const coverDataToTree = data => {
   const titleArray = [];
   const newData = sortBy(data, o => o.id);
   const lenDiff = newData.map(e => e.id.length);
-  console.log(lenDiff);
-  const unique = arr => Array.from(new Set(arr));
   if (unique(lenDiff).length > 1) {
-    const lenDiffIndex = unique(lenDiff)[1] - unique(lenDiff)[0];
+    let lenDiffIndex = getIndexLevelFunc(data);
     if (Object.prototype.hasOwnProperty.call(data[0], 'code')) {
       newData.forEach(arr => {
         // treetable
@@ -203,7 +225,7 @@ const coverDataToTree = data => {
       });
       return titleArray;
     }
-    newData.forEach(arr => {
+    newData.forEach((arr, i) => {
       if (titleArray.length === 0) {
         titleArray.push(arr);
       } else if (titleArray[titleArray.length - 1].id.length === arr.id.length) {
@@ -213,6 +235,10 @@ const coverDataToTree = data => {
           titleArray[titleArray.length - 1].children = [];
         }
         titleArray[titleArray.length - 1].children.push(arr);
+      } else {
+        lenDiffIndex = getIndexLevelFunc(data.slice(i));
+        if (lenDiffIndex > 6) return;
+        titleArray.push(arr);
       }
     });
     return titleArray;
