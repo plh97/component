@@ -119,7 +119,7 @@ const eventProxy = (args) => {
           path: e.path, dom,
         });
         if (isTableList) {
-          let tableListIndex = isTableList.dataset.index;
+          const tableListIndex = isTableList.dataset.index;
           if (select_model === 'radio') {
             document.querySelector('#empty').click();
           } else if (select_model === 'checkbox') {
@@ -173,7 +173,7 @@ const eventProxy = (args) => {
     const handleAllEvent = (e) => {
       const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
       const allList = document.querySelector('#sec-table-tb-container').children;
-      const filterList = addArrProp(allList).filter(list=>{
+      const filterList = addArrProp(allList).filter((list) => {
         if (isNumeric(e.target.value)) {
           var keyValue = list.querySelector(`.${styles.num}`).innerText;
           var regex = new RegExp(`^${searchValue}`);
@@ -181,10 +181,10 @@ const eventProxy = (args) => {
           var keyValue = list.querySelector(`.${styles.name}`).innerText;
           var regex = new RegExp(`${searchValue}`);
         }
-        return keyValue.match(regex)
-      })
-      addArrProp(allList).forEach(dom=>dom.style.display = 'none');
-      addArrProp(filterList).forEach(dom=>dom.style.display='flex');
+        return keyValue.match(regex);
+      });
+      addArrProp(allList).forEach(dom => dom.style.display = 'none');
+      addArrProp(filterList).forEach(dom => dom.style.display = 'flex');
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   }

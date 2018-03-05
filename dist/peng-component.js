@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({6:[function(require,module,exports) {
+})({5:[function(require,module,exports) {
 var global = (1,eval)("this");
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -2866,6 +2866,17 @@ const transformStringToBool = e => {
   return false;
 };
 
+// 将阿拉伯数字转英文 first . second . third
+const numToEng = e => {
+  if (e === 1) {
+    return 'first';
+  } else if (e === 2) {
+    return 'second';
+  } else if (e === 3) {
+    return 'third';
+  }
+};
+
 const coverDataToTree = data => {
   const titleArray = [];
   const newData = sortBy(data, o => o.id);
@@ -2873,51 +2884,45 @@ const coverDataToTree = data => {
   console.log(lenDiff);
   const unique = arr => Array.from(new Set(arr));
   if (unique(lenDiff).length > 1) {
-    let _lenDiff_ = unique(lenDiff)[1] - unique(lenDiff)[0];
+    const lenDiffIndex = unique(lenDiff)[1] - unique(lenDiff)[0];
     if (Object.prototype.hasOwnProperty.call(data[0], 'code')) {
       newData.forEach(arr => {
         // treetable
         if (titleArray.length === 0) {
           // 初次循环默认push 到root节点
           titleArray.push(arr);
-        } else {
-          if (titleArray[titleArray.length - 1].code.length === arr.code.length) {
-            titleArray.push(arr);
-          } else if (titleArray[titleArray.length - 1].code.length === arr.code.length - _lenDiff_) {
-            if (!titleArray[titleArray.length - 1].hasOwnProperty('children')) {
-              titleArray[titleArray.length - 1].children = [];
-            }
-            titleArray[titleArray.length - 1].children.push(arr);
-          } else if (titleArray[titleArray.length - 1].code.length === arr.code.length - _lenDiff_ * 2) {
-            if (!titleArray[titleArray.length - 1].children[titleArray[titleArray.length - 1].children.length - 1].hasOwnProperty('children')) {
-              titleArray[titleArray.length - 1].children[titleArray[titleArray.length - 1].children.length - 1].children = [];
-            }
-            // 最后一个元素的children，
-            titleArray[titleArray.length - 1].children[titleArray[titleArray.length - 1].children.length - 1].children.push(arr);
-          }
-        }
-      });
-      return titleArray;
-    } else {
-      newData.forEach(function (arr) {
-        if (titleArray.length === 0) {
+        } else if (titleArray[titleArray.length - 1].code.length === arr.code.length) {
           titleArray.push(arr);
-        } else {
-          if (titleArray[titleArray.length - 1].id.length === arr.id.length) {
-            titleArray.push(arr);
-          } else if (titleArray[titleArray.length - 1].id.length === arr.id.length - _lenDiff_) {
-            if (!titleArray[titleArray.length - 1].hasOwnProperty('children')) {
-              titleArray[titleArray.length - 1].children = [];
-            }
-            titleArray[titleArray.length - 1].children.push(arr);
+        } else if (titleArray[titleArray.length - 1].code.length === arr.code.length - lenDiffIndex) {
+          if (!Object.prototype.hasOwnProperty.call(titleArray[titleArray.length - 1], 'children')) {
+            titleArray[titleArray.length - 1].children = [];
           }
+          titleArray[titleArray.length - 1].children.push(arr);
+        } else if (titleArray[titleArray.length - 1].code.length === (arr.code.length - lenDiffIndex) * 2) {
+          if (!Object.prototype.hasOwnProperty.call(titleArray[titleArray.length - 1].children[titleArray[titleArray.length - 1].children.length - 1], 'children')) {
+            titleArray[titleArray.length - 1].children[titleArray[titleArray.length - 1].children.length - 1].children = [];
+          }
+          // 最后一个元素的children，
+          titleArray[titleArray.length - 1].children[titleArray[titleArray.length - 1].children.length - 1].children.push(arr);
         }
       });
       return titleArray;
     }
-  } else {
-    return data;
+    newData.forEach(arr => {
+      if (titleArray.length === 0) {
+        titleArray.push(arr);
+      } else if (titleArray[titleArray.length - 1].id.length === arr.id.length) {
+        titleArray.push(arr);
+      } else if (titleArray[titleArray.length - 1].id.length === arr.id.length - lenDiffIndex) {
+        if (!Object.prototype.hasOwnProperty.call(titleArray[titleArray.length - 1], 'children')) {
+          titleArray[titleArray.length - 1].children = [];
+        }
+        titleArray[titleArray.length - 1].children.push(arr);
+      }
+    });
+    return titleArray;
   }
+  return data;
 };
 
 const Dom = {
@@ -2931,7 +2936,8 @@ const Dom = {
   addEvent,
   isDomFunc,
   coverDataToTree,
-  isNumeric
+  isNumeric,
+  numToEng
 };
 
 const Modal = args => __async(function* () {
@@ -3274,11 +3280,11 @@ const Spin = args => {
   const {
     domFunc
   } = Dom;
-  if (args == undefined) {
-    var dom = document.body;
+  var dom;
+  if (args === undefined) {
+    dom = document.body;
   } else {
-    var { dom } = args;
-    dom = dom == undefined ? document.body : dom;
+    dom = dom.args ? document.body : dom;
   }
   console.log(styles$5);
   if (dom.querySelector(`.${styles$5['component-container-spin']}`)) {
@@ -3293,11 +3299,11 @@ const Spin = args => {
   } else {
     dom.style.position = 'relative';
     const container = document.createElement('div');
-    container.className = `${styles$5['component-container-spin']} ${dom == document.body ? styles$5['component-container-global'] : ''}`;
+    container.className = `${styles$5['component-container-spin']} ${dom === document.body ? styles$5['component-container-global'] : ''}`;
     container.innerHTML = `
             <div class="${styles$5['spin-container']}">
                 ${Icon({ type: 'spin' })}
-                ${screen.width > 1300 && dom.clientHeight < 50 ? '' : '<span>Loading...</span>'}
+                ${window.screen.width > 1300 && dom.clientHeight < 50 ? '' : '<span>Loading...</span>'}
             </div>
         `;
     container.addEventListener('click', e => {
@@ -3436,7 +3442,7 @@ const eventProxy = args => {
           path: e.path, dom
         });
         if (isTableList) {
-          let tableListIndex = isTableList.dataset.index;
+          const tableListIndex = isTableList.dataset.index;
           if (select_model === 'radio') {
             document.querySelector('#empty').click();
           } else if (select_model === 'checkbox') {
@@ -3849,7 +3855,9 @@ const eventProxy$1 = args => {
           if (input.parentElement.style.display !== 'none') {
             input.parentElement.remove();
             inputs = document.querySelectorAll(`.${styles$7['sec-table']} input`);
-            inputs.forEach(inputDom => inputDom.checked = false);
+            inputs.forEach(inputDom => {
+              inputDom.checked = false;
+            });
           }
         });
       }
@@ -3859,7 +3867,7 @@ const eventProxy$1 = args => {
           path: e.path, dom
         });
         if (isTableList) {
-          let tableListIndex = isTableList.dataset.index;
+          const tableListIndex = isTableList.dataset.index;
           if (select_model === 'radio') {
             document.querySelector('#empty').click();
           } else if (select_model === 'checkbox') {
@@ -3913,21 +3921,29 @@ const eventProxy$1 = args => {
   } else if (event === 'keyup') {
     const handleAllEvent = e => {
       const activeDom = document.querySelector(`.${styles$7.active}`);
-      activeDom && activeDom.classList.remove(styles$7.active);
+      if (!activeDom) {
+        activeDom.classList.remove(styles$7.active);
+      }
       const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
       const allList = document.querySelector('#sec-table-tb-container').children;
       const filterList = addArrProp$2(allList).filter(list => {
+        let keyValue;
+        let regex;
         if (isNumeric$2(e.target.value)) {
-          var keyValue = list.querySelector(`.${styles$7.num}`).innerText;
-          var regex = new RegExp(`^${searchValue}`);
+          keyValue = list.querySelector(`.${styles$7.num}`).innerText;
+          regex = new RegExp(`^${searchValue}`);
         } else {
-          var keyValue = list.querySelector(`.${styles$7.name}`).innerText;
-          var regex = new RegExp(`${searchValue}`);
+          keyValue = list.querySelector(`.${styles$7.name}`).innerText;
+          regex = new RegExp(`${searchValue}`);
         }
         return keyValue.match(regex);
       });
-      addArrProp$2(allList).forEach(dom => dom.style.display = 'none');
-      addArrProp$2(filterList).forEach(dom => dom.style.display = 'flex');
+      addArrProp$2(allList).forEach(dom => {
+        dom.style.display = 'none';
+      });
+      addArrProp$2(filterList).forEach(dom => {
+        dom.style.display = 'flex';
+      });
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   }
@@ -3944,10 +3960,8 @@ const secTableObserver = () => {
     let allDom = secTableContainer.querySelectorAll('input');
     allDom = addArrProp$2(allDom).map(dom => dom.parentElement);
     let showDom = secTableContainer.querySelectorAll('label');
-    showDom = addArrProp$2(showDom).filter(dom => {
-      console.log(dom.dataset.type, index, dom.dataset.type.match(index));
-      return dom.dataset.type.match(index);
-    });
+    const regex = new RegExp(`^${index}`);
+    showDom = addArrProp$2(showDom).filter(dom => dom.dataset.type.match(regex));
     showDomFunc$1({
       allDom,
       showDom
@@ -4047,7 +4061,7 @@ const treeTable = args => __async(function* () {
                       <label for="select-reverse">反选</label>
                     ` : ''}
                   </span>
-                  ${data.content[0] ? data.content[0].corp_code ? `<span class="${styles$7.num}">编号</span>` : '' : ""}
+                  ${data.content[0] ? data.content[0].corp_code ? `<span class="${styles$7.num}">编号</span>` : '' : ''}
                   <span class="${styles$7.name}">名称</span>
                 </div>
                 <form class="${styles$7['tb-container']}" id="sec-table-tb-container"></form>
@@ -4056,7 +4070,7 @@ const treeTable = args => __async(function* () {
                 <div class="${styles$7.th}">
                   <span class="${styles$7.select}">
                   </span>
-                  ${data.content[0] ? data.content[0].corp_code ? `<span class="${styles$7.num}">编号</span>` : '' : ""}
+                  ${data.content[0] ? data.content[0].corp_code ? `<span class="${styles$7.num}">编号</span>` : '' : ''}
                   <span class="${styles$7.name}">名称</span>
                   <span class="${styles$7.empty}" id="empty">
                     ${Icon({ type: 'trash' })}
@@ -4476,7 +4490,7 @@ const Component = {
 window.Component = Component;
 // export default Component;
 
-},{"lodash.sortby":6}],0:[function(require,module,exports) {
+},{"lodash.sortby":5}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -4494,7 +4508,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':50654/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':60577/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
