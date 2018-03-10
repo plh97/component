@@ -1,5 +1,5 @@
 import styles from './index.less';
-import Button from '../../container/button';
+import Button from '../../container/button/pc';
 import Icon from '../../container/icon';
 import Dom from '../../utils/dom';
 

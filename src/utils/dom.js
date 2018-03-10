@@ -29,6 +29,21 @@ const isDomInPathFunc = (args) => {
     }
   }
 };
+
+const isIdInPathFunc = (args) => {
+  const {
+    path,
+    id,
+  } = args;
+  for (let i = 0; i < path.length; i++) {
+    if (path[i].id === id) {
+      return path[i];
+    } else if (path[i] === document.body) {
+      return false;
+    }
+  }
+};
+
 // aims -->  wanan to check whether click the list of dom element?
 // i put params of the class name with the list
 // how to relize it? just put dom to check whether click ,,,not put the selectorName to check?>>>>
@@ -201,10 +216,24 @@ const coverDataToTree = (data) => {
 };
 
 
+const composedPath = (el) => {
+  const path = [];
+  while (el) {
+    path.push(el);
+    if (el.tagName === 'HTML') {
+      path.push(document);
+      path.push(window);
+      return path;
+    }
+    el = el.parentElement;
+  }
+};
+
 const Dom = {
   domFunc,
   sleep,
   isDomInPathFunc,
+  isIdInPathFunc,
   domToggleAnimation,
   transformStringToBool,
   addArrProp,
@@ -214,6 +243,7 @@ const Dom = {
   coverDataToTree,
   isNumeric,
   numToEng,
+  composedPath,
 };
 
 export default Dom;
