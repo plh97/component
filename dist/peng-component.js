@@ -1670,27 +1670,27 @@ const eventProxy$2 = args => {
     const handleAllEvent = e => {
       const path = e.path || e.composedPath && e.composedPath() || composedPath$1(e.target);
       // toggle show all with first table
-      const isShowAllInPath = isDomInPathFunc$3({
-        path,
-        selector: '#all'
-      });
-      if (isShowAllInPath) {
-        // add some animation
-        const more = isShowAllInPath.querySelector('.icon-unfold');
-        domToggleAnimation$2({
-          dom: more,
-          animationDuration: '0.3s',
-          animationFillMode: 'forwards',
-          animationName: [styles$9['rotate-90'], styles$9.rotate90]
-        });
-        const listContainer = isShowAllInPath.parentElement.querySelector(`.${styles$9['tree-container']}`);
-        domToggleAnimation$2({
-          dom: listContainer,
-          animationDuration: '0.3s',
-          animationFillMode: 'forwards',
-          animationName: [styles$9.slidein, styles$9.slideout]
-        });
-      }
+      // const isShowAllInPath = isDomInPathFunc({
+      //   path,
+      //   selector: '#all',
+      // });
+      // if (isShowAllInPath) {
+      //   // add some animation
+      //   const more = isShowAllInPath.querySelector('.icon-unfold');
+      //   domToggleAnimation({
+      //     dom: more,
+      //     animationDuration: '0.3s',
+      //     animationFillMode: 'forwards',
+      //     animationName: [styles['rotate-90'], styles.rotate90],
+      //   });
+      //   const listContainer = isShowAllInPath.parentElement.querySelector(`.${styles['tree-container']}`);
+      //   domToggleAnimation({
+      //     dom: listContainer,
+      //     animationDuration: '0.3s',
+      //     animationFillMode: 'forwards',
+      //     animationName: [styles.slidein, styles.slideout],
+      //   });
+      // }
       // toggle show the tree list in first table
       let openList = document.querySelectorAll(`.${styles$9['tree-container']} .icon-unfold`);
       openList = Array.prototype.slice.call(openList);
@@ -1734,25 +1734,6 @@ const eventProxy$2 = args => {
         }
       }
 
-      // let selectInput = document.querySelectorAll('#tree-list-li');
-      // selectInput = addArrProp(selectInput).filter(dom => !dom.querySelector('svg.icon-unfold'));
-      // selectInput.forEach((dom) => {
-      //   const isSelectDomInPath = isDomFunc({
-      //     path: e.path, dom,
-      //   });
-      //   if (isSelectDomInPath) {
-      //     // if select one
-      //     if (selectModel === 'radio') {
-      //       addArrProp(document.querySelectorAll(`.${styles.active}`)).forEach((activeDom) => {
-      //         activeDom.classList.remove(`${styles.active}`);
-      //       });
-      //       isSelectDomInPath.classList.toggle(`${styles.active}`);
-      //     } else if (selectModel === 'checkbox') {
-      //       // if select more
-      //       isSelectDomInPath.classList.toggle(`${styles.active}`);
-      //     }
-      //   }
-      // });
       // empty
       const isEmptyDom = isDomInPathFunc$3({
         path: e.path,
@@ -1835,7 +1816,8 @@ const thrTableObserver$2 = () => {
   const secTableContainer = document.querySelector('#thr-table-tb-container');
   const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
   const observer = new MutationObserver(mutations => {
-    const target = mutations.filter(mutation => mutation.target.dataset.active === 'true');
+    console.log(mutations[mutations.length - 1].target.classList.contains(styles$9.active));
+
     if (!target.length) return;
     const index = target[0].target.dataset.type;
     let allDom = secTableContainer.querySelectorAll('input');
@@ -1880,7 +1862,6 @@ const tree = args => __async(function* () {
           <div class="${styles$9.all}" id="all">
             ${Icon({ type: 'navlist' })}
             <span class="${styles$9['text-container']}">全部</span>
-            ${Icon({ type: 'unfold' })}
           </div>
           <div class="${styles$9['tree-container']}" id='tree-container'></div>
         </div>
@@ -1888,8 +1869,7 @@ const tree = args => __async(function* () {
           <div class="${styles$9.table}">
             <div class="${styles$9['thr-table']}" id="thr-table">
               <div class="${styles$9.th}">
-                <span class="${styles$9.select}">
-                </span>
+                <span class="${styles$9.select}"></span>
                 ${data[0].corp_code ? `<span class="${styles$9.num}">编号</span>` : ''}
                 <span class="${styles$9.name}">名称</span>
                 <span class="${styles$9.empty}" id="empty">
