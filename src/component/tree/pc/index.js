@@ -34,14 +34,13 @@ const btnAddevent = (args) => {
     btns,
     mask,
     next,
-    data,
   } = args;
   btns.forEach((dom) => {
     if (dom.id === 'confirm') {
       dom.addEventListener('click', () => {
-        let doms = document.querySelectorAll('#thr-table-tb-container input');
+        let doms = document.querySelectorAll('#thr-table-tb-container label input');
         doms = Array.prototype.slice.call(doms);
-        doms = doms.map(activeDom => data[activeDom.parentElement.dataset.index]);
+        doms = doms.map(activeDom => JSON.parse(activeDom.id));
         console.log('输出的数据：', doms);
         next(doms);
         mask.remove();
@@ -77,13 +76,12 @@ const putDataToFirTable = async (args) => {
     const ol = document.createElement('ol');
     const isChildren = Object.prototype.hasOwnProperty.call(row, 'children');
     const html = `
-      <li id='tree-list-li' data-type="${row.code || row.id}">
+      <li data-json='${JSON.stringify(row)}' id='tree-list-li' data-type="${row.code || row.id}">
         <span class="${styles['text-container']}">${row.name}</span>
         ${isChildren ? Icon({ type: 'unfold' }) : ''}
       </li>
     `;
     ol.id = 'tree-list-ol';
-    // ol.dataset.innerIndex = row.id.length / 2;
     ol.innerHTML += html;
     if (isChildren) {
       putDataToFirTable({
@@ -95,35 +93,12 @@ const putDataToFirTable = async (args) => {
   });
 };
 
-
 const eventProxy = (args) => {
   const { event, selectModel } = args;
   const domAddEvent = args.domAddEvent || document.querySelector(`.${styles.mask}`);
   if (event === 'click') {
     const handleAllEvent = (e) => {
       const path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
-      // toggle show all with first table
-      // const isShowAllInPath = isDomInPathFunc({
-      //   path,
-      //   selector: '#all',
-      // });
-      // if (isShowAllInPath) {
-      //   // add some animation
-      //   const more = isShowAllInPath.querySelector('.icon-unfold');
-      //   domToggleAnimation({
-      //     dom: more,
-      //     animationDuration: '0.3s',
-      //     animationFillMode: 'forwards',
-      //     animationName: [styles['rotate-90'], styles.rotate90],
-      //   });
-      //   const listContainer = isShowAllInPath.parentElement.querySelector(`.${styles['tree-container']}`);
-      //   domToggleAnimation({
-      //     dom: listContainer,
-      //     animationDuration: '0.3s',
-      //     animationFillMode: 'forwards',
-      //     animationName: [styles.slidein, styles.slideout],
-      //   });
-      // }
       // toggle show the tree list in first table
       let openList = document.querySelectorAll(`.${styles['tree-container']} .icon-unfold`);
       openList = Array.prototype.slice.call(openList);
@@ -155,7 +130,6 @@ const eventProxy = (args) => {
         id: 'tree-list-li',
       });
       if (isIdInPath && !isIdInPath.querySelector('.icon-unfold')) {
-        console.log(isIdInPath);
         if (selectModel === 'radio') {
           addArrProp(document.querySelectorAll(`.${styles.active}`)).forEach((activeDom) => {
             activeDom.classList.remove(`${styles.active}`);
@@ -166,7 +140,6 @@ const eventProxy = (args) => {
           isIdInPath.classList.toggle(`${styles.active}`);
         }
       }
-
       // empty
       const isEmptyDom = isDomInPathFunc({
         path: e.path,
@@ -175,11 +148,9 @@ const eventProxy = (args) => {
       if (isEmptyDom) {
         let inputs = isEmptyDom.parentElement.parentElement.querySelectorAll(`.${styles['tb-container']} .${styles.select}`);
         inputs.forEach((input) => {
-          if (input.parentElement.style.display !== 'none') {
-            input.parentElement.remove();
-            inputs = document.querySelectorAll(`.${styles['sec-table']} input`);
-            inputs.forEach((inputDom) => { inputDom.checked = false; });
-          }
+          input.parentElement.remove();
+          inputs = document.querySelectorAll(`.${styles['tree-container']} .${styles.active}`);
+          inputs.forEach((inputDom) => { inputDom.className = ''; });
         });
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
@@ -188,11 +159,11 @@ const eventProxy = (args) => {
           path: e.path, dom,
         });
         if (isTableList) {
-          const tableListIndex = isTableList.dataset.index;
           if (selectModel === 'radio') {
             document.querySelector('#empty').click();
           } else if (selectModel === 'checkbox') {
-            document.querySelector(`#sec-table-tb-container label:nth-child(${Number(tableListIndex) + 1})`).click();
+            const jsonData = dom.querySelector('input').id;
+            document.querySelector(`#tree-container li[data-json='${jsonData}']`).click();
           }
         }
       });
@@ -232,7 +203,7 @@ const eventProxy = (args) => {
       // 为第二个表格每一个列表添加点击事件，tb-container
       const isTableList = isDomFunc({
         path: e.path,
-        dom: document.querySelector('#sec-table-tb-container'),
+        dom: document.querySelector('#thr-table-tb-container'),
       });
       if (isTableList) {
         isTableList.dataset.select = Math.random();
@@ -243,24 +214,26 @@ const eventProxy = (args) => {
 };
 
 
-const thrTableObserver = () => {
+const thrTableObserver = ({ selectModel }) => {
   const treeContainer = document.querySelector('#tree-container');
-  const secTableContainer = document.querySelector('#thr-table-tb-container');
+  const thrTableContainer = document.querySelector('#thr-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
-  const observer = new MutationObserver((mutations) => {
-    console.log(mutations[mutations.length - 1].target.classList.contains(styles.active));
-
-
-    if (!target.length) return;
-    const index = target[0].target.dataset.type;
-    let allDom = secTableContainer.querySelectorAll('input');
-    allDom = addArrProp(allDom).map(dom => dom.parentElement);
-    let showDom = secTableContainer.querySelectorAll('label');
-    const regex = new RegExp(`^${index}`);
-    showDom = addArrProp(showDom).filter(dom => dom.dataset.type.match(regex));
-    showDomFunc({
-      allDom,
-      showDom,
+  const observer = new MutationObserver(() => {
+    document.querySelector('#thr-table-tb-container').innerHTML = '';
+    addArrProp(document.querySelectorAll(`#tree-container .${styles.active}`)).forEach((dom) => {
+      const jsonData = JSON.parse(dom.dataset.json);
+      const div = document.createElement('label');
+      div.className = styles.tb;
+      div.htmlFor = jsonData;
+      const html = `
+        <input class="${styles.select}" name="select" type="${selectModel}" id='${JSON.stringify(jsonData)}'/>
+        ${jsonData.dept_code ? `<span class="${styles.num}">${jsonData.dept_code}</span>` : ''}
+        <span class="${styles.name}">${jsonData.name}</span>
+      `;
+      div.innerHTML = html;
+      div.style.color = '#000';
+      div.style.cursor = 'pointer';
+      thrTableContainer.appendChild(div);
     });
   });
   // 配置观察选项:
@@ -342,7 +315,7 @@ const tree = async (args) => {
     btns, mask, data: data.content, next,
   });
   // 添加观察者
-  await thrTableObserver();
+  await thrTableObserver({ selectModel });
   // all event proxy
   await eventProxy({
     event: 'click',

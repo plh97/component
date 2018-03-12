@@ -40,7 +40,8 @@
                 overflow-x: hidden;
                 display: inline-flex;
                 flex-direction: column;
-                background-color: #fafafa;
+                background-color: #fff;
+                border-right: 1px solid #DFDFDF;
 
                 svg {
                     font-size: inherit;
@@ -71,9 +72,19 @@
                     font-weight: bold;
                     align-items: center;
                     flex-direction: row;
+                    border-bottom: 1px solid #D9D9D9;
                 }
 
                 .tree-container > ol {
+                    background-color: #F9F9F9;
+                    &>li:nth-child(1){
+                        background-color: #fff;
+                        margin-left: -10px;
+                        // span {
+                        //     border-bottom: 0;
+                        // }
+                    }
+
                     & > li:before{
                         content: '★';
                         font-size: 1.6em;    
@@ -105,9 +116,14 @@
                     display: inline-flex;
                     flex-direction: column;
                     padding-right: 8px;
+                    margin-right: -8px;
                     &:hover {
                         padding-right: 0px;
                         overflow-y: scroll;
+                    }
+                    span {
+                        border-bottom: 1px solid #EEEEEE;
+                        height: 29px;
                     }
 
                     ol {
@@ -224,11 +240,11 @@
                 }
     
                 .group-btn {
-                    margin: 10px;
+                    margin: 0 10px;
                     display: flex;
                     justify-content: flex-end;
-                    height: 70px;
-                    align-items: center;
+                    height: 45px;
+                    align-items: flex-start;
                 }
             }
             .empty {

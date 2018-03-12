@@ -1,8 +1,8 @@
 window.Component.pc.tree({
   // ifselect: false,是否加载之前选好的，默认true
   beforeSelect: ['法塞特家族酒庄品鉴酒仓库', '法塞特家族酒庄配件仓库'], // 之前选好的内容
-  // select_model: 'checkbox', //多选
-  select_model: 'radio', // 单选
+  select_model: 'checkbox', // 多选
+  // select_model: 'radio', // 单选
   data: [{
     id: '01', name: '圣路易·丁酒庄', pId: '', sid: 499, type: '',
   }, {
