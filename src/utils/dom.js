@@ -44,9 +44,6 @@ const isIdInPathFunc = (args) => {
   }
 };
 
-// aims -->  wanan to check whether click the list of dom element?
-// i put params of the class name with the list
-// how to relize it? just put dom to check whether click ,,,not put the selectorName to check?>>>>
 const isDomFunc = (args) => {
   const {
     path,
@@ -229,6 +226,22 @@ const composedPath = (el) => {
   }
 };
 
+const tottleShowSelect = ({ dom, styles }) => {
+  const selectNum = dom.parentElement.parentElement.querySelectorAll(`.${styles.active}`).length;
+  const allNum = dom.parentElement.parentElement.children.length - 1;
+  const parentShowSelectDom = dom.parentElement.parentElement.children[0];
+  if (selectNum === 0) {
+    // ('没选');
+    parentShowSelectDom.className = '';
+  } else if (allNum > selectNum) {
+    // console.log('一个以上');
+    parentShowSelectDom.className = styles.halfSelect;
+  } else {
+    // console.log('全选');
+    parentShowSelectDom.className = styles.allSelect;
+  }
+};
+
 const Dom = {
   domFunc,
   sleep,
@@ -244,6 +257,7 @@ const Dom = {
   isNumeric,
   numToEng,
   composedPath,
+  tottleShowSelect,
 };
 
 export default Dom;

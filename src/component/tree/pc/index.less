@@ -77,37 +77,63 @@
 
                 .tree-container > ol {
                     background-color: #F9F9F9;
-                    &>li:nth-child(1){
+                    & > li:nth-child(1){
                         background-color: #fff;
                         margin-left: -10px;
-                        // span {
-                        //     border-bottom: 0;
-                        // }
+                    }
+                    .checkbox {
+                        position: relative;
+                        margin: 0 10px;
+                        width: 20px;
+                        height: 20px;
+                    }
+                    & > li .checkbox:before{
+                        position: absolute;
+                        content: ' ';
+                        width: 20px;
+                        height: 20px;
+                        box-sizing: border-box;
+                        border: 1px solid #999;
+                        border-radius: 3px;
+                        font-size: 24px;
+                        line-height: 10px;
+                        text-align: center;
+                        color: @daocheng-red;
+                    }
+                    & > li.halfSelect .checkbox:before {
+                        content: '◢';
+                        line-height: 17px;
+                    }
+                    & > li.allSelect .checkbox:before {
+                        content: '■';
+                        line-height: 12px;
                     }
 
-                    & > li:before{
-                        content: '★';
-                        font-size: 1.6em;    
-                        height: 30px;
-                        line-height: 30px;
-                        width: 1.5em;
+                    & > ol > li .checkbox:before {
+                        content: ' ';
+                        position: absolute;
+                        width: 20px;
+                        height: 20px;
+                        box-sizing: border-box;
+                        border: 1px solid #999;
+                        border-radius: 3px;
+                        font-size: 24px;
+                        line-height: 10px;
                         text-align: center;
+                        color: @daocheng-red;
                     }
-                    & > ol > li:before {
-                        content: '◆';
-                        font-size: 2.3em;
-                        height: 30px;
-                        line-height: 30px;
-                        width: 1em;
-                        text-align: center;
-                    }
-                    & > ol > ol > li:before {
+                    & > ol > ol > li .checkbox:before {
                         content: '⚫';
-                        width: 2.2em;
+                        width: 30px;
                         height: 30px;
                         line-height: 30px;
                         text-align: center;
                     }
+
+                    // li.active :first-child {
+                    //     color: red!important;
+                    //     font-weight: bolder;
+                    // }
                 } 
                 .tree-container {
                     flex: 1;
@@ -156,8 +182,14 @@
                                 font-size: 14px;
                             }
                             &.active {
-                                background-color: @daocheng-red;
-                                color: #fff;
+                                // background-color: @daocheng-red;
+                                // color: #fff;
+                                span {
+                                    border-bottom: 0;
+                                }
+                                & .checkbox::before {
+                                    content: '■';
+                                }
                             }
                         }
                     }

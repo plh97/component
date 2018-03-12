@@ -13,6 +13,7 @@ const {
   domToggleAnimation,
   coverDataToTree,
   composedPath,
+  tottleShowSelect,
 } = Dom;
 
 const selectBeforeFunc = (args) => {
@@ -23,7 +24,7 @@ const selectBeforeFunc = (args) => {
   addArrProp(contents).forEach((content) => {
     beforeSelect.forEach((select) => {
       if (content.innerText === select) {
-        content.parentElement.classList.add(styles.active);
+        content.parentElement.click();
       }
     });
   });
@@ -77,6 +78,7 @@ const putDataToFirTable = async (args) => {
     const isChildren = Object.prototype.hasOwnProperty.call(row, 'children');
     const html = `
       <li data-json='${JSON.stringify(row)}' id='tree-list-li' data-type="${row.code || row.id}">
+        <span id="checkbox" class="${styles.checkbox}"></span>
         <span class="${styles['text-container']}">${row.name}</span>
         ${isChildren ? Icon({ type: 'unfold' }) : ''}
       </li>
@@ -99,7 +101,7 @@ const eventProxy = (args) => {
   if (event === 'click') {
     const handleAllEvent = (e) => {
       const path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
-      // toggle show the tree list in first table
+      // 点击li的第一个，是否是展开下面选项还是全选反选
       let openList = document.querySelectorAll(`.${styles['tree-container']} .icon-unfold`);
       openList = Array.prototype.slice.call(openList);
       openList.forEach((dom) => {
@@ -109,19 +111,41 @@ const eventProxy = (args) => {
         });
         if (isListInPath) {
           // add some animation
-          domToggleAnimation({
-            dom,
-            animationDuration: '0.3s',
-            animationFillMode: 'forwards',
-            animationName: [styles['rotate-90'], styles.rotate90],
+          const isIdInPath = isIdInPathFunc({
+            path,
+            id: 'checkbox',
           });
-          const listContainer = isListInPath.parentElement;
-          domToggleAnimation({
-            dom: listContainer,
-            animationDuration: '0.3s',
-            animationFillMode: 'forwards',
-            animationName: [styles.slidein, styles.slideout],
-          });
+          if (isIdInPath) {
+            const container = e.target.parentElement.parentElement;
+            // if()
+            // all add active class
+            // addArrProp(container.querySelectorAll(`.${styles.checkbox}`)).forEach((ddom) => {
+            //   ddom.parentElement.classList.add(styles.active);
+            // });
+            console.log(addArrProp(container.children).filter(ddom => ddom.id === 'tree-list-ol'));
+            addArrProp(container.children).forEach((dddom) => {
+              if (dddom.id === 'tree-list-ol') {
+                console.log(dddom);
+                dddom.parentElement.className = styles.active;
+              }
+            });
+            // all remove active class
+          } else {
+            // toggle show
+            domToggleAnimation({
+              dom,
+              animationDuration: '0.3s',
+              animationFillMode: 'forwards',
+              animationName: [styles['rotate-90'], styles.rotate90],
+            });
+            const listContainer = isListInPath.parentElement;
+            domToggleAnimation({
+              dom: listContainer,
+              animationDuration: '0.3s',
+              animationFillMode: 'forwards',
+              animationName: [styles.slidein, styles.slideout],
+            });
+          }
         }
       });
       // 对于可以选择的dom元素 添加点击active的样式
@@ -138,6 +162,8 @@ const eventProxy = (args) => {
         } else if (selectModel === 'checkbox') {
           // if select more
           isIdInPath.classList.toggle(`${styles.active}`);
+          // // 检测是否全选，半选，没选
+          tottleShowSelect({ dom: isIdInPath, styles });
         }
       }
       // empty
