@@ -1,4 +1,4 @@
-const sortBy = require('lodash.sortby');
+// const sortBy = require('lodash.sortby');
 
 const domFunc = (e) => {
   const {
@@ -29,9 +29,21 @@ const isDomInPathFunc = (args) => {
     }
   }
 };
-// aims -->  wanan to check whether click the list of dom element?
-// i put params of the class name with the list
-// how to relize it? just put dom to check whether click ,,,not put the selectorName to check?>>>>
+
+const isIdInPathFunc = (args) => {
+  const {
+    path,
+    id,
+  } = args;
+  for (let i = 0; i < path.length; i++) {
+    if (path[i].id === id) {
+      return path[i];
+    } else if (path[i] === document.body) {
+      return false;
+    }
+  }
+};
+
 const isDomFunc = (args) => {
   const {
     path,
@@ -100,93 +112,141 @@ const transformStringToBool = (e) => {
 
 // 将阿拉伯数字转英文 first . second . third
 const numToEng = (e) => {
-  if (e === 1) {
-    return 'first';
-  } else if (e === 2) {
-    return 'second';
-  } else if (e === 3) {
-    return 'third';
+  let result;
+  switch (e) {
+    case 1:
+      result = 'first';
+      break;
+    case 2:
+      result = 'second';
+      break;
+    case 3:
+      result = 'third';
+      break;
+    default:
+      result = 'null';
+      break;
   }
+  return result;
 };
 
+const unique = arr => Array.from(new Set(arr));
 
-const coverDataToTree = data => {
+const sortBy = (data, func) => {
+  const newData = data;
+  return newData
+    .map(func)
+    .sort()
+    .map((arr) => {
+      const filterArr = data.filter(Data => arr === Data.id)[0];
+      return filterArr;
+    });
+};
+
+const getIndexLevelFunc = (data) => {
+  const lenDiff = sortBy(data, o => o.id).map(e => e.id.length);
+  return unique(lenDiff)[1] - unique(lenDiff)[0];
+};
+
+const coverDataToTree = (data) => {
   const titleArray = [];
-  const newData = sortBy(data,o=>o.id);
-  const lenDiff = newData.map(e=>e.id.length);
-  console.log(lenDiff);
-  const unique = arr => Array.from(new Set(arr));
+  const newData = sortBy(data, o => o.id);
+  const lenDiff = newData.map(e => e.id.length);
   if (unique(lenDiff).length > 1) {
-    let _lenDiff_ = unique(lenDiff)[1] - unique(lenDiff)[0];
-    if ( Object.prototype.hasOwnProperty.call(data[0], 'code') ) {
+    let lenDiffIndex = getIndexLevelFunc(data);
+    if (Object.prototype.hasOwnProperty.call(data[0], 'code')) {
       newData.forEach((arr) => {
         // treetable
         if (titleArray.length === 0) {
           // 初次循环默认push 到root节点
           titleArray.push(arr);
-        } else {
-          if (titleArray[titleArray.length - 1].code.length === arr.code.length) {
-            titleArray.push(arr)
-          } else if (
-            titleArray[titleArray.length - 1].code.length === arr.code.length - _lenDiff_
+        } else if (titleArray[titleArray.length - 1].code.length === arr.code.length) {
+          titleArray.push(arr);
+        } else if (
+          titleArray[titleArray.length - 1].code.length === arr.code.length - lenDiffIndex
+        ) {
+          if (
+            !Object.prototype.hasOwnProperty.call(titleArray[titleArray.length - 1], 'children')
           ) {
-            if (
-              !titleArray[titleArray.length - 1].hasOwnProperty('children')
-            ) {
-              titleArray[titleArray.length - 1].children = []
-            }
-            titleArray[titleArray.length - 1].children.push(arr)
-          } else if (
-            titleArray[titleArray.length - 1].code.length === arr.code.length - _lenDiff_ * 2
-          ) {
-            if (!titleArray[titleArray.length - 1].children[
+            titleArray[titleArray.length - 1].children = [];
+          }
+          titleArray[titleArray.length - 1].children.push(arr);
+        } else if (
+          titleArray[titleArray.length - 1].code.length === (arr.code.length - lenDiffIndex) * 2
+        ) {
+          if (
+            !Object.prototype.hasOwnProperty.call(titleArray[titleArray.length - 1].children[
               titleArray[titleArray.length - 1].children.length - 1
-            ].hasOwnProperty('children')) {
-              titleArray[titleArray.length - 1].children[
-                titleArray[titleArray.length - 1].children.length - 1
-              ].children = []
-            }
-            // 最后一个元素的children，
+            ], 'children')
+          ) {
             titleArray[titleArray.length - 1].children[
               titleArray[titleArray.length - 1].children.length - 1
-            ].children.push(arr)
+            ].children = [];
           }
+          // 最后一个元素的children，
+          titleArray[titleArray.length - 1].children[
+            titleArray[titleArray.length - 1].children.length - 1
+          ].children.push(arr);
         }
-      })
-      return titleArray
-    } else {
-      newData.forEach(function (arr) {
-        if (titleArray.length === 0) {
-          titleArray.push(arr)
-        } else {
-          if (
-            titleArray[titleArray.length - 1].id.length === arr.id.length
-          ) {
-            titleArray.push(arr)
-          } else if (
-            titleArray[titleArray.length - 1].id.length === arr.id.length - _lenDiff_
-          ) {
-            if (
-              !titleArray[titleArray.length - 1].hasOwnProperty('children')
-            ) {
-              titleArray[titleArray.length - 1].children = []
-            }
-            titleArray[titleArray.length - 1].children.push(arr)
-          }
-        }
-      })
-      return titleArray
+      });
+      return titleArray;
     }
-  } else {
-    return data
+    newData.forEach((arr, i) => {
+      if (titleArray.length === 0) {
+        titleArray.push(arr);
+      } else if (titleArray[titleArray.length - 1].id.length === arr.id.length) {
+        titleArray.push(arr);
+      } else if (titleArray[titleArray.length - 1].id.length === arr.id.length - lenDiffIndex) {
+        if (!Object.prototype.hasOwnProperty.call(titleArray[titleArray.length - 1], 'children')) {
+          titleArray[titleArray.length - 1].children = [];
+        }
+        titleArray[titleArray.length - 1].children.push(arr);
+      } else {
+        lenDiffIndex = getIndexLevelFunc(data.slice(i));
+        if (lenDiffIndex > 6) return;
+        titleArray.push(arr);
+      }
+    });
+    return titleArray;
   }
-}
+  return data;
+};
 
+
+const composedPath = (el) => {
+  const path = [];
+  while (el) {
+    path.push(el);
+    if (el.tagName === 'HTML') {
+      path.push(document);
+      path.push(window);
+      return path;
+    }
+    el = el.parentElement;
+  }
+};
+
+const tottleShowSelect = ({ dom, styles }) => {
+  const selectNum = dom.parentElement.parentElement.querySelectorAll(`.${styles.active}`).length;
+  const allNum = dom.parentElement.parentElement.children.length - 1;
+  const parentShowSelectDom = dom.parentElement.parentElement.children[0];
+  if (selectNum === 0) {
+    // ('没选');
+    parentShowSelectDom.className = '';
+  } else if (allNum > selectNum) {
+    // console.log('一个以上');
+    parentShowSelectDom.className = styles.halfSelect;
+  } else {
+    // console.log('全选');
+    parentShowSelectDom.className = styles.allSelect;
+  }
+};
 
 const Dom = {
   domFunc,
   sleep,
   isDomInPathFunc,
+  isIdInPathFunc,
   domToggleAnimation,
   transformStringToBool,
   addArrProp,
@@ -195,6 +255,9 @@ const Dom = {
   isDomFunc,
   coverDataToTree,
   isNumeric,
+  numToEng,
+  composedPath,
+  tottleShowSelect,
 };
 
 export default Dom;

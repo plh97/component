@@ -1,7 +1,7 @@
 import styles from './index.less';
 import Dom from '../../utils/dom';
 import Icon from '../../container/icon';
-import Button from '../../container/button';
+import Button from '../../container/button/pc';
 
 const {
   sleep,
@@ -205,7 +205,7 @@ const eventProxy = (args) => {
           if (input.parentElement.style.display !== 'none') {
             input.parentElement.remove();
             inputs = document.querySelectorAll(`.${styles['sec-table']} input`);
-            inputs.forEach(inputDom => inputDom.checked = false);
+            inputs.forEach((inputDom) => { inputDom.checked = false; });
           }
         });
       }
@@ -215,7 +215,7 @@ const eventProxy = (args) => {
           path: e.path, dom,
         });
         if (isTableList) {
-          let tableListIndex = isTableList.dataset.index;
+          const tableListIndex = isTableList.dataset.index;
           if (select_model === 'radio') {
             document.querySelector('#empty').click();
           } else if (select_model === 'checkbox') {
@@ -269,21 +269,25 @@ const eventProxy = (args) => {
   } else if (event === 'keyup') {
     const handleAllEvent = (e) => {
       const activeDom = document.querySelector(`.${styles.active}`);
-      activeDom && activeDom.classList.remove(styles.active);
+      if (!activeDom) {
+        activeDom.classList.remove(styles.active);
+      }
       const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
       const allList = document.querySelector('#sec-table-tb-container').children;
-      const filterList = addArrProp(allList).filter(list => {
+      const filterList = addArrProp(allList).filter((list) => {
+        let keyValue;
+        let regex;
         if (isNumeric(e.target.value)) {
-          var keyValue = list.querySelector(`.${styles.num}`).innerText;
-          var regex = new RegExp(`^${searchValue}`);
+          keyValue = list.querySelector(`.${styles.num}`).innerText;
+          regex = new RegExp(`^${searchValue}`);
         } else {
-          var keyValue = list.querySelector(`.${styles.name}`).innerText;
-          var regex = new RegExp(`${searchValue}`);
+          keyValue = list.querySelector(`.${styles.name}`).innerText;
+          regex = new RegExp(`${searchValue}`);
         }
-        return keyValue.match(regex)
-      })
-      addArrProp(allList).forEach(dom => dom.style.display = 'none')
-      addArrProp(filterList).forEach(dom => dom.style.display = 'flex')
+        return keyValue.match(regex);
+      });
+      addArrProp(allList).forEach((dom) => { dom.style.display = 'none'; });
+      addArrProp(filterList).forEach((dom) => { dom.style.display = 'flex'; });
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   }
@@ -301,15 +305,8 @@ const secTableObserver = () => {
     let allDom = secTableContainer.querySelectorAll('input');
     allDom = addArrProp(allDom).map(dom => dom.parentElement);
     let showDom = secTableContainer.querySelectorAll('label');
-    showDom = addArrProp(showDom)
-      .filter(dom => {
-        console.log(
-          dom.dataset.type,
-          index,
-          dom.dataset.type.match(index)
-        );
-        return dom.dataset.type.match(index)
-      });
+    const regex = new RegExp(`^${index}`);
+    showDom = addArrProp(showDom).filter(dom => dom.dataset.type.match(regex));
     showDomFunc({
       allDom,
       showDom,
@@ -410,7 +407,7 @@ const treeTable = async (args) => {
                       <label for="select-reverse">反选</label>
                     ` : ''}
                   </span>
-                  ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ""}
+                  ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
                   <span class="${styles.name}">名称</span>
                 </div>
                 <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
@@ -419,7 +416,7 @@ const treeTable = async (args) => {
                 <div class="${styles.th}">
                   <span class="${styles.select}">
                   </span>
-                  ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ""}
+                  ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
                   <span class="${styles.name}">名称</span>
                   <span class="${styles.empty}" id="empty">
                     ${Icon({ type: 'trash' })}

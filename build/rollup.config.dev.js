@@ -1,4 +1,3 @@
-// rollup.config.js
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import postcss from 'rollup-plugin-postcss';
@@ -14,8 +13,8 @@ export default {
   plugins: [
     resolve(),
     postcss({
-      extract: true,
-      modules: false,
+      extract: false,
+      modules: true,
     }),
     async(),
     babel({
