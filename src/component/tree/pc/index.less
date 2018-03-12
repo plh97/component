@@ -67,12 +67,38 @@
                     height: 30px;
                     cursor: pointer;
                     display: inline-flex;
-                    padding: 0px 8px;
+                    // padding: 0px 8px;
                     overflow-y: hidden;
                     font-weight: bold;
                     align-items: center;
                     flex-direction: row;
                     border-bottom: 1px solid #D9D9D9;
+
+                    .checkbox {
+                        position: relative;
+                        margin: 0 10px;
+                        width: 20px;
+                        height: 20px;
+                        
+                        &:before{
+                            position: absolute;
+                            content: ' ';
+                            width: 20px;
+                            height: 20px;
+                            box-sizing: border-box;
+                            border: 1px solid #999;
+                            border-radius: 3px;
+                            font-size: 24px;
+                            line-height: 10px;
+                            text-align: center;
+                            color: @daocheng-red;
+                        }
+
+                        &.allSelect:before {
+                            content: '■';
+                            line-height: 12px;
+                        }
+                    }
                 }
 
                 .tree-container > ol {

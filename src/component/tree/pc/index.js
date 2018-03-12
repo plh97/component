@@ -101,6 +101,20 @@ const eventProxy = (args) => {
   if (event === 'click') {
     const handleAllEvent = (e) => {
       const path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
+      // is add all
+      const isSelectAll = isIdInPathFunc({
+        path,
+        id: 'select-all-checkbox',
+      });
+      if (isSelectAll) {
+        if (isSelectAll.classList.contains(styles.allSelect)) {
+          isSelectAll.classList.remove(styles.allSelect);
+          document.querySelectorAll('#tree-container #tree-list-li').forEach(dom => dom.classList.remove(styles.active));
+        } else {
+          isSelectAll.classList.add(styles.allSelect);
+          document.querySelectorAll('#tree-container #tree-list-li').forEach(dom => dom.classList.add(styles.active));
+        }
+      }
       // 点击li的第一个，是否是展开下面选项还是全选反选
       let openList = document.querySelectorAll(`.${styles['tree-container']} .icon-unfold`);
       openList = Array.prototype.slice.call(openList);
@@ -117,19 +131,26 @@ const eventProxy = (args) => {
           });
           if (isIdInPath) {
             const container = e.target.parentElement.parentElement;
-            // if()
-            // all add active class
-            // addArrProp(container.querySelectorAll(`.${styles.checkbox}`)).forEach((ddom) => {
-            //   ddom.parentElement.classList.add(styles.active);
-            // });
-            console.log(addArrProp(container.children).filter(ddom => ddom.id === 'tree-list-ol'));
-            addArrProp(container.children).forEach((dddom) => {
-              if (dddom.id === 'tree-list-ol') {
-                console.log(dddom);
-                dddom.parentElement.className = styles.active;
-              }
-            });
-            // all remove active class
+            const isAllSelect = container.querySelector('li').className;
+            if (isAllSelect === styles.allSelect) {
+              // remove all
+              addArrProp(container.children).forEach((ddom) => {
+                if (ddom.id === 'tree-list-ol') {
+                  ddom.children[0].className = '';
+                } else if (ddom.id === 'tree-list-li') {
+                  ddom.className = '';
+                }
+              });
+            } else {
+              // all
+              addArrProp(container.children).forEach((ddom) => {
+                if (ddom.id === 'tree-list-ol') {
+                  ddom.children[0].className = styles.active;
+                } else if (ddom.id === 'tree-list-li') {
+                  ddom.className = styles.allSelect;
+                }
+              });
+            }
           } else {
             // toggle show
             domToggleAnimation({
@@ -293,7 +314,7 @@ const tree = async (args) => {
       <div class="${styles.body}">
         <div class="${styles['body-side']}" id="side">
           <div class="${styles.all}" id="all">
-            ${Icon({ type: 'navlist' })}
+            <span id="select-all-checkbox" class="${styles.checkbox}"></span>
             <span class="${styles['text-container']}">全部</span>
           </div>
           <div class="${styles['tree-container']}" id='tree-container'></div>
