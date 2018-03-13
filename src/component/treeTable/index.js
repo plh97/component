@@ -1,6 +1,6 @@
 import styles from './index.less';
 import Dom from '../../utils/dom';
-import Icon from '../../container/icon';
+import Icon from '../../container/icon/pc';
 import Button from '../../container/button/pc';
 
 const {

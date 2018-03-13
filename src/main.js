@@ -12,27 +12,27 @@ import scrollBind from './utils/scrollBind';
 
 
 const Component = {
-  // Message,
-  // Spin,
-  // Modal,
-  // ModalInfo,
-  // Button,
-  // Icon,
-  // scrollBind,
+  Message,
+  Spin,
+  Modal,
+  ModalInfo,
+  Button,
+  Icon,
+  scrollBind,
   pc: {
-    // message: Message,
+    message: Message,
     spin: Spin,
-    // modal: Modal,
+    modal: Modal,
     table,
     tree: treePC,
     treeTable,
-    // modalInfo: ModalInfo,
+    modalInfo: ModalInfo,
   },
   mobile: {
     message: Message,
-    // spin: Spin,
-    // modal: Modal,
-    // modalInfo: ModalInfo,
+    spin: Spin,
+    modal: Modal,
+    modalInfo: ModalInfo,
   },
 };
 window.Component = Component;

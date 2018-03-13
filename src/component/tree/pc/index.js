@@ -1,7 +1,8 @@
 import styles from './index.less';
 import Dom from '../../../utils/dom';
-import Icon from '../../../container/icon';
+import Icon from '../../../container/icon/pc';
 import Button from '../../../container/button/pc';
+import Tree from '../../../container/tree/pc';
 
 const {
   sleep,
@@ -10,25 +11,8 @@ const {
   addArrProp,
   isDomInPathFunc,
   isIdInPathFunc,
-  domToggleAnimation,
-  coverDataToTree,
   composedPath,
-  tottleShowSelect,
 } = Dom;
-
-const selectBeforeFunc = (args) => {
-  const {
-    beforeSelect,
-  } = args;
-  const contents = document.querySelectorAll(`.${styles['tree-container']} .${styles['text-container']}`);
-  addArrProp(contents).forEach((content) => {
-    beforeSelect.forEach((select) => {
-      if (content.innerText === select) {
-        content.parentElement.click();
-      }
-    });
-  });
-};
 
 const btnAddevent = (args) => {
   const {
@@ -39,7 +23,7 @@ const btnAddevent = (args) => {
   btns.forEach((dom) => {
     if (dom.id === 'confirm') {
       dom.addEventListener('click', () => {
-        let doms = document.querySelectorAll('#thr-table-tb-container label input');
+        let doms = document.querySelectorAll('#thr-table-tb-container label');
         doms = Array.prototype.slice.call(doms);
         doms = doms.map(activeDom => JSON.parse(activeDom.id));
         console.log('输出的数据：', doms);
@@ -68,32 +52,6 @@ const btnAddevent = (args) => {
   });
 };
 
-const putDataToFirTable = async (args) => {
-  const {
-    data,
-    container,
-  } = args;
-  data.forEach((row) => {
-    const ol = document.createElement('ol');
-    const isChildren = Object.prototype.hasOwnProperty.call(row, 'children');
-    const html = `
-      <li data-json='${JSON.stringify(row)}' id='tree-list-li' data-type="${row.code || row.id}">
-        <span id="checkbox" class="${styles.checkbox}"></span>
-        <span class="${styles['text-container']}">${row.name}</span>
-        ${isChildren ? Icon({ type: 'unfold' }) : ''}
-      </li>
-    `;
-    ol.id = 'tree-list-ol';
-    ol.innerHTML += html;
-    if (isChildren) {
-      putDataToFirTable({
-        data: row.children,
-        container: ol,
-      });
-    }
-    container.appendChild(ol);
-  });
-};
 
 const eventProxy = (args) => {
   const { event, selectModel } = args;
@@ -108,97 +66,36 @@ const eventProxy = (args) => {
       });
       if (isSelectAll) {
         if (isSelectAll.classList.contains(styles.allSelect)) {
+          // remove all
           isSelectAll.classList.remove(styles.allSelect);
-          document.querySelectorAll('#tree-container #tree-list-li').forEach(dom => dom.classList.remove(styles.active));
+          addArrProp(document.querySelectorAll(`#tree-container > ol > li.${styles.allSelect} #checkbox`)).forEach(dom => dom.click());
+          addArrProp(document.querySelectorAll(`#tree-container > ol > li.${styles.halfSelect} #checkbox`)).forEach((dom) => { dom.click(); dom.click(); });
         } else {
+          // add all
           isSelectAll.classList.add(styles.allSelect);
-          document.querySelectorAll('#tree-container #tree-list-li').forEach(dom => dom.classList.add(styles.active));
+          addArrProp(document.querySelectorAll(`#tree-container > ol > li:not(.${styles.allSelect}) #checkbox`)).forEach(dom => dom.click());
         }
       }
-      // 点击li的第一个，是否是展开下面选项还是全选反选
-      let openList = document.querySelectorAll(`.${styles['tree-container']} .icon-unfold`);
-      openList = Array.prototype.slice.call(openList);
-      openList.forEach((dom) => {
-        const isListInPath = isDomFunc({
-          path,
-          dom: dom.parentElement,
-        });
-        if (isListInPath) {
-          // add some animation
-          const isIdInPath = isIdInPathFunc({
-            path,
-            id: 'checkbox',
-          });
-          if (isIdInPath) {
-            const container = e.target.parentElement.parentElement;
-            const isAllSelect = container.querySelector('li').className;
-            if (isAllSelect === styles.allSelect) {
-              // remove all
-              addArrProp(container.children).forEach((ddom) => {
-                if (ddom.id === 'tree-list-ol') {
-                  ddom.children[0].className = '';
-                } else if (ddom.id === 'tree-list-li') {
-                  ddom.className = '';
-                }
-              });
-            } else {
-              // all
-              addArrProp(container.children).forEach((ddom) => {
-                if (ddom.id === 'tree-list-ol') {
-                  ddom.children[0].className = styles.active;
-                } else if (ddom.id === 'tree-list-li') {
-                  ddom.className = styles.allSelect;
-                }
-              });
-            }
-          } else {
-            // toggle show
-            domToggleAnimation({
-              dom,
-              animationDuration: '0.3s',
-              animationFillMode: 'forwards',
-              animationName: [styles['rotate-90'], styles.rotate90],
-            });
-            const listContainer = isListInPath.parentElement;
-            domToggleAnimation({
-              dom: listContainer,
-              animationDuration: '0.3s',
-              animationFillMode: 'forwards',
-              animationName: [styles.slidein, styles.slideout],
-            });
-          }
-        }
-      });
-      // 对于可以选择的dom元素 添加点击active的样式
-      const isIdInPath = isIdInPathFunc({
-        path,
-        id: 'tree-list-li',
-      });
-      if (isIdInPath && !isIdInPath.querySelector('.icon-unfold')) {
-        if (selectModel === 'radio') {
-          addArrProp(document.querySelectorAll(`.${styles.active}`)).forEach((activeDom) => {
-            activeDom.classList.remove(`${styles.active}`);
-          });
-          isIdInPath.classList.toggle(`${styles.active}`);
-        } else if (selectModel === 'checkbox') {
-          // if select more
-          isIdInPath.classList.toggle(`${styles.active}`);
-          // // 检测是否全选，半选，没选
-          tottleShowSelect({ dom: isIdInPath, styles });
-        }
-      }
-      // empty
-      const isEmptyDom = isDomInPathFunc({
+      // empty ，暴力清除所有
+      const isEmptyDom = isIdInPathFunc({
         path: e.path,
-        selector: `.${styles.empty}`,
+        id: 'empty',
       });
       if (isEmptyDom) {
-        let inputs = isEmptyDom.parentElement.parentElement.querySelectorAll(`.${styles['tb-container']} .${styles.select}`);
-        inputs.forEach((input) => {
-          input.parentElement.remove();
-          inputs = document.querySelectorAll(`.${styles['tree-container']} .${styles.active}`);
-          inputs.forEach((inputDom) => { inputDom.className = ''; });
-        });
+        addArrProp(document.querySelectorAll(`#tree-container .${styles.active}`))
+          .forEach((dom) => {
+            dom.classList.remove(styles.active);
+          });
+
+        addArrProp(document.querySelectorAll(`#tree-container .${styles.allSelect}`))
+          .forEach((dom) => {
+            dom.classList.remove(styles.allSelect);
+          });
+
+        addArrProp(document.querySelectorAll(`#tree-container .${styles.halfSelect}`))
+          .forEach((dom) => {
+            dom.classList.remove(styles.halfSelect);
+          });
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
       document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
@@ -209,7 +106,7 @@ const eventProxy = (args) => {
           if (selectModel === 'radio') {
             document.querySelector('#empty').click();
           } else if (selectModel === 'checkbox') {
-            const jsonData = dom.querySelector('input').id;
+            const jsonData = dom.id;
             document.querySelector(`#tree-container li[data-json='${jsonData}']`).click();
           }
         }
@@ -261,7 +158,7 @@ const eventProxy = (args) => {
 };
 
 
-const thrTableObserver = ({ selectModel }) => {
+const thrTableObserver = () => {
   const treeContainer = document.querySelector('#tree-container');
   const thrTableContainer = document.querySelector('#thr-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
@@ -271,14 +168,16 @@ const thrTableObserver = ({ selectModel }) => {
       const jsonData = JSON.parse(dom.dataset.json);
       const div = document.createElement('label');
       div.className = styles.tb;
+      div.id = JSON.stringify(jsonData);
       div.htmlFor = jsonData;
       const html = `
-        <input class="${styles.select}" name="select" type="${selectModel}" id='${JSON.stringify(jsonData)}'/>
+        <span class="${styles.index}">&nbsp;</span>
         ${jsonData.dept_code ? `<span class="${styles.num}">${jsonData.dept_code}</span>` : ''}
         <span class="${styles.name}">${jsonData.name}</span>
+        <span class="${styles.empty}">✖</span>
       `;
       div.innerHTML = html;
-      div.style.color = '#000';
+      // div.style.color = '#000';
       div.style.cursor = 'pointer';
       thrTableContainer.appendChild(div);
     });
@@ -312,21 +211,15 @@ const tree = async (args) => {
         请选择
       </header>
       <div class="${styles.body}">
-        <div class="${styles['body-side']}" id="side">
-          <div class="${styles.all}" id="all">
-            <span id="select-all-checkbox" class="${styles.checkbox}"></span>
-            <span class="${styles['text-container']}">全部</span>
-          </div>
-          <div class="${styles['tree-container']}" id='tree-container'></div>
-        </div>
+        <div class="${styles['body-side']}" id="side"></div>
         <div class="${styles['body-container']}">
           <div class="${styles.table}">
             <div class="${styles['thr-table']}" id="thr-table">
               <div class="${styles.th}">
-                <span class="${styles.select}"></span>
+                <span class="${styles.index}">序号</span>
                 ${data[0].corp_code ? `<span class="${styles.num}">编号</span>` : ''}
                 <span class="${styles.name}">名称</span>
-                <span class="${styles.empty}" id="empty">
+                <span class="${styles['empty-btn']}" id="empty">
                   ${Icon({ type: 'trash' })}
                   清空
                 </span>
@@ -343,19 +236,16 @@ const tree = async (args) => {
         </div>
       </div>
     </div>`;
-  domFunc({
-    dom: document.querySelector('html'),
-    style: {
-      paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
-      overflow: 'hidden',
-    },
-  });
+  mask.querySelector('#side').appendChild(Tree({ data, beforeSelect, selectModel }));
+  // domFunc({
+  //   dom: document.querySelector('html'),
+  //   style: {
+  //     paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+  //     overflow: 'hidden',
+  //   },
+  // });
   document.body.appendChild(mask);
   await sleep(300);
-  await putDataToFirTable({
-    data: coverDataToTree(data),
-    container: document.querySelector(`.${styles['tree-container']}`),
-  });
   let btns = mask.querySelectorAll(`.${styles.tree} button`);
   btns = Array.prototype.slice.call(btns);
   await btnAddevent({
@@ -371,15 +261,6 @@ const tree = async (args) => {
   await eventProxy({
     event: 'change',
   });
-  await eventProxy({
-    event: 'keyup',
-    domAddEvent: document.querySelector('#search'),
-  });
-  if (ifselect) {
-    selectBeforeFunc({
-      beforeSelect,
-    });
-  }
 };
 
 export default tree;
