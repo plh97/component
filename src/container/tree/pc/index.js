@@ -74,7 +74,7 @@ const eventProxy = (args) => {
           addArrProp(domAddEvent.querySelectorAll(`#tree-container > ol > li.${styles.allSelect} #checkbox`)).forEach(dom => dom.click());
           addArrProp(domAddEvent.querySelectorAll(`#tree-container > ol > li.${styles.halfSelect} #checkbox`)).forEach((dom) => { dom.click(); dom.click(); });
         } else {
-          console.log('isSelectAll', isSelectAll);
+          console.log('isSelectAll啥？', isSelectAll);
           // add all
           isSelectAll.classList.add(styles.allSelect);
           addArrProp(domAddEvent.querySelectorAll(`#tree-container > ol > li:not(.${styles.allSelect}) #checkbox`)).forEach(dom => dom.click());
