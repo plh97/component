@@ -44,6 +44,20 @@ const isIdInPathFunc = (args) => {
   }
 };
 
+const isClassInPathFunc = (args) => {
+  const {
+    path,
+    className,
+  } = args;
+  for (let i = 0; i < path.length; i++) {
+    if (path[i].classList.contains(className)) {
+      return path[i];
+    } else if (path[i] === document.body) {
+      return false;
+    }
+  }
+};
+
 const isDomFunc = (args) => {
   const {
     path,
@@ -247,6 +261,7 @@ const Dom = {
   sleep,
   isDomInPathFunc,
   isIdInPathFunc,
+  isClassInPathFunc,
   domToggleAnimation,
   transformStringToBool,
   addArrProp,

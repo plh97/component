@@ -1,19 +1,16 @@
 import styles from './index.less';
-import Dom from '../../utils/dom';
-import Icon from '../../container/icon/pc';
-import Button from '../../container/button/pc';
+import Dom from '../../../utils/dom';
+import Icon from '../../../container/icon/pc';
+import Button from '../../../container/button/pc';
 import Tree from '../../../container/tree/pc';
 
 const {
-  sleep,
   domFunc,
   addEvent,
   isDomFunc,
   addArrProp,
   showDomFunc,
   isDomInPathFunc,
-  domToggleAnimation,
-  coverDataToTree,
   isNumeric,
 } = Dom;
 
@@ -71,33 +68,6 @@ const btnAddevent = (args) => {
   });
 };
 
-const putDataToFirTable = async (args) => {
-  const {
-    data,
-    container,
-  } = args;
-  data.forEach((row, i) => {
-    const ol = document.createElement('ol');
-    const isChildren = Object.prototype.hasOwnProperty.call(row, 'children');
-    const html = `
-      <li class='tree-container-list-div' data-type="${row.code || row.id}">
-        <span class="${styles['text-container']}">${row.name}</span>
-        ${isChildren ? Icon({ type: 'unfold' }) : ''}
-      </li>
-    `;
-    ol.className = 'tree-container-list';
-    // ol.dataset.innerIndex = row.id.length / 2;
-    ol.innerHTML += html;
-    ol.id = `sec${i}`;
-    if (isChildren) {
-      putDataToFirTable({
-        data: row.children,
-        container: ol,
-      });
-    }
-    container.appendChild(ol);
-  });
-};
 
 const putDataToSecTable = async (data) => {
   // 将数据传入data之前先清空 container
@@ -111,12 +81,13 @@ const putDataToSecTable = async (data) => {
     div.dataset.index = i;
     div.htmlFor = `select-second-${i}`;
     const html = `
-        <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
-        ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
-        <span class="${styles.name}">${row.name}</span>
+      <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
+      ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
+      <span class="${styles.name}">${row.name}</span>
     `;
     div.innerHTML = html;
     div.id = `sec${i}`;
+    div.dataset.json = JSON.stringify(row);
     div.dataset.type = row.type || row.goods_code || row.corp_code || row.id;
     div.style.color = '#000';
     div.style.cursor = 'pointer';
@@ -129,53 +100,6 @@ const eventProxy = (args) => {
   const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`);
   if (event === 'click') {
     const handleAllEvent = (e) => {
-      // toggle show all with first table
-      const isShowAllInPath = isDomInPathFunc({
-        path: e.path,
-        selector: '#all',
-      });
-      if (isShowAllInPath) {
-        // add some animation
-        const more = isShowAllInPath.querySelector('.icon-unfold');
-        domToggleAnimation({
-          dom: more,
-          animationDuration: '0.3s',
-          animationFillMode: 'forwards',
-          animationName: [styles['rotate-90'], styles.rotate90],
-        });
-        const listContainer = isShowAllInPath.parentElement.querySelector(`.${styles['tree-container']}`);
-        domToggleAnimation({
-          dom: listContainer,
-          animationDuration: '0.3s',
-          animationFillMode: 'forwards',
-          animationName: [styles.slidein, styles.slideout],
-        });
-      }
-      // toggle show the tree list in first table
-      let openList = document.querySelectorAll(`.${styles['tree-container']} .icon-unfold`);
-      openList = Array.prototype.slice.call(openList);
-      openList.forEach((dom) => {
-        const isListInPath = isDomFunc({
-          path: e.path,
-          dom: dom.parentElement,
-        });
-        if (isListInPath) {
-          // add some animation
-          domToggleAnimation({
-            dom,
-            animationDuration: '0.3s',
-            animationFillMode: 'forwards',
-            animationName: [styles['rotate-90'], styles.rotate90],
-          });
-          const listContainer = isListInPath.parentElement;
-          domToggleAnimation({
-            dom: listContainer,
-            animationDuration: '0.3s',
-            animationFillMode: 'forwards',
-            animationName: [styles.slidein, styles.slideout],
-          });
-        }
-      });
       // filter second table
       let firstTableLists = document.querySelectorAll('.tree-container-list-div');
       firstTableLists = Array.prototype.slice.call(firstTableLists);
@@ -295,14 +219,16 @@ const eventProxy = (args) => {
 };
 
 
-const secTableObserver = () => {
-  const firTableContainer = document.querySelector(`.${styles['tree-container']}`);
+const secTableObserver = ({ treeStyles }) => {
+  const firTableContainer = document.querySelector('#tree-container');
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
   const observer = new MutationObserver((mutations) => {
-    const target = mutations.filter(mutation => mutation.target.dataset.active === 'true');
-    if (!target.length) return;
-    const index = target[0].target.dataset.type;
+    const activeDom = firTableContainer.querySelector(`.${treeStyles.active}`);
+    console.log(activeDom.dataset.type);
+    // const target = mutations.filter(mutation => mutation.target.dataset.active === 'true');
+    // if (!target.length) return;
+    const index = activeDom.dataset.type;
     let allDom = secTableContainer.querySelectorAll('input');
     allDom = addArrProp(allDom).map(dom => dom.parentElement);
     let showDom = secTableContainer.querySelectorAll('label');
@@ -330,14 +256,12 @@ const thrTableObserver = () => {
   const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
   const observer = new MutationObserver(() => {
     // 将第三个表格全部列表移除
-    let inputGroupAll = thrTableContainer.querySelectorAll('input');
-    inputGroupAll = Array.prototype.slice.call(inputGroupAll);
-    inputGroupAll.forEach((input) => {
+    const inputGroupAll = thrTableContainer.querySelectorAll('input');
+    addArrProp(inputGroupAll).forEach((input) => {
       input.parentElement.remove();
     });
-    let inputGroup = secTableContainer.querySelectorAll('input:checked');
-    inputGroup = Array.prototype.slice.call(inputGroup);
-    inputGroup.forEach((input, i) => {
+    const inputGroup = secTableContainer.querySelectorAll('input:checked');
+    addArrProp(inputGroup).forEach((input, i) => {
       const div = input.parentElement;
       const newChild = div.cloneNode(true);
       const oldChild = thrTableContainer.querySelector(`div:nth-child(${i + 1})`);
@@ -347,6 +271,12 @@ const thrTableObserver = () => {
         envet: 'click',
         func: e => e.path.filter(ee => ee.className === styles.tb)[0].remove(),
       });
+      // console.log({
+      //   newChild,
+      //   num: newChild.querySelector(`.${styles.num}`).innerText,
+      //   name: newChild.querySelector(`.${styles.name}`).innerText,
+      //   json: JSON.parse(newChild.dataset.json),
+      // });
       thrTableContainer.insertBefore(newChild, oldChild);
       newChild.scrollIntoView({ behavior: 'instant', block: 'end', inline: 'nearest' });
     });
@@ -368,6 +298,7 @@ const treeTable = async (args) => {
     beforeSelect,
   } = args;
   window.select_model = args.select_model;
+  window.selectModel = args.select_model;
   console.log('拿到的数据：', data);
   window.top.dataa = data;
   const ifselect = args.ifselect || true;
@@ -376,66 +307,59 @@ const treeTable = async (args) => {
   mask.className = styles['component-mask'];
   mask.innerHTML = `
     <div class="${styles['component-treeTable']}">
-      <header class="${styles['component-treeTable-header']}">
-        请选择
-      </header>
+      <header class="${styles['component-treeTable-header']}">请选择</header>
       <div class="${styles['component-treeTable-body']}">
-        <div class="${styles['component-treeTable-body-side']}" id="side">
-          <div class="${styles.all}" id="all">
-            ${Icon({ type: 'navlist' })}
-            <span class="${styles['text-container']}">全部</span>
-            ${Icon({ type: 'unfold' })}
-          </div>
-          <div class="${styles['tree-container']}"></div>
-          <div class="${styles['flex-container']}"></div>
-        </div>
+        <div class="${styles['component-treeTable-body-side']}" id="side"></div>
         <div class="${styles['component-treeTable-body-container']}">
-          <span class="${styles['search-container']}">
-            <span>列表搜索：</span>
-            <span class="${styles.search}">
-              <input id="search" type="text">
-              <span>搜索</span>
-            </span>
-          </span>
           <div class="${styles.table}">
             <div class="${styles['sec-table']}" id="sec-table">
-                <div class="${styles.th}">
-                  <span class="${styles.select}">
-                    ${select_model === 'checkbox' ? `
-                      <input id="select-all" type="checkbox"/> 
-                      <label for="select-all">全选</label>
-                      <input id="select-reverse" type="checkbox"/> 
-                      <label for="select-reverse">反选</label>
-                    ` : ''}
-                  </span>
-                  ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
-                  <span class="${styles.name}">名称</span>
-                </div>
-                <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
+              <span class="${styles.thh}">
+                <span class="${styles.search}">
+                  <input id="search" type="text">
+                  <span>搜索</span>
+                </span>
+              </span>
+              <div class="${styles.th}">
+                <span class="${styles.select}">
+                  ${select_model === 'checkbox' ? `
+                    <input id="select-all" type="checkbox"/> 
+                    <label for="select-all">全选</label>
+                  ` : ''}
+                </span>
+                ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
+                <span class="${styles.name}">名称</span>
               </div>
-              <div class="${styles['thr-table']}" id="thr-table">
-                <div class="${styles.th}">
-                  <span class="${styles.select}">
-                  </span>
-                  ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
-                  <span class="${styles.name}">名称</span>
-                  <span class="${styles.empty}" id="empty">
-                    ${Icon({ type: 'trash' })}
-                    清空
-                  </span>
-                </div>
-                <div class="${styles['tb-container']}" id="thr-table-tb-container"></div>
+              <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
+            </div>
+            <div class="${styles['thr-table']}" id="thr-table">
+              <h3 class="${styles.thh} ${styles.title}">当前已选中</h3>
+              <div class="${styles.th}">
+                <span class="${styles.select}">
+                </span>
+                ${data.content[0] ? (data.content[0].corp_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
+                <span class="${styles.name}">名称</span>
+                <span class="${styles.empty}" id="empty">
+                  ${Icon({ type: 'trash' })}
+                  清空
+                </span>
               </div>
-          </div>
-          <div class="${styles['group-btn']}">
-            ${Button({ id: 'return', text: '返回', type: 'daocheng-cancel' }).outerHTML}
-            &nbsp;
-            &nbsp;
-            ${Button({ id: 'confirm', text: '确认', type: 'daocheng-confirm' }).outerHTML}
+              <div class="${styles['tb-container']}" id="thr-table-tb-container"></div>
+              <span class="${styles.tbb}">
+                ${Button({ id: 'return', text: '返回', type: 'daocheng-cancel' }).outerHTML}
+                &nbsp;
+                &nbsp;
+                ${Button({ id: 'confirm', text: '确认', type: 'daocheng-confirm' }).outerHTML}
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </div>`;
+  console.log(styles);
+  const treeComponent = Tree({ data: data.title, beforeSelect, selectModel: 'radio' });
+  const treeDom = treeComponent.container;
+  const treeStyles = treeComponent.styles;
+  mask.querySelector('#side').appendChild(treeDom);
   domFunc({
     dom: document.querySelector('html'),
     style: {
@@ -444,11 +368,7 @@ const treeTable = async (args) => {
     },
   });
   document.body.appendChild(mask);
-  await sleep(300);
-  await putDataToFirTable({
-    data: coverDataToTree(data.title),
-    container: document.querySelector(`.${styles['tree-container']}`),
-  });
+  // await sleep(300);
   await putDataToSecTable(data.content);
   let btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
   btns = Array.prototype.slice.call(btns);
@@ -456,7 +376,7 @@ const treeTable = async (args) => {
     btns, mask, data: data.content, next,
   });
   // 添加观察者
-  await secTableObserver();
+  await secTableObserver({ treeStyles });
   await thrTableObserver();
   // all event proxy
   await eventProxy({

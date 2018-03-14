@@ -4,7 +4,7 @@ import Message from './component/message';
 import ModalInfo from './component/modalInfo';
 import Spin from './component/spin';
 import table from './component/table';
-import treeTable from './component/treeTable';
+import treeTable from './component/treeTable/pc';
 import treePC from './component/tree/pc';
 import Button from './container/button';
 import Icon from './container/icon';

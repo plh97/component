@@ -37,6 +37,9 @@ const putDataToFirTable = async (args) => {
   data.forEach((row) => {
     const ol = document.createElement('ol');
     const isChildren = Object.prototype.hasOwnProperty.call(row, 'children');
+    let typeId = () => {
+      return 
+    }
     const html = `
       <li data-json='${JSON.stringify(row)}' id='tree-list-li' data-type="${row.code || row.id}">
         ${selectModel === 'checkbox' ? `<span id="checkbox" class="${styles.checkbox}"></span>` : ''}
@@ -74,7 +77,6 @@ const eventProxy = (args) => {
           addArrProp(domAddEvent.querySelectorAll(`#tree-container > ol > li.${styles.allSelect} #checkbox`)).forEach(dom => dom.click());
           addArrProp(domAddEvent.querySelectorAll(`#tree-container > ol > li.${styles.halfSelect} #checkbox`)).forEach((dom) => { dom.click(); dom.click(); });
         } else {
-          console.log('isSelectAll啥？', isSelectAll);
           // add all
           isSelectAll.classList.add(styles.allSelect);
           addArrProp(domAddEvent.querySelectorAll(`#tree-container > ol > li:not(.${styles.allSelect}) #checkbox`)).forEach(dom => dom.click());
@@ -162,12 +164,10 @@ const eventProxy = (args) => {
           .forEach((dom) => {
             dom.classList.remove(styles.active);
           });
-
         addArrProp(domAddEvent.querySelectorAll(`#tree-container .${styles.allSelect}`))
           .forEach((dom) => {
             dom.classList.remove(styles.allSelect);
           });
-
         addArrProp(domAddEvent.querySelectorAll(`#tree-container .${styles.halfSelect}`))
           .forEach((dom) => {
             dom.classList.remove(styles.halfSelect);
@@ -226,6 +226,7 @@ const tree = (args) => {
     <div class="${styles.all}" id="all">
       ${selectModel === 'checkbox' ? `<span id="select-all-checkbox" class="${styles.checkbox}"></span>` : ''}
       <span class="${styles['text-container']}">全部</span>
+      <span class="empty" id="empty" style="display:none">清空</span>
     </div>
     <div class="${styles['tree-container']}" id='tree-container'></div>
   `;
@@ -245,13 +246,19 @@ const tree = (args) => {
     selectModel,
     domAddEvent: container,
   });
-  if (ifselect) {
-    selectBeforeFunc({
-      beforeSelect,
-      domAddEvent: container,
-    });
-  }
-  return container;
+  setTimeout(() => {
+    if (ifselect) {
+      selectBeforeFunc({
+        beforeSelect,
+        domAddEvent: container,
+      });
+    }
+  }, 500);
+  // 不仅需要don，同时需要styles
+  return {
+    container,
+    styles,
+  };
 };
 
 export default tree;
