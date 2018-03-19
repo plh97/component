@@ -4,18 +4,19 @@ import Icon from '../../container/icon';
 import Dom from '../../utils/dom';
 
 const ModalInfo = async (args) => {
-  const {
-    domFunc, sleep,
-  } = Dom;
+  // const { domFunc } = args;
+  // const { sleep } = args;
   // let { next } = args;
+  let content;
+  let type;
   if (typeof (args) === 'string') {
-    content = args;
     type = 'info';
+    content = args;
   }
-  const type = args.type || 'info';
+  type = args.type || 'info';
+  content = args.content || 'content不能为空';
   const title = args.title || '提示';
-  const content = args.content || 'content不能为空';
-  const next = args.next || (()=>console.log('nothing to callback'));
+  const next = args.next || (() => console.log('nothing to callback'));
   if (!type.match(/(info|success|error|warning|confirm|delete)/)) {
     type = 'info';
   }
@@ -29,12 +30,12 @@ const ModalInfo = async (args) => {
         <span class="${styles['component-modelInfo-container-content']}">${content}</span>
         <span class="${styles['component-modelInfo-container-footer']}">
           ${(type === 'confirm' || type === 'delete') ? Button({ id: 'cancal', text: '取消' }).outerHTML : ''}
-          ${Button({ 
-            className: `${styles['component-btn']}}`, 
-            id: 'confirm',
-            text: '确认', 
-            type: type === 'delete' ? 'btn-danger' : 'btn-primary' 
-          }).outerHTML}
+          ${Button({
+    className: `${styles['component-btn']}}`,
+    id: 'confirm',
+    text: '确认',
+    type: type === 'delete' ? 'btn-danger' : 'btn-primary',
+  }).outerHTML}
         </span>
       </div>
     </div>`;

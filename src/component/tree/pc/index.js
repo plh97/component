@@ -202,7 +202,7 @@ const tree = async (args) => {
   const selectModel = args.select_model;
   console.log('拿到的数据：', data);
   window.top.dataa = data;
-  const ifselect = args.ifselect || true;
+  // const ifselect = args.ifselect || true;
   const mask = document.createElement('div');
   mask.className = styles.mask;
   mask.innerHTML = `
@@ -237,13 +237,6 @@ const tree = async (args) => {
       </div>
     </div>`;
   mask.querySelector('#side').appendChild(Tree({ data, beforeSelect, selectModel }));
-  // domFunc({
-  //   dom: document.querySelector('html'),
-  //   style: {
-  //     paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
-  //     overflow: 'hidden',
-  //   },
-  // });
   document.body.appendChild(mask);
   await sleep(300);
   let btns = mask.querySelectorAll(`.${styles.tree} button`);
