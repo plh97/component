@@ -1,4 +1,4 @@
-// import 'babel-polyfill';
+import 'babel-polyfill';
 // package
 // import 'vconsole/dist/vconsole.min.js'
 // import '../assets/vconsole.js'

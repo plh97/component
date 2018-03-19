@@ -126,7 +126,7 @@ const eventProxy = (args) => {
               dom,
               animationDuration: '0.3s',
               animationFillMode: 'forwards',
-              animationName: [styles['rotate-90'], styles.rotate90],
+              animationName: [styles.rotate90, styles['rotate-90'] ],
             });
             const listContainer = isListInPath.parentElement;
             listContainer.classList.toggle(styles.slideout);

@@ -1,7 +1,5 @@
 @import './assets/common/@common.less';
 
-
-
 @media (max-width: 600px) {
     .tree {
         animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);
@@ -69,6 +67,9 @@
                 flex-direction: column;
                 margin: 0;
                 
+                &.slideout > ol {
+                    display: inline-flex;
+                }
     
                 li {
                     font-size: 14px;
@@ -81,6 +82,10 @@
                     align-items: center;
                     flex-direction: row;
                     display: inline-flex;
+
+                    svg {
+                		transform: rotate(-90deg);
+                    }
     
                     .text-container {
                         flex: 5;
@@ -103,6 +108,10 @@
                         }
                     }
                 }
+            }
+
+            ol > ol {
+                display: none;
             }
         }
     

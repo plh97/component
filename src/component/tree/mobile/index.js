@@ -128,7 +128,7 @@ const tree = async (args) => {
     beforeSelect,
   } = args;
   const selectModel = args.select_model;
-  console.log('1212', data);
+  console.log('tree拿到的数据', data);
   window.top.dataa = data;
   const ifselect = args.ifselect || true;
   const mask = document.createElement('div');
@@ -136,7 +136,7 @@ const tree = async (args) => {
   mask.innerHTML = `
     <div class="${styles.tree}">
       <header class="${styles.header}">
-        ${Icon({ type: '<' ,id:"return"})}
+        ${Icon({ type: '<', id: 'return' })}
         <span>请选择</span>
         <span class="${styles.right}"></span>
       </header>
@@ -165,6 +165,19 @@ const tree = async (args) => {
           </div>
         </div>
       </div>
+      <footer class="${styles.footer}">
+        ${Icon({ type: 'daocheng', id: 'daocheng' })}
+        <span class="${styles.num}">
+          已选择
+          <font>${'num'}</font>
+          人
+        </span>
+        <span class="${styles.iconfont}">
+          查看
+          ${Icon({ type: '>' })}
+        </span>
+        <span class="${styles.confirm}" id="confirm">确认</span>
+      </footer>
     </div>`;
   const treeDom = Tree({ data, beforeSelect, selectModel }).container;
   const treeStyles = Tree({ data, beforeSelect, selectModel }).styles;
