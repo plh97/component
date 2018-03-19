@@ -14,7 +14,7 @@
     animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     animation-fill-mode: forwards;
     animation: cant-touch 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    
+
     .tree {
         animation: scale-top 0.3s cubic-bezier(0.19, -0.62, 0.74, 1.7);
         animation-fill-mode: forwards;
@@ -28,17 +28,26 @@
             height: 45px;
             display: flex;
             align-items: center;
-            padding: 0 40px;
+            justify-content: space-between;
+            padding: 0 15px;
+            font-size: 19px;
+
+            .right {
+                width: 28px;
+            }
+
         }
         .body {
             height: calc(~'100% - 45px');
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
+            overflow-y: auto;
 
             .body-side {
                 flex: 0 1 468px;
             }
             .body-container {
+                // display: none;
                 background-color: RGBA(245, 245, 245, 1);
                 display: flex;
                 flex: 1 3 768px;

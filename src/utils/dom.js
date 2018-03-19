@@ -256,12 +256,46 @@ const tottleShowSelect = ({ dom, styles }) => {
   }
 };
 
+const createElementFromHTML = (htmlString) => {
+  const div = document.createElement('div');
+  div.innerHTML = htmlString.trim();
+  return div.firstChild;
+};
+
+const fetchData = (args) => {
+  const { url, data } = args;
+  return new Promise((resolve,reject) => {
+    fetch(url+data,{
+      method:"POST",
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(json => resolve(json.rows))
+      .catch(err => reject(err))
+  });
+};
+const isMobile = () => {
+  var userAgentInfo = navigator.userAgent;
+  var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+  var flag = false;
+  for (var v = 0; v < Agents.length; v++) {
+      if (userAgentInfo.indexOf(Agents[v]) > 0) {
+          flag = true;
+          break;
+      }
+  }
+  return flag;
+}
+
 const Dom = {
   domFunc,
+  fetchData,
   sleep,
+  isMobile,
   isDomInPathFunc,
   isIdInPathFunc,
   isClassInPathFunc,
+  createElementFromHTML,
   domToggleAnimation,
   transformStringToBool,
   addArrProp,

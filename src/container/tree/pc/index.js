@@ -11,6 +11,7 @@ const {
   coverDataToTree,
   composedPath,
   tottleShowSelect,
+  isMobile,
 } = Dom;
 
 const selectBeforeFunc = (args) => {
@@ -42,7 +43,7 @@ const putDataToFirTable = async (args) => {
     }
     const html = `
       <li data-json='${JSON.stringify(row)}' id='tree-list-li' data-type="${row.code || row.id}">
-        ${selectModel === 'checkbox' ? `<span id="checkbox" class="${styles.checkbox}"></span>` : ''}
+        <span id="checkbox" class="${styles[selectModel]}"></span>
         <span class="${styles['text-container']}">${row.name}</span>
         ${isChildren ? Icon({ type: 'unfold' }) : ''}
       </li>
@@ -99,6 +100,7 @@ const eventProxy = (args) => {
           if (isIdInPath) {
             const container = e.target.parentElement.parentElement;
             const isAllSelect = container.querySelector('li').className;
+            if (selectModel === 'radio') return;
             if (isAllSelect === styles.allSelect) {
               // remove all
               addArrProp(container.children).forEach((ddom) => {
@@ -127,12 +129,14 @@ const eventProxy = (args) => {
               animationName: [styles['rotate-90'], styles.rotate90],
             });
             const listContainer = isListInPath.parentElement;
-            domToggleAnimation({
-              dom: listContainer,
-              animationDuration: '0.3s',
-              animationFillMode: 'forwards',
-              animationName: [styles.slidein, styles.slideout],
-            });
+            listContainer.classList.toggle(styles.slideout);
+            console.log('listContainer',listContainer);
+            // domToggleAnimation({
+            //   dom: listContainer,
+            //   animationDuration: '0.3s',
+            //   animationFillMode: 'forwards',
+            //   animationName: [styles.slidein, styles.slideout],
+            // });
           }
         }
       });
@@ -147,6 +151,7 @@ const eventProxy = (args) => {
             activeDom.classList.remove(`${styles.active}`);
           });
           isIdInPath.classList.toggle(`${styles.active}`);
+          tottleShowSelect({ dom: isIdInPath, styles });
         } else if (selectModel === 'checkbox') {
           // if select more
           isIdInPath.classList.toggle(`${styles.active}`);
@@ -218,14 +223,13 @@ const tree = (args) => {
     beforeSelect,
     selectModel,
   } = args;
-  console.log('拿到的数据：', data);
   const ifselect = args.ifselect || true;
   const container = document.createElement('div');
   container.className = styles.tree;
   container.innerHTML = `
     <div class="${styles.all}" id="all">
-      ${selectModel === 'checkbox' ? `<span id="select-all-checkbox" class="${styles.checkbox}"></span>` : ''}
-      <span class="${styles['text-container']}">全部</span>
+      ${selectModel === 'checkbox' ? `<span id="select-all-checkbox" class="${styles.checkbox}"></span>` : ""}
+      <span class="${styles['text-container']}">${isMobile()?"珠海道成科技":"全部"}</span>
       <span class="empty" id="empty" style="display:none">清空</span>
     </div>
     <div class="${styles['tree-container']}" id='tree-container'></div>

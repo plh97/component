@@ -128,14 +128,18 @@ const tree = async (args) => {
     beforeSelect,
   } = args;
   const selectModel = args.select_model;
-  console.log('拿到的数据：', data);
+  console.log('1212', data);
   window.top.dataa = data;
   const ifselect = args.ifselect || true;
   const mask = document.createElement('div');
   mask.className = styles.mask;
   mask.innerHTML = `
     <div class="${styles.tree}">
-      <header class="${styles.header}">请选择</header>
+      <header class="${styles.header}">
+        ${Icon({ type: '<' ,id:"return"})}
+        <span>请选择</span>
+        <span class="${styles.right}"></span>
+      </header>
       <div class="${styles.body}">
         <div class="${styles['body-side']}" id="side"></div>
         <div class="${styles['body-container']}">
@@ -162,7 +166,6 @@ const tree = async (args) => {
         </div>
       </div>
     </div>`;
-  const tree = Tree({ data, beforeSelect, selectModel }).container;
   const treeDom = Tree({ data, beforeSelect, selectModel }).container;
   const treeStyles = Tree({ data, beforeSelect, selectModel }).styles;
   mask.querySelector('#side').appendChild(treeDom);
