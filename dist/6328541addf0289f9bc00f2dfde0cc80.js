@@ -1,3 +1,77 @@
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+
+// eslint-disable-next-line no-global-assign
+require = (function (modules, cache, entry) {
+  // Save the require from previous bundle to this closure if any
+  var previousRequire = typeof require === "function" && require;
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire = typeof require === "function" && require;
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        var err = new Error('Cannot find module \'' + name + '\'');
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+      
+      localRequire.resolve = resolve;
+
+      var module = cache[name] = new newRequire.Module;
+
+      modules[name][0].call(module.exports, localRequire, module, module.exports);
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x){
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x){
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module() {
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+
+  for (var i = 0; i < entry.length; i++) {
+    newRequire(entry[i]);
+  }
+
+  // Override the current require with this new one
+  return newRequire;
+})({3:[function(require,module,exports) {
+"use strict";
+
 // import 'babel-polyfill';
 // package
 // import 'vconsole/dist/vconsole.min.js'
@@ -11,209 +85,210 @@ window.Component.pc.tree({
   beforeSelect: ['法塞特家族酒庄品鉴酒仓库', '法塞特家族酒庄配件仓库'], // 之前选好的内容
   // select_model: 'checkbox', // 多选
   select_model: 'radio', // 单选
-  data: [
-    {
-      id: '01', name: '圣路易·丁酒庄', pId: '', sid: 499, type: '',
-    }, {
-      id: '0101', name: '圣路易·丁酒庄/酒庄（原酒）', pId: '01', sid: 500, type: '半成品',
-    }, {
-      id: '0102', name: '圣路易·丁酒庄/酒庄（成品）', pId: '01', sid: 501, type: '正品',
-    }, {
-      id: '0103', name: '圣路易·丁酒庄/酒庄（半成品）', pId: '01', sid: 502, type: '半成品',
-    }, {
-      id: '0104', name: '圣路易·丁酒庄/酒庄（配件）', pId: '01', sid: 503, type: '物料',
-    }, {
-      id: '0105', name: '圣路易·丁酒庄/酒庄（辅料）', pId: '01', sid: 504, type: '半成品',
-    }, {
-      id: '0106', name: '圣路易·丁酒庄/酒庄（包材）', pId: '01', sid: 505, type: '物料',
-    }, {
-      id: '02', name: '老酒庄', pId: '', sid: 506, type: '',
-    }, {
-      id: '0201', name: '老酒庄/老酒庄（原酒）', pId: '02', sid: 507, type: '半成品',
-    }, {
-      id: '0202', name: '老酒庄/老酒庄（成品）', pId: '02', sid: 508, type: '正品',
-    }, {
-      id: '0203', name: '老酒庄/老酒庄（半成品）', pId: '02', sid: 509, type: '半成品',
-    }, {
-      id: '0204', name: '老酒庄/老酒庄（配件）', pId: '02', sid: 510, type: '物料',
-    }, {
-      id: '0205', name: '老酒庄/老酒庄（辅料）', pId: '02', sid: 511, type: '物料',
-    }, {
-      id: '0206', name: '老酒庄/老酒庄（包材）', pId: '02', sid: 512, type: '物料',
-    }, {
-      id: '03', name: '781山洞', pId: '', sid: 513, type: '',
-    }, {
-      id: '0301', name: '781山洞/山洞（原酒）', pId: '03', sid: 514, type: '半成品',
-    }, {
-      id: '0302', name: '781山洞/山洞（成品）', pId: '03', sid: 515, type: '正品',
-    }, {
-      id: '0303', name: '781山洞/山洞（半成品）', pId: '03', sid: 516, type: '半成品',
-    }, {
-      id: '0304', name: '781山洞/山洞（配件）', pId: '03', sid: 517, type: '正品',
-    }, {
-      id: '0305', name: '781山洞/山洞（辅料）', pId: '03', sid: 518, type: '物料',
-    }, {
-      id: '0306', name: '781山洞/山洞（包材）', pId: '03', sid: 519, type: '物料',
-    }, {
-      id: '04', name: '银川商贸仓库', pId: '', sid: 520, type: '正品',
-    }, {
-      id: '0401', name: '银川商贸（原酒）', pId: '04', sid: 521, type: '正品',
-    }, {
-      id: '0402', name: '银川商贸（成品）', pId: '04', sid: 522, type: '赠品',
-    }, {
-      id: '0403', name: '银川商贸（半成品）', pId: '04', sid: 523, type: '半成品',
-    }, {
-      id: '0404', name: '银川商贸（物料）', pId: '04', sid: 524, type: '物料',
-    }, {
-      id: '0405', name: '银川商贸（配件）', pId: '04', sid: 525, type: '物料',
-    }, {
-      id: '0406', name: '银川商贸（包材）', pId: '04', sid: 526, type: '物料',
-    }, {
-      id: '05', name: '法塞特家族酒庄仓库', pId: '', sid: 527, type: '',
-    }, {
-      id: '0501', name: '法塞特家族酒庄正品仓库', pId: '05', sid: 528, type: '正品',
-    }, {
-      id: '0502', name: '法塞特家族酒庄业务用酒仓库', pId: '05', sid: 529, type: '赠品',
-    }, {
-      id: '0503', name: '法塞特家族酒庄品鉴酒仓库', pId: '05', sid: 530, type: '试用装',
-    }, {
-      id: '0504', name: '法塞特家族酒庄物料仓库', pId: '05', sid: 531, type: '物料',
-    }, {
-      id: '0505', name: '法塞特家族酒庄配件仓库', pId: '05', sid: 532, type: '配件',
-    }, {
-      id: '0506', name: '法塞特家族酒庄包材仓库', pId: '05', sid: 533, type: '包材',
-    }, {
-      id: '06', name: '法塞特（浙江）仓库', pId: '', sid: 534, type: '',
-    }, {
-      id: '0601', name: '法塞特（浙江）正品仓库', pId: '06', sid: 535, type: '正品',
-    }, {
-      id: '0602', name: '法塞特（浙江）赠品仓库', pId: '06', sid: 536, type: '赠品',
-    }, {
-      id: '0603', name: '法塞特（浙江）试用装仓库', pId: '06', sid: 537, type: '试用装',
-    }, {
-      id: '0604', name: '法塞特（浙江）物料仓库', pId: '06', sid: 538, type: '物料',
-    }, {
-      id: '0605', name: '法塞特（浙江）配件仓库', pId: '06', sid: 539, type: '配件',
-    }, {
-      id: '0606', name: '法塞特（浙江）包材仓库', pId: '06', sid: 540, type: '包材',
-    }, {
-      id: '07', name: '法塞特（福建）仓库', pId: '', sid: 542, type: '',
-    }, {
-      id: '0701', name: '法塞特（福建）正品仓库', pId: '07', sid: 543, type: '正品',
-    }, {
-      id: '0702', name: '法塞特（福建）赠品仓库', pId: '07', sid: 544, type: '赠品',
-    }, {
-      id: '0703', name: '法塞特（福建）试用装仓库', pId: '07', sid: 545, type: '试用装',
-    }, {
-      id: '0704', name: '法塞特（福建）物料仓库', pId: '07', sid: 546, type: '物料',
-    }, {
-      id: '0705', name: '法塞特（福建）配件仓库', pId: '07', sid: 547, type: '配件',
-    }, {
-      id: '0706', name: '法塞特（福建）包材仓库', pId: '07', sid: 548, type: '包材',
-    }, {
-      id: '001001014012', name: '银川品牌店', pId: '0010010140', sid: 605, type: '',
-    }, {
-      id: '00100101401201', name: '银川店/正品仓库', pId: '001001014012', sid: 606, type: '正品',
-    }, {
-      id: '00100101401202', name: '银川店/赠品仓库', pId: '001001014012', sid: 607, type: '赠品',
-    }, {
-      id: '00100101401203', name: '银川店/物料仓库', pId: '001001014012', sid: 608, type: '物料',
-    }, {
-      id: '00100101401204', name: '银川店/试用装仓库', pId: '001001014012', sid: 609, type: '试用装',
-    }, {
-      id: '00100101401205', name: '银川店/促销产品仓库', pId: '001001014012', sid: 610, type: '促销产品',
-    }, {
-      id: '00100101401206', name: '银川店/不良品仓库', pId: '001001014012', sid: 611, type: '不良品',
-    }, {
-      id: '00100101401207', name: '银川店/福利仓库', pId: '001001014012', sid: 612, type: '福利',
-    }, {
-      id: '00100101401208', name: '银川店/积分换礼仓库', pId: '001001014012', sid: 613, type: '积分换礼',
-    }, {
-      id: '0507', name: '上海酒庄门店正品库', pId: '05', sid: 614, type: '正品',
-    }, {
-      id: '0508', name: '上海酒庄门店业务用酒仓', pId: '05', sid: 615, type: '正品',
-    }, {
-      id: '0509', name: '上海酒庄门店品鉴酒仓', pId: '05', sid: 616, type: '正品',
-    }, {
-      id: '0510', name: '上海酒庄门店厨房用品仓', pId: '05', sid: 617, type: '正品',
-    }, {
-      id: '0511', name: '上海酒庄门店样酒仓', pId: '05', sid: 618, type: '正品',
-    }, {
-      id: '0512', name: '上海代保管仓', pId: '05', sid: 619, type: '正品',
-    }, {
-      id: '001001015', name: '门店测试', pId: '0010010', sid: 773, type: '',
-    }, {
-      id: '00100101501', name: '门店测试/正品仓库', pId: '001001015', sid: 774, type: '正品',
-    }, {
-      id: '00100101502', name: '门店测试/赠品仓库', pId: '001001015', sid: 775, type: '赠品',
-    }, {
-      id: '00100101503', name: '门店测试/物料仓库', pId: '001001015', sid: 776, type: '物料',
-    }, {
-      id: '00100101504', name: '门店测试/试用装仓库', pId: '001001015', sid: 777, type: '试用装',
-    }, {
-      id: '00100101505', name: '门店测试/促销产品仓库', pId: '001001015', sid: 778, type: '促销产品',
-    }, {
-      id: '00100101506', name: '门店测试/不良品仓库', pId: '001001015', sid: 779, type: '不良品',
-    }, {
-      id: '00100101507', name: '门店测试/福利仓库', pId: '001001015', sid: 780, type: '福利',
-    }, {
-      id: '00100101508', name: '门店测试/积分换礼仓库', pId: '001001015', sid: 781, type: '积分换礼',
-    }, {
-      id: '001001016', name: '测试2', pId: '0010010', sid: 782, type: '',
-    }, {
-      id: '00100101601', name: '测试2/正品仓库', pId: '001001016', sid: 783, type: '正品',
-    }, {
-      id: '00100101602', name: '测试2/赠品仓库', pId: '001001016', sid: 784, type: '赠品',
-    }, {
-      id: '00100101603', name: '测试2/物料仓库', pId: '001001016', sid: 785, type: '物料',
-    }, {
-      id: '00100101604', name: '测试2/试用装仓库', pId: '001001016', sid: 786, type: '试用装',
-    }, {
-      id: '00100101605', name: '测试2/促销产品仓库', pId: '001001016', sid: 787, type: '促销产品',
-    }, {
-      id: '00100101606', name: '测试2/不良品仓库', pId: '001001016', sid: 788, type: '不良品',
-    }, {
-      id: '00100101607', name: '测试2/福利仓库', pId: '001001016', sid: 789, type: '福利',
-    }, {
-      id: '00100101608', name: '测试2/积分换礼仓库', pId: '001001016', sid: 790, type: '积分换礼',
-    }, {
-      id: '001001017', name: '测试3', pId: '0010010', sid: 791, type: '',
-    }, {
-      id: '00100101701', name: '3测试/正品仓库', pId: '001001017', sid: 792, type: '正品',
-    }, {
-      id: '00100101702', name: '3测试/赠品仓库', pId: '001001017', sid: 793, type: '赠品',
-    }, {
-      id: '00100101703', name: '3测试/物料仓库', pId: '001001017', sid: 794, type: '物料',
-    }, {
-      id: '00100101704', name: '3测试/试用装仓库', pId: '001001017', sid: 795, type: '试用装',
-    }, {
-      id: '00100101705', name: '3测试/促销产品仓库', pId: '001001017', sid: 796, type: '促销产品',
-    }, {
-      id: '00100101706', name: '3测试/不良品仓库', pId: '001001017', sid: 797, type: '不良品',
-    }, {
-      id: '00100101707', name: '3测试/福利仓库', pId: '001001017', sid: 798, type: '福利',
-    }, {
-      id: '00100101708', name: '3测试/积分换礼仓库', pId: '001001017', sid: 799, type: '积分换礼',
-    }, {
-      id: '001001018', name: '测试456', pId: '0010010', sid: 800, type: '',
-    }, {
-      id: '00100101801', name: '测试456/正品仓库', pId: '001001018', sid: 801, type: '正品',
-    }, {
-      id: '00100101802', name: '测试456/赠品仓库', pId: '001001018', sid: 802, type: '赠品',
-    }, {
-      id: '00100101803', name: '测试456/物料仓库', pId: '001001018', sid: 803, type: '物料',
-    }, {
-      id: '00100101804', name: '测试456/试用装仓库', pId: '001001018', sid: 804, type: '试用装',
-    }, {
-      id: '00100101805', name: '测试456/促销产品仓库', pId: '001001018', sid: 805, type: '促销产品',
-    }, {
-      id: '00100101806', name: '测试456/不良品仓库', pId: '001001018', sid: 806, type: '不良品',
-    }, {
-      id: '00100101807', name: '测试456/福利仓库', pId: '001001018', sid: 807, type: '福利',
-    }, {
-      id: '00100101808', name: '测试456/积分换礼仓库', pId: '001001018', sid: 808, type: '积分换礼',
-    }],
-  next: doms => console.log(doms),
+  data: [{
+    id: '01', name: '圣路易·丁酒庄', pId: '', sid: 499, type: ''
+  }, {
+    id: '0101', name: '圣路易·丁酒庄/酒庄（原酒）', pId: '01', sid: 500, type: '半成品'
+  }, {
+    id: '0102', name: '圣路易·丁酒庄/酒庄（成品）', pId: '01', sid: 501, type: '正品'
+  }, {
+    id: '0103', name: '圣路易·丁酒庄/酒庄（半成品）', pId: '01', sid: 502, type: '半成品'
+  }, {
+    id: '0104', name: '圣路易·丁酒庄/酒庄（配件）', pId: '01', sid: 503, type: '物料'
+  }, {
+    id: '0105', name: '圣路易·丁酒庄/酒庄（辅料）', pId: '01', sid: 504, type: '半成品'
+  }, {
+    id: '0106', name: '圣路易·丁酒庄/酒庄（包材）', pId: '01', sid: 505, type: '物料'
+  }, {
+    id: '02', name: '老酒庄', pId: '', sid: 506, type: ''
+  }, {
+    id: '0201', name: '老酒庄/老酒庄（原酒）', pId: '02', sid: 507, type: '半成品'
+  }, {
+    id: '0202', name: '老酒庄/老酒庄（成品）', pId: '02', sid: 508, type: '正品'
+  }, {
+    id: '0203', name: '老酒庄/老酒庄（半成品）', pId: '02', sid: 509, type: '半成品'
+  }, {
+    id: '0204', name: '老酒庄/老酒庄（配件）', pId: '02', sid: 510, type: '物料'
+  }, {
+    id: '0205', name: '老酒庄/老酒庄（辅料）', pId: '02', sid: 511, type: '物料'
+  }, {
+    id: '0206', name: '老酒庄/老酒庄（包材）', pId: '02', sid: 512, type: '物料'
+  }, {
+    id: '03', name: '781山洞', pId: '', sid: 513, type: ''
+  }, {
+    id: '0301', name: '781山洞/山洞（原酒）', pId: '03', sid: 514, type: '半成品'
+  }, {
+    id: '0302', name: '781山洞/山洞（成品）', pId: '03', sid: 515, type: '正品'
+  }, {
+    id: '0303', name: '781山洞/山洞（半成品）', pId: '03', sid: 516, type: '半成品'
+  }, {
+    id: '0304', name: '781山洞/山洞（配件）', pId: '03', sid: 517, type: '正品'
+  }, {
+    id: '0305', name: '781山洞/山洞（辅料）', pId: '03', sid: 518, type: '物料'
+  }, {
+    id: '0306', name: '781山洞/山洞（包材）', pId: '03', sid: 519, type: '物料'
+  }, {
+    id: '04', name: '银川商贸仓库', pId: '', sid: 520, type: '正品'
+  }, {
+    id: '0401', name: '银川商贸（原酒）', pId: '04', sid: 521, type: '正品'
+  }, {
+    id: '0402', name: '银川商贸（成品）', pId: '04', sid: 522, type: '赠品'
+  }, {
+    id: '0403', name: '银川商贸（半成品）', pId: '04', sid: 523, type: '半成品'
+  }, {
+    id: '0404', name: '银川商贸（物料）', pId: '04', sid: 524, type: '物料'
+  }, {
+    id: '0405', name: '银川商贸（配件）', pId: '04', sid: 525, type: '物料'
+  }, {
+    id: '0406', name: '银川商贸（包材）', pId: '04', sid: 526, type: '物料'
+  }, {
+    id: '05', name: '法塞特家族酒庄仓库', pId: '', sid: 527, type: ''
+  }, {
+    id: '0501', name: '法塞特家族酒庄正品仓库', pId: '05', sid: 528, type: '正品'
+  }, {
+    id: '0502', name: '法塞特家族酒庄业务用酒仓库', pId: '05', sid: 529, type: '赠品'
+  }, {
+    id: '0503', name: '法塞特家族酒庄品鉴酒仓库', pId: '05', sid: 530, type: '试用装'
+  }, {
+    id: '0504', name: '法塞特家族酒庄物料仓库', pId: '05', sid: 531, type: '物料'
+  }, {
+    id: '0505', name: '法塞特家族酒庄配件仓库', pId: '05', sid: 532, type: '配件'
+  }, {
+    id: '0506', name: '法塞特家族酒庄包材仓库', pId: '05', sid: 533, type: '包材'
+  }, {
+    id: '06', name: '法塞特（浙江）仓库', pId: '', sid: 534, type: ''
+  }, {
+    id: '0601', name: '法塞特（浙江）正品仓库', pId: '06', sid: 535, type: '正品'
+  }, {
+    id: '0602', name: '法塞特（浙江）赠品仓库', pId: '06', sid: 536, type: '赠品'
+  }, {
+    id: '0603', name: '法塞特（浙江）试用装仓库', pId: '06', sid: 537, type: '试用装'
+  }, {
+    id: '0604', name: '法塞特（浙江）物料仓库', pId: '06', sid: 538, type: '物料'
+  }, {
+    id: '0605', name: '法塞特（浙江）配件仓库', pId: '06', sid: 539, type: '配件'
+  }, {
+    id: '0606', name: '法塞特（浙江）包材仓库', pId: '06', sid: 540, type: '包材'
+  }, {
+    id: '07', name: '法塞特（福建）仓库', pId: '', sid: 542, type: ''
+  }, {
+    id: '0701', name: '法塞特（福建）正品仓库', pId: '07', sid: 543, type: '正品'
+  }, {
+    id: '0702', name: '法塞特（福建）赠品仓库', pId: '07', sid: 544, type: '赠品'
+  }, {
+    id: '0703', name: '法塞特（福建）试用装仓库', pId: '07', sid: 545, type: '试用装'
+  }, {
+    id: '0704', name: '法塞特（福建）物料仓库', pId: '07', sid: 546, type: '物料'
+  }, {
+    id: '0705', name: '法塞特（福建）配件仓库', pId: '07', sid: 547, type: '配件'
+  }, {
+    id: '0706', name: '法塞特（福建）包材仓库', pId: '07', sid: 548, type: '包材'
+  }, {
+    id: '001001014012', name: '银川品牌店', pId: '0010010140', sid: 605, type: ''
+  }, {
+    id: '00100101401201', name: '银川店/正品仓库', pId: '001001014012', sid: 606, type: '正品'
+  }, {
+    id: '00100101401202', name: '银川店/赠品仓库', pId: '001001014012', sid: 607, type: '赠品'
+  }, {
+    id: '00100101401203', name: '银川店/物料仓库', pId: '001001014012', sid: 608, type: '物料'
+  }, {
+    id: '00100101401204', name: '银川店/试用装仓库', pId: '001001014012', sid: 609, type: '试用装'
+  }, {
+    id: '00100101401205', name: '银川店/促销产品仓库', pId: '001001014012', sid: 610, type: '促销产品'
+  }, {
+    id: '00100101401206', name: '银川店/不良品仓库', pId: '001001014012', sid: 611, type: '不良品'
+  }, {
+    id: '00100101401207', name: '银川店/福利仓库', pId: '001001014012', sid: 612, type: '福利'
+  }, {
+    id: '00100101401208', name: '银川店/积分换礼仓库', pId: '001001014012', sid: 613, type: '积分换礼'
+  }, {
+    id: '0507', name: '上海酒庄门店正品库', pId: '05', sid: 614, type: '正品'
+  }, {
+    id: '0508', name: '上海酒庄门店业务用酒仓', pId: '05', sid: 615, type: '正品'
+  }, {
+    id: '0509', name: '上海酒庄门店品鉴酒仓', pId: '05', sid: 616, type: '正品'
+  }, {
+    id: '0510', name: '上海酒庄门店厨房用品仓', pId: '05', sid: 617, type: '正品'
+  }, {
+    id: '0511', name: '上海酒庄门店样酒仓', pId: '05', sid: 618, type: '正品'
+  }, {
+    id: '0512', name: '上海代保管仓', pId: '05', sid: 619, type: '正品'
+  }, {
+    id: '001001015', name: '门店测试', pId: '0010010', sid: 773, type: ''
+  }, {
+    id: '00100101501', name: '门店测试/正品仓库', pId: '001001015', sid: 774, type: '正品'
+  }, {
+    id: '00100101502', name: '门店测试/赠品仓库', pId: '001001015', sid: 775, type: '赠品'
+  }, {
+    id: '00100101503', name: '门店测试/物料仓库', pId: '001001015', sid: 776, type: '物料'
+  }, {
+    id: '00100101504', name: '门店测试/试用装仓库', pId: '001001015', sid: 777, type: '试用装'
+  }, {
+    id: '00100101505', name: '门店测试/促销产品仓库', pId: '001001015', sid: 778, type: '促销产品'
+  }, {
+    id: '00100101506', name: '门店测试/不良品仓库', pId: '001001015', sid: 779, type: '不良品'
+  }, {
+    id: '00100101507', name: '门店测试/福利仓库', pId: '001001015', sid: 780, type: '福利'
+  }, {
+    id: '00100101508', name: '门店测试/积分换礼仓库', pId: '001001015', sid: 781, type: '积分换礼'
+  }, {
+    id: '001001016', name: '测试2', pId: '0010010', sid: 782, type: ''
+  }, {
+    id: '00100101601', name: '测试2/正品仓库', pId: '001001016', sid: 783, type: '正品'
+  }, {
+    id: '00100101602', name: '测试2/赠品仓库', pId: '001001016', sid: 784, type: '赠品'
+  }, {
+    id: '00100101603', name: '测试2/物料仓库', pId: '001001016', sid: 785, type: '物料'
+  }, {
+    id: '00100101604', name: '测试2/试用装仓库', pId: '001001016', sid: 786, type: '试用装'
+  }, {
+    id: '00100101605', name: '测试2/促销产品仓库', pId: '001001016', sid: 787, type: '促销产品'
+  }, {
+    id: '00100101606', name: '测试2/不良品仓库', pId: '001001016', sid: 788, type: '不良品'
+  }, {
+    id: '00100101607', name: '测试2/福利仓库', pId: '001001016', sid: 789, type: '福利'
+  }, {
+    id: '00100101608', name: '测试2/积分换礼仓库', pId: '001001016', sid: 790, type: '积分换礼'
+  }, {
+    id: '001001017', name: '测试3', pId: '0010010', sid: 791, type: ''
+  }, {
+    id: '00100101701', name: '3测试/正品仓库', pId: '001001017', sid: 792, type: '正品'
+  }, {
+    id: '00100101702', name: '3测试/赠品仓库', pId: '001001017', sid: 793, type: '赠品'
+  }, {
+    id: '00100101703', name: '3测试/物料仓库', pId: '001001017', sid: 794, type: '物料'
+  }, {
+    id: '00100101704', name: '3测试/试用装仓库', pId: '001001017', sid: 795, type: '试用装'
+  }, {
+    id: '00100101705', name: '3测试/促销产品仓库', pId: '001001017', sid: 796, type: '促销产品'
+  }, {
+    id: '00100101706', name: '3测试/不良品仓库', pId: '001001017', sid: 797, type: '不良品'
+  }, {
+    id: '00100101707', name: '3测试/福利仓库', pId: '001001017', sid: 798, type: '福利'
+  }, {
+    id: '00100101708', name: '3测试/积分换礼仓库', pId: '001001017', sid: 799, type: '积分换礼'
+  }, {
+    id: '001001018', name: '测试456', pId: '0010010', sid: 800, type: ''
+  }, {
+    id: '00100101801', name: '测试456/正品仓库', pId: '001001018', sid: 801, type: '正品'
+  }, {
+    id: '00100101802', name: '测试456/赠品仓库', pId: '001001018', sid: 802, type: '赠品'
+  }, {
+    id: '00100101803', name: '测试456/物料仓库', pId: '001001018', sid: 803, type: '物料'
+  }, {
+    id: '00100101804', name: '测试456/试用装仓库', pId: '001001018', sid: 804, type: '试用装'
+  }, {
+    id: '00100101805', name: '测试456/促销产品仓库', pId: '001001018', sid: 805, type: '促销产品'
+  }, {
+    id: '00100101806', name: '测试456/不良品仓库', pId: '001001018', sid: 806, type: '不良品'
+  }, {
+    id: '00100101807', name: '测试456/福利仓库', pId: '001001018', sid: 807, type: '福利'
+  }, {
+    id: '00100101808', name: '测试456/积分换礼仓库', pId: '001001018', sid: 808, type: '积分换礼'
+  }],
+  next: function next(doms) {
+    return console.log(doms);
+  }
 });
 
 // window.Component.pc.treeTable({
@@ -403,3 +478,123 @@ window.Component.pc.tree({
 //     console.log('确认');
 //   },
 // });
+},{}],0:[function(require,module,exports) {
+var global = (1, eval)('this');
+var OldModule = module.bundle.Module;
+function Module() {
+  OldModule.call(this);
+  this.hot = {
+    accept: function (fn) {
+      this._acceptCallback = fn || function () {};
+    },
+    dispose: function (fn) {
+      this._disposeCallback = fn;
+    }
+  };
+}
+
+module.bundle.Module = Module;
+
+if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
+  var ws = new WebSocket('ws://' + window.location.hostname + ':52015/');
+  ws.onmessage = function(event) {
+    var data = JSON.parse(event.data);
+
+    if (data.type === 'update') {
+      data.assets.forEach(function (asset) {
+        hmrApply(global.require, asset);
+      });
+
+      data.assets.forEach(function (asset) {
+        if (!asset.isNew) {
+          hmrAccept(global.require, asset.id);
+        }
+      });
+    }
+
+    if (data.type === 'reload') {
+      ws.close();
+      ws.onclose = function () {
+        window.location.reload();
+      }
+    }
+
+    if (data.type === 'error-resolved') {
+      console.log('[parcel] ✨ Error resolved');
+    }
+
+    if (data.type === 'error') {
+      console.error('[parcel] 🚨  ' + data.error.message + '\n' + 'data.error.stack');
+    }
+  };
+}
+
+function getParents(bundle, id) {
+  var modules = bundle.modules;
+  if (!modules) {
+    return [];
+  }
+
+  var parents = [];
+  var k, d, dep;
+
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+      if (dep === id || (Array.isArray(dep) && dep[dep.length - 1] === id)) {
+        parents.push(+k);
+      }
+    }
+  }
+
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+
+  return parents;
+}
+
+function hmrApply(bundle, asset) {
+  var modules = bundle.modules;
+  if (!modules) {
+    return;
+  }
+
+  if (modules[asset.id] || !bundle.parent) {
+    var fn = new Function('require', 'module', 'exports', asset.generated.js);
+    asset.isNew = !modules[asset.id];
+    modules[asset.id] = [fn, asset.deps];
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+
+function hmrAccept(bundle, id) {
+  var modules = bundle.modules;
+  if (!modules) {
+    return;
+  }
+
+  if (!modules[id] && bundle.parent) {
+    return hmrAccept(bundle.parent, id);
+  }
+
+  var cached = bundle.cache[id];
+  if (cached && cached.hot._disposeCallback) {
+    cached.hot._disposeCallback();
+  }
+
+  delete bundle.cache[id];
+  bundle(id);
+
+  cached = bundle.cache[id];
+  if (cached && cached.hot && cached.hot._acceptCallback) {
+    cached.hot._acceptCallback();
+    return true;
+  }
+
+  return getParents(global.require, id).some(function (id) {
+    return hmrAccept(global.require, id)
+  });
+}
+},{}]},{},[0,3])
