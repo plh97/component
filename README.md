@@ -4,8 +4,8 @@
 ![Size](https://github-size-badge.herokuapp.com/pengliheng/chatroom.svg)
 
 ## TODO
-[ ] 将移动端树表做好，表格点击帅选，弹出树，之后再隐藏。。
-[ ] css代码单独提取出来压缩后居然有200kb+，需要精简。。
+- [x] 将移动端树表做好，表格点击帅选，弹出树，之后再隐藏。。
+- [x] css代码单独提取出来压缩后居然有200kb+，需要精简。。
 
 
 ## usage
