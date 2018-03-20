@@ -8,12 +8,15 @@ export default {
   input: 'src/main.js',
   output: {
     file: 'dist/index.js',
-    format: 'cjs',
+    format: 'iife',
     name: 'Component',
   },
   plugins: [
     resolve(),
-    postcss(),
+    postcss({
+      extract: true,
+      modules: true,
+    }),
     babel({
       exclude: 'node_modules/**',
     }),

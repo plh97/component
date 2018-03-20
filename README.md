@@ -3,6 +3,9 @@
 [![Node.js Version](https://img.shields.io/badge/node.js-9.2.0-blue.svg)](http://nodejs.org/download)
 ![Size](https://github-size-badge.herokuapp.com/pengliheng/chatroom.svg)
 
+## TODO
+[ ] 将移动端树表做好，表格点击帅选，弹出树，之后再隐藏。。
+
 
 ## usage
 [效果预览](./test/index.html)
