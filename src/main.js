@@ -9,6 +9,7 @@ import Spin from './component/spin';
 import Icon from './container/icon';
 // import scrollBind from './utils/scrollBind';
 import treeTablePC from './component/treeTable/pc';
+import treeTableMobile from './component/treeTable/mobile';
 import tablePC from './component/table/pc';
 import treePC from './component/tree/pc';
 import treeMobile from './component/tree/mobile';
@@ -31,9 +32,9 @@ const Component = {
     message: Message,
     spin: Spin,
     modal: Modal,
-    table: tablePC,
+    table: isMobile() ? treeMobile : tablePC,
     tree: isMobile() ? treeMobile : treePC,
-    treeTable: treeTablePC,
+    treeTable: isMobile() ? treeTableMobile : treeTablePC,
     modalInfo: ModalInfo,
   },
   mobile: {
@@ -41,13 +42,7 @@ const Component = {
     spin: Spin,
     modal: Modal,
     modalInfo: ModalInfo,
-  },
-  // mobile: {
-  //   message: Message,
-  //   spin: Spin,
-  //   modal: Modal,
-  //   modalInfo: ModalInfo,
-  // },
+  }
 };
 
 window.Component = Component;

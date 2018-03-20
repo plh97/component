@@ -11,6 +11,8 @@ const {
   addArrProp,
   isDomInPathFunc,
   isNumeric,
+  fetchData,
+  createElementFromHTML,
 } = Dom;
 
 const selectBeforeFunc = (args) => {
@@ -67,21 +69,30 @@ const btnAddevent = (args) => {
   });
 };
 
-const putDataToSecTable = async (data) => {
+const putDataToSecTable = async ({data,tableHead}) => {
   // 将数据传入data之前先清空 container
   let secTableInputs = document.querySelector('#sec-table-tb-container');
   secTableInputs = Array.prototype.slice.call(secTableInputs);
   secTableInputs.map(input => input.parentElement.remove());
-
   data.forEach((row, i) => {
     const secTable = document.querySelector('#sec-table-tb-container');
     const div = document.createElement('label');
     div.className = styles.tb;
-    const html = `
+
+
+
+    let html = `
       <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
-      ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
-      <span class="${styles.name}">${row.name}</span>
     `;
+    // ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
+    // <span class="${styles.name}">${row.name}</span>
+    addArrProp(tableHead).forEach(dom=>{
+      const id = dom.dataset.field;
+      if (id!==undefined && id!=='id' && id!=='user_id') {
+        html += `<span class="${styles[id==="name"?'name':'num']}" style="width:${dom.style.width}">${row[id]}</span>`
+      }
+    })
+
     div.innerHTML = html;
     div.htmlFor = `select-second-${i}`;
     div.id = `sec${i}`;
@@ -232,6 +243,7 @@ const Table = async (args) => {
     data,
     next,
     beforeSelect,
+    pars,
   } = args;
   window.select_model = args.select_model;
   const ifselect = args.ifselect || true;
@@ -258,8 +270,6 @@ const Table = async (args) => {
                     <label for="select-all">全选</label>
                   ` : ''}
                 </span>
-                ${data[0].code ? `<span class="${styles.num}">编号</span>` : ''}
-                <span class="${styles.name}">名称</span>
               </div>
               <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
               <span class="${styles.tbb}"></span>
@@ -294,8 +304,31 @@ const Table = async (args) => {
     },
   });
   document.body.appendChild(mask);
-  await sleep(300);
-  await putDataToSecTable(data);
+  // await sleep(300);
+  const getTableHTML = await fetchData({
+    url:"https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/" + pars.tempid,
+    data: ``,
+    header: {
+      method:"GET",
+      "Access-Control-Allow-Origin": '*',
+      mode: 'include',
+    }
+  });
+  let tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
+  addArrProp(tableHead).forEach(dom => {
+    console.log(dom);
+    const id = dom.dataset.field;
+    if(!dom.querySelector('input') && id!=='id' && id!=='user_id'){
+      mask.querySelector(`#sec-table .${styles.th}`).innerHTML += `
+        <span class="${styles.num}" style="width:${dom.style.width}">${dom.innerText}</span>
+      `
+    }
+  });
+
+  await putDataToSecTable({
+    data, 
+    tableHead
+  });
   let btns = mask.querySelectorAll(`.${styles['component-table']} button`);
   btns = Array.prototype.slice.call(btns);
   await btnAddevent({

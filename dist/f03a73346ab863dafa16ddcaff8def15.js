@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({336:[function(require,module,exports) {
+})({4:[function(require,module,exports) {
 /*!
  * vConsole v3.1.0 (https://github.com/Tencent/vConsole)
  * 
@@ -100,7 +100,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':52015/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':59318/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -201,4 +201,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,336])
+},{}]},{},[0,4])

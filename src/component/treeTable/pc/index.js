@@ -12,6 +12,7 @@ const {
   isDomInPathFunc,
   isNumeric,
   fetchData,
+  createElementFromHTML,
 } = Dom;
 
 const selectBeforeFunc = (args) => {
@@ -68,7 +69,7 @@ const btnAddevent = (args) => {
 };
 
 
-const putDataToSecTable = async (data) => {
+const putDataToSecTable = async ({data,tableHead}) => {
   // 将数据传入data之前先清空 container
   let secTableInputs = document.querySelector('#sec-table-tb-container');
   secTableInputs = Array.prototype.slice.call(secTableInputs);
@@ -79,17 +80,19 @@ const putDataToSecTable = async (data) => {
     div.className = styles.tb;
     div.dataset.index = i;
     div.htmlFor = `select-second-${i}`;
-    // 有编码就显示编码
-    // 有规格就显示规格
-    // 有单位就显示单位
-    const html = `
+
+    let html = `
       <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
-      ${row.goods_code ? `<span class="${styles.num}">${row.goods_code}</span>` : ''}
-      <span class="${styles.name}">${row.name}</span>
-      ${row.standard_name ? `<span class="${styles.num}">${row.standard_name}</span>` : ''}
-      ${row.unit_name ? `<span class="${styles.num}">${row.unit_name}</span>` : ''}
-      ${row.use_number ? `<span class="${styles.num}">${row.use_number}</span>` : ''}
     `;
+
+    
+    addArrProp(tableHead).forEach(dom=>{
+      const id = dom.dataset.field;
+      if (id!==undefined) {
+        html += `<span class="${styles[id==="name"?'name':'num']}" style="width:${dom.style.width}">${row[id]}</span>`
+      }
+    })
+
     div.innerHTML = html;
     div.id = `sec${i}`;
     div.dataset.json = JSON.stringify(row);
@@ -211,6 +214,10 @@ const secTableObserver = ({ treeStyles, pars }) => {
     const getData = await fetchData({
       url: pars.parame.detailUrl,
       data: `&${pars.parame.parame}=${jsonData.id}`,
+      header: {
+        method:"POST",
+        credentials: 'include'
+      }
     });
     // console.log('pars', getData);
     const index = activeDom.dataset.type;
@@ -224,7 +231,7 @@ const secTableObserver = ({ treeStyles, pars }) => {
     //   // })
     //   // dom.dataset.json === 
     // });
-    showDom = getData.map(arr=>{
+    showDom = getData.rows.map(arr=>{
       return allDom.filter(dom=>{
         // console.log(JSON.parse(dom.dataset.json),arr);
         return JSON.parse(dom.dataset.json).id === arr.id;
@@ -318,11 +325,6 @@ const treeTable = async (args) => {
                     <label for="select-all">全选</label>
                   ` : ''}
                 </span>
-                ${data.content[0] ? (data.content[0].goods_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
-                <span class="${styles.name}">名称</span>
-                ${data.content[0] ? (data.content[0].standard_name ? `<span class="${styles.num}">规格</span>` : '') : ''}
-                ${data.content[0] ? (data.content[0].unit_name ? `<span class="${styles.num}">单位</span>` : '') : ''}
-                ${data.content[0] ? (data.content[0].use_number ? `<span class="${styles.num}">可用数量</span>` : '') : ''}
               </div>
               <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
               <span class="${styles.tbb}">
@@ -350,6 +352,17 @@ const treeTable = async (args) => {
         </div>
       </div>
     </div>`;
+  // <span class="${styles.select}">
+  //   ${select_model === 'checkbox' ? `
+  //     <input id="select-all" type="checkbox"/> 
+  //     <label for="select-all">全选</label>
+  //   ` : ''}
+  // </span>
+  // ${data.content[0] ? (data.content[0].goods_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
+  // <span class="${styles.name}">名称</span>
+  // ${data.content[0] ? (data.content[0].standard_name ? `<span class="${styles.num}">规格</span>` : '') : ''}
+  // ${data.content[0] ? (data.content[0].unit_name ? `<span class="${styles.num}">单位</span>` : '') : ''}
+  // ${data.content[0] ? (data.content[0].use_number ? `<span class="${styles.num}">可用数量</span>` : '') : ''}
   const treeComponent = Tree({ data: data.title, beforeSelect, selectModel: 'radio' });
   const treeDom = treeComponent.container;
   const treeStyles = treeComponent.styles;
@@ -363,7 +376,28 @@ const treeTable = async (args) => {
   });
   document.body.appendChild(mask);
   // await sleep(300);
-  await putDataToSecTable(data.content);
+  const getTableHTML = await fetchData({
+    url:"https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/" + pars.tempid,
+    data: ``,
+    header: {
+      method:"GET",
+      "Access-Control-Allow-Origin": '*',
+      mode: 'include',
+    }
+  });
+  let tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
+  addArrProp(tableHead).forEach(dom => {
+    console.log(dom);
+    if(!dom.querySelector('input')){
+      mask.querySelector(`#sec-table .${styles.th}`).innerHTML += `
+        <span class="${styles.num}" style="width:${dom.style.width}">${dom.innerText}</span>
+      `
+    }
+  });
+  await putDataToSecTable({
+    data: data.content,
+    tableHead
+  });
   let btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
   btns = Array.prototype.slice.call(btns);
   await btnAddevent({

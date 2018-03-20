@@ -130,7 +130,6 @@ const eventProxy = (args) => {
             });
             const listContainer = isListInPath.parentElement;
             listContainer.classList.toggle(styles.slideout);
-            console.log('listContainer',listContainer);
             // domToggleAnimation({
             //   dom: listContainer,
             //   animationDuration: '0.3s',

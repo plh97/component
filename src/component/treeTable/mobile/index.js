@@ -153,7 +153,7 @@ const tree = async (args) => {
     beforeSelect,
   } = args;
   const selectModel = args.select_model;
-  console.log('tree拿到的数据', data);
+  console.log('treeTable拿到的数据', data);
   window.top.dataa = data;
   const ifselect = args.ifselect || true;
   const mask = document.createElement('div');
@@ -169,6 +169,7 @@ const tree = async (args) => {
         <div class="${styles['body-side']}" id="side"></div>
         <div class="${styles['body-container']} ${styles.hide}">
           <div class="${styles.table}">
+
             <div class="${styles['thr-table']}" id="thr-table">
               <div class="${styles.th}">
                 <span class="${styles.name}">已选择</span>
@@ -179,9 +180,22 @@ const tree = async (args) => {
               </div>
               <div class="${styles['tb-container']}" id="thr-table-tb-container"></div>
             </div>
+
           </div>
         </div>
       </div>
+      
+      <div class="${styles['sec-table']}" id="sec-table">
+        <div class="${styles.th}">
+          <span class="${styles.name}">已选择</span>
+          <span class="${styles['empty-btn']}" id="empty">
+            ${Icon({ type: 'trash' })}
+            清空
+          </span>
+        </div>
+        <div class="${styles['tb-container']}" id="thr-table-tb-container"></div>
+      </div>
+
       <footer class="${styles.footer}">
         ${Icon({ type: 'daocheng', id: 'daocheng' })}
         <span class="${styles.num}">
@@ -196,7 +210,7 @@ const tree = async (args) => {
         <span class="${styles.confirm}" id="confirm">确认</span>
       </footer>
     </div>`;
-  const tree = Tree({ data, beforeSelect, selectModel });
+  const tree = Tree({ data: data.title, beforeSelect, selectModel: "radio" });
   const treeDom = tree.container;
   const treeStyles = tree.styles;
   mask.querySelector('#side').appendChild(treeDom);

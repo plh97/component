@@ -108,12 +108,11 @@
                             }
                         }
                         .th , .tb {
-                            text-align: center;
                             display: flex;
                             padding: 0 10px;
                             align-items: center;
                             flex-direction: row;
-                            justify-content: space-between;
+                            justify-content: flex-start;
                             .select {
                                 font-size: 20px;
                                 flex: 0 0 110px;
@@ -257,7 +256,6 @@
                                     color: @daocheng-red;
                                 }
                                 .index:before {
-                                    /* Increment "my-sec-counter" by 1 */
                                     counter-increment: my-sec-counter;
                                     content: counter(my-sec-counter);
                                 }
@@ -275,17 +273,6 @@
                     }
                 }
             }
-            // .empty {
-            //     right: 15px;
-            //     cursor: pointer;
-            //     font-weight: bold;
-            //     align-items: center;
-            //     display: inline-flex;
-            //     color: rgb(152,14,12);
-            //     .icon{
-            //         font-size: 18px !important;
-            //     }
-            // }
         }
     }
 }

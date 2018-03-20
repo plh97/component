@@ -263,14 +263,11 @@ const createElementFromHTML = (htmlString) => {
 };
 
 const fetchData = (args) => {
-  const { url, data } = args;
+  const { url, data,header } = args;
   return new Promise((resolve,reject) => {
-    fetch(url+data,{
-      method:"POST",
-      credentials: 'include'
-    })
+    fetch(url+data,header)
       .then(res => res.json())
-      .then(json => resolve(json.rows))
+      .then(json => resolve(json))
       .catch(err => reject(err))
   });
 };
