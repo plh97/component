@@ -18,7 +18,6 @@ import Dom from './utils/dom';
 
 const { isMobile } = Dom;
 
-console.log('isMobile,', isMobile());
 
 const Component = {
   Message,
@@ -35,12 +34,12 @@ const Component = {
     table: isMobile() ? treeMobile : tablePC,
     tree: isMobile() ? treeMobile : treePC,
     treeTable: isMobile() ? treeTableMobile : treeTablePC,
-    modalInfo: ModalInfo,
+    // modalInfo: ModalInfo,
   },
   mobile: {
-    message: Message,
     spin: Spin,
     modal: Modal,
+    message: Message,
     modalInfo: ModalInfo,
   }
 };

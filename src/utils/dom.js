@@ -163,10 +163,13 @@ const getIndexLevelFunc = (data) => {
 };
 
 const coverDataToTree = (data) => {
-  const titleArray = [];
+  if(!data[0].id){
+    return data
+  }
   const newData = sortBy(data, o => o.id);
   const lenDiff = newData.map(e => e.id.length);
   if (unique(lenDiff).length > 1) {
+    const titleArray = [];
     let lenDiffIndex = getIndexLevelFunc(data);
     if (Object.prototype.hasOwnProperty.call(data[0], 'code')) {
       newData.forEach((arr) => {

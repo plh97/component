@@ -6,215 +6,215 @@
 // var vConsole = new VConsole();
 
 
-// window.Component.pc.tree({
-//   // ifselect: false,是否加载之前选好的，默认true
-//   beforeSelect: ['法塞特家族酒庄品鉴酒仓库', '法塞特家族酒庄配件仓库'], // 之前选好的内容
-//   select_model: 'checkbox', // 多选
-//   // select_model: 'radio', // 单选
-//   data: [
-//     {
-//       id: '01', name: '圣路易·丁酒庄', pId: '', sid: 499, type: '',
-//     }, {
-//       id: '0101', name: '圣路易·丁酒庄/酒庄（原酒）', pId: '01', sid: 500, type: '半成品',
-//     }, {
-//       id: '0102', name: '圣路易·丁酒庄/酒庄（成品）', pId: '01', sid: 501, type: '正品',
-//     }, {
-//       id: '0103', name: '圣路易·丁酒庄/酒庄（半成品）', pId: '01', sid: 502, type: '半成品',
-//     }, {
-//       id: '0104', name: '圣路易·丁酒庄/酒庄（配件）', pId: '01', sid: 503, type: '物料',
-//     }, {
-//       id: '0105', name: '圣路易·丁酒庄/酒庄（辅料）', pId: '01', sid: 504, type: '半成品',
-//     }, {
-//       id: '0106', name: '圣路易·丁酒庄/酒庄（包材）', pId: '01', sid: 505, type: '物料',
-//     }, {
-//       id: '02', name: '老酒庄', pId: '', sid: 506, type: '',
-//     }, {
-//       id: '0201', name: '老酒庄/老酒庄（原酒）', pId: '02', sid: 507, type: '半成品',
-//     }, {
-//       id: '0202', name: '老酒庄/老酒庄（成品）', pId: '02', sid: 508, type: '正品',
-//     }, {
-//       id: '0203', name: '老酒庄/老酒庄（半成品）', pId: '02', sid: 509, type: '半成品',
-//     }, {
-//       id: '0204', name: '老酒庄/老酒庄（配件）', pId: '02', sid: 510, type: '物料',
-//     }, {
-//       id: '0205', name: '老酒庄/老酒庄（辅料）', pId: '02', sid: 511, type: '物料',
-//     }, {
-//       id: '0206', name: '老酒庄/老酒庄（包材）', pId: '02', sid: 512, type: '物料',
-//     }, {
-//       id: '03', name: '781山洞', pId: '', sid: 513, type: '',
-//     }, {
-//       id: '0301', name: '781山洞/山洞（原酒）', pId: '03', sid: 514, type: '半成品',
-//     }, {
-//       id: '0302', name: '781山洞/山洞（成品）', pId: '03', sid: 515, type: '正品',
-//     }, {
-//       id: '0303', name: '781山洞/山洞（半成品）', pId: '03', sid: 516, type: '半成品',
-//     }, {
-//       id: '0304', name: '781山洞/山洞（配件）', pId: '03', sid: 517, type: '正品',
-//     }, {
-//       id: '0305', name: '781山洞/山洞（辅料）', pId: '03', sid: 518, type: '物料',
-//     }, {
-//       id: '0306', name: '781山洞/山洞（包材）', pId: '03', sid: 519, type: '物料',
-//     }, {
-//       id: '04', name: '银川商贸仓库', pId: '', sid: 520, type: '正品',
-//     }, {
-//       id: '0401', name: '银川商贸（原酒）', pId: '04', sid: 521, type: '正品',
-//     }, {
-//       id: '0402', name: '银川商贸（成品）', pId: '04', sid: 522, type: '赠品',
-//     }, {
-//       id: '0403', name: '银川商贸（半成品）', pId: '04', sid: 523, type: '半成品',
-//     }, {
-//       id: '0404', name: '银川商贸（物料）', pId: '04', sid: 524, type: '物料',
-//     }, {
-//       id: '0405', name: '银川商贸（配件）', pId: '04', sid: 525, type: '物料',
-//     }, {
-//       id: '0406', name: '银川商贸（包材）', pId: '04', sid: 526, type: '物料',
-//     }, {
-//       id: '05', name: '法塞特家族酒庄仓库', pId: '', sid: 527, type: '',
-//     }, {
-//       id: '0501', name: '法塞特家族酒庄正品仓库', pId: '05', sid: 528, type: '正品',
-//     }, {
-//       id: '0502', name: '法塞特家族酒庄业务用酒仓库', pId: '05', sid: 529, type: '赠品',
-//     }, {
-//       id: '0503', name: '法塞特家族酒庄品鉴酒仓库', pId: '05', sid: 530, type: '试用装',
-//     }, {
-//       id: '0504', name: '法塞特家族酒庄物料仓库', pId: '05', sid: 531, type: '物料',
-//     }, {
-//       id: '0505', name: '法塞特家族酒庄配件仓库', pId: '05', sid: 532, type: '配件',
-//     }, {
-//       id: '0506', name: '法塞特家族酒庄包材仓库', pId: '05', sid: 533, type: '包材',
-//     }, {
-//       id: '06', name: '法塞特（浙江）仓库', pId: '', sid: 534, type: '',
-//     }, {
-//       id: '0601', name: '法塞特（浙江）正品仓库', pId: '06', sid: 535, type: '正品',
-//     }, {
-//       id: '0602', name: '法塞特（浙江）赠品仓库', pId: '06', sid: 536, type: '赠品',
-//     }, {
-//       id: '0603', name: '法塞特（浙江）试用装仓库', pId: '06', sid: 537, type: '试用装',
-//     }, {
-//       id: '0604', name: '法塞特（浙江）物料仓库', pId: '06', sid: 538, type: '物料',
-//     }, {
-//       id: '0605', name: '法塞特（浙江）配件仓库', pId: '06', sid: 539, type: '配件',
-//     }, {
-//       id: '0606', name: '法塞特（浙江）包材仓库', pId: '06', sid: 540, type: '包材',
-//     }, {
-//       id: '07', name: '法塞特（福建）仓库', pId: '', sid: 542, type: '',
-//     }, {
-//       id: '0701', name: '法塞特（福建）正品仓库', pId: '07', sid: 543, type: '正品',
-//     }, {
-//       id: '0702', name: '法塞特（福建）赠品仓库', pId: '07', sid: 544, type: '赠品',
-//     }, {
-//       id: '0703', name: '法塞特（福建）试用装仓库', pId: '07', sid: 545, type: '试用装',
-//     }, {
-//       id: '0704', name: '法塞特（福建）物料仓库', pId: '07', sid: 546, type: '物料',
-//     }, {
-//       id: '0705', name: '法塞特（福建）配件仓库', pId: '07', sid: 547, type: '配件',
-//     }, {
-//       id: '0706', name: '法塞特（福建）包材仓库', pId: '07', sid: 548, type: '包材',
-//     }, {
-//       id: '001001014012', name: '银川品牌店', pId: '0010010140', sid: 605, type: '',
-//     }, {
-//       id: '00100101401201', name: '银川店/正品仓库', pId: '001001014012', sid: 606, type: '正品',
-//     }, {
-//       id: '00100101401202', name: '银川店/赠品仓库', pId: '001001014012', sid: 607, type: '赠品',
-//     }, {
-//       id: '00100101401203', name: '银川店/物料仓库', pId: '001001014012', sid: 608, type: '物料',
-//     }, {
-//       id: '00100101401204', name: '银川店/试用装仓库', pId: '001001014012', sid: 609, type: '试用装',
-//     }, {
-//       id: '00100101401205', name: '银川店/促销产品仓库', pId: '001001014012', sid: 610, type: '促销产品',
-//     }, {
-//       id: '00100101401206', name: '银川店/不良品仓库', pId: '001001014012', sid: 611, type: '不良品',
-//     }, {
-//       id: '00100101401207', name: '银川店/福利仓库', pId: '001001014012', sid: 612, type: '福利',
-//     }, {
-//       id: '00100101401208', name: '银川店/积分换礼仓库', pId: '001001014012', sid: 613, type: '积分换礼',
-//     }, {
-//       id: '0507', name: '上海酒庄门店正品库', pId: '05', sid: 614, type: '正品',
-//     }, {
-//       id: '0508', name: '上海酒庄门店业务用酒仓', pId: '05', sid: 615, type: '正品',
-//     }, {
-//       id: '0509', name: '上海酒庄门店品鉴酒仓', pId: '05', sid: 616, type: '正品',
-//     }, {
-//       id: '0510', name: '上海酒庄门店厨房用品仓', pId: '05', sid: 617, type: '正品',
-//     }, {
-//       id: '0511', name: '上海酒庄门店样酒仓', pId: '05', sid: 618, type: '正品',
-//     }, {
-//       id: '0512', name: '上海代保管仓', pId: '05', sid: 619, type: '正品',
-//     }, {
-//       id: '001001015', name: '门店测试', pId: '0010010', sid: 773, type: '',
-//     }, {
-//       id: '00100101501', name: '门店测试/正品仓库', pId: '001001015', sid: 774, type: '正品',
-//     }, {
-//       id: '00100101502', name: '门店测试/赠品仓库', pId: '001001015', sid: 775, type: '赠品',
-//     }, {
-//       id: '00100101503', name: '门店测试/物料仓库', pId: '001001015', sid: 776, type: '物料',
-//     }, {
-//       id: '00100101504', name: '门店测试/试用装仓库', pId: '001001015', sid: 777, type: '试用装',
-//     }, {
-//       id: '00100101505', name: '门店测试/促销产品仓库', pId: '001001015', sid: 778, type: '促销产品',
-//     }, {
-//       id: '00100101506', name: '门店测试/不良品仓库', pId: '001001015', sid: 779, type: '不良品',
-//     }, {
-//       id: '00100101507', name: '门店测试/福利仓库', pId: '001001015', sid: 780, type: '福利',
-//     }, {
-//       id: '00100101508', name: '门店测试/积分换礼仓库', pId: '001001015', sid: 781, type: '积分换礼',
-//     }, {
-//       id: '001001016', name: '测试2', pId: '0010010', sid: 782, type: '',
-//     }, {
-//       id: '00100101601', name: '测试2/正品仓库', pId: '001001016', sid: 783, type: '正品',
-//     }, {
-//       id: '00100101602', name: '测试2/赠品仓库', pId: '001001016', sid: 784, type: '赠品',
-//     }, {
-//       id: '00100101603', name: '测试2/物料仓库', pId: '001001016', sid: 785, type: '物料',
-//     }, {
-//       id: '00100101604', name: '测试2/试用装仓库', pId: '001001016', sid: 786, type: '试用装',
-//     }, {
-//       id: '00100101605', name: '测试2/促销产品仓库', pId: '001001016', sid: 787, type: '促销产品',
-//     }, {
-//       id: '00100101606', name: '测试2/不良品仓库', pId: '001001016', sid: 788, type: '不良品',
-//     }, {
-//       id: '00100101607', name: '测试2/福利仓库', pId: '001001016', sid: 789, type: '福利',
-//     }, {
-//       id: '00100101608', name: '测试2/积分换礼仓库', pId: '001001016', sid: 790, type: '积分换礼',
-//     }, {
-//       id: '001001017', name: '测试3', pId: '0010010', sid: 791, type: '',
-//     }, {
-//       id: '00100101701', name: '3测试/正品仓库', pId: '001001017', sid: 792, type: '正品',
-//     }, {
-//       id: '00100101702', name: '3测试/赠品仓库', pId: '001001017', sid: 793, type: '赠品',
-//     }, {
-//       id: '00100101703', name: '3测试/物料仓库', pId: '001001017', sid: 794, type: '物料',
-//     }, {
-//       id: '00100101704', name: '3测试/试用装仓库', pId: '001001017', sid: 795, type: '试用装',
-//     }, {
-//       id: '00100101705', name: '3测试/促销产品仓库', pId: '001001017', sid: 796, type: '促销产品',
-//     }, {
-//       id: '00100101706', name: '3测试/不良品仓库', pId: '001001017', sid: 797, type: '不良品',
-//     }, {
-//       id: '00100101707', name: '3测试/福利仓库', pId: '001001017', sid: 798, type: '福利',
-//     }, {
-//       id: '00100101708', name: '3测试/积分换礼仓库', pId: '001001017', sid: 799, type: '积分换礼',
-//     }, {
-//       id: '001001018', name: '测试456', pId: '0010010', sid: 800, type: '',
-//     }, {
-//       id: '00100101801', name: '测试456/正品仓库', pId: '001001018', sid: 801, type: '正品',
-//     }, {
-//       id: '00100101802', name: '测试456/赠品仓库', pId: '001001018', sid: 802, type: '赠品',
-//     }, {
-//       id: '00100101803', name: '测试456/物料仓库', pId: '001001018', sid: 803, type: '物料',
-//     }, {
-//       id: '00100101804', name: '测试456/试用装仓库', pId: '001001018', sid: 804, type: '试用装',
-//     }, {
-//       id: '00100101805', name: '测试456/促销产品仓库', pId: '001001018', sid: 805, type: '促销产品',
-//     }, {
-//       id: '00100101806', name: '测试456/不良品仓库', pId: '001001018', sid: 806, type: '不良品',
-//     }, {
-//       id: '00100101807', name: '测试456/福利仓库', pId: '001001018', sid: 807, type: '福利',
-//     }, {
-//       id: '00100101808', name: '测试456/积分换礼仓库', pId: '001001018', sid: 808, type: '积分换礼',
-//     }],
-//   next: doms => alert(JSON.stringify(doms)),
-// });
+window.Component.pc.tree({
+  // ifselect: false,是否加载之前选好的，默认true
+  beforeSelect: ['法塞特家族酒庄品鉴酒仓库', '法塞特家族酒庄配件仓库'], // 之前选好的内容
+  select_model: 'checkbox', // 多选
+  // select_model: 'radio', // 单选
+  data: [
+    {
+      id: '01', name: '圣路易·丁酒庄', pId: '', sid: 499, type: '',
+    }, {
+      id: '0101', name: '圣路易·丁酒庄/酒庄（原酒）', pId: '01', sid: 500, type: '半成品',
+    }, {
+      id: '0102', name: '圣路易·丁酒庄/酒庄（成品）', pId: '01', sid: 501, type: '正品',
+    }, {
+      id: '0103', name: '圣路易·丁酒庄/酒庄（半成品）', pId: '01', sid: 502, type: '半成品',
+    }, {
+      id: '0104', name: '圣路易·丁酒庄/酒庄（配件）', pId: '01', sid: 503, type: '物料',
+    }, {
+      id: '0105', name: '圣路易·丁酒庄/酒庄（辅料）', pId: '01', sid: 504, type: '半成品',
+    }, {
+      id: '0106', name: '圣路易·丁酒庄/酒庄（包材）', pId: '01', sid: 505, type: '物料',
+    }, {
+      id: '02', name: '老酒庄', pId: '', sid: 506, type: '',
+    }, {
+      id: '0201', name: '老酒庄/老酒庄（原酒）', pId: '02', sid: 507, type: '半成品',
+    }, {
+      id: '0202', name: '老酒庄/老酒庄（成品）', pId: '02', sid: 508, type: '正品',
+    }, {
+      id: '0203', name: '老酒庄/老酒庄（半成品）', pId: '02', sid: 509, type: '半成品',
+    }, {
+      id: '0204', name: '老酒庄/老酒庄（配件）', pId: '02', sid: 510, type: '物料',
+    }, {
+      id: '0205', name: '老酒庄/老酒庄（辅料）', pId: '02', sid: 511, type: '物料',
+    }, {
+      id: '0206', name: '老酒庄/老酒庄（包材）', pId: '02', sid: 512, type: '物料',
+    }, {
+      id: '03', name: '781山洞', pId: '', sid: 513, type: '',
+    }, {
+      id: '0301', name: '781山洞/山洞（原酒）', pId: '03', sid: 514, type: '半成品',
+    }, {
+      id: '0302', name: '781山洞/山洞（成品）', pId: '03', sid: 515, type: '正品',
+    }, {
+      id: '0303', name: '781山洞/山洞（半成品）', pId: '03', sid: 516, type: '半成品',
+    }, {
+      id: '0304', name: '781山洞/山洞（配件）', pId: '03', sid: 517, type: '正品',
+    }, {
+      id: '0305', name: '781山洞/山洞（辅料）', pId: '03', sid: 518, type: '物料',
+    }, {
+      id: '0306', name: '781山洞/山洞（包材）', pId: '03', sid: 519, type: '物料',
+    }, {
+      id: '04', name: '银川商贸仓库', pId: '', sid: 520, type: '正品',
+    }, {
+      id: '0401', name: '银川商贸（原酒）', pId: '04', sid: 521, type: '正品',
+    }, {
+      id: '0402', name: '银川商贸（成品）', pId: '04', sid: 522, type: '赠品',
+    }, {
+      id: '0403', name: '银川商贸（半成品）', pId: '04', sid: 523, type: '半成品',
+    }, {
+      id: '0404', name: '银川商贸（物料）', pId: '04', sid: 524, type: '物料',
+    }, {
+      id: '0405', name: '银川商贸（配件）', pId: '04', sid: 525, type: '物料',
+    }, {
+      id: '0406', name: '银川商贸（包材）', pId: '04', sid: 526, type: '物料',
+    }, {
+      id: '05', name: '法塞特家族酒庄仓库', pId: '', sid: 527, type: '',
+    }, {
+      id: '0501', name: '法塞特家族酒庄正品仓库', pId: '05', sid: 528, type: '正品',
+    }, {
+      id: '0502', name: '法塞特家族酒庄业务用酒仓库', pId: '05', sid: 529, type: '赠品',
+    }, {
+      id: '0503', name: '法塞特家族酒庄品鉴酒仓库', pId: '05', sid: 530, type: '试用装',
+    }, {
+      id: '0504', name: '法塞特家族酒庄物料仓库', pId: '05', sid: 531, type: '物料',
+    }, {
+      id: '0505', name: '法塞特家族酒庄配件仓库', pId: '05', sid: 532, type: '配件',
+    }, {
+      id: '0506', name: '法塞特家族酒庄包材仓库', pId: '05', sid: 533, type: '包材',
+    }, {
+      id: '06', name: '法塞特（浙江）仓库', pId: '', sid: 534, type: '',
+    }, {
+      id: '0601', name: '法塞特（浙江）正品仓库', pId: '06', sid: 535, type: '正品',
+    }, {
+      id: '0602', name: '法塞特（浙江）赠品仓库', pId: '06', sid: 536, type: '赠品',
+    }, {
+      id: '0603', name: '法塞特（浙江）试用装仓库', pId: '06', sid: 537, type: '试用装',
+    }, {
+      id: '0604', name: '法塞特（浙江）物料仓库', pId: '06', sid: 538, type: '物料',
+    }, {
+      id: '0605', name: '法塞特（浙江）配件仓库', pId: '06', sid: 539, type: '配件',
+    }, {
+      id: '0606', name: '法塞特（浙江）包材仓库', pId: '06', sid: 540, type: '包材',
+    }, {
+      id: '07', name: '法塞特（福建）仓库', pId: '', sid: 542, type: '',
+    }, {
+      id: '0701', name: '法塞特（福建）正品仓库', pId: '07', sid: 543, type: '正品',
+    }, {
+      id: '0702', name: '法塞特（福建）赠品仓库', pId: '07', sid: 544, type: '赠品',
+    }, {
+      id: '0703', name: '法塞特（福建）试用装仓库', pId: '07', sid: 545, type: '试用装',
+    }, {
+      id: '0704', name: '法塞特（福建）物料仓库', pId: '07', sid: 546, type: '物料',
+    }, {
+      id: '0705', name: '法塞特（福建）配件仓库', pId: '07', sid: 547, type: '配件',
+    }, {
+      id: '0706', name: '法塞特（福建）包材仓库', pId: '07', sid: 548, type: '包材',
+    }, {
+      id: '001001014012', name: '银川品牌店', pId: '0010010140', sid: 605, type: '',
+    }, {
+      id: '00100101401201', name: '银川店/正品仓库', pId: '001001014012', sid: 606, type: '正品',
+    }, {
+      id: '00100101401202', name: '银川店/赠品仓库', pId: '001001014012', sid: 607, type: '赠品',
+    }, {
+      id: '00100101401203', name: '银川店/物料仓库', pId: '001001014012', sid: 608, type: '物料',
+    }, {
+      id: '00100101401204', name: '银川店/试用装仓库', pId: '001001014012', sid: 609, type: '试用装',
+    }, {
+      id: '00100101401205', name: '银川店/促销产品仓库', pId: '001001014012', sid: 610, type: '促销产品',
+    }, {
+      id: '00100101401206', name: '银川店/不良品仓库', pId: '001001014012', sid: 611, type: '不良品',
+    }, {
+      id: '00100101401207', name: '银川店/福利仓库', pId: '001001014012', sid: 612, type: '福利',
+    }, {
+      id: '00100101401208', name: '银川店/积分换礼仓库', pId: '001001014012', sid: 613, type: '积分换礼',
+    }, {
+      id: '0507', name: '上海酒庄门店正品库', pId: '05', sid: 614, type: '正品',
+    }, {
+      id: '0508', name: '上海酒庄门店业务用酒仓', pId: '05', sid: 615, type: '正品',
+    }, {
+      id: '0509', name: '上海酒庄门店品鉴酒仓', pId: '05', sid: 616, type: '正品',
+    }, {
+      id: '0510', name: '上海酒庄门店厨房用品仓', pId: '05', sid: 617, type: '正品',
+    }, {
+      id: '0511', name: '上海酒庄门店样酒仓', pId: '05', sid: 618, type: '正品',
+    }, {
+      id: '0512', name: '上海代保管仓', pId: '05', sid: 619, type: '正品',
+    }, {
+      id: '001001015', name: '门店测试', pId: '0010010', sid: 773, type: '',
+    }, {
+      id: '00100101501', name: '门店测试/正品仓库', pId: '001001015', sid: 774, type: '正品',
+    }, {
+      id: '00100101502', name: '门店测试/赠品仓库', pId: '001001015', sid: 775, type: '赠品',
+    }, {
+      id: '00100101503', name: '门店测试/物料仓库', pId: '001001015', sid: 776, type: '物料',
+    }, {
+      id: '00100101504', name: '门店测试/试用装仓库', pId: '001001015', sid: 777, type: '试用装',
+    }, {
+      id: '00100101505', name: '门店测试/促销产品仓库', pId: '001001015', sid: 778, type: '促销产品',
+    }, {
+      id: '00100101506', name: '门店测试/不良品仓库', pId: '001001015', sid: 779, type: '不良品',
+    }, {
+      id: '00100101507', name: '门店测试/福利仓库', pId: '001001015', sid: 780, type: '福利',
+    }, {
+      id: '00100101508', name: '门店测试/积分换礼仓库', pId: '001001015', sid: 781, type: '积分换礼',
+    }, {
+      id: '001001016', name: '测试2', pId: '0010010', sid: 782, type: '',
+    }, {
+      id: '00100101601', name: '测试2/正品仓库', pId: '001001016', sid: 783, type: '正品',
+    }, {
+      id: '00100101602', name: '测试2/赠品仓库', pId: '001001016', sid: 784, type: '赠品',
+    }, {
+      id: '00100101603', name: '测试2/物料仓库', pId: '001001016', sid: 785, type: '物料',
+    }, {
+      id: '00100101604', name: '测试2/试用装仓库', pId: '001001016', sid: 786, type: '试用装',
+    }, {
+      id: '00100101605', name: '测试2/促销产品仓库', pId: '001001016', sid: 787, type: '促销产品',
+    }, {
+      id: '00100101606', name: '测试2/不良品仓库', pId: '001001016', sid: 788, type: '不良品',
+    }, {
+      id: '00100101607', name: '测试2/福利仓库', pId: '001001016', sid: 789, type: '福利',
+    }, {
+      id: '00100101608', name: '测试2/积分换礼仓库', pId: '001001016', sid: 790, type: '积分换礼',
+    }, {
+      id: '001001017', name: '测试3', pId: '0010010', sid: 791, type: '',
+    }, {
+      id: '00100101701', name: '3测试/正品仓库', pId: '001001017', sid: 792, type: '正品',
+    }, {
+      id: '00100101702', name: '3测试/赠品仓库', pId: '001001017', sid: 793, type: '赠品',
+    }, {
+      id: '00100101703', name: '3测试/物料仓库', pId: '001001017', sid: 794, type: '物料',
+    }, {
+      id: '00100101704', name: '3测试/试用装仓库', pId: '001001017', sid: 795, type: '试用装',
+    }, {
+      id: '00100101705', name: '3测试/促销产品仓库', pId: '001001017', sid: 796, type: '促销产品',
+    }, {
+      id: '00100101706', name: '3测试/不良品仓库', pId: '001001017', sid: 797, type: '不良品',
+    }, {
+      id: '00100101707', name: '3测试/福利仓库', pId: '001001017', sid: 798, type: '福利',
+    }, {
+      id: '00100101708', name: '3测试/积分换礼仓库', pId: '001001017', sid: 799, type: '积分换礼',
+    }, {
+      id: '001001018', name: '测试456', pId: '0010010', sid: 800, type: '',
+    }, {
+      id: '00100101801', name: '测试456/正品仓库', pId: '001001018', sid: 801, type: '正品',
+    }, {
+      id: '00100101802', name: '测试456/赠品仓库', pId: '001001018', sid: 802, type: '赠品',
+    }, {
+      id: '00100101803', name: '测试456/物料仓库', pId: '001001018', sid: 803, type: '物料',
+    }, {
+      id: '00100101804', name: '测试456/试用装仓库', pId: '001001018', sid: 804, type: '试用装',
+    }, {
+      id: '00100101805', name: '测试456/促销产品仓库', pId: '001001018', sid: 805, type: '促销产品',
+    }, {
+      id: '00100101806', name: '测试456/不良品仓库', pId: '001001018', sid: 806, type: '不良品',
+    }, {
+      id: '00100101807', name: '测试456/福利仓库', pId: '001001018', sid: 807, type: '福利',
+    }, {
+      id: '00100101808', name: '测试456/积分换礼仓库', pId: '001001018', sid: 808, type: '积分换礼',
+    }],
+  next: doms => alert(JSON.stringify(doms)),
+});
 
 // Component.pc.treeTable({
 //   ifselect: true,
@@ -405,64 +405,830 @@
 // });
 
 
-// 'use strict';
-
-// Function.prototype.methods = function (name, func) {
-//   if (!this.prototype[name]) {
-//     this.prototype[name] = func;
+// var serial_maker = function(){
+//   // 返回一个用来产生唯一字符串的对象
+//   // 位移字符串由：前缀+序列号
+//   // 这包括一个设置前缀的方法，一个设置序列号的方法
+//   // 和一个产生位移字符串的gensym的方法
+//   var prefix = ' ';
+//   var seq = 0;
+//   return {
+//     set_prifex: function(p) {
+//       prefix = String(p);
+//     },
+//     set_seq: function (s){
+//       seq = s;
+//     },
+//     gensym: function(){
+//       var result = prefix+seq;
+//       seq += 1;
+//       return result;
+//     }
 //   }
-//   return this;
-// };
-
-// String.methods('deentityify', (() => {
-//   // 字符实体表，它映射字符实体的名字对应的字符
-//   const entity = {
-//     quot: '"',
-//     lt: '<',
-//     gt: '>',
-//   };
-
-//   return function () {
-//     return this.replace(
-//       /&([^&;]+);/g,
-//       (a, b) => {
-//         const r = entity[b];
-//         return typeof r === 'string' ? r : a;
-//       },
-//     );
-//   };
-// })());
-
-// console.log(`
-//   &lt;html&gt;
-//     &lt;body&gt;
-//       &lt;div&gt;
-//       &lt;/div&gt;
-//     &lt;/body&gt;
-//   &lt;/html&gt;
-// `.deentityify());
+// }
+// var seqer = serial_maker();
+// seqer.set_prifex("Q");
+// seqer.set_seq(1111)
+// var unique = seqer.gensym();
+// console.log(unique);  // Q1000
 
 
-;(function (window,document){
-  console.log(window);
-  function $(selector){
-    $.version = 1.1;
-    $.author = 'pengliheng';
-    return document.querySelector(selector)
-  }
-  function $(tArg){
-    this.arg = tArg;//保存传进来的参数
-    this.elements = [];//用来保存选择的元素
-    this.doc = document;
-    this.version = 1.0;
-    var aElems = this.doc.querySelectorAll(tArg);
-    for(var i=0;i<aElems.length;i++){
-      this.elements.push(aElems[i]);
-    }
-    this.length = this.elements.length;
-  }
 
-  window.$ = window.jQuery = $;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ;(function(window,document){//自调用，避免全局污染
+//   //========构造函数========
+//   function TQuery(tArg){
+//     this.arg = tArg;//保存传进来的参数
+//     this.elements = [];//用来保存选择的元素
+//     this.doc = document;
+//     this.version = 1.0;
+//     switch( typeof tArg ){
+//       case "undefined" :
+//         return this;
+//       case "function" :
+//         addEvent(window,'load',tArg);
+//         break;
+//       case "string" :
+//           switch( tArg.charAt(0) ){
+//             case '<' :	//<div></div>，创建元素
+//               var tagName = tArg.match(/^\'<'[a-z]+\'>'/ig)[0].match(/[a-z]+/ig)[0];			//标签名
+//               var tagContent = tArg.match( /\'>'[\s\S]*\'<'/ )[0];
+//               var content = tagContent.substring(1,tagContent.length-1);					//标签内容
+//               var newElement = this.doc.createElement(tagName);
+//               newElement.innerHTML = content;
+//               this.elements.push(newElement);
+//               break;
+//             default:	//默认情况下是选择符
+//               if(this.doc.querySelectorAll){//现代浏览器
+//                 var aElems = this.doc.querySelectorAll(tArg);
+//                 for(var i=0;i<aElems.length;i++){
+//                   this.elements.push(aElems[i]);
+//                 }
+//               }else if( !this.doc.querySelectorAll ){
+//                 alert( '您的浏览器版本太低，请升级至IE8或以上，或者使用chrome，firefox，opera等现代浏览器' );
+//               }else{//通用，兼容到IE5-11，firefox，chrome…………
+//                   var elements = tArg.split(/\s+/ig);	//拆分节点，并且保持进数组[ul,li,a]
+//                   var childElements = [];			//创建一个临时数组
+//                   var parentNode = [];			//用来存放父节点
+//                   var aElement;
+//                   var temps = [];
+//                   for(var h=0;h<elements.length;h++){
+//                     switch( elements[h].charAt(0) ){
+//                       case "#" ://ID
+//                         childElements = [];//清理临时节点，以便父节点失效，子节点有效
+//                         childElements.push( document.getElementById(elements[h].substring(1)) );
+//                         parentNode = childElements;	//保存父节点，因为childElements需要清理，所以需要创建node储存。
+//                         break;
+//                       case "." ://class
+//                         childElements = [];//清理临时节点，以便父节点失效，子节点有效
+//                         //输出父节点，如果开头为  '.ul li'
+//                         if(parentNode==='' || parentNode === null){
+//                           aElement = getByClass(document,elements[0].substring(1));
+//                           for(var y=0;y<aElement.length;y++){
+//                             parentNode.push( aElement[y] );
+//                           }
+//                           childElements = parentNode;
+//                           break;
+//                         }
+//                         //输出子集节点
+//                         for(var j=0;j<parentNode.length;j++){
+//                           temps =[];		//创建一个临时数组，用于储存子集元素
+//                           aElement = getByClass(parentNode[j],elements[h].substring(1));
+//                           for(var x=0;x<aElement.length;x++){
+//                             temps.push( aElement[x] );
+//                           }
+//                           for(var k=0;k<temps.length;k++){
+//                             childElements.push( temps[k] );
+//                           }
+//                         }
+//                         break;
+//                       default : //tagName
+//                         childElements = [];//清理临时节点，以便父节点失效，子节点有效
+//                         //输出父节点，如果开头为  'ul li'
+//                         if(parentNode==='' || parentNode === null){
+//                           aElement = document.getElementsByTagName(elements[0]);
+//                           for(var l =0;l<aElement.length;l++){
+//                             parentNode.push( aElement[l] );
+//                           }
+//                           childElements = parentNode;
+//                           break;
+//                         }
+//                         //输出子集节点
+//                         for(var o=0;o<parentNode.length;o++){
+//                           temps =[];		//创建一个临时数组，用于储存子集元素
+//                           aElement = parentNode[o].getElementsByTagName(elements[h]);//获取伙计下的所有子集元素
+//                           for(var p=0;p<aElement.length;p++){
+//                             temps.push( aElement[p] );
+//                           }
+//                           for(var u=0;u<temps.length;u++){
+//                             childElements.push( temps[u] );
+//                           }
+//                         }
+//                     }//switch
+//                   }//for
+//                   this.elements = childElements;
+//               }
+//             break;
+//           }
+//         break;
+//       case "object" : //对象
+//         if( tArg.push ){//如果是数组
   
+//         }else if(tArg === false){//如果是json
+  
+//         }
+//         this.elements.push(tArg);
+//         break;
+//     }
+//     this.length = this.elements.length;
+//   }
+//   //========链式操作方法========
+//   //eq根据下标选择
+//   TQuery.prototype.eq = function(n){
+//     var m = n || 0;
+//     this.length = 1;
+//     return $(this.elements[m]);//作为对象存进this.elements，以便链式结构
+//   };
+//   //not过滤器,从元素集合中，剔除某些部分
+//   TQuery.prototype.not = function(str){
+//     var childElements = [];//存放临时数据
+//     for(var i=0;i<this.length;i++){
+//       switch( str.charAt(0) ){
+//         case '#':	//id
+//           if( $(this.elements[i]).attr('id') != str.substring(1) ){
+//             childElements.push( this.elements[i] );
+//           }
+//           break;
+//         case '.':	//class
+//           if( !this.hasClass(this.elements[i],str.substring(1)) ){//没有匹配到class
+//             childElements.push( this.elements[i] );
+//           }
+//           break;
+//         default :	//tagName
+//           if( this.elements[i].tagName != str.toUpperCase() ){
+//             childElements.push( this.elements[i] );
+//           }
+//       }//swicth
+//       /*
+//       if(this.doc.querySelectorAll){//现代浏览器
+//         var aElems = this.elements[i].querySelectorAll(':not(' + str +')');
+//         var length = aElems.length;
+//         var j =0;
+//         while(j<length){
+//           childElements.push( aElems[j] );
+//           j++
+//         }
+//       }else if( !this.doc.querySelectorAll ){
+//         alert( '您的浏览器版本太低，请升级至IE8或以上，或者使用chrome，firefox，opera等现代浏览器' );
+//       }
+//       */
+//       /*
+//       //让IE8以下去死，不兼容了
+//       else{//通用
+//         var aElems =this.elements[i].getElementsByTagName('*');//获得所有子节点
+//         var length = aElems.length;
+//         switch( str.charAt(0) ){
+//           case '#' : 	//#div1
+//             for(var j=0;j<length;j++){
+//               if( $(aElems[j]).attr('id') !== str.substring(1) ){
+//                 childElements.push(aElems[j]);
+//               }
+//             }
+//             break;
+//           case '.' :	//.class
+//             for(var j=0;j<length;j++){
+//               if( $().hasClass( aElems[j],str.substring(1) ) == false ){
+//                 childElements.push(aElems[j]);
+//               }
+//             }
+//             break;
+//           default :	//tagName
+//             for(var j=0;j<length;j++){
+//               if(aElems[j].tagName.toLowerCase() != str ){
+//                 childElements.push(aElems[j]);
+//               }
+//             }//for
+//         }//switch
+//       }
+//       */
+//     }//for
+//     this.elements = childElements;
+//     this.length = childElements.length;//返回新的长度
+//     return this;
+//   };
+//   //filter,从元素集合众，特选某些部分
+//   TQuery.prototype.filter = function(str){
+//     var childElements = [];//存放临时数据
+//     for(var i=0;i<this.length;i++){
+//       switch(str.charAt(0)){
+//         case '#':
+//           if( $(this.elements[i]).attr('id') == str.substring(1) ){
+//             childElements.push( this.elements[i] );
+//           }
+//           break;
+//         case '.':
+//           if( this.hasClass(this.elements[i],str.substring(1)) ){//如果有class
+//             childElements.push( this.elements[i] );
+//           }
+//           break;
+//         default:
+//           if( this.elements[i].tagName == str.toUpperCase() ){
+//             childElements.push( this.elements[i] );
+//           }
+//       }//switch
+//     }//for
+//     this.elements = childElements;
+//     this.length = childElements.length;//返回新的长度
+//     return this;
+//   };
+//   //find选择器，选择子集元素包含  id class tagName attr
+//   TQuery.prototype.find = function(str){
+//     var childElements = [];//存放临时数据
+//     for(var i=0;i<this.length;i++){
+//       if(document.querySelectorAll){//现代浏览器
+//         var aElems = this.elements[i].querySelectorAll(str);
+//         var length = aElems.length;
+//         var j =0;
+//         while(j<length){
+//           childElements.push( aElems[j] );
+//           j++;
+//         }
+//       }else{//通用，支持IE8一下
+//         switch( str.charAt(0) ){
+//           case '#' : 	//#div1
+//             var aElemsid = this.elements[i].getElementById(str.substring(1));
+//             childElements.push( aElemsid );
+//             break;
+//           case '.' :	//.class
+//             var aElemsclass= getByClass( this.elements[i],str.substring(1) );
+//             childElements = childElements.concat(aElemsclass);
+//             break;
+//           case '[' ://属性选择器[data=""]
+//             var attrinfo = str.replace(/(\[+|\]+|\"|\"+])/g,'').split('=');
+//             var attr = attrinfo[0];
+//             var child =  this.elements[i].children;
+//             var childLength = child.length;
+//             var getvalue;
+//             if( attrinfo.length === 1 ){//如果只有属性，没有值
+//               for(var x=0;x<childLength;x++){
+//                 getvalue = child[x].getAttribute(attr);
+//                 if( getvalue!==null ){
+//                   childElements.push( child[x] );
+//                 }
+//               }
+//             }else if( attrinfo.length === 2 ){//如果有值
+//               var value = attrinfo[1];
+//               for(var y=0;y<childLength;y++){
+//                 getvalue = child[y].getAttribute(attr);
+//                 if( getvalue!==null && getvalue == value ){
+//                   childElements.push( child[y] );
+//                 }
+//               }
+//             }
+//             break;
+//           default :	//tagName
+//             var aElemstag = this.elements[i].getElementsByTagName(str);
+//             var tagLength = aElemstag.length;
+//             for(var k=0;k<tagLength;k++){
+//               childElements.push( aElemstag[k] );
+//             }
+//         }
+//       }
+//     }
+//     this.elements = childElements;
+//     this.length = childElements.length;//返回新的长度
+//     return this;
+//   };
+//   //add，将元素添加到已有的合集,去掉重复项
+//   TQuery.prototype.add = function(str){
+//     var newTQ = $(str);//先获取元素
+//     var newTQLength = newTQ.length;
+//     var temps = this.elements;
+//     var a = {};
+//     for(var i=0;i<this.length;i++){//把原有的元素导入a对象
+//       a[ this.elements[i] ] = 1;
+//     }
+//     for(var j=0;j<newTQLength;j++){//导入要添加的元素
+//       var v = newTQ.elements[j];
+//       if(typeof a[ v ] =='undefined'){//如果不重复，则添加进去
+//         a[v] = 1;//随便设置
+//         temps.push( v );
+//       }
+//     }
+//     //this.elements = temps.unique();//重复的DOM节点去重
+//     this.elements = temps;
+//     this.length = this.elements.length;//生成新的长度
+//     return this;//返回对象
+//   };
+//   //each循环遍历
+//   TQuery.prototype.each = function(fn){
+//     for(var i=0;i<this.length;i++){
+//       var _this = this.elements[i];
+//       fn.call(_this);
+//     }
+//     return this;//返回对象
+//   };
 
-})(window,document)
+//   //设置css
+//   //$('').css('width',value)	//value>>>200||200px||20%，可以不带单位px，可以设置百分比
+//   TQuery.prototype.css = function(attr,value){
+//     var type = /(width|left|top|bottom|right|margin|padding){1,}/ig;
+//     var type2 = /height/ig;
+//     if(arguments.length==2){//设置样式
+//       if( type.test(attr) && value.indexOf('%')<0 ){
+//         value = parseFloat(value).toFixed(2) + 'px';
+//       }
+//       for(var m=0;m<this.length;m++){
+//         this.elements[m].style[attr] = value;
+//       }
+//     }else{//一个参数
+//       if(typeof attr=="string"){//获取样式
+//         return this.elements[0].currentStyle ? this.elements[0].currentStyle[attr] : getComputedStyle(this.elements[0])[attr];
+//       }else if( typeof(attr) == "object" && Object.prototype.toString.call(attr).toLowerCase() == "[object object]" && !attr.length ){//json
+//         for(var i =0;i<this.length;i++){
+//           for(var k in attr){
+//             //k == 属性名字,width,height,opacity等
+//             //attr[k] == 属性值,300px,#303030等
+//             if((type.test(k) || type2.test(k)) && attr[k].indexOf('%')<0 ){//如果没有%符号
+//               attr[k] = parseFloat( attr[k] ).toFixed(2) + 'px';
+//             }
+//             this.elements[i].style[k] = attr[k];
+//           }
+//         }
+//       }
+//     }
+//     return this;//返回对象，进行链式操作
+//   };
+//   //========非链式操作方法========
+//   //返回当前节点的index值
+//   TQuery.prototype.index = function(){
+//     var index = 0;
+//     var aBrother = this.elements[0].parentNode.children;//获取兄弟节点
+//     var length = aBrother.length;
+//     for(var i=0;i<length;i++){//遍历
+//       if( aBrother[i] == this.elements[0] ){//如果匹配到
+//         index = i;
+//         break;
+//       }
+//     }
+//     return index;
+//   };
+//   //选择当前所选元素，第一个的父节点
+//   TQuery.prototype.parent = function(){
+//     var firstNode = this.elements[0].parentNode;
+//     this.elements.length = 0;//清空
+//     this.elements.push( firstNode );
+//     this.length = this.elements.length;//重置长度
+//     return this;
+//   };
+//   //parents选择当前所选元素，所有的上一个父节点，不重复
+//   TQuery.prototype.parents = function(){
+//     var temps = [];//存储所有的父节点
+//     var a = {};
+//     for(var i=0;i<this.length;i++){
+//        var v = this.elements[i].parentNode;
+//        if (typeof(a[v]) == 'undefined'){//如果不存在，则存入对象
+//         a[v] = 1;
+//         temps.push( v );
+//        }
+//     }
+//     this.elements = temps;
+//     this.length = this.elements.length;//重置长度
+//     return this;
+//   };
+//   //children选择当前所选元素，所有的下一个子节点，不重复
+//   TQuery.prototype.children = function(){
+//     var childElements = [];//存放所有的子节点
+//     var thischildren;
+//     var hub = {};//过滤已经重复的子节点,中转站
+//     for(var i=0;i<this.length;i++){
+//       thischildren = this.elements[i].children;
+//       var length = thischildren.length;
+//       for(var j=0;j<length;j++){
+//         childElements.push( thischildren[j] );
+//       }
+//     }
+//     for(var k=0;k<childElements.length;k++){
+//       var v = childElements[k];
+//       if( typeof (hub[v]) =='undefined' ){
+//         hub[v] = 1;
+//       }
+//     }
+//     this.elements.length = 0;
+//     for( var child in hub ){
+//       this.elements[this.elements.length] = child;
+//     }
+//     this.length = this.elements.length;
+//     return this;
+//   };
+//   //返回被选元素的上一个兄弟节点/同胞元素
+//   TQuery.prototype.prev = function(){
+//     var temps = [];
+//     for(var i=0;i<this.length;i++){
+//       var ele = this.elements[i];
+//       if( $(ele).index()===0 ){//如果处在第一位，没有上一个兄弟节点
+//         continue;
+//       }
+//       temps.push(ele.parentNode.children[ $(ele).index()-1 ] );
+//     }
+//     this.elements = temps;
+//     this.length = this.elements.length;
+//     return this;
+//   };
+//   TQuery.prototype.prevAll = function(){
+//     var temps = [];
+//     this.siblings();
+//     return this;
+//   };
+//   //返回被选元素的下一个兄弟节点/同胞元素
+//   TQuery.prototype.next = function(){
+//     var temps = [];
+//     for(var i=0;i<this.length;i++){
+//       var ele = this.elements[i];
+//       if( $(ele).index()==ele.parentNode.children.length-1 ){//如果处最后一位，没有下一个兄弟节点
+//         continue;
+//       }
+//       temps.push(ele.parentNode.children[ $(ele).index()+1 ] );
+//     }
+//     this.elements = temps;
+//     this.length = this.elements.length;
+//     return this;
+//   };
+//   TQuery.prototype.nextAll = function(){
+//     var selector = this.elements;//获取当前所选元素
+//     this.siblings();
+//     var bro = this.elements;//所有兄弟节点
+//     for(var i=0;i<bro.length;i++){
+  
+//     }
+//     var a = {};
+//     if( a ){
+  
+//     }
+//     return this;
+//   };
+//   //返回被选元素所有同胞元素/过滤同胞元素
+//   TQuery.prototype.siblings = function(str){
+//     var temps = [];
+//     var parentNode = this.parents().elements;
+//     var parentNodeLength = parentNode.length;
+//     var allChild;
+//     for(var i=0;i<parentNodeLength;i++){
+//       allChild = parentNode[i].children;//所有同胞元素集合
+//       for(var j=0;j<allChild.length;j++){
+//         temps.push( allChild[j] );//获取所有同胞元素，包括自身
+//       }
+//     }
+//     this.elements = temps;
+//     this.length = this.elements.length;
+//     if(str){//如果有参数传入，则过滤同胞元素
+//       this.filter( str );
+//     }
+//     return this;
+//   };
+//   //将所选的元素集合，缩短至(n,m)之间
+//   TQuery.prototype.slice = function(n,m){
+//     if(n<0 || m>this.length) return;//超出范围
+//     var temps = this.elements;
+//     var newarr = temps.slice(n,m+1);
+//     console.log( newarr );
+//     this.elements = newarr;
+//     this.length = this.elements.length;
+//     return this;
+//   };
+//   //Mutation Observer,DOM变动观察器，异步触发的
+//   //未完成
+//   TQuery.prototype.matation = function(options){
+//     //new MutationObserver(callback)
+//     var observer = new MutationObserver(function(record){
+//       for(var n,i=0;i<record.length;i++){
+//          console.log(record[i].target);
+//         }
+//       });
+//     var config = {
+//       'childList': true,
+//       'arrtibutes': true
+//     };
+//     observer.observe(this.elements[i],config);
+//   };
+//   //hasClass
+//   TQuery.prototype.hasClass = function(obj,cName){
+//     // ( \\s|^ ) 判断前面是否有空格 （\\s | $ ）判断后面是否有空格 两个感叹号为转换为布尔值 以方便做判断
+//     return !! obj.className.match(new RegExp("(\\s|^)" + cName + "(\\s|$)"));
+//   };
+//   //返回计算后的style样式
+//   TQuery.prototype.style = function(attr){
+//     //IE下，如果宽高设置为百分比，则返回也是百分比。
+//     return this.elements[0].currentStyle ? this.elements[0].currentStyle[attr] : getComputedStyle(this.elements[0])[attr];
+//   };
+//   //返回个BOM的尺寸
+//   TQuery.prototype.size = function(attr){
+//     return this.doc.documentElement[attr] ? this.doc.documentElement[attr] : this.doc.body[attr];
+//   };
+//   //AJAX
+//   TQuery.prototype.ajax = function(url,SucessFn,FaildFn){
+//     /*
+//       1，实例化对XMLHttpRequese对象
+//       2，ajax对象的open方法服务器
+//       3，ajax对象的send方法，发送请求
+//       4，监听onreadystatechange变化
+//         0，readyState，请求初始化，open方法没有被调用
+//         1，与服务器连接，open已调用
+//         2，请求已接收，（服务器收到请求的头部信息）
+//         3，请求处理中，（服务器收到请求的主体内容）
+//         4，响应完成，并且返回数据
+//           返回值有ajax.responseText和ajax.responseXML
+//     */
+//     var oAjax;
+//     if(window.XMLHttpRequest){//IE7+，chrome，firefox，opara，safari
+//       oAjax=new XMLHttpRequest();
+//     }else{//兼容非IE6
+//       oAjax=new ActiveXObject("Microsoft.XMLHTTP");//IE5，IE6
+//     }
+//     oAjax.open('GET',url,true);//true为异步，false为同步
+//     oAjax.send();//post请求就需要填写参数string
+//     oAjax.onreadystatechange=function(){
+//       if(oAjax.readyState==4){	//响应完成
+//         if(oAjax.status==200){//状态码=200，请求成功
+//           SucessFn(oAjax.responseText);//传参返回值
+//         }else{//读取失败
+//             FaildFn && FaildFn(oAjax.status);
+//         }
+//       }
+//     };
+//   };
+//   //扩展插件
+//   TQuery.prototype.extend = function(name,fn){
+//     TQuery.prototype[name] = fn;
+//     return this;//返回对象，进行链式操作
+//   };
+//   //防止constructor被修改
+//   TQuery.prototype.constructor = TQuery;
+//   //输出调用
+//   function $(tArg){
+//     return new TQuery(tArg);
+//   }
+//   window.$ = window.TQuery = $;
+//   //========通用函数========
+//   function addEvent(obj, type, fn){
+//     return obj.addEventListener ?
+//         obj.addEventListener(type, function(e){
+//           var ev = window.event ? window.event : (e ? e : null);
+//           ev.target = ev.target || ev.srcElement;
+//           if( fn.call(obj,ev)===false ){//回掉函数为false，则阻止默认时间
+//             e.cancelBubble = true;//阻止冒泡
+//             e.preventDefault();//chrome，firefox下阻止默认事件
+//           }
+//         }, false)
+//          :
+//         obj.attachEvent('on' + type, function(e){
+//           //fn.call(obj,e);//解决IE8下，this是window的问题
+//           var ev = window.event ? window.event : (e ? e : null);
+//           ev.target = ev.target || ev.srcElement;
+//           if(fn.call(obj,ev)===false ){
+//             e.cancelBubble = true;//阻止冒泡
+//             return false;//阻止默认事件，针对IE8
+//           }
+//         });
+//   }
+//   function removeEvent(obj,type,fn){
+//     return obj.removeEventListener ? obj.removeEventListener(type,fn,false) : obj.detachEvent('on' + type,fn);
+//   }
+//   function getByClass(oParent,sClassName){
+//     var aElement = oParent.getElementsByTagName('*');//获取所有子节点
+//     var result = [];
+//     for(var i=0;i<aElement.length;i++){
+//       if( aElement[i].className == sClassName ){
+//         result.push(aElement[i]);
+//       }
+//     }
+//     return result;
+//   }
+//   //===============系统对象上添加==============
+//   //字符串倒序
+//   String.prototype.reverse = function(){
+//     return this.split('').reverse().join('');
+//   };
+//   //数组sum求和方法
+//   Array.prototype.sum = function(){
+//     var result = 0;
+//     for( var i=0;i<this.length;i++ ){
+//       result += this[i];
+//     }
+//     return result;
+//   };
+//   //数组去重，不能比较DOM节点
+//   Array.prototype.unique = function(){
+//      var a = {};//哈希表，用来存放不重复的数组
+//      for (var i=0; i<this.length; i++) {
+//        var v = this[i];
+//        if (typeof(a[v]) == 'undefined'){
+//         a[v] = 1;
+//        }
+//      }
+//      this.length=0;//清空数组
+//      for (var k in a){//哈希表存放的不重复数据，存入数组中
+//       this[this.length] = k;  //this.length = 0 , 1 , 2 ……
+//      }
+//      return this;
+//   };
+//   //删除指定位置的数组,n = (0,n)，可以是数字，可以是区间
+//   Array.prototype.del = function(n) {
+//       if (n < 0) return this;
+//     if(typeof n == 'object' && n.push()){//如果是数组（区间）
+//        return this.slice(0,n[0]).concat( this.slice( n[1]+1 , this.length) );
+//     }
+//       return this.slice(0, n).concat( this.slice(n + 1, this.length) );
+//   };
+//   //===============自定义对象==============
+//   //面向对象选项卡
+//   //使用方法 new TabSwitch('div1');
+//   /*
+//     <div id="div1">
+//       <input />
+//       <input />
+//       <input />
+//       <div></div>
+//       <div></div>
+//       <div></div>
+//     </div>
+//   结构：
+//   */
+//   function TabSwitch(obj){
+//     var _this = this;
+//     //var div1 = document.getElementById(id);
+//     var div1 = obj;
+//     this.aBtn = div1.getElementsByTagName('input');
+//     this.aDiv = div1.getElementsByTagName('div');
+//     for(var i=0;i<this.aBtn.length;i++){
+//       this.aBtn[i].index=i;
+//       this.aBtn[i].onclick=function(){
+//         _this.fnClick(this);
+//       };
+//     }
+//   }
+//   TabSwitch.prototype.fnClick = function(oBtn){
+//     for(var j=0;j<this.aBtn.length;j++){
+//       this.aBtn[j].className='';
+//       this.aDiv[j].style.display='none';
+//     }
+//     oBtn.className='active';
+//     this.aDiv[oBtn.index].style.display='block';
+//   };
+//   //拖拽
+//   //使用方法 new Drag($('press'),$('move'),{left:[100,200],top:[200,500]});(鼠标按住的目标，要移动的目标)
+//   /*
+//   var json = {
+//         L:[100,300],
+//         T:[200,500]
+//         }
+//   */
+//   function Drag(pressTarget,MoveTarget,json){
+//     var _this = this;
+//     this.disX = 0;
+//     this.disY = 0;
+//     if(json){
+//       this.json = json;
+//     }
+//     this.MoveTarget = MoveTarget;
+//     pressTarget.onmousedown = function(e){
+//       _this.fnDown(e);
+//       return false;//chrome,firefox去除文字选中
+//     };
+//   }
+//   Drag.prototype.fnDown = function(e){//鼠标按下（未松开）
+//     var ev = e || window.event;
+//     var _this = this;
+//     this.disX = e.clientX - this.MoveTarget.offsetLeft;
+//     this.disY = e.clientY - this.MoveTarget.offsetTop;
+//     if(this.MoveTarget.setCaptrue){//IE，解决文字选中
+//       this.MoveTarget.onmousemove = function(ev){
+//         _this.fnMove(ev);
+//         _this.json.movefn();
+//       };
+//       this.MoveTarget.onmouseup = function(){
+//         var this_ = this;
+//         _this.fnUp(this_);
+//       };
+//       this.MoveTarget.setCaptrue();//添加事件捕获
+//     }else{
+//       document.onmousemove = function(e){
+//         _this.fnMove(e);
+//         if(_this.json.movefn){
+//           _this.json.movefn();
+//         }
+//       };
+//       document.onmouseup = function(){
+//         var this_ = this;
+//         _this.fnUp(this_);
+//       };
+//     }
+//   };
+//   Drag.prototype.fnMove = function(e){//鼠标移动，则div移动
+//     var ev = e || window.event;
+//     var L = this.json ? this.range(e.clientX - this.disX,this.json.L[0],this.json.L[1]) : (e.clientX - this.disX);
+//     var T = this.json ? this.range(e.clientY - this.disY,this.json.T[0],this.json.T[1]) : (e.clientY - this.disY);
+//     this.MoveTarget.style.left = L + 'px';
+//     this.MoveTarget.style.top = T + 'px';
+//   };
+//   Drag.prototype.fnUp = function(this_){//鼠标松开，则停止
+//       this_.onmousemove = null;
+//       this_.onmouseup = null;
+//       if( this_.setCaptrue ){
+//         this_.releaseCapture();//释放捕获
+//       }
+//   };
+//   Drag.prototype.range = function(iNow,iMin,iMax){
+//     if(iNow>iMax){
+//       return iMax;
+//     }else if(iNow<iMin){
+//       return iMin;
+//     }else{
+//       return iNow;
+//     }
+//   };
+//   //拖拽改变大小
+//   //使用方法 new scale($('press'),$('move'),{width:[100,200],height:[200,500]});(鼠标按住的目标，要移动的目标)
+//   /*
+//   var json = {
+//         width:[100,300],
+//         height:[200,500]
+//         }
+//   */
+//   function Scale(pressTarget,MoveTarget,json){
+//     if(json){
+//       this.json = json;
+//     }
+//     this.MoveTarget = MoveTarget;
+//     var _this = this;
+//     pressTarget.onmousedown = function(e){
+//       _this.onmousedownFn(e);
+//       };
+//   }
+//   Scale.prototype.onmousedownFn = function(e){
+//     var ev = e || window.event;
+//     this.disX = e.clientX;
+//     this.disY = e.clientY;
+//     this.disW = this.MoveTarget.offsetWidth;
+//     this.disH = this.MoveTarget.offsetHeight;
+//     var _this = this;
+//     document.onmousemove = function(ev){
+//       _this.mouseoverFn(ev);
+//       };
+//     document.onmouseup = function(ev){
+//       _this.mouseupFn(ev);
+//       };
+//   };
+//   Scale.prototype.mouseoverFn = function(e){
+//     var ev = e || window.event;
+//     this.W = this.json ? this.range(ev.clientX - this.disX + this.disW,this.json.width[0],this.json.width[1]) : (ev.clientX - this.disX + this.disW);
+//     this.H = this.json ? this.range(ev.clientY - this.disY + this.disH,this.json.height[0],this.json.height[1]) : (ev.clientY - this.disY + this.disH);
+//     this.MoveTarget.style.width = this.W + 'px';
+//     this.MoveTarget.style.height = this.H + 'px';
+//   };
+//   Scale.prototype.mouseupFn = function(){
+//     document.onmousemove = null;
+//     document.onmouseup = null;
+//   };
+//   Scale.prototype.range = function(iNow,iMin,iMax){
+//     if(iNow>iMax){
+//       return iMax;
+//     }else if(iNow<iMin){
+//       return iMin;
+//     }else{
+//       return iNow;
+//     }
+//   };
+//   //===============库扩展==============
+  
+//   $().extend('abc',function(){
+//     alert('1');
+//   });
+//   //图片延迟加载
+//   $().extend('lazyImage',function(img){
+//     $(img);
+//   });
+  
+//   })(window,document);//传入window，避免过度寻找作用域链

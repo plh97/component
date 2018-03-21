@@ -85,6 +85,7 @@ const eventProxy = (args) => {
       }
       // 点击li的第一个，是否是展开下面选项还是全选反选
       let openList = domAddEvent.querySelectorAll(`.${styles['tree-container']} .icon-unfold`);
+      console.log('123213');
       openList = Array.prototype.slice.call(openList);
       openList.forEach((dom) => {
         const isListInPath = isDomFunc({

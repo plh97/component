@@ -1,46 +1,29 @@
 import styles from './index.less';
-import Button from '../../../container/button/pc';
-import Icon from '../../../container/icon/pc';
 import Dom from '../../../utils/dom';
+import Icon from '../../../container/icon/pc';
+import Button from '../../../container/button/pc';
 
 const {
-  sleep,
   domFunc,
-  addEvent,
   isDomFunc,
   addArrProp,
-  isDomInPathFunc,
-  isNumeric,
+  isIdInPathFunc,
+  composedPath,
+  fetchData,
 } = Dom;
-
-const selectBeforeFunc = (args) => {
-  const {
-    beforeSelect,
-  } = args;
-  const contents = document.querySelectorAll('#sec-table-tb-container >div');
-  addArrProp(contents).forEach((content) => {
-    beforeSelect.forEach((select) => {
-      const name = content.querySelector(`.${styles.name}`);
-      if (name.innerText === select) {
-        content.click();
-      }
-    });
-  });
-};
 
 const btnAddevent = (args) => {
   const {
     btns,
     mask,
-    data,
     next,
   } = args;
   btns.forEach((dom) => {
     if (dom.id === 'confirm') {
       dom.addEventListener('click', () => {
-        let doms = document.querySelectorAll('#thr-table-tb-container input');
+        let doms = document.querySelectorAll('#thr-table-tb-container label');
         doms = Array.prototype.slice.call(doms);
-        doms = doms.map(activeDom => data[activeDom.parentElement.dataset.index]);
+        doms = doms.map(activeDom => JSON.parse(activeDom.id));
         console.log('输出的数据：', doms);
         next(doms);
         mask.remove();
@@ -67,98 +50,57 @@ const btnAddevent = (args) => {
   });
 };
 
-const putDataToSecTable = async (data) => {
-  // 将数据传入data之前先清空 container
-  let secTableInputs = document.querySelector('#sec-table-tb-container');
-  secTableInputs = Array.prototype.slice.call(secTableInputs);
-  secTableInputs.map(input => input.parentElement.remove());
-
-  data.forEach((row, i) => {
-    const secTable = document.querySelector('#sec-table-tb-container');
-    const div = document.createElement('label');
-    div.className = styles.tb;
-    const html = `
-      <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
-      ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
-      <span class="${styles.name}">${row.name}</span>
-    `;
-    div.innerHTML = html;
-    div.htmlFor = `select-second-${i}`;
-    div.id = `sec${i}`;
-    div.dataset.index = i;
-    div.dataset.type = row.type;
-    div.style.color = '#000';
-    div.style.cursor = 'pointer';
-    secTable.appendChild(div);
-  });
-};
 
 const eventProxy = (args) => {
-  const { event } = args;
-  const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`);
+  const {
+    event, selectModel, domAddEvent,
+  } = args;
   if (event === 'click') {
     const handleAllEvent = (e) => {
-      // empty
-      const isEmptyDom = isDomInPathFunc({
-        path: e.path,
-        selector: `.${styles.empty}`,
+      const secTableContainer = document.querySelector('#sec-table-tb-container');
+      const thrTableContainer = document.querySelector('#thr-table-tb-container');
+      const path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
+      // empty ，暴力清除所有
+      const isEmptyDom = isIdInPathFunc({
+        id: 'empty',
+        path,
       });
       if (isEmptyDom) {
-        let inputs = isEmptyDom.parentElement.parentElement.querySelectorAll(`.${styles['tb-container']} .${styles.select}`);
-        inputs.forEach((input) => {
-          if (input.parentElement.style.display !== 'none') {
-            input.parentElement.remove();
-            inputs = document.querySelectorAll(`.${styles['sec-table']} input`);
-            inputs.forEach(inputDom => inputDom.checked = false);
-          }
-        });
+        secTableContainer.querySelectorAll(':checked').forEach(dom => dom.checked = false);
+        thrTableContainer.innerHTML = ``;
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
       document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
         const isTableList = isDomFunc({
-          path: e.path, dom,
+          path, dom,
         });
         if (isTableList) {
-          const tableListIndex = isTableList.dataset.index;
-          if (select_model === 'radio') {
+          if (selectModel === 'radio') {
             document.querySelector('#empty').click();
-          } else if (select_model === 'checkbox') {
-            document.querySelector(`#sec-table-tb-container label:nth-child(${Number(tableListIndex) + 1})`).click();
+          } else if (selectModel === 'checkbox') {
+            const jsonData = dom.id;
+            secTableContainer.querySelector(`label[data-json='${jsonData}']`).click();
           }
         }
       });
-    };
-    domAddEvent.addEventListener(event, handleAllEvent, false);
-  } else if (event === 'change') {
-    const handleAllEvent = (e) => {
-      // selectAll
-      const isSelectAllDom = isDomInPathFunc({
-        path: e.path,
-        selector: '#select-all',
+      const bodyContainer = document.querySelector(`.${styles['body-container']}`);
+      // 是否弹出表格
+      const isTableContainer = isIdInPathFunc({
+        path,
+        id: 'thr-table',
       });
-      if (isSelectAllDom) {
-        const inputs = isSelectAllDom.parentElement.parentElement.parentElement.querySelectorAll(`.${styles['tb-container']} .${styles.select}`);
-        inputs.forEach((input) => {
-          if (input.parentElement.style.display !== 'none') {
-            input.checked = e.target.checked;
-            input.dataset.checked = e.target.checked;
-          }
-        });
-      }
-      // selectReverse
-      const isSelectReverseDom = isDomInPathFunc({
-        path: e.path,
-        selector: '#select-reverse',
+      const isShow = isIdInPathFunc({
+        path,
+        id: 'show',
       });
-      if (isSelectReverseDom) {
-        const inputs = isSelectReverseDom.parentElement.parentElement.parentElement.querySelectorAll(`.${styles['tb-container']} .${styles.select}`);
-        inputs.forEach((input) => {
-          if (input.parentElement.style.display !== 'none') {
-            input.checked = !input.checked;
-            input.dataset.checked = input.checked;
-          }
-        });
+      if (isTableContainer) {
+        bodyContainer.classList.remove(styles.hide)
+      } else if (isShow) {
+        bodyContainer.classList.toggle(styles.hide)
+      }else {
+        bodyContainer.classList.add(styles.hide)
       }
+
       // 为第二个表格每一个列表添加点击事件，tb-container
       const isTableList = isDomFunc({
         path: e.path,
@@ -167,125 +109,165 @@ const eventProxy = (args) => {
       if (isTableList) {
         isTableList.dataset.select = Math.random();
       }
+      // sync the num with 
+      setTimeout(() => {
+        document.querySelector(`.${styles.num} font`).innerHTML=document.querySelectorAll('#sec-table-tb-container > label > input:checked').length;
+      }, 5);
     };
-    domAddEvent.addEventListener(event, handleAllEvent, false);
-  } else if (event === 'keyup') {
-    const handleAllEvent = (e) => {
-      const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
-      const allList = document.querySelector('#sec-table-tb-container').children;
-      const filterList = addArrProp(allList).filter((list) => {
-        if (isNumeric(e.target.value)) {
-          var keyValue = list.querySelector(`.${styles.num}`).innerText;
-          var regex = new RegExp(`^${searchValue}`);
-        } else {
-          var keyValue = list.querySelector(`.${styles.name}`).innerText;
-          var regex = new RegExp(`${searchValue}`);
-        }
-        return keyValue.match(regex);
-      });
-      addArrProp(allList).forEach(dom => dom.style.display = 'none');
-      addArrProp(filterList).forEach(dom => dom.style.display = 'flex');
-    };
-    domAddEvent.addEventListener(event, handleAllEvent, false);
+    domAddEvent.addEventListener(event, handleAllEvent);
   }
 };
 
+const putDataToSecTable = async ({data , selectModel}) => {
+  // 将数据传入data之前先清空 container
+  let secTableInputs = document.querySelector('#sec-table-tb-container');
+  secTableInputs = Array.prototype.slice.call(secTableInputs);
+  secTableInputs.map(input => input.parentElement.remove());
+  data.forEach((row, i) => {
+    const secTable = document.querySelector('#sec-table-tb-container');
+    const div = document.createElement('label');
+    div.className = styles.tb;
+    div.dataset.index = i;
+    div.dataset.json = JSON.stringify(row);
+    div.htmlFor = `select-second-${i}`;
+    const html = `
+        <input class="${styles.select}" type="${selectModel}" name="select" id="select-second-${i}"/>
+        <span class="${styles.name}">${row.name}</span>
+    `;
+    div.innerHTML = html;
+    div.id = `sec${i}`;
+    div.dataset.type = row.type || row.goods_code || row.corp_code || row.id;
+    div.style.color = '#000';
+    div.style.cursor = 'pointer';
+    secTable.appendChild(div);
+  });
+};
+
+
 const thrTableObserver = () => {
-  // //不适合单独监听啊，，直接复制选中的元素好了，垃圾算法
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const thrTableContainer = document.querySelector('#thr-table-tb-container');
-  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+  const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
   const observer = new MutationObserver(() => {
-    let inputGroupAll = thrTableContainer.querySelectorAll('input');
-    inputGroupAll = Array.prototype.slice.call(inputGroupAll);
-    inputGroupAll.forEach((input) => {
-      input.parentElement.remove();
-    });
-    let inputGroup = secTableContainer.querySelectorAll('input:checked');
-    inputGroup = Array.prototype.slice.call(inputGroup);
-    inputGroup.map((input, i) => {
-      const div = input.parentElement;
-      const newChild = div.cloneNode(true);
-      const oldChild = thrTableContainer.querySelector(`div:nth-child(${i + 1})`);
-      newChild.style.display = 'flex';
-      addEvent({
-        dom: newChild,
-        envet: 'click',
-        func: e => e.path.filter(_e => _e.className === styles.tb)[0].remove(),
-      });
-      thrTableContainer.insertBefore(newChild, oldChild);
-      newChild.scrollIntoView({ behavior: 'instant', block: 'end', inline: 'nearest' });
+    document.querySelector('#thr-table-tb-container').innerHTML = '';
+    addArrProp(secTableContainer.querySelectorAll(` input:checked`)).forEach((dom) => {
+      const jsonData = JSON.parse(dom.parentElement.dataset.json);
+      const div = document.createElement('label');
+      div.className = styles.tb;
+      div.id = JSON.stringify(jsonData);
+      const html = `
+        <span class="${styles.name}">${jsonData.name}</span>
+        <span class="${styles.empty}">㊀</span>
+      `;
+      div.innerHTML = html;
+      // div.style.color = '#000';
+      thrTableContainer.appendChild(div);
     });
   });
+  // 配置观察选项:
   const config = {
-    attributes: true,
-    childList: true,
-    characterData: true,
     subtree: true,
+    childList: true,
+    attributes: true,
+    characterData: true,
   };
   observer.observe(secTableContainer, config);
 };
 
 
-const Table = async (args) => {
+const table = async (args) => {
   const {
     data,
     next,
     beforeSelect,
+    pars,
   } = args;
-  window.select_model = args.select_model;
+  const selectModel = args.select_model;
+  // 表格 初始化的时候就显示
+  // 树做侧边弹出
+  console.log('table mobile 拿到的数据', data);
+  window.top.dataa = data;
   const ifselect = args.ifselect || true;
-  console.log('拿到的数据：', data);
   const mask = document.createElement('div');
-  mask.className = styles['component-mask'];
+  mask.className = styles.mask;
   mask.innerHTML = `
-    <div class="${styles['component-table']}">
-      <header class="${styles['component-table-header']}">请选择</header>
-      <div class="${styles['component-table-body']}">
-        <div class="${styles['component-table-body-container']}">
+    <div class="${styles.table}">
+      <header class="${styles.header}">
+        ${Icon({ type: '<', id: 'return' })}
+        <span>请选择</span>
+        <span class="${styles.right}"></span>
+      </header>
+      <div class="${styles.body}">
+        <div class="${styles['body-container']} ${styles.hide}">
           <div class="${styles.table}">
-            <div class="${styles['sec-table']}" id="sec-table">
-              <span class="${styles.thh}">
-                <span class="${styles.search}">
-                  <input id="search" type="text">
-                  <span>搜索</span>
-                </span>
-              </span>
-              <div class="${styles.th}">
-                <span class="${styles.select}">
-                  ${select_model === 'checkbox' ? `
-                    <input id="select-all" type="checkbox"/> 
-                    <label for="select-all">全选</label>
-                  ` : ''}
-                </span>
-                ${data[0].code ? `<span class="${styles.num}">编号</span>` : ''}
-                <span class="${styles.name}">名称</span>
-              </div>
-              <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
-              <span class="${styles.tbb}"></span>
-            </div>
+
             <div class="${styles['thr-table']}" id="thr-table">
-              <h3 class="${styles.thh} ${styles.title}">当前已选中</h3>
               <div class="${styles.th}">
-                <span class="${styles.index}">序号</span>
-                <span class="${styles.name}">名称</span>
+                <span class="${styles.name}">已选择</span>
                 <span class="${styles['empty-btn']}" id="empty">
                   ${Icon({ type: 'trash' })}
                   清空
                 </span>
               </div>
               <div class="${styles['tb-container']}" id="thr-table-tb-container"></div>
-              <span class="${styles.tbb}">
-                ${Button({ id: 'return', text: '返回', type: 'daocheng-cancel' }).outerHTML}&nbsp;&nbsp;
-                ${Button({ id: 'confirm', text: '确认', type: 'daocheng-confirm' }).outerHTML}
-              </span>
             </div>
+
           </div>
         </div>
       </div>
-    </div>
-  `;
+      
+      <div class="${styles['sec-table']}" id="sec-table">
+        <div class="${styles.th}">
+          <span class="${styles.select}">
+            ${selectModel==='checkbox'?`
+              <input id="select-all" type="checkbox"/> 
+              <label for="select-all">全选</label>
+            `:``}
+          </span>
+          <span class="${styles.name}">名称</span>
+          <span class="${styles.btn}" id="show-tree">筛选</span>
+        </div>
+        <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
+      </div>
 
+      <footer class="${styles.footer}">
+        ${Icon({ type: 'daocheng', id: 'daocheng' })}
+        <span class="${styles.num}">
+          已选择
+          <font>${0}</font>
+          人
+        </span>
+        <span class="${styles.iconfont}" id="show">
+          查看
+          ${Icon({ type: '>' })}
+        </span>
+        <span class="${styles.confirm}" id="confirm">确认</span>
+      </footer>
+    </div>`;
+  document.body.appendChild(mask);
+  // await sleep(300);
+  await btnAddevent({
+    btns: [
+      document.querySelector('#return'),
+      document.querySelector('#confirm')
+    ], mask, data: data.content, next,
+  });
+  await putDataToSecTable({
+    data: data.content,
+    selectModel
+  });
+  // 添加观察者
+  await thrTableObserver({ selectModel });
+  // all event proxy
+  await eventProxy({
+    event: 'click',
+    selectModel,
+    domAddEvent: mask,
+  });
+  // await eventProxy({
+  //   event: 'change',
+  // });
+  // 隐藏滚动条
   domFunc({
     dom: document.querySelector('html'),
     style: {
@@ -293,33 +275,6 @@ const Table = async (args) => {
       overflow: 'hidden',
     },
   });
-  document.body.appendChild(mask);
-  await sleep(300);
-  await putDataToSecTable(data);
-  let btns = mask.querySelectorAll(`.${styles['component-table']} button`);
-  btns = Array.prototype.slice.call(btns);
-  await btnAddevent({
-    btns, mask, data, next,
-  });
-  // 添加观察者
-  await thrTableObserver();
-  // all event proxy
-  await eventProxy({
-    event: 'click',
-  });
-  await eventProxy({
-    event: 'change',
-  });
-  await eventProxy({
-    event: 'keyup',
-    domAddEvent: document.querySelector('#search'),
-  });
-  if (ifselect) {
-    selectBeforeFunc({
-      beforeSelect,
-    });
-  }
 };
 
-
-export default Table;
+export default table;
