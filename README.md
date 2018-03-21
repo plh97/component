@@ -3,6 +3,11 @@
 [![Node.js Version](https://img.shields.io/badge/node.js-9.2.0-blue.svg)](http://nodejs.org/download)
 ![Size](https://github-size-badge.herokuapp.com/pengliheng/chatroom.svg)
 
+## Thought:
+- [ ] i dont wanna to write in my off-work time,wannan to read some book about js essence. and set my boss in other place. that because i don't wanna to repect work.  
+- [ ] js 和普通语言的不同之处在于，它是基于继承的面向对象语言，这是非常灵活的。
+
+
 ## TODO
 - [x] 将移动端树表做好，表格点击帅选，弹出树，之后再隐藏。。
 - [x] css代码单独提取出来压缩后居然有200kb+，需要精简。。
