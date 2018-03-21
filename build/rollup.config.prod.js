@@ -14,7 +14,7 @@ export default {
   plugins: [
     resolve(),
     postcss({
-      extract: true,
+      extract: false,
       modules: true,
     }),
     babel({

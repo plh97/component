@@ -221,6 +221,14 @@ const tree = async (args) => {
   // await eventProxy({
   //   event: 'change',
   // });
+  // 隐藏外部滚动条
+  domFunc({
+    dom: document.querySelector('html'),
+    style: {
+      paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+      overflow: 'hidden',
+    },
+  });
 };
 
 export default tree;

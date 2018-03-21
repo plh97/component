@@ -3,6 +3,16 @@ import Button from '../../container/button';
 import Icon from '../../container/icon';
 import Dom from '../../utils/dom';
 
+const {
+  domFunc,
+  isDomFunc,
+  addArrProp,
+  isIdInPathFunc,
+  composedPath,
+  sleep,
+} = Dom;
+
+
 const ModalInfo = async (args) => {
   // const { domFunc } = args;
   // const { sleep } = args;
