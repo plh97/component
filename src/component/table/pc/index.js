@@ -69,7 +69,7 @@ const btnAddevent = (args) => {
   });
 };
 
-const putDataToSecTable = async ({data,tableHead}) => {
+const putDataToSecTable = async ({ data, tableHead }) => {
   // 将数据传入data之前先清空 container
   let secTableInputs = document.querySelector('#sec-table-tb-container');
   secTableInputs = Array.prototype.slice.call(secTableInputs);
@@ -80,18 +80,17 @@ const putDataToSecTable = async ({data,tableHead}) => {
     div.className = styles.tb;
 
 
-
     let html = `
       <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
     `;
     // ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
     // <span class="${styles.name}">${row.name}</span>
-    addArrProp(tableHead).forEach(dom=>{
+    addArrProp(tableHead).forEach((dom) => {
       const id = dom.dataset.field;
-      if (id!==undefined && id!=='id' && id!=='user_id') {
-        html += `<span class="${styles[id==="name"?'name':'num']}" style="width:${dom.style.width}">${row[id]}</span>`
+      if (id !== undefined && id !== 'id' && id !== 'user_id') {
+        html += `<span class="${styles[id === 'name' ? 'name' : 'num']}" style="width:${dom.style.width}">${row[id]}</span>`;
       }
-    })
+    });
 
     div.innerHTML = html;
     div.htmlFor = `select-second-${i}`;
@@ -194,8 +193,17 @@ const eventProxy = (args) => {
         }
         return keyValue.match(regex);
       });
-      addArrProp(allList).forEach(dom => dom.style.display = 'none');
-      addArrProp(filterList).forEach(dom => dom.style.display = 'flex');
+      addArrProp(allList).forEach((dom) => {
+        dom.style.display = 'none';
+      });
+      addArrProp(filterList).forEach((dom, i) => {
+        if (i % 2 === 1) {
+          dom.style.backgroundColor = '#f9f9f9';
+        } else {
+          dom.style.backgroundColor = '#fff';
+        }
+        dom.style.display = 'flex';
+      });
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   }
@@ -306,28 +314,28 @@ const Table = async (args) => {
   document.body.appendChild(mask);
   // await sleep(300);
   const getTableHTML = await fetchData({
-    url:"https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/" + pars.tempid,
-    data: ``,
+    url: `https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/${pars.tempid}`,
+    data: '',
     header: {
-      method:"GET",
-      "Access-Control-Allow-Origin": '*',
+      method: 'GET',
+      'Access-Control-Allow-Origin': '*',
       mode: 'include',
-    }
+    },
   });
-  let tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
-  addArrProp(tableHead).forEach(dom => {
+  const tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
+  addArrProp(tableHead).forEach((dom) => {
     console.log(dom);
     const id = dom.dataset.field;
-    if(!dom.querySelector('input') && id!=='id' && id!=='user_id'){
+    if (!dom.querySelector('input') && id !== 'id' && id !== 'user_id') {
       mask.querySelector(`#sec-table .${styles.th}`).innerHTML += `
         <span class="${styles.num}" style="width:${dom.style.width}">${dom.innerText}</span>
-      `
+      `;
     }
   });
 
   await putDataToSecTable({
-    data, 
-    tableHead
+    data,
+    tableHead,
   });
   let btns = mask.querySelectorAll(`.${styles['component-table']} button`);
   btns = Array.prototype.slice.call(btns);

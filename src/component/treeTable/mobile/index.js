@@ -233,12 +233,13 @@ const thrTableObserver = ({ treeStyles }) => {
 };
 
 
-const tree = async (args) => {
+const treeTable = async (args) => {
   const {
     data,
     next,
     beforeSelect,
     pars,
+    corpName
   } = args;
   const selectModel = args.select_model;
   // 表格 初始化的时候就显示
@@ -250,11 +251,13 @@ const tree = async (args) => {
   mask.className = styles.mask;
   mask.innerHTML = `
     <div class="${styles.tree}">
+
       <header class="${styles.header}">
         ${Icon({ type: '<', id: 'return' })}
         <span>请选择</span>
         <span class="${styles.right}"></span>
       </header>
+
       <div class="${styles.body}">
         <div class="${styles['body-side']}" id="side"></div>
         <div class="${styles['body-container']} ${styles.hide}">
@@ -303,7 +306,7 @@ const tree = async (args) => {
         <span class="${styles.confirm}" id="confirm">确认</span>
       </footer>
     </div>`;
-  const tree = Tree({ data: data.title, beforeSelect, selectModel: "radio" });
+  const tree = Tree({ data: data.title, beforeSelect, selectModel: "radio" ,corpName});
   const treeDom = tree.container;
   const treeStyles = tree.styles;
   mask.querySelector('#side').appendChild(treeDom);
@@ -320,7 +323,7 @@ const tree = async (args) => {
     selectModel
   });
   // 添加观察者
-  await secTableObserver({ treeStyles, pars, selectModel });
+  await secTableObserver({ treeStyles, pars, selectModel,corpName });
   // 添加观察者
   await thrTableObserver({ selectModel, treeStyles });
   // all event proxy
@@ -344,4 +347,4 @@ const tree = async (args) => {
   });
 };
 
-export default tree;
+export default treeTable;

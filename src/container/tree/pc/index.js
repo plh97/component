@@ -85,7 +85,6 @@ const eventProxy = (args) => {
       }
       // 点击li的第一个，是否是展开下面选项还是全选反选
       let openList = domAddEvent.querySelectorAll(`.${styles['tree-container']} .icon-unfold`);
-      console.log('123213');
       openList = Array.prototype.slice.call(openList);
       openList.forEach((dom) => {
         const isListInPath = isDomFunc({
@@ -222,6 +221,7 @@ const tree = (args) => {
     data,
     beforeSelect,
     selectModel,
+    corpName,
   } = args;
   const ifselect = args.ifselect || true;
   const container = document.createElement('div');
@@ -229,7 +229,7 @@ const tree = (args) => {
   container.innerHTML = `
     <div class="${styles.all}" id="all">
       ${selectModel === 'checkbox' ? `<span id="select-all-checkbox" class="${styles.checkbox}"></span>` : ""}
-      <span class="${styles['text-container']}">${isMobile()?"珠海道成科技":"全部"}</span>
+      <span class="${styles['text-container']}">${isMobile()?corpName:"全部"}</span>
       <span class="empty" id="empty" style="display:none">清空</span>
     </div>
     <div class="${styles['tree-container']}" id='tree-container'></div>

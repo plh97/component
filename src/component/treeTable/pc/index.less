@@ -54,7 +54,7 @@
                     font-size: 13px;
                     flex-direction: row;
                     justify-content: space-around;
-
+    
                     .sec-table , .thr-table {
                         overflow: hidden;
                         user-select: none;
@@ -72,9 +72,6 @@
 
                         .thh {
                             flex: 0 0 60px;
-                            &.title {
-                                font-size: 20px;
-                            }
                             background-color: @grey0;
                             height: 59px;
                             padding: 0 23px;
@@ -83,6 +80,11 @@
                             justify-content: center;
                             color: RGBA(51, 51, 51, 1);
 
+                            &.title {
+                                font-weight: bold;
+                                font-size: 20px;
+                            }
+                            
                             .search {
                                 display: flex;
                                 flex: 1;
@@ -107,7 +109,11 @@
                                 }
                             }
                         }
+                        label {
+                            margin-bottom: 0;
+                        }
                         .th , .tb {
+                            font-size: 14px;
                             display: flex;
                             padding: 0 10px;
                             align-items: center;
@@ -116,6 +122,7 @@
                             .select {
                                 font-size: 20px;
                                 flex: 0 0 110px;
+                                margin: 0 10px;
                                 display: inline-flex;
                                 cursor: pointer;
                                 font-weight: bold;
@@ -128,7 +135,7 @@
                                     flex-direction: column;
                                     height: 20px;
                                     width: 21px;
-                                    margin-right: 15px;
+                                    margin: 0 15px 0 0;
                                     &:before {
                                         position: absolute;
                                         content: ' ';
@@ -172,33 +179,26 @@
                             }
                             .num{
                                 flex: 0 0 100px;
-                                font-size: 16px;
                                 text-overflow: ellipsis;
                                 overflow: hidden;
                                 white-space: nowrap;
                             }
                             .name{
-                                font-size: 16px;
                                 flex: 1 1 auto;
                             }
                             &.th{
                                 // height: 48px;
                                 flex: 0 0 48px;
                                 padding: 0 20px 0 10px;
-                                font-size: 16px;
                                 position: relative;
                                 background-color: #e0e0e0;
                             }
                             &.tb{
-                                border-radius: 10px;
+                                // border-radius: 10px;
                                 height: 36px;
                                 position: relative;
 
-                                span {
-                                    border-left: 1px sloid #d9d9d9;
-                                }
-
-                                input {
+                                input[type=checkbox] {
                                     display: inline-flex;
                                     flex-direction: column;
                                     height: 20px;
@@ -227,19 +227,48 @@
                                         color: @daocheng-red;
                                     } 
                                 }
+
+                                input[type=radio] {
+                                    display: inline-flex;
+                                    flex-direction: column;
+                                    height: 20px;
+                                    width: 21px;
+                                    // margin-right: 15px;
+                                    &:before {
+                                        position: absolute;
+                                        content: ' ';
+                                        width: 20px;
+                                        height: 20px;
+                                        background-color: #fff;
+                                        box-sizing: border-box;
+                                        border: 1px solid #999;
+                                        border-radius: 50%;
+                                        color: @daocheng-red;
+                                        line-height: 11px;
+                                        font-size: 30px;
+                                    }
+                                    &:checked:before {
+                                        content: '●';
+                                    }
+                                    &:checked + span {
+                                        color: @daocheng-red;
+                                    }
+                                    &:checked + span + span { 
+                                        color: @daocheng-red;
+                                    } 
+                                }
                             }
                         }
                         .tb-container {
                             counter-reset: my-sec-counter;
                             height: calc(~'100% - 50px');
-                            background-image: 
-                                repeating-linear-gradient(
-                                    to bottom,
-                                    transparent,
-                                    transparent 36px, #f9f9f9 36px, #f9f9f9 72px
-                                );
+                            background-image: repeating-linear-gradient(
+                                to bottom,
+                                transparent,
+                                transparent 36px, #f9f9f9 36px, #f9f9f9 72px
+                            );
                             overflow: hidden;
-                            padding-right: 8px;
+                            // padding-right: 8px;
                             &:hover {
                                 padding-right: 0;
                                 overflow-y: scroll;
@@ -259,6 +288,15 @@
                                     counter-increment: my-sec-counter;
                                     content: counter(my-sec-counter);
                                 }
+                            }
+                            label:nth-child(even) {
+                                background-color: #f9f9f9;
+                            }
+                            label:nth-child(odd) {
+                                background-color: #fff;
+                            }
+                            .hide {
+                                display: none;
                             }
                         }
                         .tbb {

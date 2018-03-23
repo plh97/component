@@ -68,8 +68,7 @@ const btnAddevent = (args) => {
   });
 };
 
-
-const putDataToSecTable = async ({data,tableHead}) => {
+const putDataToSecTable = async ({ data, tableHead, selectModel }) => {
   // 将数据传入data之前先清空 container
   let secTableInputs = document.querySelector('#sec-table-tb-container');
   secTableInputs = Array.prototype.slice.call(secTableInputs);
@@ -80,25 +79,19 @@ const putDataToSecTable = async ({data,tableHead}) => {
     div.className = styles.tb;
     div.dataset.index = i;
     div.htmlFor = `select-second-${i}`;
-
     let html = `
-      <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
+      <input class="${styles.select} ${styles[selectModel]}" type="${select_model}" name="select" id="select-second-${i}"/>
     `;
-
-    
-    addArrProp(tableHead).forEach(dom=>{
+    addArrProp(tableHead).forEach((dom) => {
       const id = dom.dataset.field;
-      if (id!==undefined) {
-        html += `<span class="${styles[id==="name"?'name':'num']}" style="width:${dom.style.width}">${row[id]}</span>`
+      if (id !== undefined) {
+        html += `<span class="${styles[id === 'name' ? 'name' : 'num']}" style="width:${dom.style.width}">${row[id]}</span>`;
       }
-    })
-
+    });
     div.innerHTML = html;
     div.id = `sec${i}`;
     div.dataset.json = JSON.stringify(row);
     div.dataset.type = row.type || row.goods_code || row.corp_code || row.id;
-    div.style.color = '#000';
-    div.style.cursor = 'pointer';
     secTable.appendChild(div);
   });
 };
@@ -196,8 +189,16 @@ const eventProxy = (args) => {
         }
         return keyValue.match(regex);
       });
-      addArrProp(allList).forEach((dom) => { dom.style.display = 'none'; });
-      addArrProp(filterList).forEach((dom) => { dom.style.display = 'flex'; });
+      addArrProp(allList).forEach((dom) => {
+        dom.style.backgroundColor = '#fff';
+        dom.classList.add(styles.hide);
+      });
+      addArrProp(filterList).forEach((dom, i) => {
+        if (i % 2 === 1) {
+          dom.style.backgroundColor = '#f9f9f9';
+        }
+        dom.classList.remove(styles.hide);
+      });
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   }
@@ -208,40 +209,42 @@ const secTableObserver = ({ treeStyles, pars }) => {
   const firTableContainer = document.querySelector('#tree-container');
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
-  const observer = new MutationObserver(async(mutations) => {
+  const observer = new MutationObserver(async (mutations) => {
     const activeDom = firTableContainer.querySelector(`.${treeStyles.active}`);
     const jsonData = JSON.parse(activeDom.dataset.json);
     const getData = await fetchData({
       url: pars.parame.detailUrl,
       data: `&${pars.parame.parame}=${jsonData.id}`,
       header: {
-        method:"POST",
-        credentials: 'include'
-      }
+        method: 'POST',
+        credentials: 'include',
+      },
     });
-    // console.log('pars', getData);
     const index = activeDom.dataset.type;
     let allDom = secTableContainer.querySelectorAll('input');
     allDom = addArrProp(allDom).map(dom => dom.parentElement);
     let showDom = secTableContainer.querySelectorAll('label');
-    // const regex = new RegExp(`^${index}`);
-    // showDom = addArrProp(showDom).filter(dom => {
-    //   // getData.forEach(arr=>{
-    //   //   dom.dataset.json === arr
-    //   // })
-    //   // dom.dataset.json === 
-    // });
-    showDom = getData.rows.map(arr=>{
-      return allDom.filter(dom=>{
-        // console.log(JSON.parse(dom.dataset.json),arr);
-        return JSON.parse(dom.dataset.json).id === arr.id;
-      })[0]
-    })
+
+    showDom = getData.rows.map(arr => allDom.filter(dom => JSON.parse(dom.dataset.json).id === arr.id)[0]);
     // console.log(showDom);
-    showDomFunc({
-      allDom,
-      showDom,
+
+
+    allDom.forEach((dom) => {
+      dom.style.backgroundColor = '#fff';
+      dom.classList.add(styles.hide);
     });
+    showDom.forEach((dom, i) => {
+      if (i % 2 === 1) {
+        dom.style.backgroundColor = '#f9f9f9';
+      }
+      dom.classList.remove(styles.hide);
+    });
+
+
+    // showDomFunc({
+    //   allDom,
+    //   showDom,
+    // });
   });
   // 配置观察选项:
   const config = {
@@ -274,8 +277,6 @@ const thrTableObserver = () => {
         <span class="${styles.empty}">☒</span>
       `;
       div.innerHTML = html;
-      // div.style.color = '#000';
-      div.style.cursor = 'pointer';
       thrTableContainer.appendChild(div);
     });
   });
@@ -352,17 +353,6 @@ const treeTable = async (args) => {
         </div>
       </div>
     </div>`;
-  // <span class="${styles.select}">
-  //   ${select_model === 'checkbox' ? `
-  //     <input id="select-all" type="checkbox"/> 
-  //     <label for="select-all">全选</label>
-  //   ` : ''}
-  // </span>
-  // ${data.content[0] ? (data.content[0].goods_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
-  // <span class="${styles.name}">名称</span>
-  // ${data.content[0] ? (data.content[0].standard_name ? `<span class="${styles.num}">规格</span>` : '') : ''}
-  // ${data.content[0] ? (data.content[0].unit_name ? `<span class="${styles.num}">单位</span>` : '') : ''}
-  // ${data.content[0] ? (data.content[0].use_number ? `<span class="${styles.num}">可用数量</span>` : '') : ''}
   const treeComponent = Tree({ data: data.title, beforeSelect, selectModel: 'radio' });
   const treeDom = treeComponent.container;
   const treeStyles = treeComponent.styles;
@@ -377,26 +367,26 @@ const treeTable = async (args) => {
   document.body.appendChild(mask);
   // await sleep(300);
   const getTableHTML = await fetchData({
-    url:"https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/" + pars.tempid,
-    data: ``,
+    url: `https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/${pars.tempid}`,
+    data: '',
     header: {
-      method:"GET",
-      "Access-Control-Allow-Origin": '*',
+      method: 'GET',
+      'Access-Control-Allow-Origin': '*',
       mode: 'include',
-    }
+    },
   });
-  let tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
-  addArrProp(tableHead).forEach(dom => {
-    console.log(dom);
-    if(!dom.querySelector('input')){
+  const tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
+  addArrProp(tableHead).forEach((dom) => {
+    if (!dom.querySelector('input')) {
       mask.querySelector(`#sec-table .${styles.th}`).innerHTML += `
         <span class="${styles.num}" style="width:${dom.style.width}">${dom.innerText}</span>
-      `
+      `;
     }
   });
   await putDataToSecTable({
     data: data.content,
-    tableHead
+    tableHead,
+    selectModel,
   });
   let btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
   btns = Array.prototype.slice.call(btns);

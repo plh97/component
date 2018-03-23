@@ -151,9 +151,10 @@ const tree = async (args) => {
     data,
     next,
     beforeSelect,
+    corpName
   } = args;
   const selectModel = args.select_model;
-  console.log('tree拿到的数据', data);
+  console.log('tree 拿到的数据', data);
   window.top.dataa = data;
   const ifselect = args.ifselect || true;
   const mask = document.createElement('div');
@@ -196,7 +197,7 @@ const tree = async (args) => {
         <span class="${styles.confirm}" id="confirm">确认</span>
       </footer>
     </div>`;
-  const tree = Tree({ data, beforeSelect, selectModel });
+  const tree = Tree({ data, beforeSelect, selectModel,corpName });
   const treeDom = tree.container;
   const treeStyles = tree.styles;
   mask.querySelector('#side').appendChild(treeDom);
