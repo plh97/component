@@ -1,5 +1,3 @@
-
-
 // local
 import '../assets/common/common.less';
 import Modal from './component/modal';
@@ -22,6 +20,7 @@ import Dom from './utils/dom';
 
 const { isMobile } = Dom;
 
+console.log('version: 1.0.2');
 
 const Component = {
   Message,
@@ -45,7 +44,7 @@ const Component = {
     modal: Modal,
     message: Message,
     modalInfo: ModalInfo,
-  }
+  },
 };
 
 window.Component = Component;

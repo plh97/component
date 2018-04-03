@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({230:[function(require,module,exports) {
+})({220:[function(require,module,exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
@@ -78,13 +78,13 @@ var global = module.exports = typeof window != 'undefined' && window.Math == Mat
   : Function('return this')();
 if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
-},{}],229:[function(require,module,exports) {
+},{}],222:[function(require,module,exports) {
 var hasOwnProperty = {}.hasOwnProperty;
 module.exports = function (it, key) {
   return hasOwnProperty.call(it, key);
 };
 
-},{}],233:[function(require,module,exports) {
+},{}],225:[function(require,module,exports) {
 module.exports = function (exec) {
   try {
     return !!exec();
@@ -93,29 +93,29 @@ module.exports = function (exec) {
   }
 };
 
-},{}],209:[function(require,module,exports) {
+},{}],223:[function(require,module,exports) {
 // Thank's IE8 for his funny defineProperty
 module.exports = !require('./_fails')(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
 
-},{"./_fails":233}],202:[function(require,module,exports) {
+},{"./_fails":225}],204:[function(require,module,exports) {
 var core = module.exports = { version: '2.5.3' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
-},{}],217:[function(require,module,exports) {
+},{}],210:[function(require,module,exports) {
 module.exports = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
 
-},{}],238:[function(require,module,exports) {
+},{}],229:[function(require,module,exports) {
 var isObject = require('./_is-object');
 module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
   return it;
 };
 
-},{"./_is-object":217}],325:[function(require,module,exports) {
+},{"./_is-object":210}],325:[function(require,module,exports) {
 var isObject = require('./_is-object');
 var document = require('./_global').document;
 // typeof document.createElement is 'object' in old IE
@@ -124,12 +124,12 @@ module.exports = function (it) {
   return is ? document.createElement(it) : {};
 };
 
-},{"./_is-object":217,"./_global":230}],323:[function(require,module,exports) {
+},{"./_is-object":210,"./_global":220}],324:[function(require,module,exports) {
 module.exports = !require('./_descriptors') && !require('./_fails')(function () {
   return Object.defineProperty(require('./_dom-create')('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
-},{"./_descriptors":209,"./_fails":233,"./_dom-create":325}],239:[function(require,module,exports) {
+},{"./_descriptors":223,"./_fails":225,"./_dom-create":325}],231:[function(require,module,exports) {
 // 7.1.1 ToPrimitive(input [, PreferredType])
 var isObject = require('./_is-object');
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
@@ -143,7 +143,7 @@ module.exports = function (it, S) {
   throw TypeError("Can't convert object to primitive value");
 };
 
-},{"./_is-object":217}],207:[function(require,module,exports) {
+},{"./_is-object":210}],234:[function(require,module,exports) {
 var anObject = require('./_an-object');
 var IE8_DOM_DEFINE = require('./_ie8-dom-define');
 var toPrimitive = require('./_to-primitive');
@@ -161,7 +161,7 @@ exports.f = require('./_descriptors') ? Object.defineProperty : function defineP
   return O;
 };
 
-},{"./_an-object":238,"./_ie8-dom-define":323,"./_to-primitive":239,"./_descriptors":209}],240:[function(require,module,exports) {
+},{"./_an-object":229,"./_ie8-dom-define":324,"./_to-primitive":231,"./_descriptors":223}],232:[function(require,module,exports) {
 module.exports = function (bitmap, value) {
   return {
     enumerable: !(bitmap & 1),
@@ -171,7 +171,7 @@ module.exports = function (bitmap, value) {
   };
 };
 
-},{}],246:[function(require,module,exports) {
+},{}],239:[function(require,module,exports) {
 var dP = require('./_object-dp');
 var createDesc = require('./_property-desc');
 module.exports = require('./_descriptors') ? function (object, key, value) {
@@ -181,14 +181,14 @@ module.exports = require('./_descriptors') ? function (object, key, value) {
   return object;
 };
 
-},{"./_object-dp":207,"./_property-desc":240,"./_descriptors":209}],231:[function(require,module,exports) {
+},{"./_object-dp":234,"./_property-desc":232,"./_descriptors":223}],226:[function(require,module,exports) {
 var id = 0;
 var px = Math.random();
 module.exports = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
 
-},{}],223:[function(require,module,exports) {
+},{}],217:[function(require,module,exports) {
 
 var global = require('./_global');
 var hide = require('./_hide');
@@ -222,13 +222,13 @@ require('./_core').inspectSource = function (it) {
   return typeof this == 'function' && this[SRC] || $toString.call(this);
 });
 
-},{"./_global":230,"./_hide":246,"./_has":229,"./_uid":231,"./_core":202}],278:[function(require,module,exports) {
+},{"./_global":220,"./_hide":239,"./_has":222,"./_uid":226,"./_core":204}],279:[function(require,module,exports) {
 module.exports = function (it) {
   if (typeof it != 'function') throw TypeError(it + ' is not a function!');
   return it;
 };
 
-},{}],266:[function(require,module,exports) {
+},{}],269:[function(require,module,exports) {
 // optional / simple context binding
 var aFunction = require('./_a-function');
 module.exports = function (fn, that, length) {
@@ -250,7 +250,7 @@ module.exports = function (fn, that, length) {
   };
 };
 
-},{"./_a-function":278}],206:[function(require,module,exports) {
+},{"./_a-function":279}],206:[function(require,module,exports) {
 
 var global = require('./_global');
 var core = require('./_core');
@@ -296,7 +296,7 @@ $export.U = 64;  // safe
 $export.R = 128; // real proto method for `library`
 module.exports = $export;
 
-},{"./_global":230,"./_core":202,"./_hide":246,"./_redefine":223,"./_ctx":266}],216:[function(require,module,exports) {
+},{"./_global":220,"./_core":204,"./_hide":239,"./_redefine":217,"./_ctx":269}],211:[function(require,module,exports) {
 var META = require('./_uid')('meta');
 var isObject = require('./_is-object');
 var has = require('./_has');
@@ -351,7 +351,7 @@ var meta = module.exports = {
   onFreeze: onFreeze
 };
 
-},{"./_uid":231,"./_is-object":217,"./_has":229,"./_object-dp":207,"./_fails":233}],232:[function(require,module,exports) {
+},{"./_uid":226,"./_is-object":210,"./_has":222,"./_object-dp":234,"./_fails":225}],224:[function(require,module,exports) {
 
 var global = require('./_global');
 var SHARED = '__core-js_shared__';
@@ -360,7 +360,7 @@ module.exports = function (key) {
   return store[key] || (store[key] = {});
 };
 
-},{"./_global":230}],224:[function(require,module,exports) {
+},{"./_global":220}],221:[function(require,module,exports) {
 var store = require('./_shared')('wks');
 var uid = require('./_uid');
 var Symbol = require('./_global').Symbol;
@@ -373,7 +373,7 @@ var $exports = module.exports = function (name) {
 
 $exports.store = store;
 
-},{"./_shared":232,"./_uid":231,"./_global":230}],235:[function(require,module,exports) {
+},{"./_shared":224,"./_uid":226,"./_global":220}],227:[function(require,module,exports) {
 var def = require('./_object-dp').f;
 var has = require('./_has');
 var TAG = require('./_wks')('toStringTag');
@@ -382,13 +382,13 @@ module.exports = function (it, tag, stat) {
   if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
 };
 
-},{"./_object-dp":207,"./_has":229,"./_wks":224}],234:[function(require,module,exports) {
+},{"./_object-dp":234,"./_has":222,"./_wks":221}],242:[function(require,module,exports) {
 exports.f = require('./_wks');
 
-},{"./_wks":224}],244:[function(require,module,exports) {
+},{"./_wks":221}],241:[function(require,module,exports) {
 module.exports = false;
 
-},{}],237:[function(require,module,exports) {
+},{}],240:[function(require,module,exports) {
 
 var global = require('./_global');
 var core = require('./_core');
@@ -400,14 +400,14 @@ module.exports = function (name) {
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
 };
 
-},{"./_global":230,"./_core":202,"./_library":244,"./_wks-ext":234,"./_object-dp":207}],255:[function(require,module,exports) {
+},{"./_global":220,"./_core":204,"./_library":241,"./_wks-ext":242,"./_object-dp":234}],254:[function(require,module,exports) {
 var toString = {}.toString;
 
 module.exports = function (it) {
   return toString.call(it).slice(8, -1);
 };
 
-},{}],265:[function(require,module,exports) {
+},{}],280:[function(require,module,exports) {
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 var cof = require('./_cof');
 // eslint-disable-next-line no-prototype-builtins
@@ -415,14 +415,14 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
 
-},{"./_cof":255}],310:[function(require,module,exports) {
+},{"./_cof":254}],311:[function(require,module,exports) {
 // 7.2.1 RequireObjectCoercible(argument)
 module.exports = function (it) {
   if (it == undefined) throw TypeError("Can't call method on  " + it);
   return it;
 };
 
-},{}],212:[function(require,module,exports) {
+},{}],230:[function(require,module,exports) {
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = require('./_iobject');
 var defined = require('./_defined');
@@ -430,7 +430,7 @@ module.exports = function (it) {
   return IObject(defined(it));
 };
 
-},{"./_iobject":265,"./_defined":310}],247:[function(require,module,exports) {
+},{"./_iobject":280,"./_defined":311}],247:[function(require,module,exports) {
 // 7.1.4 ToInteger
 var ceil = Math.ceil;
 var floor = Math.floor;
@@ -438,7 +438,7 @@ module.exports = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
-},{}],258:[function(require,module,exports) {
+},{}],261:[function(require,module,exports) {
 // 7.1.15 ToLength
 var toInteger = require('./_to-integer');
 var min = Math.min;
@@ -446,7 +446,7 @@ module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
-},{"./_to-integer":247}],276:[function(require,module,exports) {
+},{"./_to-integer":247}],266:[function(require,module,exports) {
 var toInteger = require('./_to-integer');
 var max = Math.max;
 var min = Math.min;
@@ -455,7 +455,7 @@ module.exports = function (index, length) {
   return index < 0 ? max(index + length, 0) : min(index, length);
 };
 
-},{"./_to-integer":247}],277:[function(require,module,exports) {
+},{"./_to-integer":247}],278:[function(require,module,exports) {
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = require('./_to-iobject');
@@ -480,14 +480,14 @@ module.exports = function (IS_INCLUDES) {
   };
 };
 
-},{"./_to-iobject":212,"./_to-length":258,"./_to-absolute-index":276}],322:[function(require,module,exports) {
+},{"./_to-iobject":230,"./_to-length":261,"./_to-absolute-index":266}],323:[function(require,module,exports) {
 var shared = require('./_shared')('keys');
 var uid = require('./_uid');
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
 
-},{"./_shared":232,"./_uid":231}],321:[function(require,module,exports) {
+},{"./_shared":224,"./_uid":226}],322:[function(require,module,exports) {
 var has = require('./_has');
 var toIObject = require('./_to-iobject');
 var arrayIndexOf = require('./_array-includes')(false);
@@ -506,13 +506,13 @@ module.exports = function (object, names) {
   return result;
 };
 
-},{"./_has":229,"./_to-iobject":212,"./_array-includes":277,"./_shared-key":322}],324:[function(require,module,exports) {
+},{"./_has":222,"./_to-iobject":230,"./_array-includes":278,"./_shared-key":323}],321:[function(require,module,exports) {
 // IE 8- don't enum bug keys
 module.exports = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
 
-},{}],210:[function(require,module,exports) {
+},{}],207:[function(require,module,exports) {
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 var $keys = require('./_object-keys-internal');
 var enumBugKeys = require('./_enum-bug-keys');
@@ -521,10 +521,10 @@ module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
 };
 
-},{"./_object-keys-internal":321,"./_enum-bug-keys":324}],245:[function(require,module,exports) {
+},{"./_object-keys-internal":322,"./_enum-bug-keys":321}],235:[function(require,module,exports) {
 exports.f = Object.getOwnPropertySymbols;
 
-},{}],242:[function(require,module,exports) {
+},{}],237:[function(require,module,exports) {
 exports.f = {}.propertyIsEnumerable;
 
 },{}],243:[function(require,module,exports) {
@@ -544,14 +544,14 @@ module.exports = function (it) {
   } return result;
 };
 
-},{"./_object-keys":210,"./_object-gops":245,"./_object-pie":242}],236:[function(require,module,exports) {
+},{"./_object-keys":207,"./_object-gops":235,"./_object-pie":237}],228:[function(require,module,exports) {
 // 7.2.2 IsArray(argument)
 var cof = require('./_cof');
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
 
-},{"./_cof":255}],211:[function(require,module,exports) {
+},{"./_cof":254}],286:[function(require,module,exports) {
 var dP = require('./_object-dp');
 var anObject = require('./_an-object');
 var getKeys = require('./_object-keys');
@@ -566,11 +566,11 @@ module.exports = require('./_descriptors') ? Object.defineProperties : function 
   return O;
 };
 
-},{"./_object-dp":207,"./_an-object":238,"./_object-keys":210,"./_descriptors":209}],275:[function(require,module,exports) {
+},{"./_object-dp":234,"./_an-object":229,"./_object-keys":207,"./_descriptors":223}],274:[function(require,module,exports) {
 var document = require('./_global').document;
 module.exports = document && document.documentElement;
 
-},{"./_global":230}],208:[function(require,module,exports) {
+},{"./_global":220}],233:[function(require,module,exports) {
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = require('./_an-object');
 var dPs = require('./_object-dps');
@@ -613,7 +613,7 @@ module.exports = Object.create || function create(O, Properties) {
   return Properties === undefined ? result : dPs(result, Properties);
 };
 
-},{"./_an-object":238,"./_object-dps":211,"./_enum-bug-keys":324,"./_shared-key":322,"./_dom-create":325,"./_html":275}],241:[function(require,module,exports) {
+},{"./_an-object":229,"./_object-dps":286,"./_enum-bug-keys":321,"./_shared-key":323,"./_dom-create":325,"./_html":274}],238:[function(require,module,exports) {
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys = require('./_object-keys-internal');
 var hiddenKeys = require('./_enum-bug-keys').concat('length', 'prototype');
@@ -622,7 +622,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
 };
 
-},{"./_object-keys-internal":321,"./_enum-bug-keys":324}],219:[function(require,module,exports) {
+},{"./_object-keys-internal":322,"./_enum-bug-keys":321}],218:[function(require,module,exports) {
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = require('./_to-iobject');
 var gOPN = require('./_object-gopn').f;
@@ -643,7 +643,7 @@ module.exports.f = function getOwnPropertyNames(it) {
   return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
 };
 
-},{"./_to-iobject":212,"./_object-gopn":241}],213:[function(require,module,exports) {
+},{"./_to-iobject":230,"./_object-gopn":238}],214:[function(require,module,exports) {
 var pIE = require('./_object-pie');
 var createDesc = require('./_property-desc');
 var toIObject = require('./_to-iobject');
@@ -661,7 +661,7 @@ exports.f = require('./_descriptors') ? gOPD : function getOwnPropertyDescriptor
   if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
 };
 
-},{"./_object-pie":242,"./_property-desc":240,"./_to-iobject":212,"./_to-primitive":239,"./_has":229,"./_ie8-dom-define":323,"./_descriptors":209}],8:[function(require,module,exports) {
+},{"./_object-pie":237,"./_property-desc":232,"./_to-iobject":230,"./_to-primitive":231,"./_has":222,"./_ie8-dom-define":324,"./_descriptors":223}],11:[function(require,module,exports) {
 
 'use strict';
 // ECMAScript 6 symbols shim
@@ -898,22 +898,22 @@ setToStringTag(Math, 'Math', true);
 // 24.3.3 JSON[@@toStringTag]
 setToStringTag(global.JSON, 'JSON', true);
 
-},{"./_global":230,"./_has":229,"./_descriptors":209,"./_export":206,"./_redefine":223,"./_meta":216,"./_fails":233,"./_shared":232,"./_set-to-string-tag":235,"./_uid":231,"./_wks":224,"./_wks-ext":234,"./_wks-define":237,"./_enum-keys":243,"./_is-array":236,"./_an-object":238,"./_is-object":217,"./_to-iobject":212,"./_to-primitive":239,"./_property-desc":240,"./_object-create":208,"./_object-gopn-ext":219,"./_object-gopd":213,"./_object-dp":207,"./_object-keys":210,"./_object-gopn":241,"./_object-pie":242,"./_object-gops":245,"./_library":244,"./_hide":246}],9:[function(require,module,exports) {
+},{"./_global":220,"./_has":222,"./_descriptors":223,"./_export":206,"./_redefine":217,"./_meta":211,"./_fails":225,"./_shared":224,"./_set-to-string-tag":227,"./_uid":226,"./_wks":221,"./_wks-ext":242,"./_wks-define":240,"./_enum-keys":243,"./_is-array":228,"./_an-object":229,"./_is-object":210,"./_to-iobject":230,"./_to-primitive":231,"./_property-desc":232,"./_object-create":233,"./_object-gopn-ext":218,"./_object-gopd":214,"./_object-dp":234,"./_object-keys":207,"./_object-gopn":238,"./_object-pie":237,"./_object-gops":235,"./_library":241,"./_hide":239}],29:[function(require,module,exports) {
 var $export = require('./_export');
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 $export($export.S, 'Object', { create: require('./_object-create') });
 
-},{"./_export":206,"./_object-create":208}],11:[function(require,module,exports) {
+},{"./_export":206,"./_object-create":233}],9:[function(require,module,exports) {
 var $export = require('./_export');
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
 $export($export.S + $export.F * !require('./_descriptors'), 'Object', { defineProperty: require('./_object-dp').f });
 
-},{"./_export":206,"./_descriptors":209,"./_object-dp":207}],10:[function(require,module,exports) {
+},{"./_export":206,"./_descriptors":223,"./_object-dp":234}],112:[function(require,module,exports) {
 var $export = require('./_export');
 // 19.1.2.3 / 15.2.3.7 Object.defineProperties(O, Properties)
 $export($export.S + $export.F * !require('./_descriptors'), 'Object', { defineProperties: require('./_object-dps') });
 
-},{"./_export":206,"./_descriptors":209,"./_object-dps":211}],215:[function(require,module,exports) {
+},{"./_export":206,"./_descriptors":223,"./_object-dps":286}],208:[function(require,module,exports) {
 // most Object methods by ES6 should accept primitives
 var $export = require('./_export');
 var core = require('./_core');
@@ -925,7 +925,7 @@ module.exports = function (KEY, exec) {
   $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
 };
 
-},{"./_export":206,"./_core":202,"./_fails":233}],12:[function(require,module,exports) {
+},{"./_export":206,"./_core":204,"./_fails":225}],20:[function(require,module,exports) {
 // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
 var toIObject = require('./_to-iobject');
 var $getOwnPropertyDescriptor = require('./_object-gopd').f;
@@ -936,14 +936,14 @@ require('./_object-sap')('getOwnPropertyDescriptor', function () {
   };
 });
 
-},{"./_to-iobject":212,"./_object-gopd":213,"./_object-sap":215}],214:[function(require,module,exports) {
+},{"./_to-iobject":230,"./_object-gopd":214,"./_object-sap":208}],213:[function(require,module,exports) {
 // 7.1.13 ToObject(argument)
 var defined = require('./_defined');
 module.exports = function (it) {
   return Object(defined(it));
 };
 
-},{"./_defined":310}],218:[function(require,module,exports) {
+},{"./_defined":311}],212:[function(require,module,exports) {
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = require('./_has');
 var toObject = require('./_to-object');
@@ -958,7 +958,7 @@ module.exports = Object.getPrototypeOf || function (O) {
   } return O instanceof Object ? ObjectProto : null;
 };
 
-},{"./_has":229,"./_to-object":214,"./_shared-key":322}],15:[function(require,module,exports) {
+},{"./_has":222,"./_to-object":213,"./_shared-key":323}],17:[function(require,module,exports) {
 // 19.1.2.9 Object.getPrototypeOf(O)
 var toObject = require('./_to-object');
 var $getPrototypeOf = require('./_object-gpo');
@@ -969,7 +969,7 @@ require('./_object-sap')('getPrototypeOf', function () {
   };
 });
 
-},{"./_to-object":214,"./_object-gpo":218,"./_object-sap":215}],14:[function(require,module,exports) {
+},{"./_to-object":213,"./_object-gpo":212,"./_object-sap":208}],10:[function(require,module,exports) {
 // 19.1.2.14 Object.keys(O)
 var toObject = require('./_to-object');
 var $keys = require('./_object-keys');
@@ -980,13 +980,13 @@ require('./_object-sap')('keys', function () {
   };
 });
 
-},{"./_to-object":214,"./_object-keys":210,"./_object-sap":215}],13:[function(require,module,exports) {
+},{"./_to-object":213,"./_object-keys":207,"./_object-sap":208}],22:[function(require,module,exports) {
 // 19.1.2.7 Object.getOwnPropertyNames(O)
 require('./_object-sap')('getOwnPropertyNames', function () {
   return require('./_object-gopn-ext').f;
 });
 
-},{"./_object-sap":215,"./_object-gopn-ext":219}],16:[function(require,module,exports) {
+},{"./_object-sap":208,"./_object-gopn-ext":218}],15:[function(require,module,exports) {
 // 19.1.2.5 Object.freeze(O)
 var isObject = require('./_is-object');
 var meta = require('./_meta').onFreeze;
@@ -997,7 +997,7 @@ require('./_object-sap')('freeze', function ($freeze) {
   };
 });
 
-},{"./_is-object":217,"./_meta":216,"./_object-sap":215}],17:[function(require,module,exports) {
+},{"./_is-object":210,"./_meta":211,"./_object-sap":208}],13:[function(require,module,exports) {
 // 19.1.2.17 Object.seal(O)
 var isObject = require('./_is-object');
 var meta = require('./_meta').onFreeze;
@@ -1008,7 +1008,7 @@ require('./_object-sap')('seal', function ($seal) {
   };
 });
 
-},{"./_is-object":217,"./_meta":216,"./_object-sap":215}],18:[function(require,module,exports) {
+},{"./_is-object":210,"./_meta":211,"./_object-sap":208}],12:[function(require,module,exports) {
 // 19.1.2.15 Object.preventExtensions(O)
 var isObject = require('./_is-object');
 var meta = require('./_meta').onFreeze;
@@ -1019,7 +1019,7 @@ require('./_object-sap')('preventExtensions', function ($preventExtensions) {
   };
 });
 
-},{"./_is-object":217,"./_meta":216,"./_object-sap":215}],19:[function(require,module,exports) {
+},{"./_is-object":210,"./_meta":211,"./_object-sap":208}],16:[function(require,module,exports) {
 // 19.1.2.12 Object.isFrozen(O)
 var isObject = require('./_is-object');
 
@@ -1029,7 +1029,7 @@ require('./_object-sap')('isFrozen', function ($isFrozen) {
   };
 });
 
-},{"./_is-object":217,"./_object-sap":215}],22:[function(require,module,exports) {
+},{"./_is-object":210,"./_object-sap":208}],18:[function(require,module,exports) {
 // 19.1.2.13 Object.isSealed(O)
 var isObject = require('./_is-object');
 
@@ -1039,7 +1039,7 @@ require('./_object-sap')('isSealed', function ($isSealed) {
   };
 });
 
-},{"./_is-object":217,"./_object-sap":215}],21:[function(require,module,exports) {
+},{"./_is-object":210,"./_object-sap":208}],42:[function(require,module,exports) {
 // 19.1.2.11 Object.isExtensible(O)
 var isObject = require('./_is-object');
 
@@ -1049,7 +1049,7 @@ require('./_object-sap')('isExtensible', function ($isExtensible) {
   };
 });
 
-},{"./_is-object":217,"./_object-sap":215}],220:[function(require,module,exports) {
+},{"./_is-object":210,"./_object-sap":208}],219:[function(require,module,exports) {
 'use strict';
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = require('./_object-keys');
@@ -1085,25 +1085,25 @@ module.exports = !$assign || require('./_fails')(function () {
   } return T;
 } : $assign;
 
-},{"./_object-keys":210,"./_object-gops":245,"./_object-pie":242,"./_to-object":214,"./_iobject":265,"./_fails":233}],20:[function(require,module,exports) {
+},{"./_object-keys":207,"./_object-gops":235,"./_object-pie":237,"./_to-object":213,"./_iobject":280,"./_fails":225}],23:[function(require,module,exports) {
 // 19.1.3.1 Object.assign(target, source)
 var $export = require('./_export');
 
 $export($export.S + $export.F, 'Object', { assign: require('./_object-assign') });
 
-},{"./_export":206,"./_object-assign":220}],221:[function(require,module,exports) {
+},{"./_export":206,"./_object-assign":219}],209:[function(require,module,exports) {
 // 7.2.9 SameValue(x, y)
 module.exports = Object.is || function is(x, y) {
   // eslint-disable-next-line no-self-compare
   return x === y ? x !== 0 || 1 / x === 1 / y : x != x && y != y;
 };
 
-},{}],23:[function(require,module,exports) {
+},{}],14:[function(require,module,exports) {
 // 19.1.3.10 Object.is(value1, value2)
 var $export = require('./_export');
 $export($export.S, 'Object', { is: require('./_same-value') });
 
-},{"./_export":206,"./_same-value":221}],228:[function(require,module,exports) {
+},{"./_export":206,"./_same-value":209}],215:[function(require,module,exports) {
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
 var isObject = require('./_is-object');
@@ -1130,12 +1130,12 @@ module.exports = {
   check: check
 };
 
-},{"./_is-object":217,"./_an-object":238,"./_ctx":266,"./_object-gopd":213}],24:[function(require,module,exports) {
+},{"./_is-object":210,"./_an-object":229,"./_ctx":269,"./_object-gopd":214}],21:[function(require,module,exports) {
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 var $export = require('./_export');
 $export($export.S, 'Object', { setPrototypeOf: require('./_set-proto').set });
 
-},{"./_export":206,"./_set-proto":228}],227:[function(require,module,exports) {
+},{"./_export":206,"./_set-proto":215}],216:[function(require,module,exports) {
 // getting tag from 19.1.3.6 Object.prototype.toString()
 var cof = require('./_cof');
 var TAG = require('./_wks')('toStringTag');
@@ -1160,7 +1160,7 @@ module.exports = function (it) {
     : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
 };
 
-},{"./_cof":255,"./_wks":224}],25:[function(require,module,exports) {
+},{"./_cof":254,"./_wks":221}],19:[function(require,module,exports) {
 'use strict';
 // 19.1.3.6 Object.prototype.toString()
 var classof = require('./_classof');
@@ -1172,7 +1172,7 @@ if (test + '' != '[object z]') {
   }, true);
 }
 
-},{"./_classof":227,"./_wks":224,"./_redefine":223}],326:[function(require,module,exports) {
+},{"./_classof":216,"./_wks":221,"./_redefine":217}],327:[function(require,module,exports) {
 // fast apply, http://jsperf.lnkit.com/fast-apply/5
 module.exports = function (fn, args, that) {
   var un = that === undefined;
@@ -1190,7 +1190,7 @@ module.exports = function (fn, args, that) {
   } return fn.apply(that, args);
 };
 
-},{}],222:[function(require,module,exports) {
+},{}],236:[function(require,module,exports) {
 'use strict';
 var aFunction = require('./_a-function');
 var isObject = require('./_is-object');
@@ -1217,13 +1217,13 @@ module.exports = Function.bind || function bind(that /* , ...args */) {
   return bound;
 };
 
-},{"./_a-function":278,"./_is-object":217,"./_invoke":326}],26:[function(require,module,exports) {
+},{"./_a-function":279,"./_is-object":210,"./_invoke":327}],24:[function(require,module,exports) {
 // 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
 var $export = require('./_export');
 
 $export($export.P, 'Function', { bind: require('./_bind') });
 
-},{"./_export":206,"./_bind":222}],33:[function(require,module,exports) {
+},{"./_export":206,"./_bind":236}],28:[function(require,module,exports) {
 var dP = require('./_object-dp').f;
 var FProto = Function.prototype;
 var nameRE = /^\s*function ([^ (]*)/;
@@ -1241,7 +1241,7 @@ NAME in FProto || require('./_descriptors') && dP(FProto, NAME, {
   }
 });
 
-},{"./_object-dp":207,"./_descriptors":209}],29:[function(require,module,exports) {
+},{"./_object-dp":234,"./_descriptors":223}],30:[function(require,module,exports) {
 'use strict';
 var isObject = require('./_is-object');
 var getPrototypeOf = require('./_object-gpo');
@@ -1256,7 +1256,7 @@ if (!(HAS_INSTANCE in FunctionProto)) require('./_object-dp').f(FunctionProto, H
   return false;
 } });
 
-},{"./_is-object":217,"./_object-gpo":218,"./_wks":224,"./_object-dp":207}],327:[function(require,module,exports) {
+},{"./_is-object":210,"./_object-gpo":212,"./_wks":221,"./_object-dp":234}],326:[function(require,module,exports) {
 module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
   '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
@@ -1292,7 +1292,7 @@ var trim = exporter.trim = function (string, TYPE) {
 
 module.exports = exporter;
 
-},{"./_export":206,"./_defined":310,"./_fails":233,"./_string-ws":327}],226:[function(require,module,exports) {
+},{"./_export":206,"./_defined":311,"./_fails":225,"./_string-ws":326}],248:[function(require,module,exports) {
 var $parseInt = require('./_global').parseInt;
 var $trim = require('./_string-trim').trim;
 var ws = require('./_string-ws');
@@ -1303,13 +1303,13 @@ module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? f
   return $parseInt(string, (radix >>> 0) || (hex.test(string) ? 16 : 10));
 } : $parseInt;
 
-},{"./_global":230,"./_string-trim":256,"./_string-ws":327}],28:[function(require,module,exports) {
+},{"./_global":220,"./_string-trim":256,"./_string-ws":326}],33:[function(require,module,exports) {
 var $export = require('./_export');
 var $parseInt = require('./_parse-int');
 // 18.2.5 parseInt(string, radix)
 $export($export.G + $export.F * (parseInt != $parseInt), { parseInt: $parseInt });
 
-},{"./_export":206,"./_parse-int":226}],225:[function(require,module,exports) {
+},{"./_export":206,"./_parse-int":248}],252:[function(require,module,exports) {
 var $parseFloat = require('./_global').parseFloat;
 var $trim = require('./_string-trim').trim;
 
@@ -1319,13 +1319,13 @@ module.exports = 1 / $parseFloat(require('./_string-ws') + '-0') !== -Infinity ?
   return result === 0 && string.charAt(0) == '-' ? -0 : result;
 } : $parseFloat;
 
-},{"./_global":230,"./_string-trim":256,"./_string-ws":327}],27:[function(require,module,exports) {
+},{"./_global":220,"./_string-trim":256,"./_string-ws":326}],54:[function(require,module,exports) {
 var $export = require('./_export');
 var $parseFloat = require('./_parse-float');
 // 18.2.4 parseFloat(string)
 $export($export.G + $export.F * (parseFloat != $parseFloat), { parseFloat: $parseFloat });
 
-},{"./_export":206,"./_parse-float":225}],257:[function(require,module,exports) {
+},{"./_export":206,"./_parse-float":252}],255:[function(require,module,exports) {
 var isObject = require('./_is-object');
 var setPrototypeOf = require('./_set-proto').set;
 module.exports = function (that, target, C) {
@@ -1336,7 +1336,7 @@ module.exports = function (that, target, C) {
   } return that;
 };
 
-},{"./_is-object":217,"./_set-proto":228}],31:[function(require,module,exports) {
+},{"./_is-object":210,"./_set-proto":215}],26:[function(require,module,exports) {
 
 'use strict';
 var global = require('./_global');
@@ -1408,14 +1408,14 @@ if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
   require('./_redefine')(global, NUMBER, $Number);
 }
 
-},{"./_global":230,"./_has":229,"./_cof":255,"./_inherit-if-required":257,"./_to-primitive":239,"./_fails":233,"./_object-gopn":241,"./_object-gopd":213,"./_object-dp":207,"./_string-trim":256,"./_object-create":208,"./_descriptors":209,"./_redefine":223}],248:[function(require,module,exports) {
+},{"./_global":220,"./_has":222,"./_cof":254,"./_inherit-if-required":255,"./_to-primitive":231,"./_fails":225,"./_object-gopn":238,"./_object-gopd":214,"./_object-dp":234,"./_string-trim":256,"./_object-create":233,"./_descriptors":223,"./_redefine":217}],245:[function(require,module,exports) {
 var cof = require('./_cof');
 module.exports = function (it, msg) {
   if (typeof it != 'number' && cof(it) != 'Number') throw TypeError(msg);
   return +it;
 };
 
-},{"./_cof":255}],249:[function(require,module,exports) {
+},{"./_cof":254}],244:[function(require,module,exports) {
 'use strict';
 var toInteger = require('./_to-integer');
 var defined = require('./_defined');
@@ -1429,7 +1429,7 @@ module.exports = function repeat(count) {
   return res;
 };
 
-},{"./_to-integer":247,"./_defined":310}],32:[function(require,module,exports) {
+},{"./_to-integer":247,"./_defined":311}],25:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var toInteger = require('./_to-integer');
@@ -1545,7 +1545,7 @@ $export($export.P + $export.F * (!!$toFixed && (
   }
 });
 
-},{"./_export":206,"./_to-integer":247,"./_a-number-value":248,"./_string-repeat":249,"./_fails":233}],30:[function(require,module,exports) {
+},{"./_export":206,"./_to-integer":247,"./_a-number-value":245,"./_string-repeat":244,"./_fails":225}],27:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $fails = require('./_fails');
@@ -1565,13 +1565,13 @@ $export($export.P + $export.F * ($fails(function () {
   }
 });
 
-},{"./_export":206,"./_fails":233,"./_a-number-value":248}],35:[function(require,module,exports) {
+},{"./_export":206,"./_fails":225,"./_a-number-value":245}],34:[function(require,module,exports) {
 // 20.1.2.1 Number.EPSILON
 var $export = require('./_export');
 
 $export($export.S, 'Number', { EPSILON: Math.pow(2, -52) });
 
-},{"./_export":206}],34:[function(require,module,exports) {
+},{"./_export":206}],38:[function(require,module,exports) {
 // 20.1.2.2 Number.isFinite(number)
 var $export = require('./_export');
 var _isFinite = require('./_global').isFinite;
@@ -1582,7 +1582,7 @@ $export($export.S, 'Number', {
   }
 });
 
-},{"./_export":206,"./_global":230}],250:[function(require,module,exports) {
+},{"./_export":206,"./_global":220}],246:[function(require,module,exports) {
 // 20.1.2.3 Number.isInteger(number)
 var isObject = require('./_is-object');
 var floor = Math.floor;
@@ -1590,13 +1590,13 @@ module.exports = function isInteger(it) {
   return !isObject(it) && isFinite(it) && floor(it) === it;
 };
 
-},{"./_is-object":217}],39:[function(require,module,exports) {
+},{"./_is-object":210}],31:[function(require,module,exports) {
 // 20.1.2.3 Number.isInteger(number)
 var $export = require('./_export');
 
 $export($export.S, 'Number', { isInteger: require('./_is-integer') });
 
-},{"./_export":206,"./_is-integer":250}],37:[function(require,module,exports) {
+},{"./_export":206,"./_is-integer":246}],35:[function(require,module,exports) {
 // 20.1.2.4 Number.isNaN(number)
 var $export = require('./_export');
 
@@ -1607,7 +1607,7 @@ $export($export.S, 'Number', {
   }
 });
 
-},{"./_export":206}],40:[function(require,module,exports) {
+},{"./_export":206}],32:[function(require,module,exports) {
 // 20.1.2.5 Number.isSafeInteger(number)
 var $export = require('./_export');
 var isInteger = require('./_is-integer');
@@ -1619,37 +1619,37 @@ $export($export.S, 'Number', {
   }
 });
 
-},{"./_export":206,"./_is-integer":250}],38:[function(require,module,exports) {
+},{"./_export":206,"./_is-integer":246}],36:[function(require,module,exports) {
 // 20.1.2.6 Number.MAX_SAFE_INTEGER
 var $export = require('./_export');
 
 $export($export.S, 'Number', { MAX_SAFE_INTEGER: 0x1fffffffffffff });
 
-},{"./_export":206}],36:[function(require,module,exports) {
+},{"./_export":206}],37:[function(require,module,exports) {
 // 20.1.2.10 Number.MIN_SAFE_INTEGER
 var $export = require('./_export');
 
 $export($export.S, 'Number', { MIN_SAFE_INTEGER: -0x1fffffffffffff });
 
-},{"./_export":206}],41:[function(require,module,exports) {
+},{"./_export":206}],47:[function(require,module,exports) {
 var $export = require('./_export');
 var $parseFloat = require('./_parse-float');
 // 20.1.2.12 Number.parseFloat(string)
 $export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', { parseFloat: $parseFloat });
 
-},{"./_export":206,"./_parse-float":225}],43:[function(require,module,exports) {
+},{"./_export":206,"./_parse-float":252}],40:[function(require,module,exports) {
 var $export = require('./_export');
 var $parseInt = require('./_parse-int');
 // 20.1.2.13 Number.parseInt(string, radix)
 $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { parseInt: $parseInt });
 
-},{"./_export":206,"./_parse-int":226}],251:[function(require,module,exports) {
+},{"./_export":206,"./_parse-int":248}],249:[function(require,module,exports) {
 // 20.2.2.20 Math.log1p(x)
 module.exports = Math.log1p || function log1p(x) {
   return (x = +x) > -1e-8 && x < 1e-8 ? x - x * x / 2 : Math.log(1 + x);
 };
 
-},{}],42:[function(require,module,exports) {
+},{}],39:[function(require,module,exports) {
 // 20.2.2.3 Math.acosh(x)
 var $export = require('./_export');
 var log1p = require('./_math-log1p');
@@ -1669,7 +1669,7 @@ $export($export.S + $export.F * !($acosh
   }
 });
 
-},{"./_export":206,"./_math-log1p":251}],66:[function(require,module,exports) {
+},{"./_export":206,"./_math-log1p":249}],43:[function(require,module,exports) {
 // 20.2.2.5 Math.asinh(x)
 var $export = require('./_export');
 var $asinh = Math.asinh;
@@ -1681,7 +1681,7 @@ function asinh(x) {
 // Tor Browser bug: Math.asinh(0) -> -0
 $export($export.S + $export.F * !($asinh && 1 / $asinh(0) > 0), 'Math', { asinh: asinh });
 
-},{"./_export":206}],44:[function(require,module,exports) {
+},{"./_export":206}],41:[function(require,module,exports) {
 // 20.2.2.7 Math.atanh(x)
 var $export = require('./_export');
 var $atanh = Math.atanh;
@@ -1693,14 +1693,14 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
   }
 });
 
-},{"./_export":206}],253:[function(require,module,exports) {
+},{"./_export":206}],250:[function(require,module,exports) {
 // 20.2.2.28 Math.sign(x)
 module.exports = Math.sign || function sign(x) {
   // eslint-disable-next-line no-self-compare
   return (x = +x) == 0 || x != x ? x : x < 0 ? -1 : 1;
 };
 
-},{}],48:[function(require,module,exports) {
+},{}],45:[function(require,module,exports) {
 // 20.2.2.9 Math.cbrt(x)
 var $export = require('./_export');
 var sign = require('./_math-sign');
@@ -1711,7 +1711,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206,"./_math-sign":253}],45:[function(require,module,exports) {
+},{"./_export":206,"./_math-sign":250}],46:[function(require,module,exports) {
 // 20.2.2.11 Math.clz32(x)
 var $export = require('./_export');
 
@@ -1721,7 +1721,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],47:[function(require,module,exports) {
+},{"./_export":206}],44:[function(require,module,exports) {
 // 20.2.2.12 Math.cosh(x)
 var $export = require('./_export');
 var exp = Math.exp;
@@ -1732,7 +1732,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],252:[function(require,module,exports) {
+},{"./_export":206}],251:[function(require,module,exports) {
 // 20.2.2.14 Math.expm1(x)
 var $expm1 = Math.expm1;
 module.exports = (!$expm1
@@ -1744,14 +1744,14 @@ module.exports = (!$expm1
   return (x = +x) == 0 ? x : x > -1e-6 && x < 1e-6 ? x + x * x / 2 : Math.exp(x) - 1;
 } : $expm1;
 
-},{}],46:[function(require,module,exports) {
+},{}],49:[function(require,module,exports) {
 // 20.2.2.14 Math.expm1(x)
 var $export = require('./_export');
 var $expm1 = require('./_math-expm1');
 
 $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', { expm1: $expm1 });
 
-},{"./_export":206,"./_math-expm1":252}],254:[function(require,module,exports) {
+},{"./_export":206,"./_math-expm1":251}],253:[function(require,module,exports) {
 // 20.2.2.16 Math.fround(x)
 var sign = require('./_math-sign');
 var pow = Math.pow;
@@ -1776,13 +1776,13 @@ module.exports = Math.fround || function fround(x) {
   return $sign * result;
 };
 
-},{"./_math-sign":253}],52:[function(require,module,exports) {
+},{"./_math-sign":250}],48:[function(require,module,exports) {
 // 20.2.2.16 Math.fround(x)
 var $export = require('./_export');
 
 $export($export.S, 'Math', { fround: require('./_math-fround') });
 
-},{"./_export":206,"./_math-fround":254}],51:[function(require,module,exports) {
+},{"./_export":206,"./_math-fround":253}],51:[function(require,module,exports) {
 // 20.2.2.17 Math.hypot([value1[, value2[, … ]]])
 var $export = require('./_export');
 var abs = Math.abs;
@@ -1809,7 +1809,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],49:[function(require,module,exports) {
+},{"./_export":206}],53:[function(require,module,exports) {
 // 20.2.2.18 Math.imul(x, y)
 var $export = require('./_export');
 var $imul = Math.imul;
@@ -1828,7 +1828,7 @@ $export($export.S + $export.F * require('./_fails')(function () {
   }
 });
 
-},{"./_export":206,"./_fails":233}],50:[function(require,module,exports) {
+},{"./_export":206,"./_fails":225}],58:[function(require,module,exports) {
 // 20.2.2.21 Math.log10(x)
 var $export = require('./_export');
 
@@ -1838,13 +1838,13 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],53:[function(require,module,exports) {
+},{"./_export":206}],52:[function(require,module,exports) {
 // 20.2.2.20 Math.log1p(x)
 var $export = require('./_export');
 
 $export($export.S, 'Math', { log1p: require('./_math-log1p') });
 
-},{"./_export":206,"./_math-log1p":251}],54:[function(require,module,exports) {
+},{"./_export":206,"./_math-log1p":249}],57:[function(require,module,exports) {
 // 20.2.2.22 Math.log2(x)
 var $export = require('./_export');
 
@@ -1854,13 +1854,13 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],55:[function(require,module,exports) {
+},{"./_export":206}],50:[function(require,module,exports) {
 // 20.2.2.28 Math.sign(x)
 var $export = require('./_export');
 
 $export($export.S, 'Math', { sign: require('./_math-sign') });
 
-},{"./_export":206,"./_math-sign":253}],56:[function(require,module,exports) {
+},{"./_export":206,"./_math-sign":250}],56:[function(require,module,exports) {
 // 20.2.2.30 Math.sinh(x)
 var $export = require('./_export');
 var expm1 = require('./_math-expm1');
@@ -1877,7 +1877,7 @@ $export($export.S + $export.F * require('./_fails')(function () {
   }
 });
 
-},{"./_export":206,"./_math-expm1":252,"./_fails":233}],58:[function(require,module,exports) {
+},{"./_export":206,"./_math-expm1":251,"./_fails":225}],55:[function(require,module,exports) {
 // 20.2.2.33 Math.tanh(x)
 var $export = require('./_export');
 var expm1 = require('./_math-expm1');
@@ -1891,7 +1891,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206,"./_math-expm1":252}],57:[function(require,module,exports) {
+},{"./_export":206,"./_math-expm1":251}],59:[function(require,module,exports) {
 // 20.2.2.34 Math.trunc(x)
 var $export = require('./_export');
 
@@ -1901,7 +1901,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],60:[function(require,module,exports) {
+},{"./_export":206}],61:[function(require,module,exports) {
 var $export = require('./_export');
 var toAbsoluteIndex = require('./_to-absolute-index');
 var fromCharCode = String.fromCharCode;
@@ -1926,7 +1926,7 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
   }
 });
 
-},{"./_export":206,"./_to-absolute-index":276}],59:[function(require,module,exports) {
+},{"./_export":206,"./_to-absolute-index":266}],69:[function(require,module,exports) {
 var $export = require('./_export');
 var toIObject = require('./_to-iobject');
 var toLength = require('./_to-length');
@@ -1946,7 +1946,7 @@ $export($export.S, 'String', {
   }
 });
 
-},{"./_export":206,"./_to-iobject":212,"./_to-length":258}],61:[function(require,module,exports) {
+},{"./_export":206,"./_to-iobject":230,"./_to-length":261}],60:[function(require,module,exports) {
 'use strict';
 // 21.1.3.25 String.prototype.trim()
 require('./_string-trim')('trim', function ($trim) {
@@ -1955,7 +1955,7 @@ require('./_string-trim')('trim', function ($trim) {
   };
 });
 
-},{"./_string-trim":256}],259:[function(require,module,exports) {
+},{"./_string-trim":256}],257:[function(require,module,exports) {
 var toInteger = require('./_to-integer');
 var defined = require('./_defined');
 // true  -> String#at
@@ -1974,10 +1974,10 @@ module.exports = function (TO_STRING) {
   };
 };
 
-},{"./_to-integer":247,"./_defined":310}],287:[function(require,module,exports) {
+},{"./_to-integer":247,"./_defined":311}],283:[function(require,module,exports) {
 module.exports = {};
 
-},{}],311:[function(require,module,exports) {
+},{}],310:[function(require,module,exports) {
 'use strict';
 var create = require('./_object-create');
 var descriptor = require('./_property-desc');
@@ -1992,7 +1992,7 @@ module.exports = function (Constructor, NAME, next) {
   setToStringTag(Constructor, NAME + ' Iterator');
 };
 
-},{"./_object-create":208,"./_property-desc":240,"./_set-to-string-tag":235,"./_hide":246,"./_wks":224}],261:[function(require,module,exports) {
+},{"./_object-create":233,"./_property-desc":232,"./_set-to-string-tag":227,"./_hide":239,"./_wks":221}],262:[function(require,module,exports) {
 'use strict';
 var LIBRARY = require('./_library');
 var $export = require('./_export');
@@ -2064,7 +2064,7 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
   return methods;
 };
 
-},{"./_library":244,"./_export":206,"./_redefine":223,"./_hide":246,"./_has":229,"./_iterators":287,"./_iter-create":311,"./_set-to-string-tag":235,"./_object-gpo":218,"./_wks":224}],63:[function(require,module,exports) {
+},{"./_library":241,"./_export":206,"./_redefine":217,"./_hide":239,"./_has":222,"./_iterators":283,"./_iter-create":310,"./_set-to-string-tag":227,"./_object-gpo":212,"./_wks":221}],62:[function(require,module,exports) {
 'use strict';
 var $at = require('./_string-at')(true);
 
@@ -2083,7 +2083,7 @@ require('./_iter-define')(String, 'String', function (iterated) {
   return { value: point, done: false };
 });
 
-},{"./_string-at":259,"./_iter-define":261}],64:[function(require,module,exports) {
+},{"./_string-at":257,"./_iter-define":262}],65:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $at = require('./_string-at')(false);
@@ -2094,7 +2094,7 @@ $export($export.P, 'String', {
   }
 });
 
-},{"./_export":206,"./_string-at":259}],288:[function(require,module,exports) {
+},{"./_export":206,"./_string-at":257}],288:[function(require,module,exports) {
 // 7.2.8 IsRegExp(argument)
 var isObject = require('./_is-object');
 var cof = require('./_cof');
@@ -2104,7 +2104,7 @@ module.exports = function (it) {
   return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : cof(it) == 'RegExp');
 };
 
-},{"./_is-object":217,"./_cof":255,"./_wks":224}],260:[function(require,module,exports) {
+},{"./_is-object":210,"./_cof":254,"./_wks":221}],258:[function(require,module,exports) {
 // helper for String#{startsWith, endsWith, includes}
 var isRegExp = require('./_is-regexp');
 var defined = require('./_defined');
@@ -2114,7 +2114,7 @@ module.exports = function (that, searchString, NAME) {
   return String(defined(that));
 };
 
-},{"./_is-regexp":288,"./_defined":310}],262:[function(require,module,exports) {
+},{"./_is-regexp":288,"./_defined":311}],259:[function(require,module,exports) {
 var MATCH = require('./_wks')('match');
 module.exports = function (KEY) {
   var re = /./;
@@ -2128,7 +2128,7 @@ module.exports = function (KEY) {
   } return true;
 };
 
-},{"./_wks":224}],62:[function(require,module,exports) {
+},{"./_wks":221}],75:[function(require,module,exports) {
 // 21.1.3.6 String.prototype.endsWith(searchString [, endPosition])
 'use strict';
 var $export = require('./_export');
@@ -2150,7 +2150,7 @@ $export($export.P + $export.F * require('./_fails-is-regexp')(ENDS_WITH), 'Strin
   }
 });
 
-},{"./_export":206,"./_to-length":258,"./_string-context":260,"./_fails-is-regexp":262}],67:[function(require,module,exports) {
+},{"./_export":206,"./_to-length":261,"./_string-context":258,"./_fails-is-regexp":259}],63:[function(require,module,exports) {
 // 21.1.3.7 String.prototype.includes(searchString, position = 0)
 'use strict';
 var $export = require('./_export');
@@ -2164,7 +2164,7 @@ $export($export.P + $export.F * require('./_fails-is-regexp')(INCLUDES), 'String
   }
 });
 
-},{"./_export":206,"./_string-context":260,"./_fails-is-regexp":262}],65:[function(require,module,exports) {
+},{"./_export":206,"./_string-context":258,"./_fails-is-regexp":259}],79:[function(require,module,exports) {
 var $export = require('./_export');
 
 $export($export.P, 'String', {
@@ -2172,7 +2172,7 @@ $export($export.P, 'String', {
   repeat: require('./_string-repeat')
 });
 
-},{"./_export":206,"./_string-repeat":249}],68:[function(require,module,exports) {
+},{"./_export":206,"./_string-repeat":244}],67:[function(require,module,exports) {
 // 21.1.3.18 String.prototype.startsWith(searchString [, position ])
 'use strict';
 var $export = require('./_export');
@@ -2192,7 +2192,7 @@ $export($export.P + $export.F * require('./_fails-is-regexp')(STARTS_WITH), 'Str
   }
 });
 
-},{"./_export":206,"./_to-length":258,"./_string-context":260,"./_fails-is-regexp":262}],263:[function(require,module,exports) {
+},{"./_export":206,"./_to-length":261,"./_string-context":258,"./_fails-is-regexp":259}],260:[function(require,module,exports) {
 var $export = require('./_export');
 var fails = require('./_fails');
 var defined = require('./_defined');
@@ -2213,7 +2213,7 @@ module.exports = function (NAME, exec) {
   }), 'String', O);
 };
 
-},{"./_export":206,"./_fails":233,"./_defined":310}],69:[function(require,module,exports) {
+},{"./_export":206,"./_fails":225,"./_defined":311}],66:[function(require,module,exports) {
 'use strict';
 // B.2.3.2 String.prototype.anchor(name)
 require('./_string-html')('anchor', function (createHTML) {
@@ -2222,7 +2222,7 @@ require('./_string-html')('anchor', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],73:[function(require,module,exports) {
+},{"./_string-html":260}],70:[function(require,module,exports) {
 'use strict';
 // B.2.3.3 String.prototype.big()
 require('./_string-html')('big', function (createHTML) {
@@ -2231,7 +2231,7 @@ require('./_string-html')('big', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],70:[function(require,module,exports) {
+},{"./_string-html":260}],80:[function(require,module,exports) {
 'use strict';
 // B.2.3.4 String.prototype.blink()
 require('./_string-html')('blink', function (createHTML) {
@@ -2240,7 +2240,7 @@ require('./_string-html')('blink', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],71:[function(require,module,exports) {
+},{"./_string-html":260}],72:[function(require,module,exports) {
 'use strict';
 // B.2.3.5 String.prototype.bold()
 require('./_string-html')('bold', function (createHTML) {
@@ -2249,7 +2249,7 @@ require('./_string-html')('bold', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],77:[function(require,module,exports) {
+},{"./_string-html":260}],64:[function(require,module,exports) {
 'use strict';
 // B.2.3.6 String.prototype.fixed()
 require('./_string-html')('fixed', function (createHTML) {
@@ -2258,7 +2258,7 @@ require('./_string-html')('fixed', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],72:[function(require,module,exports) {
+},{"./_string-html":260}],71:[function(require,module,exports) {
 'use strict';
 // B.2.3.7 String.prototype.fontcolor(color)
 require('./_string-html')('fontcolor', function (createHTML) {
@@ -2267,7 +2267,7 @@ require('./_string-html')('fontcolor', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],76:[function(require,module,exports) {
+},{"./_string-html":260}],68:[function(require,module,exports) {
 'use strict';
 // B.2.3.8 String.prototype.fontsize(size)
 require('./_string-html')('fontsize', function (createHTML) {
@@ -2276,7 +2276,7 @@ require('./_string-html')('fontsize', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],75:[function(require,module,exports) {
+},{"./_string-html":260}],73:[function(require,module,exports) {
 'use strict';
 // B.2.3.9 String.prototype.italics()
 require('./_string-html')('italics', function (createHTML) {
@@ -2285,7 +2285,7 @@ require('./_string-html')('italics', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],78:[function(require,module,exports) {
+},{"./_string-html":260}],74:[function(require,module,exports) {
 'use strict';
 // B.2.3.10 String.prototype.link(url)
 require('./_string-html')('link', function (createHTML) {
@@ -2294,7 +2294,7 @@ require('./_string-html')('link', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],74:[function(require,module,exports) {
+},{"./_string-html":260}],77:[function(require,module,exports) {
 'use strict';
 // B.2.3.11 String.prototype.small()
 require('./_string-html')('small', function (createHTML) {
@@ -2303,7 +2303,7 @@ require('./_string-html')('small', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],81:[function(require,module,exports) {
+},{"./_string-html":260}],76:[function(require,module,exports) {
 'use strict';
 // B.2.3.12 String.prototype.strike()
 require('./_string-html')('strike', function (createHTML) {
@@ -2312,7 +2312,7 @@ require('./_string-html')('strike', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],79:[function(require,module,exports) {
+},{"./_string-html":260}],78:[function(require,module,exports) {
 'use strict';
 // B.2.3.13 String.prototype.sub()
 require('./_string-html')('sub', function (createHTML) {
@@ -2321,7 +2321,7 @@ require('./_string-html')('sub', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],80:[function(require,module,exports) {
+},{"./_string-html":260}],81:[function(require,module,exports) {
 'use strict';
 // B.2.3.14 String.prototype.sup()
 require('./_string-html')('sup', function (createHTML) {
@@ -2330,7 +2330,7 @@ require('./_string-html')('sup', function (createHTML) {
   };
 });
 
-},{"./_string-html":263}],85:[function(require,module,exports) {
+},{"./_string-html":260}],82:[function(require,module,exports) {
 // 20.3.3.1 / 15.9.4.4 Date.now()
 var $export = require('./_export');
 
@@ -2354,7 +2354,7 @@ $export($export.P + $export.F * require('./_fails')(function () {
   }
 });
 
-},{"./_export":206,"./_to-object":214,"./_to-primitive":239,"./_fails":233}],264:[function(require,module,exports) {
+},{"./_export":206,"./_to-object":213,"./_to-primitive":231,"./_fails":225}],263:[function(require,module,exports) {
 'use strict';
 // 20.3.4.36 / 15.9.5.43 Date.prototype.toISOString()
 var fails = require('./_fails');
@@ -2382,7 +2382,7 @@ module.exports = (fails(function () {
     ':' + lz(d.getUTCSeconds()) + '.' + (m > 99 ? m : '0' + lz(m)) + 'Z';
 } : $toISOString;
 
-},{"./_fails":233}],82:[function(require,module,exports) {
+},{"./_fails":225}],84:[function(require,module,exports) {
 // 20.3.4.36 / 15.9.5.43 Date.prototype.toISOString()
 var $export = require('./_export');
 var toISOString = require('./_date-to-iso-string');
@@ -2392,7 +2392,7 @@ $export($export.P + $export.F * (Date.prototype.toISOString !== toISOString), 'D
   toISOString: toISOString
 });
 
-},{"./_export":206,"./_date-to-iso-string":264}],84:[function(require,module,exports) {
+},{"./_export":206,"./_date-to-iso-string":263}],85:[function(require,module,exports) {
 var DateProto = Date.prototype;
 var INVALID_DATE = 'Invalid Date';
 var TO_STRING = 'toString';
@@ -2406,7 +2406,7 @@ if (new Date(NaN) + '' != INVALID_DATE) {
   });
 }
 
-},{"./_redefine":223}],274:[function(require,module,exports) {
+},{"./_redefine":217}],264:[function(require,module,exports) {
 'use strict';
 var anObject = require('./_an-object');
 var toPrimitive = require('./_to-primitive');
@@ -2417,19 +2417,19 @@ module.exports = function (hint) {
   return toPrimitive(anObject(this), hint != NUMBER);
 };
 
-},{"./_an-object":238,"./_to-primitive":239}],89:[function(require,module,exports) {
+},{"./_an-object":229,"./_to-primitive":231}],87:[function(require,module,exports) {
 var TO_PRIMITIVE = require('./_wks')('toPrimitive');
 var proto = Date.prototype;
 
 if (!(TO_PRIMITIVE in proto)) require('./_hide')(proto, TO_PRIMITIVE, require('./_date-to-primitive'));
 
-},{"./_wks":224,"./_hide":246,"./_date-to-primitive":274}],87:[function(require,module,exports) {
+},{"./_wks":221,"./_hide":239,"./_date-to-primitive":264}],94:[function(require,module,exports) {
 // 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
 var $export = require('./_export');
 
 $export($export.S, 'Array', { isArray: require('./_is-array') });
 
-},{"./_export":206,"./_is-array":236}],269:[function(require,module,exports) {
+},{"./_export":206,"./_is-array":228}],270:[function(require,module,exports) {
 // call something on iterator step with safe closing on error
 var anObject = require('./_an-object');
 module.exports = function (iterator, fn, value, entries) {
@@ -2443,7 +2443,7 @@ module.exports = function (iterator, fn, value, entries) {
   }
 };
 
-},{"./_an-object":238}],270:[function(require,module,exports) {
+},{"./_an-object":229}],271:[function(require,module,exports) {
 // check on default Array iterator
 var Iterators = require('./_iterators');
 var ITERATOR = require('./_wks')('iterator');
@@ -2453,7 +2453,7 @@ module.exports = function (it) {
   return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
 };
 
-},{"./_iterators":287,"./_wks":224}],268:[function(require,module,exports) {
+},{"./_iterators":283,"./_wks":221}],267:[function(require,module,exports) {
 'use strict';
 var $defineProperty = require('./_object-dp');
 var createDesc = require('./_property-desc');
@@ -2463,7 +2463,7 @@ module.exports = function (object, index, value) {
   else object[index] = value;
 };
 
-},{"./_object-dp":207,"./_property-desc":240}],271:[function(require,module,exports) {
+},{"./_object-dp":234,"./_property-desc":232}],273:[function(require,module,exports) {
 var classof = require('./_classof');
 var ITERATOR = require('./_wks')('iterator');
 var Iterators = require('./_iterators');
@@ -2473,7 +2473,7 @@ module.exports = require('./_core').getIteratorMethod = function (it) {
     || Iterators[classof(it)];
 };
 
-},{"./_classof":227,"./_wks":224,"./_iterators":287,"./_core":202}],272:[function(require,module,exports) {
+},{"./_classof":216,"./_wks":221,"./_iterators":283,"./_core":204}],272:[function(require,module,exports) {
 var ITERATOR = require('./_wks')('iterator');
 var SAFE_CLOSING = false;
 
@@ -2497,7 +2497,7 @@ module.exports = function (exec, skipClosing) {
   return safe;
 };
 
-},{"./_wks":224}],86:[function(require,module,exports) {
+},{"./_wks":221}],88:[function(require,module,exports) {
 'use strict';
 var ctx = require('./_ctx');
 var $export = require('./_export');
@@ -2536,7 +2536,7 @@ $export($export.S + $export.F * !require('./_iter-detect')(function (iter) { Arr
   }
 });
 
-},{"./_ctx":266,"./_export":206,"./_to-object":214,"./_iter-call":269,"./_is-array-iter":270,"./_to-length":258,"./_create-property":268,"./core.get-iterator-method":271,"./_iter-detect":272}],88:[function(require,module,exports) {
+},{"./_ctx":269,"./_export":206,"./_to-object":213,"./_iter-call":270,"./_is-array-iter":271,"./_to-length":261,"./_create-property":267,"./core.get-iterator-method":273,"./_iter-detect":272}],86:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var createProperty = require('./_create-property');
@@ -2557,7 +2557,7 @@ $export($export.S + $export.F * require('./_fails')(function () {
   }
 });
 
-},{"./_export":206,"./_create-property":268,"./_fails":233}],267:[function(require,module,exports) {
+},{"./_export":206,"./_create-property":267,"./_fails":225}],268:[function(require,module,exports) {
 'use strict';
 var fails = require('./_fails');
 
@@ -2568,7 +2568,7 @@ module.exports = function (method, arg) {
   });
 };
 
-},{"./_fails":233}],90:[function(require,module,exports) {
+},{"./_fails":225}],89:[function(require,module,exports) {
 'use strict';
 // 22.1.3.13 Array.prototype.join(separator)
 var $export = require('./_export');
@@ -2582,7 +2582,7 @@ $export($export.P + $export.F * (require('./_iobject') != Object || !require('./
   }
 });
 
-},{"./_export":206,"./_to-iobject":212,"./_iobject":265,"./_strict-method":267}],94:[function(require,module,exports) {
+},{"./_export":206,"./_to-iobject":230,"./_iobject":280,"./_strict-method":268}],91:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var html = require('./_html');
@@ -2612,7 +2612,7 @@ $export($export.P + $export.F * require('./_fails')(function () {
   }
 });
 
-},{"./_export":206,"./_html":275,"./_cof":255,"./_to-absolute-index":276,"./_to-length":258,"./_fails":233}],91:[function(require,module,exports) {
+},{"./_export":206,"./_html":274,"./_cof":254,"./_to-absolute-index":266,"./_to-length":261,"./_fails":225}],90:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var aFunction = require('./_a-function');
@@ -2637,7 +2637,7 @@ $export($export.P + $export.F * (fails(function () {
   }
 });
 
-},{"./_export":206,"./_a-function":278,"./_to-object":214,"./_fails":233,"./_strict-method":267}],329:[function(require,module,exports) {
+},{"./_export":206,"./_a-function":279,"./_to-object":213,"./_fails":225,"./_strict-method":268}],329:[function(require,module,exports) {
 var isObject = require('./_is-object');
 var isArray = require('./_is-array');
 var SPECIES = require('./_wks')('species');
@@ -2655,7 +2655,7 @@ module.exports = function (original) {
   } return C === undefined ? Array : C;
 };
 
-},{"./_is-object":217,"./_is-array":236,"./_wks":224}],309:[function(require,module,exports) {
+},{"./_is-object":210,"./_is-array":228,"./_wks":221}],306:[function(require,module,exports) {
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
 var speciesConstructor = require('./_array-species-constructor');
 
@@ -2663,7 +2663,7 @@ module.exports = function (original, length) {
   return new (speciesConstructor(original))(length);
 };
 
-},{"./_array-species-constructor":329}],273:[function(require,module,exports) {
+},{"./_array-species-constructor":329}],265:[function(require,module,exports) {
 // 0 -> Array#forEach
 // 1 -> Array#map
 // 2 -> Array#filter
@@ -2709,7 +2709,7 @@ module.exports = function (TYPE, $create) {
   };
 };
 
-},{"./_ctx":266,"./_iobject":265,"./_to-object":214,"./_to-length":258,"./_array-species-create":309}],93:[function(require,module,exports) {
+},{"./_ctx":269,"./_iobject":280,"./_to-object":213,"./_to-length":261,"./_array-species-create":306}],96:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $forEach = require('./_array-methods')(0);
@@ -2722,7 +2722,7 @@ $export($export.P + $export.F * !STRICT, 'Array', {
   }
 });
 
-},{"./_export":206,"./_array-methods":273,"./_strict-method":267}],92:[function(require,module,exports) {
+},{"./_export":206,"./_array-methods":265,"./_strict-method":268}],95:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $map = require('./_array-methods')(1);
@@ -2734,7 +2734,7 @@ $export($export.P + $export.F * !require('./_strict-method')([].map, true), 'Arr
   }
 });
 
-},{"./_export":206,"./_array-methods":273,"./_strict-method":267}],95:[function(require,module,exports) {
+},{"./_export":206,"./_array-methods":265,"./_strict-method":268}],98:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $filter = require('./_array-methods')(2);
@@ -2746,7 +2746,7 @@ $export($export.P + $export.F * !require('./_strict-method')([].filter, true), '
   }
 });
 
-},{"./_export":206,"./_array-methods":273,"./_strict-method":267}],97:[function(require,module,exports) {
+},{"./_export":206,"./_array-methods":265,"./_strict-method":268}],92:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $some = require('./_array-methods')(3);
@@ -2758,7 +2758,7 @@ $export($export.P + $export.F * !require('./_strict-method')([].some, true), 'Ar
   }
 });
 
-},{"./_export":206,"./_array-methods":273,"./_strict-method":267}],96:[function(require,module,exports) {
+},{"./_export":206,"./_array-methods":265,"./_strict-method":268}],100:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $every = require('./_array-methods')(4);
@@ -2770,7 +2770,7 @@ $export($export.P + $export.F * !require('./_strict-method')([].every, true), 'A
   }
 });
 
-},{"./_export":206,"./_array-methods":273,"./_strict-method":267}],279:[function(require,module,exports) {
+},{"./_export":206,"./_array-methods":265,"./_strict-method":268}],275:[function(require,module,exports) {
 var aFunction = require('./_a-function');
 var toObject = require('./_to-object');
 var IObject = require('./_iobject');
@@ -2800,7 +2800,7 @@ module.exports = function (that, callbackfn, aLen, memo, isRight) {
   return memo;
 };
 
-},{"./_a-function":278,"./_to-object":214,"./_iobject":265,"./_to-length":258}],101:[function(require,module,exports) {
+},{"./_a-function":279,"./_to-object":213,"./_iobject":280,"./_to-length":261}],97:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $reduce = require('./_array-reduce');
@@ -2812,7 +2812,7 @@ $export($export.P + $export.F * !require('./_strict-method')([].reduce, true), '
   }
 });
 
-},{"./_export":206,"./_array-reduce":279,"./_strict-method":267}],99:[function(require,module,exports) {
+},{"./_export":206,"./_array-reduce":275,"./_strict-method":268}],93:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $reduce = require('./_array-reduce');
@@ -2824,7 +2824,7 @@ $export($export.P + $export.F * !require('./_strict-method')([].reduceRight, tru
   }
 });
 
-},{"./_export":206,"./_array-reduce":279,"./_strict-method":267}],98:[function(require,module,exports) {
+},{"./_export":206,"./_array-reduce":275,"./_strict-method":268}],101:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $indexOf = require('./_array-includes')(false);
@@ -2841,7 +2841,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !require('./_strict-method')($
   }
 });
 
-},{"./_export":206,"./_array-includes":277,"./_strict-method":267}],100:[function(require,module,exports) {
+},{"./_export":206,"./_array-includes":278,"./_strict-method":268}],102:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var toIObject = require('./_to-iobject');
@@ -2865,7 +2865,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !require('./_strict-method')($
   }
 });
 
-},{"./_export":206,"./_to-iobject":212,"./_to-integer":247,"./_to-length":258,"./_strict-method":267}],283:[function(require,module,exports) {
+},{"./_export":206,"./_to-iobject":230,"./_to-integer":247,"./_to-length":261,"./_strict-method":268}],276:[function(require,module,exports) {
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 'use strict';
 var toObject = require('./_to-object');
@@ -2893,7 +2893,7 @@ module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /*
   } return O;
 };
 
-},{"./_to-object":214,"./_to-absolute-index":276,"./_to-length":258}],280:[function(require,module,exports) {
+},{"./_to-object":213,"./_to-absolute-index":266,"./_to-length":261}],277:[function(require,module,exports) {
 // 22.1.3.31 Array.prototype[@@unscopables]
 var UNSCOPABLES = require('./_wks')('unscopables');
 var ArrayProto = Array.prototype;
@@ -2902,7 +2902,7 @@ module.exports = function (key) {
   ArrayProto[UNSCOPABLES][key] = true;
 };
 
-},{"./_wks":224,"./_hide":246}],102:[function(require,module,exports) {
+},{"./_wks":221,"./_hide":239}],99:[function(require,module,exports) {
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 var $export = require('./_export');
 
@@ -2910,7 +2910,7 @@ $export($export.P, 'Array', { copyWithin: require('./_array-copy-within') });
 
 require('./_add-to-unscopables')('copyWithin');
 
-},{"./_export":206,"./_array-copy-within":283,"./_add-to-unscopables":280}],281:[function(require,module,exports) {
+},{"./_export":206,"./_array-copy-within":276,"./_add-to-unscopables":277}],284:[function(require,module,exports) {
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 'use strict';
 var toObject = require('./_to-object');
@@ -2927,7 +2927,7 @@ module.exports = function fill(value /* , start = 0, end = @length */) {
   return O;
 };
 
-},{"./_to-object":214,"./_to-absolute-index":276,"./_to-length":258}],103:[function(require,module,exports) {
+},{"./_to-object":213,"./_to-absolute-index":266,"./_to-length":261}],103:[function(require,module,exports) {
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 var $export = require('./_export');
 
@@ -2935,7 +2935,7 @@ $export($export.P, 'Array', { fill: require('./_array-fill') });
 
 require('./_add-to-unscopables')('fill');
 
-},{"./_export":206,"./_array-fill":281,"./_add-to-unscopables":280}],104:[function(require,module,exports) {
+},{"./_export":206,"./_array-fill":284,"./_add-to-unscopables":277}],105:[function(require,module,exports) {
 'use strict';
 // 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
 var $export = require('./_export');
@@ -2951,7 +2951,7 @@ $export($export.P + $export.F * forced, 'Array', {
 });
 require('./_add-to-unscopables')(KEY);
 
-},{"./_export":206,"./_array-methods":273,"./_add-to-unscopables":280}],105:[function(require,module,exports) {
+},{"./_export":206,"./_array-methods":265,"./_add-to-unscopables":277}],106:[function(require,module,exports) {
 'use strict';
 // 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
 var $export = require('./_export');
@@ -2967,7 +2967,7 @@ $export($export.P + $export.F * forced, 'Array', {
 });
 require('./_add-to-unscopables')(KEY);
 
-},{"./_export":206,"./_array-methods":273,"./_add-to-unscopables":280}],282:[function(require,module,exports) {
+},{"./_export":206,"./_array-methods":265,"./_add-to-unscopables":277}],287:[function(require,module,exports) {
 
 'use strict';
 var global = require('./_global');
@@ -2983,10 +2983,10 @@ module.exports = function (KEY) {
   });
 };
 
-},{"./_global":230,"./_object-dp":207,"./_descriptors":209,"./_wks":224}],106:[function(require,module,exports) {
+},{"./_global":220,"./_object-dp":234,"./_descriptors":223,"./_wks":221}],104:[function(require,module,exports) {
 require('./_set-species')('Array');
 
-},{"./_set-species":282}],286:[function(require,module,exports) {
+},{"./_set-species":287}],285:[function(require,module,exports) {
 module.exports = function (done, value) {
   return { value: value, done: !!done };
 };
@@ -3027,7 +3027,7 @@ addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
 
-},{"./_add-to-unscopables":280,"./_iter-step":286,"./_iterators":287,"./_to-iobject":212,"./_iter-define":261}],284:[function(require,module,exports) {
+},{"./_add-to-unscopables":277,"./_iter-step":285,"./_iterators":283,"./_to-iobject":230,"./_iter-define":262}],281:[function(require,module,exports) {
 'use strict';
 // 21.2.5.3 get RegExp.prototype.flags
 var anObject = require('./_an-object');
@@ -3042,7 +3042,7 @@ module.exports = function () {
   return result;
 };
 
-},{"./_an-object":238}],109:[function(require,module,exports) {
+},{"./_an-object":229}],107:[function(require,module,exports) {
 
 var global = require('./_global');
 var inheritIfRequired = require('./_inherit-if-required');
@@ -3088,14 +3088,14 @@ if (require('./_descriptors') && (!CORRECT_NEW || require('./_fails')(function (
 
 require('./_set-species')('RegExp');
 
-},{"./_global":230,"./_inherit-if-required":257,"./_object-dp":207,"./_object-gopn":241,"./_is-regexp":288,"./_flags":284,"./_descriptors":209,"./_fails":233,"./_wks":224,"./_redefine":223,"./_set-species":282}],112:[function(require,module,exports) {
+},{"./_global":220,"./_inherit-if-required":255,"./_object-dp":234,"./_object-gopn":238,"./_is-regexp":288,"./_flags":281,"./_descriptors":223,"./_fails":225,"./_wks":221,"./_redefine":217,"./_set-species":287}],109:[function(require,module,exports) {
 // 21.2.5.3 get RegExp.prototype.flags()
 if (require('./_descriptors') && /./g.flags != 'g') require('./_object-dp').f(RegExp.prototype, 'flags', {
   configurable: true,
   get: require('./_flags')
 });
 
-},{"./_descriptors":209,"./_object-dp":207,"./_flags":284}],107:[function(require,module,exports) {
+},{"./_descriptors":223,"./_object-dp":234,"./_flags":281}],111:[function(require,module,exports) {
 'use strict';
 require('./es6.regexp.flags');
 var anObject = require('./_an-object');
@@ -3122,7 +3122,7 @@ if (require('./_fails')(function () { return $toString.call({ source: 'a', flags
   });
 }
 
-},{"./es6.regexp.flags":112,"./_an-object":238,"./_flags":284,"./_descriptors":209,"./_redefine":223,"./_fails":233}],285:[function(require,module,exports) {
+},{"./es6.regexp.flags":109,"./_an-object":229,"./_flags":281,"./_descriptors":223,"./_redefine":217,"./_fails":225}],282:[function(require,module,exports) {
 'use strict';
 var hide = require('./_hide');
 var redefine = require('./_redefine');
@@ -3152,7 +3152,7 @@ module.exports = function (KEY, length, exec) {
   }
 };
 
-},{"./_hide":246,"./_redefine":223,"./_fails":233,"./_defined":310,"./_wks":224}],111:[function(require,module,exports) {
+},{"./_hide":239,"./_redefine":217,"./_fails":225,"./_defined":311,"./_wks":221}],110:[function(require,module,exports) {
 // @@match logic
 require('./_fix-re-wks')('match', 1, function (defined, MATCH, $match) {
   // 21.1.3.11 String.prototype.match(regexp)
@@ -3164,7 +3164,7 @@ require('./_fix-re-wks')('match', 1, function (defined, MATCH, $match) {
   }, $match];
 });
 
-},{"./_fix-re-wks":285}],113:[function(require,module,exports) {
+},{"./_fix-re-wks":282}],114:[function(require,module,exports) {
 // @@replace logic
 require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace) {
   // 21.1.3.14 String.prototype.replace(searchValue, replaceValue)
@@ -3178,7 +3178,7 @@ require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace) {
   }, $replace];
 });
 
-},{"./_fix-re-wks":285}],110:[function(require,module,exports) {
+},{"./_fix-re-wks":282}],115:[function(require,module,exports) {
 // @@search logic
 require('./_fix-re-wks')('search', 1, function (defined, SEARCH, $search) {
   // 21.1.3.15 String.prototype.search(regexp)
@@ -3190,7 +3190,7 @@ require('./_fix-re-wks')('search', 1, function (defined, SEARCH, $search) {
   }, $search];
 });
 
-},{"./_fix-re-wks":285}],115:[function(require,module,exports) {
+},{"./_fix-re-wks":282}],113:[function(require,module,exports) {
 // @@split logic
 require('./_fix-re-wks')('split', 2, function (defined, SPLIT, $split) {
   'use strict';
@@ -3263,14 +3263,14 @@ require('./_fix-re-wks')('split', 2, function (defined, SPLIT, $split) {
   }, $split];
 });
 
-},{"./_fix-re-wks":285,"./_is-regexp":288}],294:[function(require,module,exports) {
+},{"./_fix-re-wks":282,"./_is-regexp":288}],291:[function(require,module,exports) {
 module.exports = function (it, Constructor, name, forbiddenField) {
   if (!(it instanceof Constructor) || (forbiddenField !== undefined && forbiddenField in it)) {
     throw TypeError(name + ': incorrect invocation!');
   } return it;
 };
 
-},{}],295:[function(require,module,exports) {
+},{}],292:[function(require,module,exports) {
 var ctx = require('./_ctx');
 var call = require('./_iter-call');
 var isArrayIter = require('./_is-array-iter');
@@ -3297,7 +3297,7 @@ var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) 
 exports.BREAK = BREAK;
 exports.RETURN = RETURN;
 
-},{"./_ctx":266,"./_iter-call":269,"./_is-array-iter":270,"./_an-object":238,"./_to-length":258,"./core.get-iterator-method":271}],298:[function(require,module,exports) {
+},{"./_ctx":269,"./_iter-call":270,"./_is-array-iter":271,"./_an-object":229,"./_to-length":261,"./core.get-iterator-method":273}],295:[function(require,module,exports) {
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
 var anObject = require('./_an-object');
 var aFunction = require('./_a-function');
@@ -3308,7 +3308,7 @@ module.exports = function (O, D) {
   return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
 };
 
-},{"./_an-object":238,"./_a-function":278,"./_wks":224}],297:[function(require,module,exports) {
+},{"./_an-object":229,"./_a-function":279,"./_wks":221}],293:[function(require,module,exports) {
 
 
 var ctx = require('./_ctx');
@@ -3396,7 +3396,7 @@ module.exports = {
   clear: clearTask
 };
 
-},{"./_ctx":266,"./_invoke":326,"./_html":275,"./_dom-create":325,"./_global":230,"./_cof":255}],296:[function(require,module,exports) {
+},{"./_ctx":269,"./_invoke":327,"./_html":274,"./_dom-create":325,"./_global":220,"./_cof":254}],294:[function(require,module,exports) {
 
 
 var global = require('./_global');
@@ -3468,7 +3468,7 @@ module.exports = function () {
   };
 };
 
-},{"./_global":230,"./_task":297,"./_cof":255}],300:[function(require,module,exports) {
+},{"./_global":220,"./_task":293,"./_cof":254}],299:[function(require,module,exports) {
 'use strict';
 // 25.4.1.5 NewPromiseCapability(C)
 var aFunction = require('./_a-function');
@@ -3488,7 +3488,7 @@ module.exports.f = function (C) {
   return new PromiseCapability(C);
 };
 
-},{"./_a-function":278}],299:[function(require,module,exports) {
+},{"./_a-function":279}],296:[function(require,module,exports) {
 module.exports = function (exec) {
   try {
     return { e: false, v: exec() };
@@ -3497,7 +3497,7 @@ module.exports = function (exec) {
   }
 };
 
-},{}],301:[function(require,module,exports) {
+},{}],297:[function(require,module,exports) {
 var anObject = require('./_an-object');
 var isObject = require('./_is-object');
 var newPromiseCapability = require('./_new-promise-capability');
@@ -3511,14 +3511,14 @@ module.exports = function (C, x) {
   return promiseCapability.promise;
 };
 
-},{"./_an-object":238,"./_is-object":217,"./_new-promise-capability":300}],302:[function(require,module,exports) {
+},{"./_an-object":229,"./_is-object":210,"./_new-promise-capability":299}],298:[function(require,module,exports) {
 var redefine = require('./_redefine');
 module.exports = function (target, src, safe) {
   for (var key in src) redefine(target, key, src[key], safe);
   return target;
 };
 
-},{"./_redefine":223}],114:[function(require,module,exports) {
+},{"./_redefine":217}],118:[function(require,module,exports) {
 
 
 'use strict';
@@ -3795,14 +3795,14 @@ $export($export.S + $export.F * !(USE_NATIVE && require('./_iter-detect')(functi
   }
 });
 
-},{"./_library":244,"./_global":230,"./_ctx":266,"./_classof":227,"./_export":206,"./_is-object":217,"./_a-function":278,"./_an-instance":294,"./_for-of":295,"./_species-constructor":298,"./_task":297,"./_microtask":296,"./_new-promise-capability":300,"./_perform":299,"./_promise-resolve":301,"./_wks":224,"./_redefine-all":302,"./_set-to-string-tag":235,"./_set-species":282,"./_core":202,"./_iter-detect":272}],291:[function(require,module,exports) {
+},{"./_library":241,"./_global":220,"./_ctx":269,"./_classof":216,"./_export":206,"./_is-object":210,"./_a-function":279,"./_an-instance":291,"./_for-of":292,"./_species-constructor":295,"./_task":293,"./_microtask":294,"./_new-promise-capability":299,"./_perform":296,"./_promise-resolve":297,"./_wks":221,"./_redefine-all":298,"./_set-to-string-tag":227,"./_set-species":287,"./_core":204,"./_iter-detect":272}],300:[function(require,module,exports) {
 var isObject = require('./_is-object');
 module.exports = function (it, TYPE) {
   if (!isObject(it) || it._t !== TYPE) throw TypeError('Incompatible receiver, ' + TYPE + ' required!');
   return it;
 };
 
-},{"./_is-object":217}],305:[function(require,module,exports) {
+},{"./_is-object":210}],290:[function(require,module,exports) {
 'use strict';
 var dP = require('./_object-dp').f;
 var create = require('./_object-create');
@@ -3948,7 +3948,7 @@ module.exports = {
   }
 };
 
-},{"./_object-dp":207,"./_object-create":208,"./_redefine-all":302,"./_ctx":266,"./_an-instance":294,"./_for-of":295,"./_iter-define":261,"./_iter-step":286,"./_set-species":282,"./_descriptors":209,"./_meta":216,"./_validate-collection":291}],290:[function(require,module,exports) {
+},{"./_object-dp":234,"./_object-create":233,"./_redefine-all":298,"./_ctx":269,"./_an-instance":291,"./_for-of":292,"./_iter-define":262,"./_iter-step":285,"./_set-species":287,"./_descriptors":223,"./_meta":211,"./_validate-collection":300}],289:[function(require,module,exports) {
 
 'use strict';
 var global = require('./_global');
@@ -4036,7 +4036,7 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
   return C;
 };
 
-},{"./_global":230,"./_export":206,"./_redefine":223,"./_redefine-all":302,"./_meta":216,"./_for-of":295,"./_an-instance":294,"./_is-object":217,"./_fails":233,"./_iter-detect":272,"./_set-to-string-tag":235,"./_inherit-if-required":257}],116:[function(require,module,exports) {
+},{"./_global":220,"./_export":206,"./_redefine":217,"./_redefine-all":298,"./_meta":211,"./_for-of":292,"./_an-instance":291,"./_is-object":210,"./_fails":225,"./_iter-detect":272,"./_set-to-string-tag":227,"./_inherit-if-required":255}],120:[function(require,module,exports) {
 'use strict';
 var strong = require('./_collection-strong');
 var validate = require('./_validate-collection');
@@ -4057,7 +4057,7 @@ module.exports = require('./_collection')(MAP, function (get) {
   }
 }, strong, true);
 
-},{"./_collection-strong":305,"./_validate-collection":291,"./_collection":290}],117:[function(require,module,exports) {
+},{"./_collection-strong":290,"./_validate-collection":300,"./_collection":289}],116:[function(require,module,exports) {
 'use strict';
 var strong = require('./_collection-strong');
 var validate = require('./_validate-collection');
@@ -4073,7 +4073,7 @@ module.exports = require('./_collection')(SET, function (get) {
   }
 }, strong);
 
-},{"./_collection-strong":305,"./_validate-collection":291,"./_collection":290}],289:[function(require,module,exports) {
+},{"./_collection-strong":290,"./_validate-collection":300,"./_collection":289}],301:[function(require,module,exports) {
 'use strict';
 var redefineAll = require('./_redefine-all');
 var getWeak = require('./_meta').getWeak;
@@ -4160,7 +4160,7 @@ module.exports = {
   ufstore: uncaughtFrozenStore
 };
 
-},{"./_redefine-all":302,"./_meta":216,"./_an-object":238,"./_is-object":217,"./_an-instance":294,"./_for-of":295,"./_array-methods":273,"./_has":229,"./_validate-collection":291}],118:[function(require,module,exports) {
+},{"./_redefine-all":298,"./_meta":211,"./_an-object":229,"./_is-object":210,"./_an-instance":291,"./_for-of":292,"./_array-methods":265,"./_has":222,"./_validate-collection":300}],117:[function(require,module,exports) {
 'use strict';
 var each = require('./_array-methods')(0);
 var redefine = require('./_redefine');
@@ -4221,7 +4221,7 @@ if (fails(function () { return new $WeakMap().set((Object.freeze || Object)(tmp)
   });
 }
 
-},{"./_array-methods":273,"./_redefine":223,"./_meta":216,"./_object-assign":220,"./_collection-weak":289,"./_is-object":217,"./_fails":233,"./_validate-collection":291,"./_collection":290}],120:[function(require,module,exports) {
+},{"./_array-methods":265,"./_redefine":217,"./_meta":211,"./_object-assign":219,"./_collection-weak":301,"./_is-object":210,"./_fails":225,"./_validate-collection":300,"./_collection":289}],119:[function(require,module,exports) {
 'use strict';
 var weak = require('./_collection-weak');
 var validate = require('./_validate-collection');
@@ -4237,7 +4237,7 @@ require('./_collection')(WEAK_SET, function (get) {
   }
 }, weak, false, true);
 
-},{"./_collection-weak":289,"./_validate-collection":291,"./_collection":290}],303:[function(require,module,exports) {
+},{"./_collection-weak":301,"./_validate-collection":300,"./_collection":289}],304:[function(require,module,exports) {
 
 var global = require('./_global');
 var hide = require('./_hide');
@@ -4268,7 +4268,7 @@ module.exports = {
   VIEW: VIEW
 };
 
-},{"./_global":230,"./_hide":246,"./_uid":231}],328:[function(require,module,exports) {
+},{"./_global":220,"./_hide":239,"./_uid":226}],328:[function(require,module,exports) {
 // https://tc39.github.io/ecma262/#sec-toindex
 var toInteger = require('./_to-integer');
 var toLength = require('./_to-length');
@@ -4280,7 +4280,7 @@ module.exports = function (it) {
   return length;
 };
 
-},{"./_to-integer":247,"./_to-length":258}],293:[function(require,module,exports) {
+},{"./_to-integer":247,"./_to-length":261}],303:[function(require,module,exports) {
 
 'use strict';
 var global = require('./_global');
@@ -4559,7 +4559,7 @@ hide($DataView[PROTOTYPE], $typed.VIEW, true);
 exports[ARRAY_BUFFER] = $ArrayBuffer;
 exports[DATA_VIEW] = $DataView;
 
-},{"./_global":230,"./_descriptors":209,"./_library":244,"./_typed":303,"./_hide":246,"./_redefine-all":302,"./_fails":233,"./_an-instance":294,"./_to-integer":247,"./_to-length":258,"./_to-index":328,"./_object-gopn":241,"./_object-dp":207,"./_array-fill":281,"./_set-to-string-tag":235}],121:[function(require,module,exports) {
+},{"./_global":220,"./_descriptors":223,"./_library":241,"./_typed":304,"./_hide":239,"./_redefine-all":298,"./_fails":225,"./_an-instance":291,"./_to-integer":247,"./_to-length":261,"./_to-index":328,"./_object-gopn":238,"./_object-dp":234,"./_array-fill":284,"./_set-to-string-tag":227}],121:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var $typed = require('./_typed');
@@ -4607,13 +4607,13 @@ $export($export.P + $export.U + $export.F * require('./_fails')(function () {
 
 require('./_set-species')(ARRAY_BUFFER);
 
-},{"./_export":206,"./_typed":303,"./_typed-buffer":293,"./_an-object":238,"./_to-absolute-index":276,"./_to-length":258,"./_is-object":217,"./_global":230,"./_species-constructor":298,"./_fails":233,"./_set-species":282}],119:[function(require,module,exports) {
+},{"./_export":206,"./_typed":304,"./_typed-buffer":303,"./_an-object":229,"./_to-absolute-index":266,"./_to-length":261,"./_is-object":210,"./_global":220,"./_species-constructor":295,"./_fails":225,"./_set-species":287}],123:[function(require,module,exports) {
 var $export = require('./_export');
 $export($export.G + $export.W + $export.F * !require('./_typed').ABV, {
   DataView: require('./_typed-buffer').DataView
 });
 
-},{"./_export":206,"./_typed":303,"./_typed-buffer":293}],292:[function(require,module,exports) {
+},{"./_export":206,"./_typed":304,"./_typed-buffer":303}],302:[function(require,module,exports) {
 var global = (1,eval)("this");
 'use strict';
 if (require('./_descriptors')) {
@@ -5096,70 +5096,70 @@ if (require('./_descriptors')) {
   };
 } else module.exports = function () { /* empty */ };
 
-},{"./_descriptors":209,"./_library":244,"./_global":230,"./_fails":233,"./_export":206,"./_typed":303,"./_typed-buffer":293,"./_ctx":266,"./_an-instance":294,"./_property-desc":240,"./_hide":246,"./_redefine-all":302,"./_to-integer":247,"./_to-length":258,"./_to-index":328,"./_to-absolute-index":276,"./_to-primitive":239,"./_has":229,"./_classof":227,"./_is-object":217,"./_to-object":214,"./_is-array-iter":270,"./_object-create":208,"./_object-gpo":218,"./_object-gopn":241,"./core.get-iterator-method":271,"./_uid":231,"./_wks":224,"./_array-methods":273,"./_array-includes":277,"./_species-constructor":298,"./es6.array.iterator":108,"./_iterators":287,"./_iter-detect":272,"./_set-species":282,"./_array-fill":281,"./_array-copy-within":283,"./_object-dp":207,"./_object-gopd":213}],124:[function(require,module,exports) {
+},{"./_descriptors":223,"./_library":241,"./_global":220,"./_fails":225,"./_export":206,"./_typed":304,"./_typed-buffer":303,"./_ctx":269,"./_an-instance":291,"./_property-desc":232,"./_hide":239,"./_redefine-all":298,"./_to-integer":247,"./_to-length":261,"./_to-index":328,"./_to-absolute-index":266,"./_to-primitive":231,"./_has":222,"./_classof":216,"./_is-object":210,"./_to-object":213,"./_is-array-iter":271,"./_object-create":233,"./_object-gpo":212,"./_object-gopn":238,"./core.get-iterator-method":273,"./_uid":226,"./_wks":221,"./_array-methods":265,"./_array-includes":278,"./_species-constructor":295,"./es6.array.iterator":108,"./_iterators":283,"./_iter-detect":272,"./_set-species":287,"./_array-fill":284,"./_array-copy-within":276,"./_object-dp":234,"./_object-gopd":214}],122:[function(require,module,exports) {
 require('./_typed-array')('Int8', 1, function (init) {
   return function Int8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
-},{"./_typed-array":292}],123:[function(require,module,exports) {
+},{"./_typed-array":302}],125:[function(require,module,exports) {
 require('./_typed-array')('Uint8', 1, function (init) {
   return function Uint8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
-},{"./_typed-array":292}],122:[function(require,module,exports) {
+},{"./_typed-array":302}],127:[function(require,module,exports) {
 require('./_typed-array')('Uint8', 1, function (init) {
   return function Uint8ClampedArray(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 }, true);
 
-},{"./_typed-array":292}],125:[function(require,module,exports) {
+},{"./_typed-array":302}],128:[function(require,module,exports) {
 require('./_typed-array')('Int16', 2, function (init) {
   return function Int16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
-},{"./_typed-array":292}],128:[function(require,module,exports) {
+},{"./_typed-array":302}],124:[function(require,module,exports) {
 require('./_typed-array')('Uint16', 2, function (init) {
   return function Uint16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
-},{"./_typed-array":292}],126:[function(require,module,exports) {
+},{"./_typed-array":302}],126:[function(require,module,exports) {
 require('./_typed-array')('Int32', 4, function (init) {
   return function Int32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
-},{"./_typed-array":292}],129:[function(require,module,exports) {
+},{"./_typed-array":302}],132:[function(require,module,exports) {
 require('./_typed-array')('Uint32', 4, function (init) {
   return function Uint32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
-},{"./_typed-array":292}],127:[function(require,module,exports) {
+},{"./_typed-array":302}],130:[function(require,module,exports) {
 require('./_typed-array')('Float32', 4, function (init) {
   return function Float32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
-},{"./_typed-array":292}],130:[function(require,module,exports) {
+},{"./_typed-array":302}],131:[function(require,module,exports) {
 require('./_typed-array')('Float64', 8, function (init) {
   return function Float64Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
-},{"./_typed-array":292}],131:[function(require,module,exports) {
+},{"./_typed-array":302}],129:[function(require,module,exports) {
 // 26.1.1 Reflect.apply(target, thisArgument, argumentsList)
 var $export = require('./_export');
 var aFunction = require('./_a-function');
@@ -5177,7 +5177,7 @@ $export($export.S + $export.F * !require('./_fails')(function () {
   }
 });
 
-},{"./_export":206,"./_a-function":278,"./_an-object":238,"./_global":230,"./_fails":233}],132:[function(require,module,exports) {
+},{"./_export":206,"./_a-function":279,"./_an-object":229,"./_global":220,"./_fails":225}],134:[function(require,module,exports) {
 // 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
 var $export = require('./_export');
 var create = require('./_object-create');
@@ -5226,7 +5226,7 @@ $export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
   }
 });
 
-},{"./_export":206,"./_object-create":208,"./_a-function":278,"./_an-object":238,"./_is-object":217,"./_fails":233,"./_bind":222,"./_global":230}],133:[function(require,module,exports) {
+},{"./_export":206,"./_object-create":233,"./_a-function":279,"./_an-object":229,"./_is-object":210,"./_fails":225,"./_bind":236,"./_global":220}],133:[function(require,module,exports) {
 // 26.1.3 Reflect.defineProperty(target, propertyKey, attributes)
 var dP = require('./_object-dp');
 var $export = require('./_export');
@@ -5251,7 +5251,7 @@ $export($export.S + $export.F * require('./_fails')(function () {
   }
 });
 
-},{"./_object-dp":207,"./_export":206,"./_an-object":238,"./_to-primitive":239,"./_fails":233}],137:[function(require,module,exports) {
+},{"./_object-dp":234,"./_export":206,"./_an-object":229,"./_to-primitive":231,"./_fails":225}],135:[function(require,module,exports) {
 // 26.1.4 Reflect.deleteProperty(target, propertyKey)
 var $export = require('./_export');
 var gOPD = require('./_object-gopd').f;
@@ -5264,7 +5264,7 @@ $export($export.S, 'Reflect', {
   }
 });
 
-},{"./_export":206,"./_object-gopd":213,"./_an-object":238}],134:[function(require,module,exports) {
+},{"./_export":206,"./_object-gopd":214,"./_an-object":229}],137:[function(require,module,exports) {
 'use strict';
 // 26.1.5 Reflect.enumerate(target)
 var $export = require('./_export');
@@ -5292,7 +5292,7 @@ $export($export.S, 'Reflect', {
   }
 });
 
-},{"./_export":206,"./_an-object":238,"./_iter-create":311}],135:[function(require,module,exports) {
+},{"./_export":206,"./_an-object":229,"./_iter-create":310}],136:[function(require,module,exports) {
 // 26.1.6 Reflect.get(target, propertyKey [, receiver])
 var gOPD = require('./_object-gopd');
 var getPrototypeOf = require('./_object-gpo');
@@ -5315,7 +5315,7 @@ function get(target, propertyKey /* , receiver */) {
 
 $export($export.S, 'Reflect', { get: get });
 
-},{"./_object-gopd":213,"./_object-gpo":218,"./_has":229,"./_export":206,"./_is-object":217,"./_an-object":238}],136:[function(require,module,exports) {
+},{"./_object-gopd":214,"./_object-gpo":212,"./_has":222,"./_export":206,"./_is-object":210,"./_an-object":229}],142:[function(require,module,exports) {
 // 26.1.7 Reflect.getOwnPropertyDescriptor(target, propertyKey)
 var gOPD = require('./_object-gopd');
 var $export = require('./_export');
@@ -5327,7 +5327,7 @@ $export($export.S, 'Reflect', {
   }
 });
 
-},{"./_object-gopd":213,"./_export":206,"./_an-object":238}],139:[function(require,module,exports) {
+},{"./_object-gopd":214,"./_export":206,"./_an-object":229}],140:[function(require,module,exports) {
 // 26.1.8 Reflect.getPrototypeOf(target)
 var $export = require('./_export');
 var getProto = require('./_object-gpo');
@@ -5339,7 +5339,7 @@ $export($export.S, 'Reflect', {
   }
 });
 
-},{"./_export":206,"./_object-gpo":218,"./_an-object":238}],140:[function(require,module,exports) {
+},{"./_export":206,"./_object-gpo":212,"./_an-object":229}],138:[function(require,module,exports) {
 // 26.1.9 Reflect.has(target, propertyKey)
 var $export = require('./_export');
 
@@ -5349,7 +5349,7 @@ $export($export.S, 'Reflect', {
   }
 });
 
-},{"./_export":206}],141:[function(require,module,exports) {
+},{"./_export":206}],145:[function(require,module,exports) {
 // 26.1.10 Reflect.isExtensible(target)
 var $export = require('./_export');
 var anObject = require('./_an-object');
@@ -5362,7 +5362,7 @@ $export($export.S, 'Reflect', {
   }
 });
 
-},{"./_export":206,"./_an-object":238}],304:[function(require,module,exports) {
+},{"./_export":206,"./_an-object":229}],307:[function(require,module,exports) {
 // all object keys, includes non-enumerable and symbols
 var gOPN = require('./_object-gopn');
 var gOPS = require('./_object-gops');
@@ -5374,13 +5374,13 @@ module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
   return getSymbols ? keys.concat(getSymbols(it)) : keys;
 };
 
-},{"./_object-gopn":241,"./_object-gops":245,"./_an-object":238,"./_global":230}],138:[function(require,module,exports) {
+},{"./_object-gopn":238,"./_object-gops":235,"./_an-object":229,"./_global":220}],146:[function(require,module,exports) {
 // 26.1.11 Reflect.ownKeys(target)
 var $export = require('./_export');
 
 $export($export.S, 'Reflect', { ownKeys: require('./_own-keys') });
 
-},{"./_export":206,"./_own-keys":304}],142:[function(require,module,exports) {
+},{"./_export":206,"./_own-keys":307}],141:[function(require,module,exports) {
 // 26.1.12 Reflect.preventExtensions(target)
 var $export = require('./_export');
 var anObject = require('./_an-object');
@@ -5398,7 +5398,7 @@ $export($export.S, 'Reflect', {
   }
 });
 
-},{"./_export":206,"./_an-object":238}],145:[function(require,module,exports) {
+},{"./_export":206,"./_an-object":229}],139:[function(require,module,exports) {
 // 26.1.13 Reflect.set(target, propertyKey, V [, receiver])
 var dP = require('./_object-dp');
 var gOPD = require('./_object-gopd');
@@ -5431,7 +5431,7 @@ function set(target, propertyKey, V /* , receiver */) {
 
 $export($export.S, 'Reflect', { set: set });
 
-},{"./_object-dp":207,"./_object-gopd":213,"./_object-gpo":218,"./_has":229,"./_export":206,"./_property-desc":240,"./_an-object":238,"./_is-object":217}],143:[function(require,module,exports) {
+},{"./_object-dp":234,"./_object-gopd":214,"./_object-gpo":212,"./_has":222,"./_export":206,"./_property-desc":232,"./_an-object":229,"./_is-object":210}],144:[function(require,module,exports) {
 // 26.1.14 Reflect.setPrototypeOf(target, proto)
 var $export = require('./_export');
 var setProto = require('./_set-proto');
@@ -5448,7 +5448,7 @@ if (setProto) $export($export.S, 'Reflect', {
   }
 });
 
-},{"./_export":206,"./_set-proto":228}],144:[function(require,module,exports) {
+},{"./_export":206,"./_set-proto":215}],155:[function(require,module,exports) {
 'use strict';
 // https://github.com/tc39/Array.prototype.includes
 var $export = require('./_export');
@@ -5462,7 +5462,7 @@ $export($export.P, 'Array', {
 
 require('./_add-to-unscopables')('includes');
 
-},{"./_export":206,"./_array-includes":277,"./_add-to-unscopables":280}],308:[function(require,module,exports) {
+},{"./_export":206,"./_array-includes":278,"./_add-to-unscopables":277}],305:[function(require,module,exports) {
 'use strict';
 // https://tc39.github.io/proposal-flatMap/#sec-FlattenIntoArray
 var isArray = require('./_is-array');
@@ -5503,7 +5503,7 @@ function flattenIntoArray(target, original, source, sourceLen, start, depth, map
 
 module.exports = flattenIntoArray;
 
-},{"./_is-array":236,"./_is-object":217,"./_to-length":258,"./_ctx":266,"./_wks":224}],148:[function(require,module,exports) {
+},{"./_is-array":228,"./_is-object":210,"./_to-length":261,"./_ctx":269,"./_wks":221}],143:[function(require,module,exports) {
 'use strict';
 // https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatMap
 var $export = require('./_export');
@@ -5527,7 +5527,7 @@ $export($export.P, 'Array', {
 
 require('./_add-to-unscopables')('flatMap');
 
-},{"./_export":206,"./_flatten-into-array":308,"./_to-object":214,"./_to-length":258,"./_a-function":278,"./_array-species-create":309,"./_add-to-unscopables":280}],147:[function(require,module,exports) {
+},{"./_export":206,"./_flatten-into-array":305,"./_to-object":213,"./_to-length":261,"./_a-function":279,"./_array-species-create":306,"./_add-to-unscopables":277}],149:[function(require,module,exports) {
 'use strict';
 // https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatten
 var $export = require('./_export');
@@ -5550,7 +5550,7 @@ $export($export.P, 'Array', {
 
 require('./_add-to-unscopables')('flatten');
 
-},{"./_export":206,"./_flatten-into-array":308,"./_to-object":214,"./_to-length":258,"./_to-integer":247,"./_array-species-create":309,"./_add-to-unscopables":280}],149:[function(require,module,exports) {
+},{"./_export":206,"./_flatten-into-array":305,"./_to-object":213,"./_to-length":261,"./_to-integer":247,"./_array-species-create":306,"./_add-to-unscopables":277}],150:[function(require,module,exports) {
 'use strict';
 // https://github.com/mathiasbynens/String.prototype.at
 var $export = require('./_export');
@@ -5562,7 +5562,7 @@ $export($export.P, 'String', {
   }
 });
 
-},{"./_export":206,"./_string-at":259}],306:[function(require,module,exports) {
+},{"./_export":206,"./_string-at":257}],309:[function(require,module,exports) {
 // https://github.com/tc39/proposal-string-pad-start-end
 var toLength = require('./_to-length');
 var repeat = require('./_string-repeat');
@@ -5580,14 +5580,14 @@ module.exports = function (that, maxLength, fillString, left) {
   return left ? stringFiller + S : S + stringFiller;
 };
 
-},{"./_to-length":258,"./_string-repeat":249,"./_defined":310}],307:[function(require,module,exports) {
+},{"./_to-length":261,"./_string-repeat":244,"./_defined":311}],308:[function(require,module,exports) {
 
 var global = require('./_global');
 var navigator = global.navigator;
 
 module.exports = navigator && navigator.userAgent || '';
 
-},{"./_global":230}],146:[function(require,module,exports) {
+},{"./_global":220}],148:[function(require,module,exports) {
 'use strict';
 // https://github.com/tc39/proposal-string-pad-start-end
 var $export = require('./_export');
@@ -5601,7 +5601,7 @@ $export($export.P + $export.F * /Version\/10\.\d+(\.\d+)? Safari\//.test(userAge
   }
 });
 
-},{"./_export":206,"./_string-pad":306,"./_user-agent":307}],153:[function(require,module,exports) {
+},{"./_export":206,"./_string-pad":309,"./_user-agent":308}],147:[function(require,module,exports) {
 'use strict';
 // https://github.com/tc39/proposal-string-pad-start-end
 var $export = require('./_export');
@@ -5615,7 +5615,7 @@ $export($export.P + $export.F * /Version\/10\.\d+(\.\d+)? Safari\//.test(userAge
   }
 });
 
-},{"./_export":206,"./_string-pad":306,"./_user-agent":307}],151:[function(require,module,exports) {
+},{"./_export":206,"./_string-pad":309,"./_user-agent":308}],153:[function(require,module,exports) {
 'use strict';
 // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
 require('./_string-trim')('trimLeft', function ($trim) {
@@ -5633,7 +5633,7 @@ require('./_string-trim')('trimRight', function ($trim) {
   };
 }, 'trimEnd');
 
-},{"./_string-trim":256}],150:[function(require,module,exports) {
+},{"./_string-trim":256}],156:[function(require,module,exports) {
 'use strict';
 // https://tc39.github.io/String.prototype.matchAll/
 var $export = require('./_export');
@@ -5665,13 +5665,13 @@ $export($export.P, 'String', {
   }
 });
 
-},{"./_export":206,"./_defined":310,"./_to-length":258,"./_is-regexp":288,"./_flags":284,"./_iter-create":311}],156:[function(require,module,exports) {
+},{"./_export":206,"./_defined":311,"./_to-length":261,"./_is-regexp":288,"./_flags":281,"./_iter-create":310}],151:[function(require,module,exports) {
 require('./_wks-define')('asyncIterator');
 
-},{"./_wks-define":237}],154:[function(require,module,exports) {
+},{"./_wks-define":240}],154:[function(require,module,exports) {
 require('./_wks-define')('observable');
 
-},{"./_wks-define":237}],155:[function(require,module,exports) {
+},{"./_wks-define":240}],161:[function(require,module,exports) {
 // https://github.com/tc39/proposal-object-getownpropertydescriptors
 var $export = require('./_export');
 var ownKeys = require('./_own-keys');
@@ -5695,7 +5695,7 @@ $export($export.S, 'Object', {
   }
 });
 
-},{"./_export":206,"./_own-keys":304,"./_to-iobject":212,"./_object-gopd":213,"./_create-property":268}],312:[function(require,module,exports) {
+},{"./_export":206,"./_own-keys":307,"./_to-iobject":230,"./_object-gopd":214,"./_create-property":267}],314:[function(require,module,exports) {
 var getKeys = require('./_object-keys');
 var toIObject = require('./_to-iobject');
 var isEnum = require('./_object-pie').f;
@@ -5713,7 +5713,7 @@ module.exports = function (isEntries) {
   };
 };
 
-},{"./_object-keys":210,"./_to-iobject":212,"./_object-pie":242}],157:[function(require,module,exports) {
+},{"./_object-keys":207,"./_to-iobject":230,"./_object-pie":237}],170:[function(require,module,exports) {
 // https://github.com/tc39/proposal-object-values-entries
 var $export = require('./_export');
 var $values = require('./_object-to-array')(false);
@@ -5724,7 +5724,7 @@ $export($export.S, 'Object', {
   }
 });
 
-},{"./_export":206,"./_object-to-array":312}],160:[function(require,module,exports) {
+},{"./_export":206,"./_object-to-array":314}],159:[function(require,module,exports) {
 // https://github.com/tc39/proposal-object-values-entries
 var $export = require('./_export');
 var $entries = require('./_object-to-array')(true);
@@ -5735,7 +5735,7 @@ $export($export.S, 'Object', {
   }
 });
 
-},{"./_export":206,"./_object-to-array":312}],316:[function(require,module,exports) {
+},{"./_export":206,"./_object-to-array":314}],313:[function(require,module,exports) {
 'use strict';
 // Forced replacement prototype accessors methods
 module.exports = require('./_library') || !require('./_fails')(function () {
@@ -5746,7 +5746,7 @@ module.exports = require('./_library') || !require('./_fails')(function () {
   delete require('./_global')[K];
 });
 
-},{"./_library":244,"./_fails":233,"./_global":230}],161:[function(require,module,exports) {
+},{"./_library":241,"./_fails":225,"./_global":220}],157:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var toObject = require('./_to-object');
@@ -5760,7 +5760,7 @@ require('./_descriptors') && $export($export.P + require('./_object-forced-pam')
   }
 });
 
-},{"./_export":206,"./_to-object":214,"./_a-function":278,"./_object-dp":207,"./_descriptors":209,"./_object-forced-pam":316}],158:[function(require,module,exports) {
+},{"./_export":206,"./_to-object":213,"./_a-function":279,"./_object-dp":234,"./_descriptors":223,"./_object-forced-pam":313}],165:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var toObject = require('./_to-object');
@@ -5774,7 +5774,7 @@ require('./_descriptors') && $export($export.P + require('./_object-forced-pam')
   }
 });
 
-},{"./_export":206,"./_to-object":214,"./_a-function":278,"./_object-dp":207,"./_descriptors":209,"./_object-forced-pam":316}],159:[function(require,module,exports) {
+},{"./_export":206,"./_to-object":213,"./_a-function":279,"./_object-dp":234,"./_descriptors":223,"./_object-forced-pam":313}],160:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var toObject = require('./_to-object');
@@ -5794,7 +5794,7 @@ require('./_descriptors') && $export($export.P + require('./_object-forced-pam')
   }
 });
 
-},{"./_export":206,"./_to-object":214,"./_to-primitive":239,"./_object-gpo":218,"./_object-gopd":213,"./_descriptors":209,"./_object-forced-pam":316}],164:[function(require,module,exports) {
+},{"./_export":206,"./_to-object":213,"./_to-primitive":231,"./_object-gpo":212,"./_object-gopd":214,"./_descriptors":223,"./_object-forced-pam":313}],158:[function(require,module,exports) {
 'use strict';
 var $export = require('./_export');
 var toObject = require('./_to-object');
@@ -5814,7 +5814,7 @@ require('./_descriptors') && $export($export.P + require('./_object-forced-pam')
   }
 });
 
-},{"./_export":206,"./_to-object":214,"./_to-primitive":239,"./_object-gpo":218,"./_object-gopd":213,"./_descriptors":209,"./_object-forced-pam":316}],319:[function(require,module,exports) {
+},{"./_export":206,"./_to-object":213,"./_to-primitive":231,"./_object-gpo":212,"./_object-gopd":214,"./_descriptors":223,"./_object-forced-pam":313}],319:[function(require,module,exports) {
 var forOf = require('./_for-of');
 
 module.exports = function (iter, ITERATOR) {
@@ -5823,7 +5823,7 @@ module.exports = function (iter, ITERATOR) {
   return result;
 };
 
-},{"./_for-of":295}],313:[function(require,module,exports) {
+},{"./_for-of":292}],315:[function(require,module,exports) {
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var classof = require('./_classof');
 var from = require('./_array-from-iterable');
@@ -5834,19 +5834,19 @@ module.exports = function (NAME) {
   };
 };
 
-},{"./_classof":227,"./_array-from-iterable":319}],163:[function(require,module,exports) {
+},{"./_classof":216,"./_array-from-iterable":319}],162:[function(require,module,exports) {
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export = require('./_export');
 
 $export($export.P + $export.R, 'Map', { toJSON: require('./_collection-to-json')('Map') });
 
-},{"./_export":206,"./_collection-to-json":313}],162:[function(require,module,exports) {
+},{"./_export":206,"./_collection-to-json":315}],166:[function(require,module,exports) {
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export = require('./_export');
 
 $export($export.P + $export.R, 'Set', { toJSON: require('./_collection-to-json')('Set') });
 
-},{"./_export":206,"./_collection-to-json":313}],315:[function(require,module,exports) {
+},{"./_export":206,"./_collection-to-json":315}],312:[function(require,module,exports) {
 'use strict';
 // https://tc39.github.io/proposal-setmap-offrom/
 var $export = require('./_export');
@@ -5860,23 +5860,23 @@ module.exports = function (COLLECTION) {
   } });
 };
 
-},{"./_export":206}],165:[function(require,module,exports) {
+},{"./_export":206}],163:[function(require,module,exports) {
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
 require('./_set-collection-of')('Map');
 
-},{"./_set-collection-of":315}],167:[function(require,module,exports) {
+},{"./_set-collection-of":312}],164:[function(require,module,exports) {
 // https://tc39.github.io/proposal-setmap-offrom/#sec-set.of
 require('./_set-collection-of')('Set');
 
-},{"./_set-collection-of":315}],168:[function(require,module,exports) {
+},{"./_set-collection-of":312}],201:[function(require,module,exports) {
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.of
 require('./_set-collection-of')('WeakMap');
 
-},{"./_set-collection-of":315}],169:[function(require,module,exports) {
+},{"./_set-collection-of":312}],167:[function(require,module,exports) {
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.of
 require('./_set-collection-of')('WeakSet');
 
-},{"./_set-collection-of":315}],314:[function(require,module,exports) {
+},{"./_set-collection-of":312}],316:[function(require,module,exports) {
 'use strict';
 // https://tc39.github.io/proposal-setmap-offrom/
 var $export = require('./_export');
@@ -5906,35 +5906,35 @@ module.exports = function (COLLECTION) {
   } });
 };
 
-},{"./_export":206,"./_a-function":278,"./_ctx":266,"./_for-of":295}],166:[function(require,module,exports) {
+},{"./_export":206,"./_a-function":279,"./_ctx":269,"./_for-of":292}],172:[function(require,module,exports) {
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
 require('./_set-collection-from')('Map');
 
-},{"./_set-collection-from":314}],171:[function(require,module,exports) {
+},{"./_set-collection-from":316}],168:[function(require,module,exports) {
 // https://tc39.github.io/proposal-setmap-offrom/#sec-set.from
 require('./_set-collection-from')('Set');
 
-},{"./_set-collection-from":314}],173:[function(require,module,exports) {
+},{"./_set-collection-from":316}],169:[function(require,module,exports) {
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.from
 require('./_set-collection-from')('WeakMap');
 
-},{"./_set-collection-from":314}],172:[function(require,module,exports) {
+},{"./_set-collection-from":316}],175:[function(require,module,exports) {
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.from
 require('./_set-collection-from')('WeakSet');
 
-},{"./_set-collection-from":314}],170:[function(require,module,exports) {
+},{"./_set-collection-from":316}],171:[function(require,module,exports) {
 // https://github.com/tc39/proposal-global
 var $export = require('./_export');
 
 $export($export.G, { global: require('./_global') });
 
-},{"./_export":206,"./_global":230}],174:[function(require,module,exports) {
+},{"./_export":206,"./_global":220}],173:[function(require,module,exports) {
 // https://github.com/tc39/proposal-global
 var $export = require('./_export');
 
 $export($export.S, 'System', { global: require('./_global') });
 
-},{"./_export":206,"./_global":230}],175:[function(require,module,exports) {
+},{"./_export":206,"./_global":220}],174:[function(require,module,exports) {
 // https://github.com/ljharb/proposal-is-error
 var $export = require('./_export');
 var cof = require('./_cof');
@@ -5945,7 +5945,7 @@ $export($export.S, 'Error', {
   }
 });
 
-},{"./_export":206,"./_cof":255}],176:[function(require,module,exports) {
+},{"./_export":206,"./_cof":254}],176:[function(require,module,exports) {
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = require('./_export');
 
@@ -5955,13 +5955,13 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],177:[function(require,module,exports) {
+},{"./_export":206}],182:[function(require,module,exports) {
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = require('./_export');
 
 $export($export.S, 'Math', { DEG_PER_RAD: Math.PI / 180 });
 
-},{"./_export":206}],180:[function(require,module,exports) {
+},{"./_export":206}],195:[function(require,module,exports) {
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = require('./_export');
 var RAD_PER_DEG = 180 / Math.PI;
@@ -5992,7 +5992,7 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
   return (x - inLow) * (outHigh - outLow) / (inHigh - inLow) + outLow;
 };
 
-},{}],181:[function(require,module,exports) {
+},{}],178:[function(require,module,exports) {
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = require('./_export');
 var scale = require('./_math-scale');
@@ -6004,7 +6004,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206,"./_math-scale":317,"./_math-fround":254}],179:[function(require,module,exports) {
+},{"./_export":206,"./_math-scale":317,"./_math-fround":253}],179:[function(require,module,exports) {
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
 var $export = require('./_export');
 
@@ -6017,7 +6017,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],178:[function(require,module,exports) {
+},{"./_export":206}],177:[function(require,module,exports) {
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
 var $export = require('./_export');
 
@@ -6030,7 +6030,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],183:[function(require,module,exports) {
+},{"./_export":206}],180:[function(require,module,exports) {
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
 var $export = require('./_export');
 
@@ -6048,13 +6048,13 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],185:[function(require,module,exports) {
+},{"./_export":206}],181:[function(require,module,exports) {
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = require('./_export');
 
 $export($export.S, 'Math', { RAD_PER_DEG: 180 / Math.PI });
 
-},{"./_export":206}],182:[function(require,module,exports) {
+},{"./_export":206}],184:[function(require,module,exports) {
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = require('./_export');
 var DEG_PER_RAD = Math.PI / 180;
@@ -6065,13 +6065,13 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],184:[function(require,module,exports) {
+},{"./_export":206}],185:[function(require,module,exports) {
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = require('./_export');
 
 $export($export.S, 'Math', { scale: require('./_math-scale') });
 
-},{"./_export":206,"./_math-scale":317}],186:[function(require,module,exports) {
+},{"./_export":206,"./_math-scale":317}],183:[function(require,module,exports) {
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
 var $export = require('./_export');
 
@@ -6089,7 +6089,7 @@ $export($export.S, 'Math', {
   }
 });
 
-},{"./_export":206}],189:[function(require,module,exports) {
+},{"./_export":206}],186:[function(require,module,exports) {
 // http://jfbastien.github.io/papers/Math.signbit.html
 var $export = require('./_export');
 
@@ -6121,7 +6121,7 @@ $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
   );
 } });
 
-},{"./_export":206,"./_core":202,"./_global":230,"./_species-constructor":298,"./_promise-resolve":301}],187:[function(require,module,exports) {
+},{"./_export":206,"./_core":204,"./_global":220,"./_species-constructor":295,"./_promise-resolve":297}],187:[function(require,module,exports) {
 'use strict';
 // https://github.com/tc39/proposal-promise-try
 var $export = require('./_export');
@@ -6135,7 +6135,7 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
   return promiseCapability.promise;
 } });
 
-},{"./_export":206,"./_new-promise-capability":300,"./_perform":299}],318:[function(require,module,exports) {
+},{"./_export":206,"./_new-promise-capability":299,"./_perform":296}],318:[function(require,module,exports) {
 var Map = require('./es6.map');
 var $export = require('./_export');
 var shared = require('./_shared')('metadata');
@@ -6188,7 +6188,7 @@ module.exports = {
   exp: exp
 };
 
-},{"./es6.map":116,"./_export":206,"./_shared":232,"./es6.weak-map":118}],190:[function(require,module,exports) {
+},{"./es6.map":120,"./_export":206,"./_shared":224,"./es6.weak-map":117}],189:[function(require,module,exports) {
 var metadata = require('./_metadata');
 var anObject = require('./_an-object');
 var toMetaKey = metadata.key;
@@ -6198,7 +6198,7 @@ metadata.exp({ defineMetadata: function defineMetadata(metadataKey, metadataValu
   ordinaryDefineOwnMetadata(metadataKey, metadataValue, anObject(target), toMetaKey(targetKey));
 } });
 
-},{"./_metadata":318,"./_an-object":238}],193:[function(require,module,exports) {
+},{"./_metadata":318,"./_an-object":229}],198:[function(require,module,exports) {
 var metadata = require('./_metadata');
 var anObject = require('./_an-object');
 var toMetaKey = metadata.key;
@@ -6215,7 +6215,7 @@ metadata.exp({ deleteMetadata: function deleteMetadata(metadataKey, target /* , 
   return !!targetMetadata.size || store['delete'](target);
 } });
 
-},{"./_metadata":318,"./_an-object":238}],191:[function(require,module,exports) {
+},{"./_metadata":318,"./_an-object":229}],192:[function(require,module,exports) {
 var metadata = require('./_metadata');
 var anObject = require('./_an-object');
 var getPrototypeOf = require('./_object-gpo');
@@ -6234,7 +6234,7 @@ metadata.exp({ getMetadata: function getMetadata(metadataKey, target /* , target
   return ordinaryGetMetadata(metadataKey, anObject(target), arguments.length < 3 ? undefined : toMetaKey(arguments[2]));
 } });
 
-},{"./_metadata":318,"./_an-object":238,"./_object-gpo":218}],192:[function(require,module,exports) {
+},{"./_metadata":318,"./_an-object":229,"./_object-gpo":212}],190:[function(require,module,exports) {
 var Set = require('./es6.set');
 var from = require('./_array-from-iterable');
 var metadata = require('./_metadata');
@@ -6255,7 +6255,7 @@ metadata.exp({ getMetadataKeys: function getMetadataKeys(target /* , targetKey *
   return ordinaryMetadataKeys(anObject(target), arguments.length < 2 ? undefined : toMetaKey(arguments[1]));
 } });
 
-},{"./es6.set":117,"./_array-from-iterable":319,"./_metadata":318,"./_an-object":238,"./_object-gpo":218}],197:[function(require,module,exports) {
+},{"./es6.set":116,"./_array-from-iterable":319,"./_metadata":318,"./_an-object":229,"./_object-gpo":212}],191:[function(require,module,exports) {
 var metadata = require('./_metadata');
 var anObject = require('./_an-object');
 var ordinaryGetOwnMetadata = metadata.get;
@@ -6266,7 +6266,7 @@ metadata.exp({ getOwnMetadata: function getOwnMetadata(metadataKey, target /* , 
     , arguments.length < 3 ? undefined : toMetaKey(arguments[2]));
 } });
 
-},{"./_metadata":318,"./_an-object":238}],194:[function(require,module,exports) {
+},{"./_metadata":318,"./_an-object":229}],203:[function(require,module,exports) {
 var metadata = require('./_metadata');
 var anObject = require('./_an-object');
 var ordinaryOwnMetadataKeys = metadata.keys;
@@ -6276,7 +6276,7 @@ metadata.exp({ getOwnMetadataKeys: function getOwnMetadataKeys(target /* , targe
   return ordinaryOwnMetadataKeys(anObject(target), arguments.length < 2 ? undefined : toMetaKey(arguments[1]));
 } });
 
-},{"./_metadata":318,"./_an-object":238}],195:[function(require,module,exports) {
+},{"./_metadata":318,"./_an-object":229}],196:[function(require,module,exports) {
 var metadata = require('./_metadata');
 var anObject = require('./_an-object');
 var getPrototypeOf = require('./_object-gpo');
@@ -6294,7 +6294,7 @@ metadata.exp({ hasMetadata: function hasMetadata(metadataKey, target /* , target
   return ordinaryHasMetadata(metadataKey, anObject(target), arguments.length < 3 ? undefined : toMetaKey(arguments[2]));
 } });
 
-},{"./_metadata":318,"./_an-object":238,"./_object-gpo":218}],196:[function(require,module,exports) {
+},{"./_metadata":318,"./_an-object":229,"./_object-gpo":212}],194:[function(require,module,exports) {
 var metadata = require('./_metadata');
 var anObject = require('./_an-object');
 var ordinaryHasOwnMetadata = metadata.has;
@@ -6305,7 +6305,7 @@ metadata.exp({ hasOwnMetadata: function hasOwnMetadata(metadataKey, target /* , 
     , arguments.length < 3 ? undefined : toMetaKey(arguments[2]));
 } });
 
-},{"./_metadata":318,"./_an-object":238}],198:[function(require,module,exports) {
+},{"./_metadata":318,"./_an-object":229}],193:[function(require,module,exports) {
 var $metadata = require('./_metadata');
 var anObject = require('./_an-object');
 var aFunction = require('./_a-function');
@@ -6322,7 +6322,7 @@ $metadata.exp({ metadata: function metadata(metadataKey, metadataValue) {
   };
 } });
 
-},{"./_metadata":318,"./_an-object":238,"./_a-function":278}],201:[function(require,module,exports) {
+},{"./_metadata":318,"./_an-object":229,"./_a-function":279}],197:[function(require,module,exports) {
 
 // https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-09/sept-25.md#510-globalasap-for-enqueuing-a-microtask
 var $export = require('./_export');
@@ -6337,7 +6337,7 @@ $export($export.G, {
   }
 });
 
-},{"./_export":206,"./_microtask":296,"./_global":230,"./_cof":255}],199:[function(require,module,exports) {
+},{"./_export":206,"./_microtask":294,"./_global":220,"./_cof":254}],199:[function(require,module,exports) {
 
 'use strict';
 // https://github.com/zenparsing/es-observable
@@ -6539,7 +6539,7 @@ $export($export.G, { Observable: $Observable });
 
 require('./_set-species')('Observable');
 
-},{"./_export":206,"./_global":230,"./_core":202,"./_microtask":296,"./_wks":224,"./_a-function":278,"./_an-object":238,"./_an-instance":294,"./_redefine-all":302,"./_hide":246,"./_for-of":295,"./_set-species":282}],200:[function(require,module,exports) {
+},{"./_export":206,"./_global":220,"./_core":204,"./_microtask":294,"./_wks":221,"./_a-function":279,"./_an-object":229,"./_an-instance":291,"./_redefine-all":298,"./_hide":239,"./_for-of":292,"./_set-species":287}],200:[function(require,module,exports) {
 
 // ie9- setTimeout & setInterval additional parameters fix
 var global = require('./_global');
@@ -6562,7 +6562,7 @@ $export($export.G + $export.B + $export.F * MSIE, {
   setInterval: wrap(global.setInterval)
 });
 
-},{"./_global":230,"./_export":206,"./_user-agent":307}],203:[function(require,module,exports) {
+},{"./_global":220,"./_export":206,"./_user-agent":308}],202:[function(require,module,exports) {
 var $export = require('./_export');
 var $task = require('./_task');
 $export($export.G + $export.B, {
@@ -6570,7 +6570,7 @@ $export($export.G + $export.B, {
   clearImmediate: $task.clear
 });
 
-},{"./_export":206,"./_task":297}],204:[function(require,module,exports) {
+},{"./_export":206,"./_task":293}],205:[function(require,module,exports) {
 
 var $iterators = require('./es6.array.iterator');
 var getKeys = require('./_object-keys');
@@ -6631,7 +6631,7 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
   }
 }
 
-},{"./es6.array.iterator":108,"./_object-keys":210,"./_redefine":223,"./_global":230,"./_hide":246,"./_iterators":287,"./_wks":224}],5:[function(require,module,exports) {
+},{"./es6.array.iterator":108,"./_object-keys":207,"./_redefine":217,"./_global":220,"./_hide":239,"./_iterators":283,"./_wks":221}],7:[function(require,module,exports) {
 require('./modules/es6.symbol');
 require('./modules/es6.object.create');
 require('./modules/es6.object.define-property');
@@ -6830,7 +6830,7 @@ require('./modules/web.immediate');
 require('./modules/web.dom.iterable');
 module.exports = require('./modules/_core');
 
-},{"./modules/es6.symbol":8,"./modules/es6.object.create":9,"./modules/es6.object.define-property":11,"./modules/es6.object.define-properties":10,"./modules/es6.object.get-own-property-descriptor":12,"./modules/es6.object.get-prototype-of":15,"./modules/es6.object.keys":14,"./modules/es6.object.get-own-property-names":13,"./modules/es6.object.freeze":16,"./modules/es6.object.seal":17,"./modules/es6.object.prevent-extensions":18,"./modules/es6.object.is-frozen":19,"./modules/es6.object.is-sealed":22,"./modules/es6.object.is-extensible":21,"./modules/es6.object.assign":20,"./modules/es6.object.is":23,"./modules/es6.object.set-prototype-of":24,"./modules/es6.object.to-string":25,"./modules/es6.function.bind":26,"./modules/es6.function.name":33,"./modules/es6.function.has-instance":29,"./modules/es6.parse-int":28,"./modules/es6.parse-float":27,"./modules/es6.number.constructor":31,"./modules/es6.number.to-fixed":32,"./modules/es6.number.to-precision":30,"./modules/es6.number.epsilon":35,"./modules/es6.number.is-finite":34,"./modules/es6.number.is-integer":39,"./modules/es6.number.is-nan":37,"./modules/es6.number.is-safe-integer":40,"./modules/es6.number.max-safe-integer":38,"./modules/es6.number.min-safe-integer":36,"./modules/es6.number.parse-float":41,"./modules/es6.number.parse-int":43,"./modules/es6.math.acosh":42,"./modules/es6.math.asinh":66,"./modules/es6.math.atanh":44,"./modules/es6.math.cbrt":48,"./modules/es6.math.clz32":45,"./modules/es6.math.cosh":47,"./modules/es6.math.expm1":46,"./modules/es6.math.fround":52,"./modules/es6.math.hypot":51,"./modules/es6.math.imul":49,"./modules/es6.math.log10":50,"./modules/es6.math.log1p":53,"./modules/es6.math.log2":54,"./modules/es6.math.sign":55,"./modules/es6.math.sinh":56,"./modules/es6.math.tanh":58,"./modules/es6.math.trunc":57,"./modules/es6.string.from-code-point":60,"./modules/es6.string.raw":59,"./modules/es6.string.trim":61,"./modules/es6.string.iterator":63,"./modules/es6.string.code-point-at":64,"./modules/es6.string.ends-with":62,"./modules/es6.string.includes":67,"./modules/es6.string.repeat":65,"./modules/es6.string.starts-with":68,"./modules/es6.string.anchor":69,"./modules/es6.string.big":73,"./modules/es6.string.blink":70,"./modules/es6.string.bold":71,"./modules/es6.string.fixed":77,"./modules/es6.string.fontcolor":72,"./modules/es6.string.fontsize":76,"./modules/es6.string.italics":75,"./modules/es6.string.link":78,"./modules/es6.string.small":74,"./modules/es6.string.strike":81,"./modules/es6.string.sub":79,"./modules/es6.string.sup":80,"./modules/es6.date.now":85,"./modules/es6.date.to-json":83,"./modules/es6.date.to-iso-string":82,"./modules/es6.date.to-string":84,"./modules/es6.date.to-primitive":89,"./modules/es6.array.is-array":87,"./modules/es6.array.from":86,"./modules/es6.array.of":88,"./modules/es6.array.join":90,"./modules/es6.array.slice":94,"./modules/es6.array.sort":91,"./modules/es6.array.for-each":93,"./modules/es6.array.map":92,"./modules/es6.array.filter":95,"./modules/es6.array.some":97,"./modules/es6.array.every":96,"./modules/es6.array.reduce":101,"./modules/es6.array.reduce-right":99,"./modules/es6.array.index-of":98,"./modules/es6.array.last-index-of":100,"./modules/es6.array.copy-within":102,"./modules/es6.array.fill":103,"./modules/es6.array.find":104,"./modules/es6.array.find-index":105,"./modules/es6.array.species":106,"./modules/es6.array.iterator":108,"./modules/es6.regexp.constructor":109,"./modules/es6.regexp.to-string":107,"./modules/es6.regexp.flags":112,"./modules/es6.regexp.match":111,"./modules/es6.regexp.replace":113,"./modules/es6.regexp.search":110,"./modules/es6.regexp.split":115,"./modules/es6.promise":114,"./modules/es6.map":116,"./modules/es6.set":117,"./modules/es6.weak-map":118,"./modules/es6.weak-set":120,"./modules/es6.typed.array-buffer":121,"./modules/es6.typed.data-view":119,"./modules/es6.typed.int8-array":124,"./modules/es6.typed.uint8-array":123,"./modules/es6.typed.uint8-clamped-array":122,"./modules/es6.typed.int16-array":125,"./modules/es6.typed.uint16-array":128,"./modules/es6.typed.int32-array":126,"./modules/es6.typed.uint32-array":129,"./modules/es6.typed.float32-array":127,"./modules/es6.typed.float64-array":130,"./modules/es6.reflect.apply":131,"./modules/es6.reflect.construct":132,"./modules/es6.reflect.define-property":133,"./modules/es6.reflect.delete-property":137,"./modules/es6.reflect.enumerate":134,"./modules/es6.reflect.get":135,"./modules/es6.reflect.get-own-property-descriptor":136,"./modules/es6.reflect.get-prototype-of":139,"./modules/es6.reflect.has":140,"./modules/es6.reflect.is-extensible":141,"./modules/es6.reflect.own-keys":138,"./modules/es6.reflect.prevent-extensions":142,"./modules/es6.reflect.set":145,"./modules/es6.reflect.set-prototype-of":143,"./modules/es7.array.includes":144,"./modules/es7.array.flat-map":148,"./modules/es7.array.flatten":147,"./modules/es7.string.at":149,"./modules/es7.string.pad-start":146,"./modules/es7.string.pad-end":153,"./modules/es7.string.trim-left":151,"./modules/es7.string.trim-right":152,"./modules/es7.string.match-all":150,"./modules/es7.symbol.async-iterator":156,"./modules/es7.symbol.observable":154,"./modules/es7.object.get-own-property-descriptors":155,"./modules/es7.object.values":157,"./modules/es7.object.entries":160,"./modules/es7.object.define-getter":161,"./modules/es7.object.define-setter":158,"./modules/es7.object.lookup-getter":159,"./modules/es7.object.lookup-setter":164,"./modules/es7.map.to-json":163,"./modules/es7.set.to-json":162,"./modules/es7.map.of":165,"./modules/es7.set.of":167,"./modules/es7.weak-map.of":168,"./modules/es7.weak-set.of":169,"./modules/es7.map.from":166,"./modules/es7.set.from":171,"./modules/es7.weak-map.from":173,"./modules/es7.weak-set.from":172,"./modules/es7.global":170,"./modules/es7.system.global":174,"./modules/es7.error.is-error":175,"./modules/es7.math.clamp":176,"./modules/es7.math.deg-per-rad":177,"./modules/es7.math.degrees":180,"./modules/es7.math.fscale":181,"./modules/es7.math.iaddh":179,"./modules/es7.math.isubh":178,"./modules/es7.math.imulh":183,"./modules/es7.math.rad-per-deg":185,"./modules/es7.math.radians":182,"./modules/es7.math.scale":184,"./modules/es7.math.umulh":186,"./modules/es7.math.signbit":189,"./modules/es7.promise.finally":188,"./modules/es7.promise.try":187,"./modules/es7.reflect.define-metadata":190,"./modules/es7.reflect.delete-metadata":193,"./modules/es7.reflect.get-metadata":191,"./modules/es7.reflect.get-metadata-keys":192,"./modules/es7.reflect.get-own-metadata":197,"./modules/es7.reflect.get-own-metadata-keys":194,"./modules/es7.reflect.has-metadata":195,"./modules/es7.reflect.has-own-metadata":196,"./modules/es7.reflect.metadata":198,"./modules/es7.asap":201,"./modules/es7.observable":199,"./modules/web.timers":200,"./modules/web.immediate":203,"./modules/web.dom.iterable":204,"./modules/_core":202}],6:[function(require,module,exports) {
+},{"./modules/es6.symbol":11,"./modules/es6.object.create":29,"./modules/es6.object.define-property":9,"./modules/es6.object.define-properties":112,"./modules/es6.object.get-own-property-descriptor":20,"./modules/es6.object.get-prototype-of":17,"./modules/es6.object.keys":10,"./modules/es6.object.get-own-property-names":22,"./modules/es6.object.freeze":15,"./modules/es6.object.seal":13,"./modules/es6.object.prevent-extensions":12,"./modules/es6.object.is-frozen":16,"./modules/es6.object.is-sealed":18,"./modules/es6.object.is-extensible":42,"./modules/es6.object.assign":23,"./modules/es6.object.is":14,"./modules/es6.object.set-prototype-of":21,"./modules/es6.object.to-string":19,"./modules/es6.function.bind":24,"./modules/es6.function.name":28,"./modules/es6.function.has-instance":30,"./modules/es6.parse-int":33,"./modules/es6.parse-float":54,"./modules/es6.number.constructor":26,"./modules/es6.number.to-fixed":25,"./modules/es6.number.to-precision":27,"./modules/es6.number.epsilon":34,"./modules/es6.number.is-finite":38,"./modules/es6.number.is-integer":31,"./modules/es6.number.is-nan":35,"./modules/es6.number.is-safe-integer":32,"./modules/es6.number.max-safe-integer":36,"./modules/es6.number.min-safe-integer":37,"./modules/es6.number.parse-float":47,"./modules/es6.number.parse-int":40,"./modules/es6.math.acosh":39,"./modules/es6.math.asinh":43,"./modules/es6.math.atanh":41,"./modules/es6.math.cbrt":45,"./modules/es6.math.clz32":46,"./modules/es6.math.cosh":44,"./modules/es6.math.expm1":49,"./modules/es6.math.fround":48,"./modules/es6.math.hypot":51,"./modules/es6.math.imul":53,"./modules/es6.math.log10":58,"./modules/es6.math.log1p":52,"./modules/es6.math.log2":57,"./modules/es6.math.sign":50,"./modules/es6.math.sinh":56,"./modules/es6.math.tanh":55,"./modules/es6.math.trunc":59,"./modules/es6.string.from-code-point":61,"./modules/es6.string.raw":69,"./modules/es6.string.trim":60,"./modules/es6.string.iterator":62,"./modules/es6.string.code-point-at":65,"./modules/es6.string.ends-with":75,"./modules/es6.string.includes":63,"./modules/es6.string.repeat":79,"./modules/es6.string.starts-with":67,"./modules/es6.string.anchor":66,"./modules/es6.string.big":70,"./modules/es6.string.blink":80,"./modules/es6.string.bold":72,"./modules/es6.string.fixed":64,"./modules/es6.string.fontcolor":71,"./modules/es6.string.fontsize":68,"./modules/es6.string.italics":73,"./modules/es6.string.link":74,"./modules/es6.string.small":77,"./modules/es6.string.strike":76,"./modules/es6.string.sub":78,"./modules/es6.string.sup":81,"./modules/es6.date.now":82,"./modules/es6.date.to-json":83,"./modules/es6.date.to-iso-string":84,"./modules/es6.date.to-string":85,"./modules/es6.date.to-primitive":87,"./modules/es6.array.is-array":94,"./modules/es6.array.from":88,"./modules/es6.array.of":86,"./modules/es6.array.join":89,"./modules/es6.array.slice":91,"./modules/es6.array.sort":90,"./modules/es6.array.for-each":96,"./modules/es6.array.map":95,"./modules/es6.array.filter":98,"./modules/es6.array.some":92,"./modules/es6.array.every":100,"./modules/es6.array.reduce":97,"./modules/es6.array.reduce-right":93,"./modules/es6.array.index-of":101,"./modules/es6.array.last-index-of":102,"./modules/es6.array.copy-within":99,"./modules/es6.array.fill":103,"./modules/es6.array.find":105,"./modules/es6.array.find-index":106,"./modules/es6.array.species":104,"./modules/es6.array.iterator":108,"./modules/es6.regexp.constructor":107,"./modules/es6.regexp.to-string":111,"./modules/es6.regexp.flags":109,"./modules/es6.regexp.match":110,"./modules/es6.regexp.replace":114,"./modules/es6.regexp.search":115,"./modules/es6.regexp.split":113,"./modules/es6.promise":118,"./modules/es6.map":120,"./modules/es6.set":116,"./modules/es6.weak-map":117,"./modules/es6.weak-set":119,"./modules/es6.typed.array-buffer":121,"./modules/es6.typed.data-view":123,"./modules/es6.typed.int8-array":122,"./modules/es6.typed.uint8-array":125,"./modules/es6.typed.uint8-clamped-array":127,"./modules/es6.typed.int16-array":128,"./modules/es6.typed.uint16-array":124,"./modules/es6.typed.int32-array":126,"./modules/es6.typed.uint32-array":132,"./modules/es6.typed.float32-array":130,"./modules/es6.typed.float64-array":131,"./modules/es6.reflect.apply":129,"./modules/es6.reflect.construct":134,"./modules/es6.reflect.define-property":133,"./modules/es6.reflect.delete-property":135,"./modules/es6.reflect.enumerate":137,"./modules/es6.reflect.get":136,"./modules/es6.reflect.get-own-property-descriptor":142,"./modules/es6.reflect.get-prototype-of":140,"./modules/es6.reflect.has":138,"./modules/es6.reflect.is-extensible":145,"./modules/es6.reflect.own-keys":146,"./modules/es6.reflect.prevent-extensions":141,"./modules/es6.reflect.set":139,"./modules/es6.reflect.set-prototype-of":144,"./modules/es7.array.includes":155,"./modules/es7.array.flat-map":143,"./modules/es7.array.flatten":149,"./modules/es7.string.at":150,"./modules/es7.string.pad-start":148,"./modules/es7.string.pad-end":147,"./modules/es7.string.trim-left":153,"./modules/es7.string.trim-right":152,"./modules/es7.string.match-all":156,"./modules/es7.symbol.async-iterator":151,"./modules/es7.symbol.observable":154,"./modules/es7.object.get-own-property-descriptors":161,"./modules/es7.object.values":170,"./modules/es7.object.entries":159,"./modules/es7.object.define-getter":157,"./modules/es7.object.define-setter":165,"./modules/es7.object.lookup-getter":160,"./modules/es7.object.lookup-setter":158,"./modules/es7.map.to-json":162,"./modules/es7.set.to-json":166,"./modules/es7.map.of":163,"./modules/es7.set.of":164,"./modules/es7.weak-map.of":201,"./modules/es7.weak-set.of":167,"./modules/es7.map.from":172,"./modules/es7.set.from":168,"./modules/es7.weak-map.from":169,"./modules/es7.weak-set.from":175,"./modules/es7.global":171,"./modules/es7.system.global":173,"./modules/es7.error.is-error":174,"./modules/es7.math.clamp":176,"./modules/es7.math.deg-per-rad":182,"./modules/es7.math.degrees":195,"./modules/es7.math.fscale":178,"./modules/es7.math.iaddh":179,"./modules/es7.math.isubh":177,"./modules/es7.math.imulh":180,"./modules/es7.math.rad-per-deg":181,"./modules/es7.math.radians":184,"./modules/es7.math.scale":185,"./modules/es7.math.umulh":183,"./modules/es7.math.signbit":186,"./modules/es7.promise.finally":188,"./modules/es7.promise.try":187,"./modules/es7.reflect.define-metadata":189,"./modules/es7.reflect.delete-metadata":198,"./modules/es7.reflect.get-metadata":192,"./modules/es7.reflect.get-metadata-keys":190,"./modules/es7.reflect.get-own-metadata":191,"./modules/es7.reflect.get-own-metadata-keys":203,"./modules/es7.reflect.has-metadata":196,"./modules/es7.reflect.has-own-metadata":194,"./modules/es7.reflect.metadata":193,"./modules/es7.asap":197,"./modules/es7.observable":199,"./modules/web.timers":200,"./modules/web.immediate":202,"./modules/web.dom.iterable":205,"./modules/_core":204}],6:[function(require,module,exports) {
 var global = (1,eval)("this");
 /**
  * Copyright (c) 2014, Facebook, Inc.
@@ -7569,7 +7569,7 @@ var global = (1,eval)("this");
   typeof self === "object" ? self : this
 );
 
-},{}],320:[function(require,module,exports) {
+},{}],330:[function(require,module,exports) {
 module.exports = function (regExp, replace) {
   var replacer = replace === Object(replace) ? function (part) {
     return replace[part];
@@ -7579,18 +7579,18 @@ module.exports = function (regExp, replace) {
   };
 };
 
-},{}],205:[function(require,module,exports) {
+},{}],320:[function(require,module,exports) {
 // https://github.com/benjamingr/RexExp.escape
 var $export = require('./_export');
 var $re = require('./_replacer')(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 
 $export($export.S, 'RegExp', { escape: function escape(it) { return $re(it); } });
 
-},{"./_export":206,"./_replacer":320}],7:[function(require,module,exports) {
+},{"./_export":206,"./_replacer":330}],8:[function(require,module,exports) {
 require('../../modules/core.regexp.escape');
 module.exports = require('../../modules/_core').RegExp.escape;
 
-},{"../../modules/core.regexp.escape":205,"../../modules/_core":202}],4:[function(require,module,exports) {
+},{"../../modules/core.regexp.escape":320,"../../modules/_core":204}],5:[function(require,module,exports) {
 var global = (1,eval)("this");
 "use strict";
 
@@ -7620,327 +7620,369 @@ define(String.prototype, "padRight", "".padEnd);
 "pop,reverse,shift,keys,values,entries,indexOf,every,some,forEach,map,filter,find,findIndex,includes,join,slice,concat,push,splice,unshift,sort,lastIndexOf,reduce,reduceRight,copyWithin,fill".split(",").forEach(function (key) {
   [][key] && define(Array, key, Function.call.bind([][key]));
 });
-},{"core-js/shim":5,"regenerator-runtime/runtime":6,"core-js/fn/regexp/escape":7}],2:[function(require,module,exports) {
+},{"core-js/shim":7,"regenerator-runtime/runtime":6,"core-js/fn/regexp/escape":8}],2:[function(require,module,exports) {
 "use strict";
 
 require("babel-polyfill");
 
-// window.Component.pc.tree({
-//   // ifselect: false,是否加载之前选好的，默认true
-//   beforeSelect: ['法塞特家族酒庄品鉴酒仓库', '法塞特家族酒庄配件仓库'], // 之前选好的内容
-//   select_model: 'checkbox', // 多选
-//   // select_model: 'radio', // 单选
-//   data: [
-//     {
-//       id: '01', name: '圣路易·丁酒庄', pId: '', sid: 499, type: '',
-//     }, {
-//       id: '0101', name: '圣路易·丁酒庄/酒庄（原酒）', pId: '01', sid: 500, type: '半成品',
-//     }, {
-//       id: '0102', name: '圣路易·丁酒庄/酒庄（成品）', pId: '01', sid: 501, type: '正品',
-//     }, {
-//       id: '0103', name: '圣路易·丁酒庄/酒庄（半成品）', pId: '01', sid: 502, type: '半成品',
-//     }, {
-//       id: '0104', name: '圣路易·丁酒庄/酒庄（配件）', pId: '01', sid: 503, type: '物料',
-//     }, {
-//       id: '0105', name: '圣路易·丁酒庄/酒庄（辅料）', pId: '01', sid: 504, type: '半成品',
-//     }, {
-//       id: '0106', name: '圣路易·丁酒庄/酒庄（包材）', pId: '01', sid: 505, type: '物料',
-//     }, {
-//       id: '02', name: '老酒庄', pId: '', sid: 506, type: '',
-//     }, {
-//       id: '0201', name: '老酒庄/老酒庄（原酒）', pId: '02', sid: 507, type: '半成品',
-//     }, {
-//       id: '0202', name: '老酒庄/老酒庄（成品）', pId: '02', sid: 508, type: '正品',
-//     }, {
-//       id: '0203', name: '老酒庄/老酒庄（半成品）', pId: '02', sid: 509, type: '半成品',
-//     }, {
-//       id: '0204', name: '老酒庄/老酒庄（配件）', pId: '02', sid: 510, type: '物料',
-//     }, {
-//       id: '0205', name: '老酒庄/老酒庄（辅料）', pId: '02', sid: 511, type: '物料',
-//     }, {
-//       id: '0206', name: '老酒庄/老酒庄（包材）', pId: '02', sid: 512, type: '物料',
-//     }, {
-//       id: '03', name: '781山洞', pId: '', sid: 513, type: '',
-//     }, {
-//       id: '0301', name: '781山洞/山洞（原酒）', pId: '03', sid: 514, type: '半成品',
-//     }, {
-//       id: '0302', name: '781山洞/山洞（成品）', pId: '03', sid: 515, type: '正品',
-//     }, {
-//       id: '0303', name: '781山洞/山洞（半成品）', pId: '03', sid: 516, type: '半成品',
-//     }, {
-//       id: '0304', name: '781山洞/山洞（配件）', pId: '03', sid: 517, type: '正品',
-//     }, {
-//       id: '0305', name: '781山洞/山洞（辅料）', pId: '03', sid: 518, type: '物料',
-//     }, {
-//       id: '0306', name: '781山洞/山洞（包材）', pId: '03', sid: 519, type: '物料',
-//     }, {
-//       id: '04', name: '银川商贸仓库', pId: '', sid: 520, type: '正品',
-//     }, {
-//       id: '0401', name: '银川商贸（原酒）', pId: '04', sid: 521, type: '正品',
-//     }, {
-//       id: '0402', name: '银川商贸（成品）', pId: '04', sid: 522, type: '赠品',
-//     }, {
-//       id: '0403', name: '银川商贸（半成品）', pId: '04', sid: 523, type: '半成品',
-//     }, {
-//       id: '0404', name: '银川商贸（物料）', pId: '04', sid: 524, type: '物料',
-//     }, {
-//       id: '0405', name: '银川商贸（配件）', pId: '04', sid: 525, type: '物料',
-//     }, {
-//       id: '0406', name: '银川商贸（包材）', pId: '04', sid: 526, type: '物料',
-//     }, {
-//       id: '05', name: '法塞特家族酒庄仓库', pId: '', sid: 527, type: '',
-//     }, {
-//       id: '0501', name: '法塞特家族酒庄正品仓库', pId: '05', sid: 528, type: '正品',
-//     }, {
-//       id: '0502', name: '法塞特家族酒庄业务用酒仓库', pId: '05', sid: 529, type: '赠品',
-//     }, {
-//       id: '0503', name: '法塞特家族酒庄品鉴酒仓库', pId: '05', sid: 530, type: '试用装',
-//     }, {
-//       id: '0504', name: '法塞特家族酒庄物料仓库', pId: '05', sid: 531, type: '物料',
-//     }, {
-//       id: '0505', name: '法塞特家族酒庄配件仓库', pId: '05', sid: 532, type: '配件',
-//     }, {
-//       id: '0506', name: '法塞特家族酒庄包材仓库', pId: '05', sid: 533, type: '包材',
-//     }, {
-//       id: '06', name: '法塞特（浙江）仓库', pId: '', sid: 534, type: '',
-//     }, {
-//       id: '0601', name: '法塞特（浙江）正品仓库', pId: '06', sid: 535, type: '正品',
-//     }, {
-//       id: '0602', name: '法塞特（浙江）赠品仓库', pId: '06', sid: 536, type: '赠品',
-//     }, {
-//       id: '0603', name: '法塞特（浙江）试用装仓库', pId: '06', sid: 537, type: '试用装',
-//     }, {
-//       id: '0604', name: '法塞特（浙江）物料仓库', pId: '06', sid: 538, type: '物料',
-//     }, {
-//       id: '0605', name: '法塞特（浙江）配件仓库', pId: '06', sid: 539, type: '配件',
-//     }, {
-//       id: '0606', name: '法塞特（浙江）包材仓库', pId: '06', sid: 540, type: '包材',
-//     }, {
-//       id: '07', name: '法塞特（福建）仓库', pId: '', sid: 542, type: '',
-//     }, {
-//       id: '0701', name: '法塞特（福建）正品仓库', pId: '07', sid: 543, type: '正品',
-//     }, {
-//       id: '0702', name: '法塞特（福建）赠品仓库', pId: '07', sid: 544, type: '赠品',
-//     }, {
-//       id: '0703', name: '法塞特（福建）试用装仓库', pId: '07', sid: 545, type: '试用装',
-//     }, {
-//       id: '0704', name: '法塞特（福建）物料仓库', pId: '07', sid: 546, type: '物料',
-//     }, {
-//       id: '0705', name: '法塞特（福建）配件仓库', pId: '07', sid: 547, type: '配件',
-//     }, {
-//       id: '0706', name: '法塞特（福建）包材仓库', pId: '07', sid: 548, type: '包材',
-//     }, {
-//       id: '001001014012', name: '银川品牌店', pId: '0010010140', sid: 605, type: '',
-//     }, {
-//       id: '00100101401201', name: '银川店/正品仓库', pId: '001001014012', sid: 606, type: '正品',
-//     }, {
-//       id: '00100101401202', name: '银川店/赠品仓库', pId: '001001014012', sid: 607, type: '赠品',
-//     }, {
-//       id: '00100101401203', name: '银川店/物料仓库', pId: '001001014012', sid: 608, type: '物料',
-//     }, {
-//       id: '00100101401204', name: '银川店/试用装仓库', pId: '001001014012', sid: 609, type: '试用装',
-//     }, {
-//       id: '00100101401205', name: '银川店/促销产品仓库', pId: '001001014012', sid: 610, type: '促销产品',
-//     }, {
-//       id: '00100101401206', name: '银川店/不良品仓库', pId: '001001014012', sid: 611, type: '不良品',
-//     }, {
-//       id: '00100101401207', name: '银川店/福利仓库', pId: '001001014012', sid: 612, type: '福利',
-//     }, {
-//       id: '00100101401208', name: '银川店/积分换礼仓库', pId: '001001014012', sid: 613, type: '积分换礼',
-//     }, {
-//       id: '0507', name: '上海酒庄门店正品库', pId: '05', sid: 614, type: '正品',
-//     }, {
-//       id: '0508', name: '上海酒庄门店业务用酒仓', pId: '05', sid: 615, type: '正品',
-//     }, {
-//       id: '0509', name: '上海酒庄门店品鉴酒仓', pId: '05', sid: 616, type: '正品',
-//     }, {
-//       id: '0510', name: '上海酒庄门店厨房用品仓', pId: '05', sid: 617, type: '正品',
-//     }, {
-//       id: '0511', name: '上海酒庄门店样酒仓', pId: '05', sid: 618, type: '正品',
-//     }, {
-//       id: '0512', name: '上海代保管仓', pId: '05', sid: 619, type: '正品',
-//     }, {
-//       id: '001001015', name: '门店测试', pId: '0010010', sid: 773, type: '',
-//     }, {
-//       id: '00100101501', name: '门店测试/正品仓库', pId: '001001015', sid: 774, type: '正品',
-//     }, {
-//       id: '00100101502', name: '门店测试/赠品仓库', pId: '001001015', sid: 775, type: '赠品',
-//     }, {
-//       id: '00100101503', name: '门店测试/物料仓库', pId: '001001015', sid: 776, type: '物料',
-//     }, {
-//       id: '00100101504', name: '门店测试/试用装仓库', pId: '001001015', sid: 777, type: '试用装',
-//     }, {
-//       id: '00100101505', name: '门店测试/促销产品仓库', pId: '001001015', sid: 778, type: '促销产品',
-//     }, {
-//       id: '00100101506', name: '门店测试/不良品仓库', pId: '001001015', sid: 779, type: '不良品',
-//     }, {
-//       id: '00100101507', name: '门店测试/福利仓库', pId: '001001015', sid: 780, type: '福利',
-//     }, {
-//       id: '00100101508', name: '门店测试/积分换礼仓库', pId: '001001015', sid: 781, type: '积分换礼',
-//     }, {
-//       id: '001001016', name: '测试2', pId: '0010010', sid: 782, type: '',
-//     }, {
-//       id: '00100101601', name: '测试2/正品仓库', pId: '001001016', sid: 783, type: '正品',
-//     }, {
-//       id: '00100101602', name: '测试2/赠品仓库', pId: '001001016', sid: 784, type: '赠品',
-//     }, {
-//       id: '00100101603', name: '测试2/物料仓库', pId: '001001016', sid: 785, type: '物料',
-//     }, {
-//       id: '00100101604', name: '测试2/试用装仓库', pId: '001001016', sid: 786, type: '试用装',
-//     }, {
-//       id: '00100101605', name: '测试2/促销产品仓库', pId: '001001016', sid: 787, type: '促销产品',
-//     }, {
-//       id: '00100101606', name: '测试2/不良品仓库', pId: '001001016', sid: 788, type: '不良品',
-//     }, {
-//       id: '00100101607', name: '测试2/福利仓库', pId: '001001016', sid: 789, type: '福利',
-//     }, {
-//       id: '00100101608', name: '测试2/积分换礼仓库', pId: '001001016', sid: 790, type: '积分换礼',
-//     }, {
-//       id: '001001017', name: '测试3', pId: '0010010', sid: 791, type: '',
-//     }, {
-//       id: '00100101701', name: '3测试/正品仓库', pId: '001001017', sid: 792, type: '正品',
-//     }, {
-//       id: '00100101702', name: '3测试/赠品仓库', pId: '001001017', sid: 793, type: '赠品',
-//     }, {
-//       id: '00100101703', name: '3测试/物料仓库', pId: '001001017', sid: 794, type: '物料',
-//     }, {
-//       id: '00100101704', name: '3测试/试用装仓库', pId: '001001017', sid: 795, type: '试用装',
-//     }, {
-//       id: '00100101705', name: '3测试/促销产品仓库', pId: '001001017', sid: 796, type: '促销产品',
-//     }, {
-//       id: '00100101706', name: '3测试/不良品仓库', pId: '001001017', sid: 797, type: '不良品',
-//     }, {
-//       id: '00100101707', name: '3测试/福利仓库', pId: '001001017', sid: 798, type: '福利',
-//     }, {
-//       id: '00100101708', name: '3测试/积分换礼仓库', pId: '001001017', sid: 799, type: '积分换礼',
-//     }, {
-//       id: '001001018', name: '测试456', pId: '0010010', sid: 800, type: '',
-//     }, {
-//       id: '00100101801', name: '测试456/正品仓库', pId: '001001018', sid: 801, type: '正品',
-//     }, {
-//       id: '00100101802', name: '测试456/赠品仓库', pId: '001001018', sid: 802, type: '赠品',
-//     }, {
-//       id: '00100101803', name: '测试456/物料仓库', pId: '001001018', sid: 803, type: '物料',
-//     }, {
-//       id: '00100101804', name: '测试456/试用装仓库', pId: '001001018', sid: 804, type: '试用装',
-//     }, {
-//       id: '00100101805', name: '测试456/促销产品仓库', pId: '001001018', sid: 805, type: '促销产品',
-//     }, {
-//       id: '00100101806', name: '测试456/不良品仓库', pId: '001001018', sid: 806, type: '不良品',
-//     }, {
-//       id: '00100101807', name: '测试456/福利仓库', pId: '001001018', sid: 807, type: '福利',
-//     }, {
-//       id: '00100101808', name: '测试456/积分换礼仓库', pId: '001001018', sid: 808, type: '积分换礼',
-//     }],
-//   next: doms => console.log(doms),
-// });
+// package
+// import 'vconsole/dist/vconsole.min.js'
+// import '../assets/vconsole.js'
+// var VConsole = require('vconsole/dist/vconsole.min.js');
+// var vConsole = new VConsole();
 
-window.Component.pc.treeTable({
-  ifselect: true,
-  beforeSelect: ['法塞特银川商贸有限公司', '宁夏一带一路供应链股份有限公司'],
-  select_model: 'checkbox',
-  data: {
-    title: [{
-      id: 'A00001', name: 'Adopt香水', pId: 'A00', sid: 27, code: 'A00001', brand_id: 0
-    }, {
-      id: 'A00', name: '香水', pId: '', sid: 256, code: 'A00', brand_id: 0
-    }, {
-      id: 'B00', name: '森海之谜（海绵皂）', pId: '', sid: 257, code: 'B00', brand_id: 18, brand_name: '海绵'
-    }, {
-      id: 'C00', name: '火山石', pId: '', sid: 258, code: 'C00', brand_id: 0
-    }, {
-      id: 'D00', name: '饰品', pId: '', sid: 259, code: 'D00', brand_id: 0
-    }, {
-      id: 'E00', name: '物料', pId: '', sid: 260, code: 'E00', brand_id: 0
-    }, {
-      id: 'B00001', name: '盒装花型系列', pId: 'B00', sid: 262, code: 'B00001', brand_id: 0
-    }, {
-      id: 'B00002', name: '田园野花系列', pId: 'B00', sid: 263, code: 'B00002', brand_id: 0
-    }, {
-      id: 'B00003', name: '极身乳液系列', pId: 'B00', sid: 264, code: 'B00003', brand_id: 0
-    }, {
-      id: 'B00004', name: '旅行系列', pId: 'B00', sid: 265, code: 'B00004', brand_id: 0
-    }, {
-      id: 'B00005', name: '两只盒装系列', pId: 'B00', sid: 266, code: 'B00005', brand_id: 0
-    }, {
-      id: 'B00006', name: '身体护理系列', pId: 'B00', sid: 267, code: 'B00006', brand_id: 0
-    }, {
-      id: 'B00007', name: '男士系列', pId: 'B00', sid: 268, code: 'B00007', brand_id: 0
-    }, {
-      id: 'B00008', name: '生命源泉系列', pId: 'B00', sid: 269, code: 'B00008', brand_id: 0
-    }, {
-      id: 'B00009', name: '闪耀系列', pId: 'B00', sid: 270, code: 'B00009', brand_id: 0
-    }, {
-      id: 'B00010', name: '童趣小动物系列', pId: 'B00', sid: 271, code: 'B00010', brand_id: 0
-    }, {
-      id: 'B00011', name: '节日系列', pId: 'B00', sid: 272, code: 'B00011', brand_id: 0
-    }, {
-      id: 'B00012', name: '有机环保系列', pId: 'B00', sid: 273, code: 'B00012', brand_id: 0
-    }, {
-      id: 'E00001', name: '香水物料', pId: 'E00', sid: 327, code: 'E00001', brand_id: 0
-    }, {
-      id: 'A00002', name: '100ML香水', pId: 'A00', sid: 328, code: 'A00002', brand_id: 0
-    }, {
-      id: 'E00002', name: '火山石物料', pId: 'E00', sid: 329, code: 'E00002', brand_id: 0
-    }, {
-      id: 'E00003', name: '饰品物料', pId: 'E00', sid: 330, code: 'E00003', brand_id: 0
-    }],
-    content: [{
-      id: 143, goods_name: '1233--诱惑(白麝香)-White musk123', goods_code: '001', goods_short_name: '001', brand_id: 14, brand_name: 'adopt香水', td_code: '376003123698056123', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/dff4f66269a345c7a3e21f4292145746.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 26, grade_name: '一级', mold_id: 24, mold_name: '货品', price_type: '折扣定价', name: '1233--诱惑(白麝香)-White musk123'
-    }, {
-      id: 144, goods_name: '海之凉(利古里亚之水)-Aqua liguria', goods_code: '002', goods_short_name: '002', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005378', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/9b1be2ea1cbc45bebc4f3530f3b1ab76.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '海之凉(利古里亚之水)-Aqua liguria'
-    }, {
-      id: 145, goods_name: '执手一生(木棉花)-Cotton flower', goods_code: '003', goods_short_name: '003', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005385', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/0101dee777ce4fa1a77fcd7b65300772.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '执手一生(木棉花)-Cotton flower'
-    }, {
-      id: 146, goods_name: '刚刚好(桃子凤梨雪松)-Peach Pineapple Cedar', goods_code: '004', goods_short_name: '004', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002551', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '水果香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/c7f9d8aaf581411cb27a8ca9d2a01402.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '刚刚好(桃子凤梨雪松)-Peach Pineapple Cedar'
-    }, {
-      id: 147, goods_name: '喜欢你(玫瑰蜜)-Nectar of rose', goods_code: '005', goods_short_name: '005', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719003343', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/e13f0bd7b762403b915c36f650e4b56f.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '喜欢你(玫瑰蜜)-Nectar of rose'
-    }, {
-      id: 148, goods_name: '盛宴(牡丹花)-Peony flower', goods_code: '006', goods_short_name: '006', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719000595', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/2e79a98937c046068a8a1532ffb5fcb7.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '盛宴(牡丹花)-Peony flower'
-    }, {
-      id: 149, goods_name: '初之蜜吻(我的小玫瑰)-My little rose', goods_code: '007', goods_short_name: '007', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719000021', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/4fa58a0c52ff4284ae9b09a0cca04fef.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '初之蜜吻(我的小玫瑰)-My little rose'
-    }, {
-      id: 150, goods_name: '魅之尊(波光涟漪)-Silver water', goods_code: '008', goods_short_name: '008', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002889', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/faec7e8e50824c0fbc82fa11f81b6056.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '魅之尊(波光涟漪)-Silver water'
-    }, {
-      id: 151, goods_name: '午后时光(西柚石榴)-Grapefruit Pomegranate', goods_code: '009', goods_short_name: '009', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002520', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '水果香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', detail: '<p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">原标题：华中农业大学最新科研成果&quot;验汗&quot;可能取代验血</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">今后，验汗可能取代查血验尿，成为诊断疾病的新方式。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">11月5日，华中农业大学刘正飞教授展示了团队的最新科研成果：首次成功分离汗液外泌体并解析其蛋白表达谱。该研究成果在国际权威学术期刊《皮肤学研究》发表，为皮肤免疫功能和皮肤疾病生物标志物的鉴定提供了理论基础。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">外泌体是广泛存在于唾液、血液、尿液等体液中的微小生物颗粒。1983年首次被发现时，仅认为是细胞排泄废物的一种形式。如今，不断发展的科研成果表明，外泌体可参与到机体免疫应答、抗原提呈、细胞迁移及分化、肿瘤侵袭等方方面面，健康状态信息可以从中检测出来。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">人体汗液外泌体，多年来因分离鉴定极为困难，其存在证据一直没有被攻克。刘正飞课题组研究建立了一套无细胞碎片、细菌和油脂污染的汗液外泌体分离方法，并通过进一步质谱分析表明，汗液外泌体含有1062种蛋白质，其中896种不同于血液、尿液和唾液外泌体的蛋白标记物。同时，多种抗菌肽、免疫相关因子也在汗液外泌体中高丰度表达。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">该研究提供了直接的汗液外泌体存在证据，为汗液潜在的生理生化特性、皮肤免疫系统抵御外界病原体侵害研究和生物标记物开发奠定了理论基础。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">目前，刘正飞团队正与医院合作开展临床研究运用，让“验汗断病”早日成为现实。<span class="ifengLogo"><a href="http://www.ifeng.com/" target="_blank" style="text-decoration-line: none; color: rgb(0, 66, 118); font-weight: bold;"><img src="http://p2.ifengimg.com/a/2016/0810/204c433878d5cf9size1_w16_h16.png"/></a></span></p><p><img src="http://y2.ifengimg.com/ifengimcp/pic/20150902/3677f2773fd79f12b079_size1_w35_h15.png"/></p><p><img src="http://p1.ifengimg.com/a/2017/0405/46c1a30fa15dcf3size20_w160_h214.jpg"/></p><p><img src="http://p3.ifengimg.com/a/2017/0822/ef1f8f1ad492125size20_w160_h214.jpg"/></p><p><a target="_blank" href="http://ids1.deliver.ifeng.com/ids/mnt/cli?args=zJYOh_xIl6_X2kubJYPv-_9d1JkGdVoq_4xnS4X9U9CByKeL5RlHzsCVvidI-7N7C-AVrWP-8wgC12-KWY9HcqMbQRqsVmGwDP_l7O8Y3MBok5jLUL7Dj15fkALLLEa9dAaL0An8zZXOFwQVRNZptNIepLHbxUhkIkpY_sOuBo8kD8UTaQO0pYTxSQhyvY7d8t4JMB3imnMrAFTGCyUVn1hARR_PlPJnFK1sfTKOdwTnjWInxZX3K1-7yNMRifWzHUUH5F9t0lDsskW7XZ0qPLqpjWJfclSxc8C1IwB56NghD11w1TIxt3uKbueRfGVV-P1P9X4ttd2eGy-xCVaASUEveoG3phG9fz-CwJpfhKIaVIVrIxb3GiC6HTmHSZsFI2PzUZcEVHgIqp0CAKfg2rnx-Z-ifADNkWCCZdU8PtfHlsi_JkaCzXRMo66EHYwE_Ma8nR6okyksgYtiALME2cZWa1UxqAvqTdTQTAf3cmhpwjPlCbeLVILFGXhj1grViEUE1e7lTdEgWHGHjyZKMw&jmp=l86dcyuV-ym1Ebfx-OVX3dXMuqJx-uZLLbDUcOcOl3AdCEjndF8qm1-98qdVFViY" style="text-decoration-line: none; color: rgb(0, 66, 118); line-height: 24px;"><img src="http://y0.ifengimg.com/34c4a1d78882290c/2012/0528/1x1.gif"/></a></p><p class="iphone_none" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; float: left; width: 322px;"><br/></p><p>推荐7</p><p><img src="http://h2.ifengimg.com/0f56ee67a4c375c2/2013/1106/indeccode.png" class="js_wx_qrcod"/></p><p style="margin-top: 0px; margin-bottom: 0px; padding: 12px 0px 0px; float: left; width: auto; color: rgb(102, 102, 102); line-height: 24px;"><br/></p><p><a class="bds_tsina js_content_share_btn" style="float: left; display: block; width: 40px; height: 30px; margin: 0px 0px 0px 10px; padding: 0px; background:url(&quot;http://p0.ifengimg.com/fe/zx2/images/share_e5555840.jpg&quot;) 0px 0px no-repeat;"></a><a class="bds_qzone js_content_share_btn" style="float: left; display: block; width: 40px; height: 30px; margin: 0px 0px 0px 10px; padding: 0px; background:url(&quot;http://p0.ifengimg.com/fe/zx2/images/share_e5555840.jpg&quot;) 0px -32px no-repeat;"></a><a class="bds_twx js_content_share_btn iphone_none" style="float: left; display: block; width: 40px; height: 30px; margin: 0px 0px 0px 10px; padding: 0px; background:url(&quot;http://p0.ifengimg.com/fe/zx2/images/share_e5555840.jpg&quot;) 0px -66px no-repeat;"></a></p><p><span class="w-rightBox" style="float: right;"><span class="w-com"><a href="http://gentie.ifeng.com/view.html?docUrl=sub_36131028&docName=%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E5%AE%B6%E6%9C%80%E6%96%B0%E6%88%90%E6%9E%9C%EF%BC%9A%E9%AA%8C%E6%B1%97%E8%AF%8A%E6%96%AD%E7%96%BE%E7%97%85%E6%88%96%E5%8F%96%E4%BB%A3%E6%9F%A5%E8%A1%80%E9%AA%8C%E5%B0%BF&skey=465936&speUrl=&pcUrl=http%3A%2F%2Fnews.ifeng.com%2Fa%2F20171107%2F53039034_0.shtml" target="_blank" style="text-decoration-line: none; color: rgb(245, 67, 67);"><span class="w-num" style="font-stretch: normal; font-size: 18px; line-height: normal; font-family: georgia;">9</span></a>&nbsp;<span class="w-txt" style="font-size: 12px; color: rgb(153, 153, 153);">条评论</span>&nbsp;</span><span class="w-line" style="color: rgb(153, 153, 153); padding: 0px 8px;">/</span>&nbsp;<span class="w-reply"><a href="http://gentie.ifeng.com/view.html?docUrl=sub_36131028&docName=%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E5%AE%B6%E6%9C%80%E6%96%B0%E6%88%90%E6%9E%9C%EF%BC%9A%E9%AA%8C%E6%B1%97%E8%AF%8A%E6%96%AD%E7%96%BE%E7%97%85%E6%88%96%E5%8F%96%E4%BB%A3%E6%9F%A5%E8%A1%80%E9%AA%8C%E5%B0%BF&skey=465936&speUrl=&pcUrl=http%3A%2F%2Fnews.ifeng.com%2Fa%2F20171107%2F53039034_0.shtml" target="_blank" style="text-decoration-line: none; color: rgb(245, 67, 67);"><span class="w-num" style="font-stretch: normal; font-size: 18px; line-height: normal; font-family: georgia;">19</span></a>&nbsp;<span class="w-txt" style="font-size: 12px; color: rgb(153, 153, 153);">人参与</span></span></span><span class="w-tips" style="font-size: 12px; color: rgb(153, 153, 153);">网友评论</span><span class="w-tips phoneNone" style="font-size: 12px; color: rgb(153, 153, 153);">｜</span><a href="http://comment.ifeng.com/content/gongyue/gtgl.html" target="_blank" class="w-tips phoneNone" style="text-decoration-line: none; color: rgb(153, 153, 153); font-size: 12px;">跟帖管理</a><span class="w-tips" style="font-size: 12px; color: rgb(153, 153, 153);">｜</span><a href="http://news.ifeng.com/ask/index.shtml" target="_blank" class="w-tips" style="text-decoration-line: none; color: rgb(153, 153, 153); font-size: 12px;">举报</a></p><p><span class="w-arr"></span></p><p><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-submitBtn js_cmtSubmit" style="text-decoration-line: none; color: rgb(255, 255, 255); display: block; float: right; width: 120px; height: 40px; background: rgb(245, 67, 67); text-align: center; font-stretch: normal; font-size: 18px; line-height: 40px; font-family: &quot;microsoft yahei&quot;;">发表评论</a></p><p><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-face-trigger js_faceMore" style="text-decoration-line: none; color: rgb(0, 66, 118); display: inline-block; position: relative; margin-left: 7px; width: 50px; height: 30px; float: left; line-height: 30px; vertical-align: middle; cursor: pointer;"><img src="http://y0.ifengimg.com/a/2015/1130/face_1.png" title="微笑" alt="微笑"/><span class="icon-faceTrigArr" style="display: inline-block; width: 7px; height: 4px; margin-bottom: 2px; overflow: hidden; background:url(&quot;http://y0.ifengimg.com/fe/F_comment_new/images/face-TriggerArr_b9713c54.gif&quot;) 0px -4px no-repeat;"></span></a></p><p><a class="w-name" style="color: rgb(0, 0, 0);">一键登录：&nbsp;</a><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="js_ifeng_account" style="text-decoration-line: none; color: rgb(153, 153, 153);">凤凰帐号</a><span class="w-line" style="color: rgb(153, 153, 153); padding: 0px 2px;">/</span><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="js_sina_account" style="text-decoration-line: none; color: rgb(153, 153, 153);">新浪微博</a></p><p>最热评论</p><p class="w-username" style="margin-top: 0px; margin-bottom: 17px; padding: 0px; color: rgb(153, 153, 153);"><a href="http://comment.ifeng.com/viewpersonal.php?uname=%E6%85%A7%E7%9C%BC%E4%B8%80%E6%89%AB&guid=74390991" target="_blank" style="text-decoration-line: none; color: rgb(0, 66, 118);">慧眼一扫</a>&nbsp;<span class="w-location">[江苏省无锡市网友]</span></p><p class="w-contentTxt" style="margin-top: 0px; margin-bottom: 15px; padding: 0px; line-height: 1.4em; word-wrap: break-word; word-break: break-all;">祝贺刘正飞团队！希望早日投入临床应用！</p><p><span class="w-reply" style="float: right; line-height: 14px;"><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-rep-rec js_recm" style="text-decoration-line: none; color: rgb(0, 0, 0);">推荐<span class="w-rep-num" style="padding-left: 8px; font-stretch: normal; font-size: 16px; line-height: normal; font-family: georgia; color: rgb(245, 67, 67);">37</span></a>&nbsp;<span class="w-rep-line" style="display: inline-block; padding: 0px 8px; color: rgb(194, 194, 194);">/</span>&nbsp;<a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-rep-reply js_reply" style="text-decoration-line: none; color: rgb(0, 0, 0);">回复</a>&nbsp;<span class="w-rep-line" style="display: inline-block; padding: 0px 8px; color: rgb(194, 194, 194);">/</span>&nbsp;<a class="w-report js_report" href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" style="text-decoration-line: none; color: rgb(0, 0, 0);">举报</a></span><span class="w-commentTime" style="color: rgb(153, 153, 153); padding-top: 4px;">2017-11-07 15:29</span></p><p class="w-username" style="margin-top: 0px; margin-bottom: 17px; padding: 0px; color: rgb(153, 153, 153);"><a href="http://comment.ifeng.com/viewpersonal.php?uname=FYK441&guid=9319760" target="_blank" style="text-decoration-line: none; color: rgb(0, 66, 118);">FYK441</a>&nbsp;<span class="w-location">[广东省广州市网友]</span></p><p><span class="w-order" style="position: absolute; top: 20px; right: 10px;">1</span></p><p class="w-username" style="margin-top: 0px; margin-bottom: 17px; padding: 0px 42px 0px 12px; color: rgb(153, 153, 153); word-break: break-all;"><a href="http://comment.ifeng.com/viewpersonal.php?uname=HXY589238&guid=30911468" target="_blank" style="text-decoration-line: none; color: rgb(0, 66, 118);">HXY589238</a>&nbsp;<span class="w-location">[重庆市网友]</span></p><p class="w-contentTxt" style="margin-top: 0px; margin-bottom: 15px; padding: 0px 42px 0px 12px; line-height: 1.4em; word-wrap: break-word; word-break: break-all;">通过验屁的成分准确率更高！</p><p><span class="w-commentTime" style="color: rgb(153, 153, 153); padding-top: 4px;">2017-11-07 15:08</span></p><p class="w-contentTxt" style="margin-top: 0px; margin-bottom: 15px; padding: 0px; line-height: 1.4em; word-wrap: break-word; word-break: break-all;">你的研究？</p><p><span class="w-reply" style="float: right; line-height: 14px;"><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-rep-rec js_recm" style="text-decoration-line: none; color: rgb(0, 0, 0);">推荐<span class="w-rep-num" style="padding-left: 8px; font-stretch: normal; font-size: 16px; line-height: normal; font-family: georgia; color: rgb(245, 67, 67);">13</span></a>&nbsp;<span class="w-rep-line" style="display: inline-block; padding: 0px 8px; color: rgb(194, 194, 194);">/</span>&nbsp;<a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-rep-reply js_reply" style="text-decoration-line: none; color: rgb(0, 0, 0);">回复</a>&nbsp;<span class="w-rep-line" style="display: inline-block; padding: 0px 8px; color: rgb(194, 194, 194);">/</span>&nbsp;<a class="w-report js_report" href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" style="text-decoration-line: none; color: rgb(0, 0, 0);">举报</a></span><span class="w-commentTime" style="color: rgb(153, 153, 153); padding-top: 4px;">2017-11-07 15:30</span></p><p><a style="color: rgb(0, 66, 118); width: 35px; height: 15px; overflow: hidden; position: absolute; left: 0px; bottom: 0px; z-index: 2; background:url(&quot;http://y2.ifengimg.com/ifengimcp/pic/20150902/3677f2773fd79f12b079_size1_w35_h15.png&quot;) no-repeat;"></a><a target="_blank" href="http://ids1.deliver.ifeng.com/ids/mnt/cli?args=EYPHVwOfisD6vEJFJlRTYoBdPK8a_3UynSlMob46C28NojM1ojeqeA764WXOsfA-bsvREyvhkf6njOZBqr-RaOkb0tblhmT3lwj2zUTkeRuqnmpMgG-WAsSSs00giLTNMZsQkKtBbFLa6EuvRkBR94CHlUA-nU9j9EgElpYIlc2pc75I3BJjlyMmLLzqPO_b8t4JMB3imnMrAFTGCyUVn1hARR_PlPJnFK1sfTKOdwQKDDN2ctv2hDZtcvCd0qgA3Sag5RAETUG55H5yWAixiEbUej8IXBExPRfKiSo6pLsiGjff17-g9v3GGIvMgz8k-P1P9X4ttd2eGy-xCVaASUEveoG3phG9fz-CwJpfhKIaVIVrIxb3GiC6HTmHSZsFSlByieaeEVIT_aBO8C-T-Gb9p17qEFoD_x6WfKSJTUuRzdWU75mtf2zy4pCxYkOXxE43B8JRmgIznG6brx-sLlOg1u3M17WGvjfKYf0rINnEYr0uI-oHxg7G0RKkIUL9GmxTo45wPl0cesyFJiGoxG9Fm9PqFzVC5Q8nK3NG5gTfCde3uEoV_5XdfZ64DgfI&jmp=3rg97TyFDY06UN8B0hAISImlqeXUqRz8RD0CXqBf-8HI24rPCWPchaoCDE5ewLAZSU6phnDDWfMNVZ2EN0g0XNgwc5b0vdUzpzrBt3BCQg8" style="text-decoration-line: none; color: rgb(0, 66, 118);"><img src="http://c1.ifengimg.com/feather/images/6690/2017/55/07/1510019749278.jpg"/></a></p><p><img src="http://y2.ifengimg.com/ifengimcp/pic/20150902/3677f2773fd79f12b079_size1_w35_h15.png"/></p><p><a style="color: rgb(0, 66, 118); width: 35px; height: 15px; overflow: hidden; position: absolute; left: 0px; bottom: 0px; z-index: 2; background:url(&quot;http://y2.ifengimg.com/ifengimcp/pic/20150902/3677f2773fd79f12b079_size1_w35_h15.png&quot;) no-repeat;"></a><a target="_blank" href="http://ids1.deliver.ifeng.com/ids/mnt/cli?args=BFQdxzsAcbBvtDPu5uRfFKf9toTb0a2slM14lgJKt_d1E3OoZZaFQ7uvGuxPExryVL-wNh0-DO5-gswZrscmgkKyAnHuHMh7foX2D4h-OBXa9iRuJF-igpLsuI31tcksC6H41Q_uzs8YlA3Qw0Xz_eQ1oXiyqBICiUvU0-CsCkbNKb23YTzSKRy8H_5ddAJ68t4JMB3imnMrAFTGCyUVn1hARR_PlPJnFK1sfTKOdwSC-cZyQLYdjtagr1Q54Pw29_nfAtz9JaSe8MTCS8k3PiL4JamV2uOhYXhOXs7HXQAiGjff17-g9v3GGIvMgz8k-P1P9X4ttd2eGy-xCVaASUEveoG3phG9fz-CwJpfhKIaVIVrIxb3GiC6HTmHSZsFI-2HW_IYsJCWmsXdSzBn3_YDyzlLWpEQxncEGDGlXc-D_akHCgoIsUE04qKvpY6a5BI-0sBga_2N_8RaPwL6PPHxlpi4Wn0JxHmCvDi6hY_RTWPg-HlGb4IBYb9rmL3vPvC3_QNfF2u3LDKOwi_JpA&jmp=nmdsyPw_eq5jukMrtGS0Q8kXmlElyIyainB6n3Jzur9DUeqCkpk73lbAjVf0eqEwUUNzwI9AF-Po8bFQjNg0EA" style="color: rgb(186, 38, 54);"><img src="http://c1.ifengimg.com/feather/images/5793/2017/03/03/1509696216300.jpg"/></a></p><p><br/></p>', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/96321eb2cb7e425380a8eb09f7ef041c.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '午后时光(西柚石榴)-Grapefruit Pomegranate'
-    }, {
-      id: 152, goods_name: '狂野之夜(麝香玫瑰)-Musk of rose', goods_code: '010', goods_short_name: '010', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002261', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/7ec42ae85b9747c5863985cb467f23be.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '狂野之夜(麝香玫瑰)-Musk of rose'
-    }, {
-      id: 163, goods_name: '人鱼假日(美人鱼与海)-Oceans and Seas', goods_code: '011', goods_short_name: '011', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005392', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/30fbf9db5002461cbffd3c9563d769e9.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '人鱼假日(美人鱼与海)-Oceans and Seas'
-    }, {
-      id: 164, goods_name: '永恒(姜花白蝴蝶)-Ginger flower', goods_code: '012', goods_short_name: '012', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719009956', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/bd6b2ff96ac845ec822b57b6b0b5e05e.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '永恒(姜花白蝴蝶)-Ginger flower'
-    }, {
-      id: 165, goods_name: '内萝拉(橙花之恋)-Neroli', goods_code: '013', goods_short_name: '013', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005859', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/678bd458c6364604ab1ed363c93ed9a5.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '内萝拉(橙花之恋)-Neroli'
-    }, {
-      id: 166, goods_name: '香忆(茉莉依兰含羞草)-Jasmine Ylang Mimosa', goods_code: '014', goods_short_name: '014', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719000441', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/884e9a294cd54c838389770ead9d41cc.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '香忆(茉莉依兰含羞草)-Jasmine Ylang Mimosa'
-    }, {
-      id: 167, goods_name: '青春乐章(花漾女孩)-Flower girl', goods_code: '015', goods_short_name: '015', brand_id: 14, brand_name: 'adopt香水', td_code: '3760031230063', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-18/30516/4805e595546f4d91b12e523cebf0012c.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '青春乐章(花漾女孩)-Flower girl'
-    }, {
-      id: 168, goods_name: '人间伊甸园(大溪地鸢尾花)-Tiara flower', goods_code: '016', goods_short_name: '016', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719006139', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/121be38ad65642e1b790f8b33f748c8f.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '人间伊甸园(大溪地鸢尾花)-Tiara flower'
-    }, {
-      id: 169, goods_name: '夏日灵动(春之绿茶)-Green tea', goods_code: '017', goods_short_name: '017', brand_id: 14, brand_name: 'adopt香水', td_code: '3760031230094', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/1b3986a6f9a046e794d330dab76ceba8.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '夏日灵动(春之绿茶)-Green tea'
-    }, {
-      id: 170, goods_name: '绽放(樱花绽放)-Cherry blossom', goods_code: '018', goods_short_name: '018', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002377', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2018-01-15/30516/a01e6c36e3ee451da824ce4795a90e2b.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '绽放(樱花绽放)-Cherry blossom'
-    }, {
-      id: 171, goods_name: '漫步巴黎(香草依兰)-Vanilla Ylang Ylang', goods_code: '019', goods_short_name: '019', brand_id: 14, brand_name: 'adopt香水', td_code: '3760031235914', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-18/30516/ec53cb66032a4551aa1d416b938ec70b.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '漫步巴黎(香草依兰)-Vanilla Ylang Ylang'
-    }, {
-      id: 172, goods_name: '娇小姐(紫罗兰树莓)-Violet Raspberry', goods_code: '020', goods_short_name: '020', brand_id: 14, brand_name: 'adopt香水', td_code: '3760031230025', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/2a70d2a939564ff09787896873c114ca.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '娇小姐(紫罗兰树莓)-Violet Raspberry'
-    }, {
-      id: 173, goods_name: '魅舞(佛手柑茉莉)-Bergamot Jasmine ', goods_code: '021', goods_short_name: '021', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719010587', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/ac1175369c1e465e958aed2eb6c0041a.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '魅舞(佛手柑茉莉)-Bergamot Jasmine '
-    }, {
-      id: 174, goods_name: '名媛(窈窕淑女)-Lady Glitter', goods_code: '022', goods_short_name: '022', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719010334', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 129.00, prime_cost: 129.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-18/30516/847e69fa24e74f099d0c4916ddc30b8a.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '名媛(窈窕淑女)-Lady Glitter'
-    }, {
-      id: 175, goods_name: '淡香(桂馥兰香)-Osmanthus Flower ', goods_code: '023', goods_short_name: '023', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005323', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/d2e92e99279d4ee49c62fdd02fd6c8c5.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '淡香(桂馥兰香)-Osmanthus Flower '
-    }, {
-      id: 176, goods_name: '电光幻影(摇滚女王)-Miss rock', goods_code: '024', goods_short_name: '024', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719009734', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-18/30516/431dbf4bed9340f3b1af9efdea1c7457.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '电光幻影(摇滚女王)-Miss rock'
-    }, {
-      id: 177, goods_name: '海洛因之吻(甜吻)-Sweet kiss', goods_code: '025', goods_short_name: '025', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719010020', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-11/30516/ddac8f91039f461e822e2cb088a56e10.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '海洛因之吻(甜吻)-Sweet kiss'
-    }]
-  },
+
+window.Component.pc.tree({
+  // ifselect: false,是否加载之前选好的，默认true
+  beforeSelect: ['法塞特家族酒庄品鉴酒仓库', '法塞特家族酒庄配件仓库'], // 之前选好的内容
+  select_model: 'checkbox', // 多选
+  // select_model: 'radio', // 单选
+  data: [{
+    id: '01', name: '圣路易·丁酒庄', pId: '', sid: 499, type: ''
+  }, {
+    id: '0101', name: '圣路易·丁酒庄/酒庄（原酒）', pId: '01', sid: 500, type: '半成品'
+  }, {
+    id: '0102', name: '圣路易·丁酒庄/酒庄（成品）', pId: '01', sid: 501, type: '正品'
+  }, {
+    id: '0103', name: '圣路易·丁酒庄/酒庄（半成品）', pId: '01', sid: 502, type: '半成品'
+  }, {
+    id: '0104', name: '圣路易·丁酒庄/酒庄（配件）', pId: '01', sid: 503, type: '物料'
+  }, {
+    id: '0105', name: '圣路易·丁酒庄/酒庄（辅料）', pId: '01', sid: 504, type: '半成品'
+  }, {
+    id: '0106', name: '圣路易·丁酒庄/酒庄（包材）', pId: '01', sid: 505, type: '物料'
+  }, {
+    id: '02', name: '老酒庄', pId: '', sid: 506, type: ''
+  }, {
+    id: '0201', name: '老酒庄/老酒庄（原酒）', pId: '02', sid: 507, type: '半成品'
+  }, {
+    id: '0202', name: '老酒庄/老酒庄（成品）', pId: '02', sid: 508, type: '正品'
+  }, {
+    id: '0203', name: '老酒庄/老酒庄（半成品）', pId: '02', sid: 509, type: '半成品'
+  }, {
+    id: '0204', name: '老酒庄/老酒庄（配件）', pId: '02', sid: 510, type: '物料'
+  }, {
+    id: '0205', name: '老酒庄/老酒庄（辅料）', pId: '02', sid: 511, type: '物料'
+  }, {
+    id: '0206', name: '老酒庄/老酒庄（包材）', pId: '02', sid: 512, type: '物料'
+  }, {
+    id: '03', name: '781山洞', pId: '', sid: 513, type: ''
+  }, {
+    id: '0301', name: '781山洞/山洞（原酒）', pId: '03', sid: 514, type: '半成品'
+  }, {
+    id: '0302', name: '781山洞/山洞（成品）', pId: '03', sid: 515, type: '正品'
+  }, {
+    id: '0303', name: '781山洞/山洞（半成品）', pId: '03', sid: 516, type: '半成品'
+  }, {
+    id: '0304', name: '781山洞/山洞（配件）', pId: '03', sid: 517, type: '正品'
+  }, {
+    id: '0305', name: '781山洞/山洞（辅料）', pId: '03', sid: 518, type: '物料'
+  }, {
+    id: '0306', name: '781山洞/山洞（包材）', pId: '03', sid: 519, type: '物料'
+  }, {
+    id: '04', name: '银川商贸仓库', pId: '', sid: 520, type: '正品'
+  }, {
+    id: '0401', name: '银川商贸（原酒）', pId: '04', sid: 521, type: '正品'
+  }, {
+    id: '0402', name: '银川商贸（成品）', pId: '04', sid: 522, type: '赠品'
+  }, {
+    id: '0403', name: '银川商贸（半成品）', pId: '04', sid: 523, type: '半成品'
+  }, {
+    id: '0404', name: '银川商贸（物料）', pId: '04', sid: 524, type: '物料'
+  }, {
+    id: '0405', name: '银川商贸（配件）', pId: '04', sid: 525, type: '物料'
+  }, {
+    id: '0406', name: '银川商贸（包材）', pId: '04', sid: 526, type: '物料'
+  }, {
+    id: '05', name: '法塞特家族酒庄仓库', pId: '', sid: 527, type: ''
+  }, {
+    id: '0501', name: '法塞特家族酒庄正品仓库', pId: '05', sid: 528, type: '正品'
+  }, {
+    id: '0502', name: '法塞特家族酒庄业务用酒仓库', pId: '05', sid: 529, type: '赠品'
+  }, {
+    id: '0503', name: '法塞特家族酒庄品鉴酒仓库', pId: '05', sid: 530, type: '试用装'
+  }, {
+    id: '0504', name: '法塞特家族酒庄物料仓库', pId: '05', sid: 531, type: '物料'
+  }, {
+    id: '0505', name: '法塞特家族酒庄配件仓库', pId: '05', sid: 532, type: '配件'
+  }, {
+    id: '0506', name: '法塞特家族酒庄包材仓库', pId: '05', sid: 533, type: '包材'
+  }, {
+    id: '06', name: '法塞特（浙江）仓库', pId: '', sid: 534, type: ''
+  }, {
+    id: '0601', name: '法塞特（浙江）正品仓库', pId: '06', sid: 535, type: '正品'
+  }, {
+    id: '0602', name: '法塞特（浙江）赠品仓库', pId: '06', sid: 536, type: '赠品'
+  }, {
+    id: '0603', name: '法塞特（浙江）试用装仓库', pId: '06', sid: 537, type: '试用装'
+  }, {
+    id: '0604', name: '法塞特（浙江）物料仓库', pId: '06', sid: 538, type: '物料'
+  }, {
+    id: '0605', name: '法塞特（浙江）配件仓库', pId: '06', sid: 539, type: '配件'
+  }, {
+    id: '0606', name: '法塞特（浙江）包材仓库', pId: '06', sid: 540, type: '包材'
+  }, {
+    id: '07', name: '法塞特（福建）仓库', pId: '', sid: 542, type: ''
+  }, {
+    id: '0701', name: '法塞特（福建）正品仓库', pId: '07', sid: 543, type: '正品'
+  }, {
+    id: '0702', name: '法塞特（福建）赠品仓库', pId: '07', sid: 544, type: '赠品'
+  }, {
+    id: '0703', name: '法塞特（福建）试用装仓库', pId: '07', sid: 545, type: '试用装'
+  }, {
+    id: '0704', name: '法塞特（福建）物料仓库', pId: '07', sid: 546, type: '物料'
+  }, {
+    id: '0705', name: '法塞特（福建）配件仓库', pId: '07', sid: 547, type: '配件'
+  }, {
+    id: '0706', name: '法塞特（福建）包材仓库', pId: '07', sid: 548, type: '包材'
+  }, {
+    id: '001001014012', name: '银川品牌店', pId: '0010010140', sid: 605, type: ''
+  }, {
+    id: '00100101401201', name: '银川店/正品仓库', pId: '001001014012', sid: 606, type: '正品'
+  }, {
+    id: '00100101401202', name: '银川店/赠品仓库', pId: '001001014012', sid: 607, type: '赠品'
+  }, {
+    id: '00100101401203', name: '银川店/物料仓库', pId: '001001014012', sid: 608, type: '物料'
+  }, {
+    id: '00100101401204', name: '银川店/试用装仓库', pId: '001001014012', sid: 609, type: '试用装'
+  }, {
+    id: '00100101401205', name: '银川店/促销产品仓库', pId: '001001014012', sid: 610, type: '促销产品'
+  }, {
+    id: '00100101401206', name: '银川店/不良品仓库', pId: '001001014012', sid: 611, type: '不良品'
+  }, {
+    id: '00100101401207', name: '银川店/福利仓库', pId: '001001014012', sid: 612, type: '福利'
+  }, {
+    id: '00100101401208', name: '银川店/积分换礼仓库', pId: '001001014012', sid: 613, type: '积分换礼'
+  }, {
+    id: '0507', name: '上海酒庄门店正品库', pId: '05', sid: 614, type: '正品'
+  }, {
+    id: '0508', name: '上海酒庄门店业务用酒仓', pId: '05', sid: 615, type: '正品'
+  }, {
+    id: '0509', name: '上海酒庄门店品鉴酒仓', pId: '05', sid: 616, type: '正品'
+  }, {
+    id: '0510', name: '上海酒庄门店厨房用品仓', pId: '05', sid: 617, type: '正品'
+  }, {
+    id: '0511', name: '上海酒庄门店样酒仓', pId: '05', sid: 618, type: '正品'
+  }, {
+    id: '0512', name: '上海代保管仓', pId: '05', sid: 619, type: '正品'
+  }, {
+    id: '001001015', name: '门店测试', pId: '0010010', sid: 773, type: ''
+  }, {
+    id: '00100101501', name: '门店测试/正品仓库', pId: '001001015', sid: 774, type: '正品'
+  }, {
+    id: '00100101502', name: '门店测试/赠品仓库', pId: '001001015', sid: 775, type: '赠品'
+  }, {
+    id: '00100101503', name: '门店测试/物料仓库', pId: '001001015', sid: 776, type: '物料'
+  }, {
+    id: '00100101504', name: '门店测试/试用装仓库', pId: '001001015', sid: 777, type: '试用装'
+  }, {
+    id: '00100101505', name: '门店测试/促销产品仓库', pId: '001001015', sid: 778, type: '促销产品'
+  }, {
+    id: '00100101506', name: '门店测试/不良品仓库', pId: '001001015', sid: 779, type: '不良品'
+  }, {
+    id: '00100101507', name: '门店测试/福利仓库', pId: '001001015', sid: 780, type: '福利'
+  }, {
+    id: '00100101508', name: '门店测试/积分换礼仓库', pId: '001001015', sid: 781, type: '积分换礼'
+  }, {
+    id: '001001016', name: '测试2', pId: '0010010', sid: 782, type: ''
+  }, {
+    id: '00100101601', name: '测试2/正品仓库', pId: '001001016', sid: 783, type: '正品'
+  }, {
+    id: '00100101602', name: '测试2/赠品仓库', pId: '001001016', sid: 784, type: '赠品'
+  }, {
+    id: '00100101603', name: '测试2/物料仓库', pId: '001001016', sid: 785, type: '物料'
+  }, {
+    id: '00100101604', name: '测试2/试用装仓库', pId: '001001016', sid: 786, type: '试用装'
+  }, {
+    id: '00100101605', name: '测试2/促销产品仓库', pId: '001001016', sid: 787, type: '促销产品'
+  }, {
+    id: '00100101606', name: '测试2/不良品仓库', pId: '001001016', sid: 788, type: '不良品'
+  }, {
+    id: '00100101607', name: '测试2/福利仓库', pId: '001001016', sid: 789, type: '福利'
+  }, {
+    id: '00100101608', name: '测试2/积分换礼仓库', pId: '001001016', sid: 790, type: '积分换礼'
+  }, {
+    id: '001001017', name: '测试3', pId: '0010010', sid: 791, type: ''
+  }, {
+    id: '00100101701', name: '3测试/正品仓库', pId: '001001017', sid: 792, type: '正品'
+  }, {
+    id: '00100101702', name: '3测试/赠品仓库', pId: '001001017', sid: 793, type: '赠品'
+  }, {
+    id: '00100101703', name: '3测试/物料仓库', pId: '001001017', sid: 794, type: '物料'
+  }, {
+    id: '00100101704', name: '3测试/试用装仓库', pId: '001001017', sid: 795, type: '试用装'
+  }, {
+    id: '00100101705', name: '3测试/促销产品仓库', pId: '001001017', sid: 796, type: '促销产品'
+  }, {
+    id: '00100101706', name: '3测试/不良品仓库', pId: '001001017', sid: 797, type: '不良品'
+  }, {
+    id: '00100101707', name: '3测试/福利仓库', pId: '001001017', sid: 798, type: '福利'
+  }, {
+    id: '00100101708', name: '3测试/积分换礼仓库', pId: '001001017', sid: 799, type: '积分换礼'
+  }, {
+    id: '001001018', name: '测试456', pId: '0010010', sid: 800, type: ''
+  }, {
+    id: '00100101801', name: '测试456/正品仓库', pId: '001001018', sid: 801, type: '正品'
+  }, {
+    id: '00100101802', name: '测试456/赠品仓库', pId: '001001018', sid: 802, type: '赠品'
+  }, {
+    id: '00100101803', name: '测试456/物料仓库', pId: '001001018', sid: 803, type: '物料'
+  }, {
+    id: '00100101804', name: '测试456/试用装仓库', pId: '001001018', sid: 804, type: '试用装'
+  }, {
+    id: '00100101805', name: '测试456/促销产品仓库', pId: '001001018', sid: 805, type: '促销产品'
+  }, {
+    id: '00100101806', name: '测试456/不良品仓库', pId: '001001018', sid: 806, type: '不良品'
+  }, {
+    id: '00100101807', name: '测试456/福利仓库', pId: '001001018', sid: 807, type: '福利'
+  }, {
+    id: '00100101808', name: '测试456/积分换礼仓库', pId: '001001018', sid: 808, type: '积分换礼'
+  }],
   next: function next(doms) {
-    console.log(doms);
+    return alert(JSON.stringify(doms));
   }
 });
+
+// Component.pc.treeTable({
+//   ifselect: true,
+//   beforeSelect: ['法塞特银川商贸有限公司', '宁夏一带一路供应链股份有限公司'],
+//   select_model: 'checkbox',
+//   data: {
+//     title: [
+//       {
+//         id: '001002009', name: '扬名阿朵店', pId: '0010020', sid: 629, type: '',
+//       },
+//       {
+//         id: '00100200901', name: '扬名店/正品仓库', pId: '001002009', sid: 630, type: '正品',
+//       },
+//       {
+//         id: '00100200902', name: '扬名店/赠品仓库', pId: '001002009', sid: 631, type: '赠品',
+//       },
+//       {
+//         id: '00100200903', name: '扬名店/物料仓库', pId: '001002009', sid: 632, type: '物料',
+//       },
+//       {
+//         id: '00100200904', name: '扬名店/试用装仓库', pId: '001002009', sid: 633, type: '试用装',
+//       },
+//       {
+//         id: '00100200905', name: '扬名店/促销产品仓库', pId: '001002009', sid: 634, type: '促销产品',
+//       },
+//       {
+//         id: '00100200906', name: '扬名店/不良品仓库', pId: '001002009', sid: 635, type: '不良品',
+//       },
+//       {
+//         id: '00100200907', name: '扬名店/福利仓库', pId: '001002009', sid: 636, type: '福利',
+//       },
+//       {
+//         id: '00100200908', name: '扬名店/积分换礼仓库', pId: '001002009', sid: 637, type: '积分换礼',
+//       },
+//       {
+//         id: '00100200901', name: '扬名店/正品仓库', pId: '001002009', sid: 630, type: '正品',
+//       },
+//       {
+//         id: '00100200902', name: '扬名店/赠品仓库', pId: '001002009', sid: 631, type: '赠品',
+//       },
+//       {
+//         id: '00100200903', name: '扬名店/物料仓库', pId: '001002009', sid: 632, type: '物料',
+//       },
+//       {
+//         id: '00100200904', name: '扬名店/试用装仓库', pId: '001002009', sid: 633, type: '试用装',
+//       },
+//       {
+//         id: '00100200905', name: '扬名店/促销产品仓库', pId: '001002009', sid: 634, type: '促销产品',
+//       },
+//       {
+//         id: '00100200906', name: '扬名店/不良品仓库', pId: '001002009', sid: 635, type: '不良品',
+//       },
+//       {
+//         id: '00100200907', name: '扬名店/福利仓库', pId: '001002009', sid: 636, type: '福利',
+//       },
+//       {
+//         id: '00100200908', name: '扬名店/积分换礼仓库', pId: '001002009', sid: 637, type: '积分换礼',
+//       },
+//       {
+//         id: '00100200901', name: '扬名店/正品仓库', pId: '001002009', sid: 630, type: '正品',
+//       },
+//       {
+//         id: '00100200902', name: '扬名店/赠品仓库', pId: '001002009', sid: 631, type: '赠品',
+//       },
+//       {
+//         id: '00100200903', name: '扬名店/物料仓库', pId: '001002009', sid: 632, type: '物料',
+//       },
+//       {
+//         id: '00100200904', name: '扬名店/试用装仓库', pId: '001002009', sid: 633, type: '试用装',
+//       },
+//       {
+//         id: '00100200905', name: '扬名店/促销产品仓库', pId: '001002009', sid: 634, type: '促销产品',
+//       },
+//       {
+//         id: '00100200906', name: '扬名店/不良品仓库', pId: '001002009', sid: 635, type: '不良品',
+//       },
+//       {
+//         id: '00100200907', name: '扬名店/福利仓库', pId: '001002009', sid: 636, type: '福利',
+//       },
+//       {
+//         id: '00100200908', name: '扬名店/积分换礼仓库', pId: '001002009', sid: 637, type: '积分换礼',
+//       },
+//     ],
+//     content: [
+//       {
+//         id: 143, goods_name: '1233--诱惑(白麝香)-White musk123', goods_code: '001', goods_short_name: '001', brand_id: 14, brand_name: 'adopt香水', td_code: '376003123698056123', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/dff4f66269a345c7a3e21f4292145746.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 26, grade_name: '一级', mold_id: 24, mold_name: '货品', price_type: '折扣定价', name: '1233--诱惑(白麝香)-White musk123',
+//       }, {
+//         id: 144, goods_name: '海之凉(利古里亚之水)-Aqua liguria', goods_code: '002', goods_short_name: '002', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005378', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/9b1be2ea1cbc45bebc4f3530f3b1ab76.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '海之凉(利古里亚之水)-Aqua liguria',
+//       }, {
+//         id: 145, goods_name: '执手一生(木棉花)-Cotton flower', goods_code: '003', goods_short_name: '003', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005385', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/0101dee777ce4fa1a77fcd7b65300772.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '执手一生(木棉花)-Cotton flower',
+//       }, {
+//         id: 146, goods_name: '刚刚好(桃子凤梨雪松)-Peach Pineapple Cedar', goods_code: '004', goods_short_name: '004', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002551', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '水果香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/c7f9d8aaf581411cb27a8ca9d2a01402.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '刚刚好(桃子凤梨雪松)-Peach Pineapple Cedar',
+//       }, {
+//         id: 147, goods_name: '喜欢你(玫瑰蜜)-Nectar of rose', goods_code: '005', goods_short_name: '005', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719003343', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/e13f0bd7b762403b915c36f650e4b56f.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '喜欢你(玫瑰蜜)-Nectar of rose',
+//       }, {
+//         id: 148, goods_name: '盛宴(牡丹花)-Peony flower', goods_code: '006', goods_short_name: '006', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719000595', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/2e79a98937c046068a8a1532ffb5fcb7.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '盛宴(牡丹花)-Peony flower',
+//       }, {
+//         id: 149, goods_name: '初之蜜吻(我的小玫瑰)-My little rose', goods_code: '007', goods_short_name: '007', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719000021', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/4fa58a0c52ff4284ae9b09a0cca04fef.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '初之蜜吻(我的小玫瑰)-My little rose',
+//       }, {
+//         id: 150, goods_name: '魅之尊(波光涟漪)-Silver water', goods_code: '008', goods_short_name: '008', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002889', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/faec7e8e50824c0fbc82fa11f81b6056.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '魅之尊(波光涟漪)-Silver water',
+//       }, {
+//         id: 151, goods_name: '午后时光(西柚石榴)-Grapefruit Pomegranate', goods_code: '009', goods_short_name: '009', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002520', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '水果香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', detail: '<p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">原标题：华中农业大学最新科研成果&quot;验汗&quot;可能取代验血</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">今后，验汗可能取代查血验尿，成为诊断疾病的新方式。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">11月5日，华中农业大学刘正飞教授展示了团队的最新科研成果：首次成功分离汗液外泌体并解析其蛋白表达谱。该研究成果在国际权威学术期刊《皮肤学研究》发表，为皮肤免疫功能和皮肤疾病生物标志物的鉴定提供了理论基础。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">外泌体是广泛存在于唾液、血液、尿液等体液中的微小生物颗粒。1983年首次被发现时，仅认为是细胞排泄废物的一种形式。如今，不断发展的科研成果表明，外泌体可参与到机体免疫应答、抗原提呈、细胞迁移及分化、肿瘤侵袭等方方面面，健康状态信息可以从中检测出来。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">人体汗液外泌体，多年来因分离鉴定极为困难，其存在证据一直没有被攻克。刘正飞课题组研究建立了一套无细胞碎片、细菌和油脂污染的汗液外泌体分离方法，并通过进一步质谱分析表明，汗液外泌体含有1062种蛋白质，其中896种不同于血液、尿液和唾液外泌体的蛋白标记物。同时，多种抗菌肽、免疫相关因子也在汗液外泌体中高丰度表达。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">该研究提供了直接的汗液外泌体存在证据，为汗液潜在的生理生化特性、皮肤免疫系统抵御外界病原体侵害研究和生物标记物开发奠定了理论基础。</p><p style="margin-top: 0px; margin-bottom: 25px; padding: 0px; text-indent: 28px; text-align: justify; word-wrap: break-word; word-break: normal;">目前，刘正飞团队正与医院合作开展临床研究运用，让“验汗断病”早日成为现实。<span class="ifengLogo"><a href="http://www.ifeng.com/" target="_blank" style="text-decoration-line: none; color: rgb(0, 66, 118); font-weight: bold;"><img src="http://p2.ifengimg.com/a/2016/0810/204c433878d5cf9size1_w16_h16.png"/></a></span></p><p><img src="http://y2.ifengimg.com/ifengimcp/pic/20150902/3677f2773fd79f12b079_size1_w35_h15.png"/></p><p><img src="http://p1.ifengimg.com/a/2017/0405/46c1a30fa15dcf3size20_w160_h214.jpg"/></p><p><img src="http://p3.ifengimg.com/a/2017/0822/ef1f8f1ad492125size20_w160_h214.jpg"/></p><p><a target="_blank" href="http://ids1.deliver.ifeng.com/ids/mnt/cli?args=zJYOh_xIl6_X2kubJYPv-_9d1JkGdVoq_4xnS4X9U9CByKeL5RlHzsCVvidI-7N7C-AVrWP-8wgC12-KWY9HcqMbQRqsVmGwDP_l7O8Y3MBok5jLUL7Dj15fkALLLEa9dAaL0An8zZXOFwQVRNZptNIepLHbxUhkIkpY_sOuBo8kD8UTaQO0pYTxSQhyvY7d8t4JMB3imnMrAFTGCyUVn1hARR_PlPJnFK1sfTKOdwTnjWInxZX3K1-7yNMRifWzHUUH5F9t0lDsskW7XZ0qPLqpjWJfclSxc8C1IwB56NghD11w1TIxt3uKbueRfGVV-P1P9X4ttd2eGy-xCVaASUEveoG3phG9fz-CwJpfhKIaVIVrIxb3GiC6HTmHSZsFI2PzUZcEVHgIqp0CAKfg2rnx-Z-ifADNkWCCZdU8PtfHlsi_JkaCzXRMo66EHYwE_Ma8nR6okyksgYtiALME2cZWa1UxqAvqTdTQTAf3cmhpwjPlCbeLVILFGXhj1grViEUE1e7lTdEgWHGHjyZKMw&jmp=l86dcyuV-ym1Ebfx-OVX3dXMuqJx-uZLLbDUcOcOl3AdCEjndF8qm1-98qdVFViY" style="text-decoration-line: none; color: rgb(0, 66, 118); line-height: 24px;"><img src="http://y0.ifengimg.com/34c4a1d78882290c/2012/0528/1x1.gif"/></a></p><p class="iphone_none" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; float: left; width: 322px;"><br/></p><p>推荐7</p><p><img src="http://h2.ifengimg.com/0f56ee67a4c375c2/2013/1106/indeccode.png" class="js_wx_qrcod"/></p><p style="margin-top: 0px; margin-bottom: 0px; padding: 12px 0px 0px; float: left; width: auto; color: rgb(102, 102, 102); line-height: 24px;"><br/></p><p><a class="bds_tsina js_content_share_btn" style="float: left; display: block; width: 40px; height: 30px; margin: 0px 0px 0px 10px; padding: 0px; background:url(&quot;http://p0.ifengimg.com/fe/zx2/images/share_e5555840.jpg&quot;) 0px 0px no-repeat;"></a><a class="bds_qzone js_content_share_btn" style="float: left; display: block; width: 40px; height: 30px; margin: 0px 0px 0px 10px; padding: 0px; background:url(&quot;http://p0.ifengimg.com/fe/zx2/images/share_e5555840.jpg&quot;) 0px -32px no-repeat;"></a><a class="bds_twx js_content_share_btn iphone_none" style="float: left; display: block; width: 40px; height: 30px; margin: 0px 0px 0px 10px; padding: 0px; background:url(&quot;http://p0.ifengimg.com/fe/zx2/images/share_e5555840.jpg&quot;) 0px -66px no-repeat;"></a></p><p><span class="w-rightBox" style="float: right;"><span class="w-com"><a href="http://gentie.ifeng.com/view.html?docUrl=sub_36131028&docName=%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E5%AE%B6%E6%9C%80%E6%96%B0%E6%88%90%E6%9E%9C%EF%BC%9A%E9%AA%8C%E6%B1%97%E8%AF%8A%E6%96%AD%E7%96%BE%E7%97%85%E6%88%96%E5%8F%96%E4%BB%A3%E6%9F%A5%E8%A1%80%E9%AA%8C%E5%B0%BF&skey=465936&speUrl=&pcUrl=http%3A%2F%2Fnews.ifeng.com%2Fa%2F20171107%2F53039034_0.shtml" target="_blank" style="text-decoration-line: none; color: rgb(245, 67, 67);"><span class="w-num" style="font-stretch: normal; font-size: 18px; line-height: normal; font-family: georgia;">9</span></a>&nbsp;<span class="w-txt" style="font-size: 12px; color: rgb(153, 153, 153);">条评论</span>&nbsp;</span><span class="w-line" style="color: rgb(153, 153, 153); padding: 0px 8px;">/</span>&nbsp;<span class="w-reply"><a href="http://gentie.ifeng.com/view.html?docUrl=sub_36131028&docName=%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E5%AE%B6%E6%9C%80%E6%96%B0%E6%88%90%E6%9E%9C%EF%BC%9A%E9%AA%8C%E6%B1%97%E8%AF%8A%E6%96%AD%E7%96%BE%E7%97%85%E6%88%96%E5%8F%96%E4%BB%A3%E6%9F%A5%E8%A1%80%E9%AA%8C%E5%B0%BF&skey=465936&speUrl=&pcUrl=http%3A%2F%2Fnews.ifeng.com%2Fa%2F20171107%2F53039034_0.shtml" target="_blank" style="text-decoration-line: none; color: rgb(245, 67, 67);"><span class="w-num" style="font-stretch: normal; font-size: 18px; line-height: normal; font-family: georgia;">19</span></a>&nbsp;<span class="w-txt" style="font-size: 12px; color: rgb(153, 153, 153);">人参与</span></span></span><span class="w-tips" style="font-size: 12px; color: rgb(153, 153, 153);">网友评论</span><span class="w-tips phoneNone" style="font-size: 12px; color: rgb(153, 153, 153);">｜</span><a href="http://comment.ifeng.com/content/gongyue/gtgl.html" target="_blank" class="w-tips phoneNone" style="text-decoration-line: none; color: rgb(153, 153, 153); font-size: 12px;">跟帖管理</a><span class="w-tips" style="font-size: 12px; color: rgb(153, 153, 153);">｜</span><a href="http://news.ifeng.com/ask/index.shtml" target="_blank" class="w-tips" style="text-decoration-line: none; color: rgb(153, 153, 153); font-size: 12px;">举报</a></p><p><span class="w-arr"></span></p><p><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-submitBtn js_cmtSubmit" style="text-decoration-line: none; color: rgb(255, 255, 255); display: block; float: right; width: 120px; height: 40px; background: rgb(245, 67, 67); text-align: center; font-stretch: normal; font-size: 18px; line-height: 40px; font-family: &quot;microsoft yahei&quot;;">发表评论</a></p><p><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-face-trigger js_faceMore" style="text-decoration-line: none; color: rgb(0, 66, 118); display: inline-block; position: relative; margin-left: 7px; width: 50px; height: 30px; float: left; line-height: 30px; vertical-align: middle; cursor: pointer;"><img src="http://y0.ifengimg.com/a/2015/1130/face_1.png" title="微笑" alt="微笑"/><span class="icon-faceTrigArr" style="display: inline-block; width: 7px; height: 4px; margin-bottom: 2px; overflow: hidden; background:url(&quot;http://y0.ifengimg.com/fe/F_comment_new/images/face-TriggerArr_b9713c54.gif&quot;) 0px -4px no-repeat;"></span></a></p><p><a class="w-name" style="color: rgb(0, 0, 0);">一键登录：&nbsp;</a><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="js_ifeng_account" style="text-decoration-line: none; color: rgb(153, 153, 153);">凤凰帐号</a><span class="w-line" style="color: rgb(153, 153, 153); padding: 0px 2px;">/</span><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="js_sina_account" style="text-decoration-line: none; color: rgb(153, 153, 153);">新浪微博</a></p><p>最热评论</p><p class="w-username" style="margin-top: 0px; margin-bottom: 17px; padding: 0px; color: rgb(153, 153, 153);"><a href="http://comment.ifeng.com/viewpersonal.php?uname=%E6%85%A7%E7%9C%BC%E4%B8%80%E6%89%AB&guid=74390991" target="_blank" style="text-decoration-line: none; color: rgb(0, 66, 118);">慧眼一扫</a>&nbsp;<span class="w-location">[江苏省无锡市网友]</span></p><p class="w-contentTxt" style="margin-top: 0px; margin-bottom: 15px; padding: 0px; line-height: 1.4em; word-wrap: break-word; word-break: break-all;">祝贺刘正飞团队！希望早日投入临床应用！</p><p><span class="w-reply" style="float: right; line-height: 14px;"><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-rep-rec js_recm" style="text-decoration-line: none; color: rgb(0, 0, 0);">推荐<span class="w-rep-num" style="padding-left: 8px; font-stretch: normal; font-size: 16px; line-height: normal; font-family: georgia; color: rgb(245, 67, 67);">37</span></a>&nbsp;<span class="w-rep-line" style="display: inline-block; padding: 0px 8px; color: rgb(194, 194, 194);">/</span>&nbsp;<a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-rep-reply js_reply" style="text-decoration-line: none; color: rgb(0, 0, 0);">回复</a>&nbsp;<span class="w-rep-line" style="display: inline-block; padding: 0px 8px; color: rgb(194, 194, 194);">/</span>&nbsp;<a class="w-report js_report" href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" style="text-decoration-line: none; color: rgb(0, 0, 0);">举报</a></span><span class="w-commentTime" style="color: rgb(153, 153, 153); padding-top: 4px;">2017-11-07 15:29</span></p><p class="w-username" style="margin-top: 0px; margin-bottom: 17px; padding: 0px; color: rgb(153, 153, 153);"><a href="http://comment.ifeng.com/viewpersonal.php?uname=FYK441&guid=9319760" target="_blank" style="text-decoration-line: none; color: rgb(0, 66, 118);">FYK441</a>&nbsp;<span class="w-location">[广东省广州市网友]</span></p><p><span class="w-order" style="position: absolute; top: 20px; right: 10px;">1</span></p><p class="w-username" style="margin-top: 0px; margin-bottom: 17px; padding: 0px 42px 0px 12px; color: rgb(153, 153, 153); word-break: break-all;"><a href="http://comment.ifeng.com/viewpersonal.php?uname=HXY589238&guid=30911468" target="_blank" style="text-decoration-line: none; color: rgb(0, 66, 118);">HXY589238</a>&nbsp;<span class="w-location">[重庆市网友]</span></p><p class="w-contentTxt" style="margin-top: 0px; margin-bottom: 15px; padding: 0px 42px 0px 12px; line-height: 1.4em; word-wrap: break-word; word-break: break-all;">通过验屁的成分准确率更高！</p><p><span class="w-commentTime" style="color: rgb(153, 153, 153); padding-top: 4px;">2017-11-07 15:08</span></p><p class="w-contentTxt" style="margin-top: 0px; margin-bottom: 15px; padding: 0px; line-height: 1.4em; word-wrap: break-word; word-break: break-all;">你的研究？</p><p><span class="w-reply" style="float: right; line-height: 14px;"><a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-rep-rec js_recm" style="text-decoration-line: none; color: rgb(0, 0, 0);">推荐<span class="w-rep-num" style="padding-left: 8px; font-stretch: normal; font-size: 16px; line-height: normal; font-family: georgia; color: rgb(245, 67, 67);">13</span></a>&nbsp;<span class="w-rep-line" style="display: inline-block; padding: 0px 8px; color: rgb(194, 194, 194);">/</span>&nbsp;<a href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" class="w-rep-reply js_reply" style="text-decoration-line: none; color: rgb(0, 0, 0);">回复</a>&nbsp;<span class="w-rep-line" style="display: inline-block; padding: 0px 8px; color: rgb(194, 194, 194);">/</span>&nbsp;<a class="w-report js_report" href="http://news.ifeng.com/a/20171107/53039034_0.shtml?_zbs_baidu_news#" style="text-decoration-line: none; color: rgb(0, 0, 0);">举报</a></span><span class="w-commentTime" style="color: rgb(153, 153, 153); padding-top: 4px;">2017-11-07 15:30</span></p><p><a style="color: rgb(0, 66, 118); width: 35px; height: 15px; overflow: hidden; position: absolute; left: 0px; bottom: 0px; z-index: 2; background:url(&quot;http://y2.ifengimg.com/ifengimcp/pic/20150902/3677f2773fd79f12b079_size1_w35_h15.png&quot;) no-repeat;"></a><a target="_blank" href="http://ids1.deliver.ifeng.com/ids/mnt/cli?args=EYPHVwOfisD6vEJFJlRTYoBdPK8a_3UynSlMob46C28NojM1ojeqeA764WXOsfA-bsvREyvhkf6njOZBqr-RaOkb0tblhmT3lwj2zUTkeRuqnmpMgG-WAsSSs00giLTNMZsQkKtBbFLa6EuvRkBR94CHlUA-nU9j9EgElpYIlc2pc75I3BJjlyMmLLzqPO_b8t4JMB3imnMrAFTGCyUVn1hARR_PlPJnFK1sfTKOdwQKDDN2ctv2hDZtcvCd0qgA3Sag5RAETUG55H5yWAixiEbUej8IXBExPRfKiSo6pLsiGjff17-g9v3GGIvMgz8k-P1P9X4ttd2eGy-xCVaASUEveoG3phG9fz-CwJpfhKIaVIVrIxb3GiC6HTmHSZsFSlByieaeEVIT_aBO8C-T-Gb9p17qEFoD_x6WfKSJTUuRzdWU75mtf2zy4pCxYkOXxE43B8JRmgIznG6brx-sLlOg1u3M17WGvjfKYf0rINnEYr0uI-oHxg7G0RKkIUL9GmxTo45wPl0cesyFJiGoxG9Fm9PqFzVC5Q8nK3NG5gTfCde3uEoV_5XdfZ64DgfI&jmp=3rg97TyFDY06UN8B0hAISImlqeXUqRz8RD0CXqBf-8HI24rPCWPchaoCDE5ewLAZSU6phnDDWfMNVZ2EN0g0XNgwc5b0vdUzpzrBt3BCQg8" style="text-decoration-line: none; color: rgb(0, 66, 118);"><img src="http://c1.ifengimg.com/feather/images/6690/2017/55/07/1510019749278.jpg"/></a></p><p><img src="http://y2.ifengimg.com/ifengimcp/pic/20150902/3677f2773fd79f12b079_size1_w35_h15.png"/></p><p><a style="color: rgb(0, 66, 118); width: 35px; height: 15px; overflow: hidden; position: absolute; left: 0px; bottom: 0px; z-index: 2; background:url(&quot;http://y2.ifengimg.com/ifengimcp/pic/20150902/3677f2773fd79f12b079_size1_w35_h15.png&quot;) no-repeat;"></a><a target="_blank" href="http://ids1.deliver.ifeng.com/ids/mnt/cli?args=BFQdxzsAcbBvtDPu5uRfFKf9toTb0a2slM14lgJKt_d1E3OoZZaFQ7uvGuxPExryVL-wNh0-DO5-gswZrscmgkKyAnHuHMh7foX2D4h-OBXa9iRuJF-igpLsuI31tcksC6H41Q_uzs8YlA3Qw0Xz_eQ1oXiyqBICiUvU0-CsCkbNKb23YTzSKRy8H_5ddAJ68t4JMB3imnMrAFTGCyUVn1hARR_PlPJnFK1sfTKOdwSC-cZyQLYdjtagr1Q54Pw29_nfAtz9JaSe8MTCS8k3PiL4JamV2uOhYXhOXs7HXQAiGjff17-g9v3GGIvMgz8k-P1P9X4ttd2eGy-xCVaASUEveoG3phG9fz-CwJpfhKIaVIVrIxb3GiC6HTmHSZsFI-2HW_IYsJCWmsXdSzBn3_YDyzlLWpEQxncEGDGlXc-D_akHCgoIsUE04qKvpY6a5BI-0sBga_2N_8RaPwL6PPHxlpi4Wn0JxHmCvDi6hY_RTWPg-HlGb4IBYb9rmL3vPvC3_QNfF2u3LDKOwi_JpA&jmp=nmdsyPw_eq5jukMrtGS0Q8kXmlElyIyainB6n3Jzur9DUeqCkpk73lbAjVf0eqEwUUNzwI9AF-Po8bFQjNg0EA" style="color: rgb(186, 38, 54);"><img src="http://c1.ifengimg.com/feather/images/5793/2017/03/03/1509696216300.jpg"/></a></p><p><br/></p>', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/96321eb2cb7e425380a8eb09f7ef041c.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '午后时光(西柚石榴)-Grapefruit Pomegranate',
+//       }, {
+//         id: 152, goods_name: '狂野之夜(麝香玫瑰)-Musk of rose', goods_code: '010', goods_short_name: '010', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002261', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/7ec42ae85b9747c5863985cb467f23be.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '狂野之夜(麝香玫瑰)-Musk of rose',
+//       }, {
+//         id: 163, goods_name: '人鱼假日(美人鱼与海)-Oceans and Seas', goods_code: '011', goods_short_name: '011', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005392', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/30fbf9db5002461cbffd3c9563d769e9.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '人鱼假日(美人鱼与海)-Oceans and Seas',
+//       }, {
+//         id: 164, goods_name: '永恒(姜花白蝴蝶)-Ginger flower', goods_code: '012', goods_short_name: '012', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719009956', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/bd6b2ff96ac845ec822b57b6b0b5e05e.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '永恒(姜花白蝴蝶)-Ginger flower',
+//       }, {
+//         id: 165, goods_name: '内萝拉(橙花之恋)-Neroli', goods_code: '013', goods_short_name: '013', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005859', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/678bd458c6364604ab1ed363c93ed9a5.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '内萝拉(橙花之恋)-Neroli',
+//       }, {
+//         id: 166, goods_name: '香忆(茉莉依兰含羞草)-Jasmine Ylang Mimosa', goods_code: '014', goods_short_name: '014', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719000441', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/884e9a294cd54c838389770ead9d41cc.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '香忆(茉莉依兰含羞草)-Jasmine Ylang Mimosa',
+//       }, {
+//         id: 167, goods_name: '青春乐章(花漾女孩)-Flower girl', goods_code: '015', goods_short_name: '015', brand_id: 14, brand_name: 'adopt香水', td_code: '3760031230063', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-18/30516/4805e595546f4d91b12e523cebf0012c.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '青春乐章(花漾女孩)-Flower girl',
+//       }, {
+//         id: 168, goods_name: '人间伊甸园(大溪地鸢尾花)-Tiara flower', goods_code: '016', goods_short_name: '016', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719006139', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/121be38ad65642e1b790f8b33f748c8f.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '人间伊甸园(大溪地鸢尾花)-Tiara flower',
+//       }, {
+//         id: 169, goods_name: '夏日灵动(春之绿茶)-Green tea', goods_code: '017', goods_short_name: '017', brand_id: 14, brand_name: 'adopt香水', td_code: '3760031230094', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/1b3986a6f9a046e794d330dab76ceba8.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '夏日灵动(春之绿茶)-Green tea',
+//       }, {
+//         id: 170, goods_name: '绽放(樱花绽放)-Cherry blossom', goods_code: '018', goods_short_name: '018', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719002377', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2018-01-15/30516/a01e6c36e3ee451da824ce4795a90e2b.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '绽放(樱花绽放)-Cherry blossom',
+//       }, {
+//         id: 171, goods_name: '漫步巴黎(香草依兰)-Vanilla Ylang Ylang', goods_code: '019', goods_short_name: '019', brand_id: 14, brand_name: 'adopt香水', td_code: '3760031235914', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-18/30516/ec53cb66032a4551aa1d416b938ec70b.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '漫步巴黎(香草依兰)-Vanilla Ylang Ylang',
+//       }, {
+//         id: 172, goods_name: '娇小姐(紫罗兰树莓)-Violet Raspberry', goods_code: '020', goods_short_name: '020', brand_id: 14, brand_name: 'adopt香水', td_code: '3760031230025', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/2a70d2a939564ff09787896873c114ca.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '娇小姐(紫罗兰树莓)-Violet Raspberry',
+//       }, {
+//         id: 173, goods_name: '魅舞(佛手柑茉莉)-Bergamot Jasmine ', goods_code: '021', goods_short_name: '021', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719010587', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/ac1175369c1e465e958aed2eb6c0041a.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '魅舞(佛手柑茉莉)-Bergamot Jasmine ',
+//       }, {
+//         id: 174, goods_name: '名媛(窈窕淑女)-Lady Glitter', goods_code: '022', goods_short_name: '022', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719010334', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 129.00, prime_cost: 129.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-18/30516/847e69fa24e74f099d0c4916ddc30b8a.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '名媛(窈窕淑女)-Lady Glitter',
+//       }, {
+//         id: 175, goods_name: '淡香(桂馥兰香)-Osmanthus Flower ', goods_code: '023', goods_short_name: '023', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719005323', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '混合花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-13/30516/d2e92e99279d4ee49c62fdd02fd6c8c5.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '淡香(桂馥兰香)-Osmanthus Flower ',
+//       }, {
+//         id: 176, goods_name: '电光幻影(摇滚女王)-Miss rock', goods_code: '024', goods_short_name: '024', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719009734', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-18/30516/431dbf4bed9340f3b1af9efdea1c7457.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '电光幻影(摇滚女王)-Miss rock',
+//       }, {
+//         id: 177, goods_name: '海洛因之吻(甜吻)-Sweet kiss', goods_code: '025', goods_short_name: '025', brand_id: 14, brand_name: 'adopt香水', td_code: '3700719010020', bar_code: '', standard_id: 0, standard_name: '30ml', produce_area_id: 0, produce_area_name: '法国', model_id: 0, model_name: '花香型', unit_id: 24, unit_name: '支', assist_unit_enable: '1', assist_unit_id: 26, assist_unit_name: '盒', assist_unit_conversion: '12', retail_price: 99.00, prime_cost: 99.00, primary_dealer_price: 0.00, second_dealer_price: 0.00, third_dealer_price: 0.00, produce_cost: 0.00, validity_days: '3年', remarks: '', corp_id: '', corp_code: '001002', corp_name: '卓高实业', del_flag: '0', create_date: '', create_user_id: '', create_user_name: '', goods_status: 'A0', goods_image_list: '', goods_image: 'userfiles/upload/2017-12-11/30516/ddac8f91039f461e822e2cb088a56e10.jpg', goods_type_id: 27, goods_type_name: 'Adopt香水', is_score: '', score_num: 0, is_discount: '', discount_reat: '', ticket_price: 0.00, goods_attribute: '', goods_factory: '', supplier_id: '', dept_id: '7453d16d474244d18c7a86b9f68bb8b1', dept_code: '001002008', dept_name: '技术支持部', breed_id: 0, breed_name: '', grade_id: 0, grade_name: '', mold_id: 0, mold_name: '货品', price_type: '折扣定价', name: '海洛因之吻(甜吻)-Sweet kiss',
+//       },
+//     ],
+//   },
+//   next: (doms) => {
+//     console.log(doms);
+//   },
+// });
 
 // window.Component.pc.table({
 //   ifselect: true,
@@ -7988,7 +8030,2149 @@ window.Component.pc.treeTable({
 //     console.log('确认');
 //   },
 // });
-},{"babel-polyfill":4}],0:[function(require,module,exports) {
+
+
+// var serial_maker = function(){
+//   // 返回一个用来产生唯一字符串的对象
+//   // 位移字符串由：前缀+序列号
+//   // 这包括一个设置前缀的方法，一个设置序列号的方法
+//   // 和一个产生位移字符串的gensym的方法
+//   var prefix = ' ';
+//   var seq = 0;
+//   return {
+//     set_prifex: function(p) {
+//       prefix = String(p);
+//     },
+//     set_seq: function (s){
+//       seq = s;
+//     },
+//     gensym: function(){
+//       var result = prefix+seq;
+//       seq += 1;
+//       return result;
+//     }
+//   }
+// }
+// var seqer = serial_maker();
+// seqer.set_prifex("Q");
+// seqer.set_seq(1111)
+// var unique = seqer.gensym();
+// console.log(unique);  // Q1000
+
+
+// ;(function(win, doc, undefined) {
+// 	var $ = (function() {
+// 		//构造函数
+// 		var TQuery = function(selectors){
+// 			return TQuery.fn.init(selectors);
+// 		};
+// 		var vision = 1.02;
+// 		TQuery.fn = TQuery.prototype = {
+// 			"constructor": TQuery,
+// 			"TQuery": vision,
+// 			//初始化
+// 			"init": function(selectors) {
+// 				this.selectors = selectors;
+// 				var eles = []; //所有选择的元素
+// 				switch (typeof selectors) {
+// 					case "undefined":
+// 						return this;
+// 					case "function":
+// 						this.ready(function(e){
+// 							selectors.call(this, e);
+// 						});
+// 						break;
+// 					case "string":
+// 						switch (selectors.charAt(0)) {
+// 							case '<': //<div></div>，创建元素
+// 								var oDiv = doc.createElement('div'); //创建一个容器
+// 								var oFragment = doc.createDocumentFragment(); //创建文档碎片
+// 								oDiv.innerHTML = selectors;
+// 								var child = oDiv.childNodes;
+// 								//储存在文档碎片中
+// 								for (var t = 0; t < child.length; t++) {
+// 									var clone = child[t].cloneNode(true);
+// 									oFragment.appendChild(clone);
+// 								}
+// 								//输出到对象中
+// 								var temp = [];
+// 								for (var i = 0; i < oFragment.childNodes.length; i++) {
+// 									temp.push(oFragment.childNodes[i]);
+// 								}
+// 								eles = temp;
+// 								break;
+// 							default: //默认情况下是选择符
+// 								//现代浏览器，IE8+，chrome，firefox，safari，opera
+// 								if (doc.querySelectorAll) {
+// 									var aElems = doc.querySelectorAll(selectors);
+// 									for (var o = 0; o < aElems.length; o++) {
+// 										eles.push(aElems[o]);
+// 									}
+// 								}
+// 								//IE8以下
+// 								else{
+// 									console.log('您的浏览器不支持TQuery');
+// 								}
+// 						}
+// 						break;
+// 					case "object":
+// 						// //数组
+// 						// if (TQuery.isArray(selectors)) {
+// 						// 	$ARR(selectors);
+// 						// }
+// 						//DOM
+// 						// else if (TQuery.isDOM(selectors)) {
+// 							eles.push(selectors);
+// 						// }
+// 						//普通对象，IE8下，一切皆为对象
+// 						// else {
+
+// 						// 	$OBJ(selectors);
+// 						// }
+// 						break;
+// 					default:
+// 						return this;
+// 				}
+// 				this.refresh(eles);
+// 				return this;
+// 			},
+// 			//重拾新的对象
+// 			"reinit":function(selectors){
+// 				return this.init(selectors);
+// 			},
+// 			//刷新对象数据
+// 			"refresh": function(newArray) {
+// 				//清空
+// 				for (var j = 0; j < this.length; j++) {
+// 					delete this[j];
+// 				}
+// 				if (newArray) this.init.elements = newArray;
+// 				this.length = this.init.elements.length;
+// 				//生成
+// 				for (var i = 0; i < this.init.elements.length; i++) {
+// 					this[i] = this.init.elements[i];
+// 				}
+// 			},
+// 			//==============选择器=============
+// 			"eq": function(n) {
+// 				var m = n || 0,
+// 					newArray = [];
+// 				newArray[0] = this[m];
+// 				this.refresh(newArray);
+// 				return this;
+// 			},
+// 			//CSS3:nth-child
+// 			"nth":function(selectors){
+// 				var s = this.selectors.split(",");//'input,ul li'
+// 				for( var i=0;i<s.length;i++ ){
+// 					s[i] += ':nth-child(' + selectors + ')';
+// 				}
+// 				return this.reinit(s.join(","));
+// 			},
+// 			//倍数选择器
+// 			"an":function(n){
+// 				n = n ? n : 1;
+// 				this.nth(n + 'n');
+// 			},
+// 			//奇数,2n-1
+// 			"odd":function(){
+// 				return this.nth('odd');
+// 			},
+// 			//偶数,2n
+// 			"even":function(){
+// 				return this.nth('even');
+// 			},
+// 			"first": function() {
+// 				var s = this.selectors.split(",");//'input,ul li'
+// 				for( var i=0;i<s.length;i++ ){
+// 					s[i] += ':first-child';
+// 				}
+// 				return this.reinit( s.join(",") );
+// 			},
+// 			//选择倒数第几个，默认为0
+// 			"last":function(n){
+// 				n = n ? n : 1;
+// 				var s = this.selectors.split(",");//'input,ul li'
+// 				for( var i=0;i<s.length;i++ ){
+// 					s[i] += ':nth-last-child(' + n + ')';
+// 				}
+// 				return this.reinit( s.join(",") );
+// 			},
+// 			"not": function(selectors) {//过滤掉
+// 				var childElements = [];
+// 				for (var i = 0; i < this.length; i++) {
+// 					switch (selectors.charAt(0)) {
+// 						case '#': //id
+// 							if (this[i].id != selectors.substring(1)) {
+// 								childElements.push(this[i]);
+// 							}
+// 							break;
+// 						case '.': //class
+// 							if (!this.hasClass(this[i], selectors.substring(1))) { //没有匹配到class
+// 								childElements.push(this[i]);
+// 							}
+// 							break;
+// 						default: //tagName
+// 							if (this[i].tagName != selectors.toUpperCase()) {
+// 								childElements.push(this[i]);
+// 							}
+// 					}
+// 				}
+// 				this.refresh(childElements);
+// 				return this;
+// 			},
+// 			"filter": function(selectors) {//筛选
+// 				var childElements = [];
+// 				for (var i = 0; i < this.length; i++) {
+// 					var ele = this[i];
+// 					switch (selectors.charAt(0)) {
+// 						case '#':
+// 							if (this[i].id == selectors.substring(1)) {
+// 								childElements.push(ele);
+// 							}
+// 							break;
+// 						case '.':
+// 							if (this.hasClass(ele, selectors.substring(1))) { //如果有class
+// 								childElements.push(ele);
+// 							}
+// 							break;
+// 						case '[':
+// 							var attrinfo = selectors.replace(/(\[+|\]+|\"|\"+])/g, '').split('=');
+// 							var attr = attrinfo[0];
+// 							var value = attrinfo[1];
+// 							if (attrinfo.length === 1) { //只过滤属性，没有值
+// 								if (ele[attr] !== null || ele.getAttribute(attr)) {
+// 									childElements.push(ele);
+// 								}
+// 							} else if (attrinfo.length == 2) { //过滤属性值
+// 								if (ele[attr] == value || ele.getAttribute(attr) == value) {
+// 									childElements.push(ele);
+// 								}
+// 							}
+// 							break;
+// 						default:
+// 							if (ele.tagName == selectors.toUpperCase()) {
+// 								childElements.push(ele);
+// 							}
+// 					}
+// 				}
+// 				this.refresh(childElements);
+// 				return this;
+// 			},
+// 			"find": function(selectors) {//查找子节点
+// 				var childElements = [];
+// 				for (var i = 0; i < this.length; i++) {
+// 					var aElems = this[i].querySelectorAll(selectors);
+// 					var length = aElems.length;
+// 					var j = 0;
+// 					while (j < length) {
+// 						childElements.push(aElems[j]);
+// 						j++;
+// 					}
+// 				}
+// 				this.refresh(childElements);
+// 				return this;
+// 			},
+// 			"add": function(selectors) {
+// 				var newSelectors = this.selectors + ',' + selectors;
+// 				var newElements = doc.querySelectorAll(newSelectors);
+// 				this.refresh(newElements);
+// 				return this;
+// 			},
+// 			"slice": function(n, m) {
+// 				if (n < 0 || m > this.length) return;
+// 				var newArray = this.init.elements.slice(n, m + 1);
+// 				this.refresh(newArray);
+// 				return this;
+// 			},
+// 			//还原最初状态
+// 			"end": function() {
+// 				var newArray = doc.querySelectorAll(this.selectors);
+// 				this.refresh(newArray);
+// 				return this;
+// 			},
+// 			//是否包含元素
+// 			"has": function(selectors) {
+// 				var newArray = [];
+// 				for (var i = 0; i < this.length; i++) {
+// 					if (this[i].querySelectorAll(selectors).length > 0) {
+// 						newArray.push(this[i]);
+// 					}
+// 				}
+// 				this.refresh(newArray);
+// 				return this;
+// 			},
+// 			//可见
+// 			"visible":function(){
+
+// 			},
+// 			//不可见
+// 			"unvisible":function(){
+
+// 			},
+// 			//在可视区域内的
+// 			"inViewPort": function() {
+// 				this.inViewPort.get = function(jugg) {
+// 					var visi = [],
+// 						unvisi = [],
+// 						w, h, pos, inViewPort;
+// 					for (var i = 0; i < this.length; i++) {
+// 						pos = this[i].getBoundingClientRect();
+// 						w = doc.documentElement.clientWidth || doc.body.clientWidth;
+// 						h = doc.documentElement.clientHeight || doc.body.clientHeight;
+// 						inViewPort = pos.top > h || pos.bottom < 0 || pos.left > w || pos.right < 0;
+// 						if (inViewPort === true) { //不在可视区域
+// 							unvisi.push(this[i]);
+// 						} else { //在可视区域
+// 							visi.push(this[i]);
+// 						}
+// 					}
+// 					return jugg === true ? visi : unvisi;
+// 				};
+// 				var newArray = this.inViewPort.get.call(this, true);
+// 				this.refresh(newArray);
+// 				return this;
+// 			},
+// 			//不在可视区域内
+// 			"outViewPort": function() {
+// 				var newArray = this.inViewPort.get.call(this, false);
+// 				this.refresh(newArray);
+// 				return this;
+// 			},
+// 			//==============遍历=============
+// 			"each": function(fn) {
+// 				for (var i = 0; i < this.length; i++) {
+// 					fn.call(this[i]);
+// 				}
+// 				return this;
+// 			},
+// 			"findParent": function(selectors) {
+// 				var parent = this[0].parentNode;
+// 				if (parent.className.match(/result/)) { //找到结果
+// 					var newArray = [];
+// 					newArray[0] = parent;
+// 					this.refresh(newArray);
+// 					return this;
+// 				} else if (parent == doc.documentElement || parent == doc.body) { //到达DOM顶层
+// 					return this;
+// 				} else { //继续查找
+// 					this.findParent(selectors);
+// 				}
+// 			},
+// 			"parent": function() {
+// 				var newArray = [];
+// 				newArray[0] = this[0].parentNode;
+// 				this.refresh(newArray);
+// 				return this;
+// 			},
+// 			"parents": function() {
+// 				var newArray = []; //存储所有的父节点
+// 				var hash = {};
+// 				for (var i = 0; i < this.length; i++) {
+// 					var v = this[i].parentNode;
+// 					if (typeof(hash[v]) == 'undefined') {
+// 						hash[v] = 1;
+// 						newArray.push(v);
+// 					}
+// 				}
+// 				this.refresh(newArray);
+// 				return this;
+// 			},
+// 			"children": function() {
+// 				var childElements = []; //存放所有的子节点
+// 				var hash = {}; //过滤已经重复的子节点,中转站
+// 				for (var i = 0; i < this.length; i++) {
+// 					if (this[i].hasChildNodes() === false) {
+// 						continue;
+// 					}
+// 					for (var j = 0; j < this[i].children.length; j++) {
+// 						childElements.push(this[i].children[j]);
+// 					}
+// 				}
+// 				var newArray = TQuery.unique(childElements);
+// 				this.refresh(newArray);
+// 				return this;
+// 			},
+// 			"prev": function() {
+// 				var temps = [];
+// 				for (var i = 0; i < this.length; i++) {
+// 					var ele = this[i];
+// 					if ($(ele).index() === 0) { //如果处在第一位，没有上一个兄弟节点
+// 						continue;
+// 					}
+// 					temps.push(ele.parentNode.children[$(ele).index() - 1]);
+// 				}
+// 				this.refresh(temps);
+// 				return this;
+// 			},
+// 			"prevAll": function() {
+// 				var prevAllElements = [];
+// 				for (var i = 0; i < this.length; i++) {
+
+// 				}
+// 				return this;
+// 			},
+// 			"next": function() {
+// 				var temps = [];
+// 				for (var i = 0; i < this.length; i++) {
+// 					var ele = this[i];
+// 					if ($(ele).index() == ele.parentNode.children.length - 1) { //如果处最后一位，没有下一个兄弟节点
+// 						continue;
+// 					}
+// 					temps.push(ele.parentNode.children[$(ele).index() + 1]);
+// 				}
+// 				this.refresh(temps);
+// 				return this;
+// 			},
+// 			"nextAll": function() {
+// 				return this;
+// 			},
+// 			"siblings": function(selectors) {
+// 				var temps = [];
+// 				var parentNode = this.parents().elements;
+// 				var parentNodeLength = parentNode.length;
+// 				var allChild;
+// 				for (var i = 0; i < parentNodeLength; i++) {
+// 					allChild = parentNode[i].children; //所有同胞元素集合
+// 					for (var j = 0; j < allChild.length; j++) {
+// 						temps.push(allChild[j]); //获取所有同胞元素，包括自身
+// 					}
+// 				}
+// 				this.refresh(temps);
+// 				//如果有参数传入，则过滤同胞元素
+// 				if (selectors) {
+// 					this.not(selectors);
+// 				}
+// 				return this;
+// 			},
+// 			//==============事件=============
+// 			"ready": function(fn) {
+// 				if (this[0] == win) this[0] = doc;
+// 				this.reinit(doc).bind('DOMContentLoaded', function(e) {
+// 					fn.call(this, e);
+// 					this.ready = "complete";
+// 					// $(this).unbind('DOMContentLoaded',"ready");
+// 				});
+// 				//如果不支持DOMContentLoaded(IE8及以下不支持),
+// 				if( !TQuery.browser.msie() || TQuery.browser().visoin>8 ) return this;
+// 				if( typeof this[0].ready == "undefined" ||this[0].ready!=="complete" ){
+// 					if( typeof this[0].onreadystatechange !== "undefined" ){
+// 						this.bind('readystatechange',function(e){
+// 							if(this.readyState == 'complete'){
+// 								fn.call(this, e);
+// 								this.ready = "complete";
+// 								$(this).unbind('readystatechange',"ready");
+// 								return false;
+// 							}
+// 						},"ready");
+// 					}
+// 					// 不支持document.onreadystatechange
+// 					else{
+// 						(function(){
+// 						    try{
+// 						        //doScroll方法只有在dom ready之后可以调用，否则会抛异常
+// 						        doc.documentElement.doScroll('left');
+// 						    }catch(e){
+// 						    win.setTimeout( arguments.callee, 0 );
+// 						    return;
+// 						    }
+// 						    //这里触发DOMContentLoaded事件
+// 						    fn.call(doc);
+// 						    doc.ready = "complete";
+// 						})();
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			"load": function(fn) {
+// 				if (this[0] == doc) this[0] = win;
+// 				this.bind('load', function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				},'load');
+// 				return this;
+// 			},
+// 			"unload":function(fn){
+// 				this.reinit(win).bind('unload',function(e){
+// 					fn.call(this,e);
+// 					return stop.call(e);
+// 				},"unload");
+// 			},
+// 			"isreload":function(message){
+// 				this.reinit(win).bind('beforeunload',function(e){
+// 					e.returnValue = message;
+// 					return message;
+// 				},'beforeunload');
+// 			},
+// 			"click": function(fn) {
+// 				this.bind('click', function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"keydown": function(fn) {
+// 				this.bind('keydown', function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"keyup": function(fn) {
+// 				this.bind('keyup', function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"keypress": function(fn) {
+// 				this.bind('keypress', function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"mousedown": function(fn) {
+// 				this.bind('mousedown', function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"mouseup": function(fn) {
+// 				this.bind('mouseup', function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"mouseenter": function(fn) {
+// 				this.bind("mouseover", function(e) {
+// 					if (e.target == this) {
+// 						fn.call(this, e);
+// 					}
+// 					return stop.call(e); //默认禁止冒泡
+// 				});
+// 				return this;
+// 			},
+// 			"mouseleave": function(fn) {
+// 				this.bind("mouseout", function(e) {
+// 					if (e.target == this) {
+// 						fn.call(this, e);
+// 					}
+// 					return stop.call(e); //默认禁止冒泡
+// 				});
+// 				return this;
+// 			},
+// 			"mousemove": function(fn) {
+// 				this.bind("mousemove", function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"mouseover": function(fn) {
+// 				this.bind("mouseover", function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"mouseout": function(fn) {
+// 				this.bind("mouseout", function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"on": function(type, fn) {
+// 				var ev = null;
+// 				//如果只传一个json参数
+// 				if (arguments.length == 1) {
+// 					for (var k = 0; k < this.length; k++) {
+// 						for (var attr in type) {
+// 							// this[k][ 'on'+attr ] = type[attr];
+// 							this[k]['on' + attr] = function(e) {
+// 								ev = win.event ? win.event : (e ? e : null);
+// 								if (type[attr].call(this, ev) === false) {
+// 									return stop.call(e);
+// 								}
+// 							};
+// 						}
+// 					}
+// 				}
+// 				//如果传两个参数type,fn
+// 				else {
+// 					var events = type.split(' '); //获取每个事件
+// 					var eventsLength = events.length;
+// 					for (var i = 0; i < this.length; i++) {
+// 						var j = 0;
+// 						while (j < eventsLength) {
+// 							// this[i][ 'on'+events[j] ] = fn;
+// 							this[i]['on' + events[j]] = function(e) {
+// 								ev = win.event ? win.event : (e ? e : null);
+// 								if (fn.call(this, ev) === false) {
+// 									ev.stopPropagation(); //阻止冒泡，w3c标准
+// 									ev.cancelBubble = true; //阻止冒泡,ie,firefox
+// 									ev.preventDefault(); //w3c标准
+// 									ev.returnValue = false; //阻止默认事件，针对老版本IE
+// 									return false;
+// 								}
+// 							};
+// 							j++;
+// 						}
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			"hover": function(mouseenter, mouseleave) {
+// 				this.mouseenter(function(e) {
+// 					mouseenter.call(this, e);
+// 				});
+// 				this.mouseleave(function(e) {
+// 					mouseleave.call(this, e);
+// 				});
+// 				return this;
+// 			},
+// 			"toggleClick": function() {
+// 				var _this = this,
+// 					_arguments = arguments,
+// 					data = this.data('toggleClick'); //获取属性
+// 				if (typeof data.count == "undefined") data.count = 0;
+// 				if (typeof data.fns == "undefined") data.fns = arguments.length;
+// 				this.data('toggleClick', data); //设置属性
+// 				for (var i = 0; i < this.length; i++) {
+// 					this.bind('click', function() {
+// 						_arguments[data.count++ % data.fns].call(_this[i]);
+// 						return stop.call(e);; //默认禁止冒泡
+// 					}, 'toggleClick');
+// 				}
+// 				return this;
+// 			},
+// 			"resize":function(fn){
+// 				this.bind('resize',function(e){
+// 					if( fn.call(this,e) === false){
+// 						return stop.call(e);
+// 					}
+// 				});
+// 			},
+// 			"scroll": function(fn) {
+// 				this.bind('scroll', function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				});
+// 				return this;
+// 			},
+// 			"mouseScroll": function(fn) {
+// 				this.bind('mousewheel DOMMouseScroll', function(e) {
+// 					if (fn.call(this, e) === false) {
+// 						return stop.call(e);
+// 					}
+// 				},'mouseScroll');
+// 				return this;
+// 			},
+// 			"mouseScrollUp": function(fn) {
+// 				this.bind('mousewheel DOMMouseScroll', function(e) {
+// 					if (e.wheelDelta) { //chrome,ie
+// 						if (e.wheelDelta > 0) { //滚轮向上滚动
+// 							if (fn.call(this, e) === false) {
+// 								return stop.call(e);
+// 							}
+// 						}
+// 					} else { //狗日的firefox
+// 						if (e.detail < 0) { //滚轮向上滚动
+// 							if (fn.call(this, e) === false) {
+// 								return stop.call(e);
+// 							}
+// 						}
+// 					}
+// 				}, "mouseScrollUp");
+// 				return this;
+// 			},
+// 			"mouseScrollDown": function(fn) {
+// 				this.bind('mousewheel DOMMouseScroll', function(e) {
+// 					if (e.wheelDelta) { //chrome,ie
+// 						if (e.wheelDelta < 0) { //滚轮向下滚动
+// 							if (fn.call(this, e) === false) {
+// 								return stop.call(e);
+// 							}
+// 						}
+// 					} else { //狗日的firefox
+// 						if (e.detail > 0) { //滚轮向下滚动
+// 							if (fn.call(this, e) === false) {
+// 								return stop.call(e);
+// 							}
+// 						}
+// 					}
+// 				}, "mouseScrollDown");
+// 				return this;
+// 			},
+// 			"bind": function(type, fn, fnName) {
+// 				//如果只传一个json参数
+// 				if (arguments.length == 1) {
+// 					for (var k = 0; k < this.length; k++) {
+// 						for (var attr in type) {
+// 							bindEvent(this[k], attr, type[attr], fnName);
+// 						}
+// 					}
+// 				}
+// 				//如果传两个参数，则多个事件统一执行一个e
+// 				else {
+// 					var events = type.split(' ');
+// 					for (var i = 0; i < this.length; i++) {
+// 						var j = 0;
+// 						while (j < events.length) {
+// 							bindEvent.call(this[i], this[i], events[j], fn, fnName);
+// 							j++;
+// 						}
+// 					}
+// 				}
+
+// 				function bindEvent(dom, type, fn, fnName) {
+// 					dom.eventQueue = dom.eventQueue || {};
+// 					dom.eventQueue[type] = dom.eventQueue[type] || {};
+// 					dom.handler = dom.handler || {};
+// 					var index = 0; //事件队列长度
+// 					for (var length in dom.eventQueue[type]) {
+// 						index++;
+// 					}
+// 					if (!fnName) {
+// 						dom.eventQueue[type]['fn' + index] = fn;
+// 					} else {
+// 						dom.eventQueue[type][fnName] = fn;
+// 						// this.fnName = fnName;
+// 					}
+// 					//如果不存在handler[click]，handler[mouseover],…………
+// 					if (!dom.handler[type]) {
+// 						dom.handler[type] = function(e) {
+// 							ev = win.event ? win.event : (e ? e : null);
+// 							ev.target = ev.target || ev.srcElement;
+// 							for (var fn in dom.eventQueue[type]) {
+// 								if (dom.eventQueue[type][fn].call(this, ev) === false) {
+// 									return stop.call(ev);
+// 								}
+// 							}
+// 						};
+// 						addEvent(dom, type, dom.handler[type]);
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			"unbind": function(type, fnName) {
+// 				for (var m = 0; m < this.length; m++) {
+// 					var dom = this[m];
+// 					var hasQueue = dom.eventQueue && dom.eventQueue[type];
+// 					var queueLength = 0;
+// 					for (var length in dom.eventQueue[type]) {
+// 						queueLength++;
+// 					}
+// 					//没有绑定
+// 					if (!hasQueue) return;
+// 					if (!fnName) { //解除匿名函数
+// 						if (win.removeEventListener) {
+// 							dom.removeEventListener(type, dom.handler[type]);
+// 						} else {
+// 							dom.detachEvent(type, dom.handler[type]);
+// 						}
+// 						delete dom.eventQueue[type];
+// 					}
+// 					else { //解除有名函数
+// 						delete dom.eventQueue[type][fnName];
+// 						//如果没有队列了，则删除队列。
+// 						if (queueLength === 0) {
+// 							if (win.removeEventListener) {
+// 								dom.removeEventListener(type, dom.handler[type]);
+// 							} else {
+// 								dom.detachEvent(type, dom.handler[type]);
+// 							}
+// 							delete dom.eventQueue[type];
+// 						}
+// 					}
+// 				}
+// 			},
+// 			"one": function(type, fn) {
+// 				var _this = this;
+// 				//只穿一个json参数
+// 				if (arguments.length == 1) {
+// 					for (var k = 0; k < this.length; k++) {
+// 						for (var attr in type) {
+// 							// bindEvent(this[k],attr,type[attr],fnName);
+// 							this.bind(attr, function(e) {
+// 								var ev = win.event ? win.event : (e ? e : null);
+// 								_this.unbind(ev.type, 'one');
+// 								if (type[attr].call(this, ev) === false) {
+// 									return stop.call(e);
+// 								}
+// 							}, "one");
+// 						}
+// 					}
+// 				}
+// 				//传2个参数
+// 				else {
+// 					var events = type.split(' '); //获取每个事件
+// 					var eventsLength = events.length;
+// 					for (var i = 0; i < this.length; i++) {
+// 						var j = 0;
+// 						while (j < eventsLength) {
+// 							// this[i][ 'on'+events[j] ] = fn;
+// 							this.bind(events[j], function(e) {
+// 								var ev = win.event ? win.event : (e ? e : null);
+// 								_this.unbind(ev.type, 'one');
+// 								if (fn.call(this, ev) === false) {
+// 									return stop.call(e);
+// 								}
+// 							}, "one");
+// 							j++;
+// 						}
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			"trigger": function(type, fnName) {
+// 				for (var k = 0; k < this.length; k++) {
+// 					var dom = this[k];
+// 					if (!fnName) {
+// 						//如果是自定义事件
+// 						if ( TQuery.isUndefined(dom["on" + type]) || TQuery.isUndefined(dom[type]) ) {
+// 							//触发DOM2级事件，通过bind绑定的。
+// 							if (dom.eventQueue) {
+// 								for (var fn in dom.eventQueue[type]) {
+// 									dom.eventQueue[type][fn].call(dom);
+// 								}
+// 							}
+// 						}
+// 						//如果是DOM原生事件
+// 						else {
+// 							// 触发DOM0,DOM2级事件,不通过bind绑定的
+// 							if (typeof dom[type] !== "undefined") {
+// 								dom[type].call(dom);
+// 							}
+// 						}
+// 					}
+// 					//指定触发哪个函数
+// 					else {
+// 						dom.eventQueue[type][fnName].call(dom);
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			"triggerHandler":function(type, fnName){
+// 				this.trigger(type, fnName);
+// 			},
+// 			"live": function(type, fn, parent) {
+// 				var _this = this,
+// 					liveIndex = "live" + parseFloat(Math.random() * 10).toFixed(10).replace('.', "");
+// 				parent = parent ? parent : doc;
+// 				for (var j = 0; j < this.length; j++) {
+// 					this[j].parentLive = parent;
+// 					this[j].liveIndex = liveIndex;
+// 				}
+// 				$(parent).bind(type, function(e) {
+// 					for (var i = 0; i < _this.length; i++) {
+// 						if (e.target == _this[i]) {
+// 							fn.call(e.target, e);
+// 							break;
+// 						}
+// 					}
+// 					return stop.call(e);//默认阻止冒泡
+// 				}, liveIndex);
+// 				return this;
+// 			},
+// 			"die": function(type, parent) {
+// 				var liveIndex = this[0].liveIndex;
+// 				parent = parent ? parent : (this[0].parentLive ? this[0].parentLive : doc);
+// 				$(parent).unbind(type, liveIndex);
+// 			},
+// 			"mutation": function(options, fn) {
+// 				var MutationObserver, observer;
+// 				for (var i = 0; i < this.length; i++) {
+// 					MutationObserver = win.MutationObserver || win.WebKitMutationObserver || win.MozMutationObserver;
+// 					observer = new MutationObserver(function(mutations) {
+// 						mutations.forEach(function(mutation) {
+// 							fn.call(this[i]);
+// 						});
+// 					});
+// 					observer.observe(this[i], options);
+// 				}
+// 				return this;
+// 			},
+// 			//支持的标签<input type="text">, <select>, <textarea>，js对象：fileUpload, select, text, textarea
+// 			"change":function(fn){
+// 				this.bind('change',function(e){
+// 					fn.call(this,e);
+// 				});
+// 			},
+// 			//==============尺寸=============
+// 			"width": function(setting) {
+// 				if (!setting && this[0] instanceof Object && (this[0].alert || this[0].body)) { //如果是win，或document
+// 					return doc.body.scrollWidth > doc.documentElement.scrollWidth ? doc.body.scrollWidth : doc.documentElement.scrollWidth; //获取带padding和margin的值
+// 				} else if (setting) { //设置宽度
+// 					for (var i = 0; i < this.length; i++) {
+// 						this[i].style.width = setting.toString().replace('px', '') + 'px';
+// 					}
+// 					return this;
+// 				} else {
+// 					return this[0].offsetWidth || parseFloat(this.style('width')); //获取宽度
+// 				}
+// 			},
+// 			"height": function(setting) {
+// 				if (this[0] instanceof Object && (this[0].alert || this[0].body)) { //如果是win，或document，则返回整个文档高度
+// 					return doc.body.scrollHeight > doc.documentElement.scrollHeight ? doc.body.clientHeight : doc.documentElement.scrollHeight; //获取带padding和margin的值
+// 				} else if (setting) { //设置高度
+// 					for (var i = 0; i < this.length; i++) {
+// 						this[i].style.height = setting.toString().replace('px', '') + 'px';
+// 					}
+// 					return this;
+// 				} else if (!setting) {
+// 					return this[0].offsetHeight || parseFloat(this.style('height')); //获取高度
+// 				}
+// 			},
+// 			"innerWidth": function() {
+
+// 			},
+// 			"innerHeight": function() {
+
+// 			},
+// 			"top": function(setting) {
+// 				if (setting) {
+// 					this.css('top', setting);
+// 					return this;
+// 				}
+// 				return parseInt(this[0].offsetTop);
+// 			},
+// 			"left": function(setting) {
+// 				if (setting) {
+// 					this.css('left', setting);
+// 					return this; //返回对象，进行链式操作
+// 				}
+// 				return parseInt(this[0].offsetLeft);
+// 			},
+// 			"viewWidth": function() {
+// 				return doc.body.clientWidth < doc.documentElement.clientWidth ? doc.body.clientWidth : doc.documentElement.clientWidth; //取较小值
+// 			},
+// 			"viewHeight": function() {
+// 				return doc.body.clientHeight < doc.documentElement.clientHeight ? doc.body.clientHeight : doc.documentElement.clientHeight; //取较小值
+// 			},
+// 			"style": function(attr) {
+// 				return this[0].currentStyle ? this[0].currentStyle[attr] : getComputedStyle(this[0])[attr];
+// 			},
+// 			"scrollTop": function() {
+// 				return this.size('scrollTop');
+// 			},
+// 			"scrollHeight": function() {
+// 				return this.size('scrollHeight');
+// 			},
+// 			"scrollLeft": function() {
+// 				return this.size('scrollLeft');
+// 			},
+// 			"scrollWidth": function() {
+// 				return this.size('scrollLeft');
+// 			},
+// 			"size": function(attr) {
+// 				return doc.documentElement[attr] ? doc.documentElement[attr] : doc.body[attr];
+// 			},
+// 			//包含margin
+// 			"offset": function(attr) {
+// 				return this[0]['offset' + TQuery.upper(attr)];
+// 			},
+// 			//==============属性=============
+// 			//可编辑性,true>>>可编辑,false>>>不可编辑
+// 			"modify":function(boolean){
+// 				boolean = (typeof boolean !== "undefined") ? boolean : true;
+// 				this.prop({
+// 					"contentEditable":boolean,
+// 					"readOnly":!boolean
+// 				});
+// 				return this;
+// 			},
+// 			//一个是特性
+// 			"prop": function(prop, value) {
+// 				if (arguments.length == 1) {
+// 					//读取
+// 					if (typeof prop == "string") {
+// 						return this[0][prop];
+// 					}
+// 					//写,json格式
+// 					else {
+// 						for (var key in prop) {
+// 							for( var j=0;j<this.length;j++ ){
+// 								if( typeof this[j][key] !=="undefined" ){
+// 									this[j][key] = prop[key];
+// 								}
+// 							}
+// 						}
+// 					}
+// 				}
+// 				else if (arguments.length == 2) {
+// 					for (var i = 0; i < this.length; i++) {
+// 						this[i][prop] = value;
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			// .toggleProp('value',[1,2,3,4,5,6]) || .toggleProp('value')
+// 			"toggleProp": function(prop, array) {
+// 				var type = {
+// 					"prop": TQuery.type(prop),
+// 					"array": TQuery.type(array)
+// 				};
+// 				//1个值的toggle,增加/删除
+// 				if (arguments.length <= 2 && (type.array !== "array" || type.array == "undefined")) {
+// 					for (var i = 0; i < this.length; i++) {
+// 						if (!this[i][prop]) { //不存在
+// 							this[i][prop] = array;
+// 						} else { //存在
+// 							this[i][prop] = null;
+// 						}
+// 					}
+// 				}
+// 				//多个值得toggle
+// 				else {
+// 					var values = TQuery.toArray(arguments).slice(1)[0];
+// 					var data = this.data('toggleProp');
+// 					if (typeof data.count == "undefined") data.count = 0;
+// 					if (typeof data.values == "undefined") data.values = values;
+// 					this.data('toggleProp', data); //设置属性
+// 					this.prop(prop, values[data.count++ % data.values.length]);
+// 				}
+// 				return this;
+// 			},
+// 			//一个是属性
+// 			"attr": function(attr, value) {
+// 				//2个参数，设置属性
+// 				if (arguments.length == 2) {
+// 					if (attr == "className") {
+// 						attr = "class";
+// 					}
+// 					for (var k = 0; k < this.length; k++) {
+// 						if (this[k][attr]) {
+// 							this[k][attr] = value;
+// 						} else {
+// 							this[k].setAttribute(attr, value);
+// 						}
+// 					}
+// 				}
+// 				//1个参数
+// 				else if (arguments.length == 1) { //1个参数
+// 					//JSON，设置属性
+// 					if (typeof(attr) == "object" && Object.prototype.toString.call(attr).toLowerCase() == "[object object]") { //如果是json，则分别设置属性
+// 						for (var i = 0; i < this.length; i++) {
+// 							for (var j in attr) {
+// 								if (j == "className" || j == "class") {
+// 									var classValue = attr[j];
+// 									this[i].setAttribute("class", classValue);
+// 									continue;
+// 								}
+// 								if (this[i][j]) { //如果属性是可以直接读取
+// 									this[i][j] = attr[j];
+// 								} else { //如果是自定义属性
+// 									this[i].setAttribute(j, attr[j]);
+// 								}
+// 							}
+// 						}
+// 					}
+// 					//读取
+// 					else {
+// 						return this[0][attr] || this[0].getAttribute(attr);
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			// .toggleProp('data-set',[1,2,3,4,5,6]) || .toggleProp('data-set')
+// 			"toggleAttr": function(attr, array) {
+// 				var type = {
+// 					"attr": TQuery.type(attr),
+// 					"array": TQuery.type(array)
+// 				};
+// 				//1个值的toggle,增加和删除
+// 				if (arguments.length <= 2 && (type.array !== "array" || type.array == "undefined")) {
+// 					for (var i = 0; i < this.length; i++) {
+// 						if (!this[i].getAttribute(attr)) { //不存在
+// 							this[i].setAttribute(attr, array);
+// 						} else { //存在
+// 							this[i].removeAttribute(attr);
+// 						}
+// 					}
+// 				}
+// 				//同时设置多个值的toggle
+// 				else {
+// 					var values = TQuery.toArray(arguments).slice(1)[0];
+// 					var data = this.data('toggleAttr'); //读取属性
+// 					if (typeof data.count == "undefined") data.count = 0;
+// 					if (typeof data.values == "undefined") data.values = values;
+// 					this.data('toggleAttr', data); //设置属性
+// 					this.attr(attr, values[data.count++ % data.values.length]);
+// 				}
+// 				return this;
+// 			},
+// 			"removeAttr": function(attr) {
+// 				for (var i = 0; i < this.length; i++) {
+// 					if (this[i][attr]) {
+// 						delete this[i][attr];
+// 					} else {
+// 						this[i].removeAttribute(attr);
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			"hasClass": function(obj, classValue) {
+// 				return obj.classList.contains(classValue);
+// 			},
+// 			"addClass": function(classValue) {
+// 				for (var i = 0; i < this.length; i++) {
+// 					this[i].classList.add(classValue);
+// 				}
+// 				return this;
+// 			},
+// 			"removeClass": function(classValue) {
+// 				for (var i = 0; i < this.length; i++) {
+// 					this[i].classList.remove(classValue);
+// 				}
+// 				return this;
+// 			},
+// 			// .toggleProp('class1','class2','class3') || .toggleProp('class1')
+// 			"toggleClass": function() {
+// 				//单个ClassName开关
+// 				if (arguments.length === 1) {
+// 					for (var i = 0; i < this.length; i++) {
+// 						this[i].classList.toggle( arguments[0] );
+// 					}
+// 				}
+// 				//多个className切换
+// 				else{
+// 					var values = TQuery.toArray(arguments);
+// 					var data = this.data('toggleAttr'); //读取属性
+// 					if (typeof data.count == "undefined") data.count = 0;
+// 					if (typeof data.values == "undefined") data.values = values;
+// 					for (var j = 0; j < arguments.length; j++) {
+// 						this.removeClass(arguments[j]);
+// 					}
+// 					this.data('toggleAttr', data); //设置属性
+// 					this.addClass(values[data.count++ % data.values.length]);
+// 				}
+// 				return this;
+// 			},
+// 			// .data('info',{})
+// 			"data": function(key,value) {
+// 				var data = this[0].dataTQuery = this[0].dataTQuery || {};
+// 				//读数据
+// 				if (arguments.length == 1 && typeof data[key] !== "undefined") {
+// 					return data[key];
+// 				}
+// 				//存数据
+// 				else {
+// 					for (var i = 0; i < this.length; i++) {
+// 						data = this[i].dataTQuery;
+// 						data[key] = value;
+// 					}
+// 				}
+// 				return data;
+// 			},
+// 			"removeData": function(key) {
+// 				var data;
+// 				for (var i = 0; i < this.length; i++) {
+// 					data = this[i].dataTQuery;
+// 					if (data[key]) {
+// 						data[key] = null;
+// 						delete data[key];
+// 						this[i].dataTQuery = data;
+// 					}
+// 				}
+// 			},
+// 			//==============样式=============
+// 			"css": function(attr, value) {
+// 				var type = /^(width|left|top|bottom|right|line-height|font-size)+/ig;
+// 				var type2 = /^(height|margin|padding)+/ig;
+// 				var type3 = /\d+(px)/ig;
+// 				var type4 = /\:/ig;
+// 				//两个参数
+// 				if (arguments.length == 2) {
+// 					//设置
+// 					value += "";
+// 					if (type.test(attr) && value.indexOf('%') < 0) {
+// 						value = parseFloat(value).toFixed(2) + 'px';
+// 					}
+// 					for (var m = 0; m < this.length; m++) {
+// 						this[m].style[attr] = value;
+// 					}
+// 				}
+// 				//一个参数
+// 				else {
+// 					//字符串格式
+// 					if (typeof attr == "string") {
+// 						//设置,background:#303030;font-size:20px;
+// 						//设置样式
+// 						if (type4.test(attr)) {
+// 							for (var x = 0; x < this.length; x++) {
+// 								this[x].style.cssText = attr;
+// 							}
+// 						}
+// 						//读取样式
+// 						else {
+// 							return this[0].currentStyle ? this[0].currentStyle[attr] : getComputedStyle(this[0])[attr];
+// 						}
+// 					}
+// 					//JSON格式
+// 					else if (typeof(attr) == "object" && Object.prototype.toString.call(attr).toLowerCase() == "[object object]" && !attr.length) {
+// 						var css = "",
+// 							key,
+// 							val;
+// 						for (var i = 0; i < this.length; i++) {
+// 							//JS写法
+// 							// for(var k in attr){
+// 							// 	//k == 属性名字,width,height,opacity等
+// 							// 	//attr[k] == 属性值,300px,#303030等
+// 							// 	if((type.test(k) || type2.test(k)) && attr[k].indexOf('%')<0 ){//如果没有%符号
+// 							// 		attr[k] = parseFloat( attr[k] ).toFixed(2) + 'px';
+// 							// 	}
+// 							// 	this[i].style[k] = attr[k];
+// 							// }
+// 							//纯CSS写法
+// 							for (key in attr) {
+// 								//k == 属性名字,width,height,opacity等
+// 								//attr[k] == 属性值,300px,#303030等
+// 								val = attr[key] + "";
+// 								if ((type.test(key) || type2.test(key)) && val.indexOf('%') < 0) { //如果是带像素的属性，并且没有%符号
+// 									val = parseFloat(val).toFixed(2) + 'px';
+// 								}
+// 								css += key + ":" + val + ";";
+// 							}
+// 							this[i].style.cssText = css;
+// 						}
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			//参数：内容，{}(properties)
+// 			"addStyle": function() {
+// 				var contents,prop,textNode,styleSheet;
+// 				for( var i=0;i<arguments.length;i++ ){
+// 					var agm = arguments[i];
+// 					//Style内容
+// 					if( TQuery.isString(agm) ){
+// 						contents = agm;
+// 					}
+// 					//Style属性
+// 					else if( TQuery.isObject(agm) ){
+// 						prop = agm;
+// 					}
+// 				}
+// 				textNode = doc.createTextNode(contents);
+// 				styleSheet = doc.createElement('style');
+// 				styleSheet.type = "text/css";
+// 				for( var attr in prop ){
+// 					if( typeof styleSheet[attr] !=="undefined" ){
+// 						styleSheet[attr] = prop[attr];
+// 					}
+// 				}
+// 				styleSheet.appendChild(textNode);
+// 				doc.head.appendChild(styleSheet);
+// 				return this;
+// 			},
+// 			//参数：内容，{}(properties)
+// 			"addScript":function(){
+// 				var contents,url,prop,position,textNode,script;
+// 				for( var i=0;i<arguments.length;i++ ){
+// 					var agm = arguments[i];
+// 					//内容
+// 					if( TQuery.isString(agm) ){
+// 						contents = agm;
+// 					}
+// 					//属性
+// 					else if( TQuery.isObject(agm) ){
+// 						prop = agm;
+// 					}
+// 					//position,true为头部，false为尾部
+// 					else if( TQuery.isBoolean(agm) ){
+// 						position = agm;
+// 					}
+// 				}
+// 				contents = contents ? contents : "";
+// 				textNode = doc.createTextNode(contents);
+// 				script = doc.createElement('script');
+// 				script.type = "text/javascript";
+// 				for( var attr in prop ){
+// 					if( !TQuery.isUndefined(script[attr]) ){
+// 						script[ attr ] = prop[attr];
+// 					}
+// 				}
+// 				script.appendChild(textNode);
+// 				//插入头部
+// 				if( position===true ){
+// 					doc.head.appendChild(script);
+// 				}
+// 				//插入尾部
+// 				else{
+// 					doc.body.appendChild(script);
+// 				}
+// 				return this;
+// 			},
+// 			//参数：{}(properties)
+// 			"addLink":function(){
+// 				var link = doc.createElement('link');
+// 				for( var attr in arguments[0] ){
+// 					link[ attr ] = arguments[0][ attr ];
+// 				}
+// 				doc.head.appendChild( link );
+// 				return this;
+// 			},
+// 			//==============动画=============
+// 			//animate({},load,speed,callBack)
+// 			"animate": function() {
+// 				var properties,load,speed,callBack,this_ = this,fps = parseInt(1000/60);
+// 				for( var o=0;o<arguments.length;o++ ){
+// 					var agm = arguments[o];
+// 					// properties
+// 					if( TQuery.isObject( agm ) ){
+// 						properties = agm;
+// 					}
+// 					// load
+// 					else if( TQuery.isFunction( agm ) && o!==arguments.length-1 ){
+// 						load = agm;
+// 					}
+// 					// speed
+// 					else if( TQuery.isNumber( agm ) || ( TQuery.isString(agm) &&  agm>=0) ){
+// 						speed = agm;
+// 					}
+// 					// callBack
+// 					else if( TQuery.isFunction( agm ) && o==arguments.length-1 ){
+// 						callBack = agm;
+// 					}
+// 				}
+// 				for (var i = 0; i < this.length; i++) {
+// 					var _this = this[i];
+// 					clearInterval(_this.animate);
+// 					_this.animate = setInterval(function() {
+// 						var bStop = true,
+// 							current,
+// 							target;
+
+// 						for (var attr in properties) {
+// 							// 1. 取得当前的值(可以是width，height，opacity等的值)
+// 							current = 0; //当前值
+// 							target = 0; //目标值
+// 							if (attr == 'opacity') {
+// 								current = Math.round(parseFloat($(_this).style(attr)) * 100);
+// 								target = parseFloat(properties[attr]) * 100;
+// 							}
+// 							else if( attr== 'scrollTop' ){
+// 								current = parseInt( this_.scrollTop() );
+// 								target = parseInt( properties[attr] );
+// 							}
+// 							else {
+
+// 								current = parseInt($(_this).style(attr));
+// 								target = parseFloat(properties[attr]);
+// 							}
+// 							// 2.计算运动速度
+// 							var speedConfig = typeof(speed) != 'undefined' ? speed : 10;
+// 							var iSpeed = (target - current) / speedConfig;
+// 							iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+// 							// 3. 检测所有运动是否到达目标
+// 							if ((iSpeed > 0 && current <= target) || (iSpeed < 0 && current >= target)) {
+// 								bStop = false;
+// 							}
+// 							// 4. 开始运动
+// 							if (attr == "opacity") {
+// 								_this.style.filter = 'alpha(opacity=' + (current + iSpeed) + ')';
+// 								_this.style.opacity = (current + iSpeed) / 100;
+// 							}
+// 							else if( attr == 'scrollTop' ){
+// 								this_.scrollTo( target );
+// 							}
+// 							else {
+// 								_this.style[attr] = current + iSpeed + 'px';
+// 							}
+// 							load && load.call(_this);
+// 							// 4. 运动停止
+// 							if (bStop) {
+// 								clearInterval(_this.animate);
+// 								callBack && callBack.call(_this);
+// 							}
+// 						}
+// 					},fps);
+// 				}
+// 				return this;
+// 			},
+// 			//animateToggle({},{},{},{})
+// 			"animateToggle":function(){
+// 				var _arguments = arguments;
+// 				var data = this.data('animateToggle'); //获取属性
+// 				if (typeof data.count == "undefined") data.count = 0;
+// 				if (typeof data.objLength == "undefined") data.objLength = _arguments.length;
+// 				this.data('animateToggle', data); //设置属性
+// 				for (var i = 0; i < this.length; i++) {
+// 					this.animate( _arguments[data.count++ % data.objLength] );
+// 				}
+// 				return this;
+// 			},
+// 			"stop": function(delay) {
+// 				var stardelay = delay ? delay : 0;
+// 				setTimeout(function() {
+// 					clearInterval($(this)[0].animate);
+// 				}, stardelay);
+// 				return this;
+// 			},
+// 			"show": function() {
+// 				for (var i = 0; i < this.length; i++) {
+// 					this[i].style.display = 'block';
+// 				}
+// 				return this;
+// 			},
+// 			"hide": function() {
+// 				for (var i = 0; i < this.length; i++) {
+// 					this[i].style.display = 'none';
+// 				}
+// 				return this;
+// 			},
+// 			"fadeToggle": function() {
+// 				var _this = this;
+// 				this.toggle(function() {
+// 					_this.fadeOut();
+// 				}, function() {
+// 					_this.fadeIn();
+// 				});
+// 				return this;
+// 			},
+// 			"fadeIn": function(callBack) {
+// 				var _this = this;
+// 				this.css('display', 'block');
+// 				this.animate({
+// 					"opacity": 1
+// 				},function(){
+// 					if (callBack) callBack(this);
+// 				});
+// 			},
+// 			"fadeOut": function(callBack) {
+// 				var _this = this;
+// 				this.animate({
+// 					"opacity": 0
+// 				},function(){
+// 					_this.css('display', 'none');
+// 					if (callBack) callBack(this);
+// 				});
+// 			},
+// 			"fadeTo": function(target, callBack) {
+// 				var _this = this;
+// 				this.animate({
+// 					"opacity": target
+// 				}, function(){
+// 						if (target <= 0) {
+// 							_this.css('display', 'none');
+// 						} else {
+// 							_this.css('display', 'block');
+// 						}
+// 						if (callBack) callBack(this);
+// 				});
+// 			},
+// 			"scale": function(times,callBack) {
+// 				callBack = TQuery.isFunction(callBack) ? callBack : TQuery.noop;
+// 				var prop = {},width,height,arr = [],
+// 					eles = this.toArray();
+// 				for( var i=0;i<eles.length;i++ ){
+// 					var _this = $(eles[i]);
+// 					width = _this.data('size').width || _this.width();
+// 					height = _this.data('size').height || _this.height();
+// 					_this.data("size",{"width":width,"height":height});
+// 					_this.animate( {"width":width*times,"height":height*times},callBack );
+// 				}
+// 				return this;
+// 			},
+// 			//scaleToggle(2,3,1,0.5,callBack)
+// 			"scaleToggle":function(){
+// 				var agms = arguments,_arguments,callBack;
+// 				//如果最后一位是function，则最为回掉
+// 				if( TQuery.isFunction( agms[length-1] ) ) {
+// 					callBack = agms[length-1];
+// 					_arguments = TQuery.toArray(arguments).splice(0,arguments.length-1);
+// 				}else{
+// 					callBack = TQuery.noop;
+// 					_arguments = TQuery.toArray(arguments);
+// 				}
+// 				var data = this.data('scaleToggle'); //获取属性
+// 				if (typeof data.count == "undefined") data.count = 0;
+// 				if (typeof data.agms == "undefined") data.agms = _arguments.length;
+// 				this.data('scaleToggle', data); //设置属性
+// 				this.scale( _arguments[data.count++ %data.agms] ,callBack);
+// 				return this;
+// 			},
+// 			"toggle": function() {
+// 				var _arguments = arguments;
+// 				var data = this.data('toggle'); //获取属性
+// 				if (typeof data.count == "undefined") data.count = 0;
+// 				if (typeof data.fns == "undefined") data.fns = _arguments.length;
+// 				this.data('toggle', data); //设置属性
+// 				for (var i = 0; i < this.length; i++) {
+// 					_arguments[data.count++ % data.fns].call(this[i]);
+// 				}
+// 				return this;
+// 			},
+// 			"slideToggle": function() {
+// 				var _this = this;
+// 				this.toggle(function() {
+// 					$(this).slideUp();
+// 				}, function() {
+// 					$(this).slideDown();
+// 				});
+// 				return this;
+// 			},
+// 			"slideRight": function(callBack) {
+// 				var width = this.data('size').width;
+// 				this.show().animate({
+// 					"width": width
+// 				}, function(){
+// 					if (callBack) callBack.call(this);
+// 				});
+// 				return this;
+// 			},
+// 			"slideLeft": function(callBack) {
+// 				var size = this.data('size');
+// 				if (typeof size.width == "undefined") {
+// 					this.data('size').width = this.width();
+// 				}
+// 				var _this = this;
+// 				this.animate({
+// 					"width": 0
+// 				},function(){
+// 					_this.hide();
+// 					if (callBack) callBack.call(this);
+// 				});
+// 				return this;
+// 			},
+// 			"slideDown": function(callBack) {
+// 				var height = this.data('size').height;
+// 				this.show().animate({
+// 					"height": height
+// 				}, function(){
+// 					if (callBack) callBack.call(this);
+// 				});
+// 				return this;
+// 			},
+// 			"slideUp": function(callBack) {
+// 				var size = this.data('size');
+// 				if (typeof size.height == "undefined") {
+// 					this.data('size').height = this.height();
+// 				}
+// 				var _this = this;
+// 				this.animate({
+// 					"height": 0
+// 				}, function(){
+// 					_this.hide();
+// 					if (callBack) callBack.call(this);
+// 				});
+// 				return this;
+// 			},
+// 			"scrollTo": function(target, callBack) {
+// 				//传入DOM节点
+// 				if ( TQuery.isDOM(target) ) {
+// 					target = parseInt($(target).offset('top'));
+// 				}
+// 				//传入选择符,字符串
+// 				else if ( typeof target == "string" ) {
+// 					//字符串数字
+// 					if (target > 0) {
+// 						target = parseInt(target);
+// 					} else {
+// 						target = $(target).offset('top');
+// 					}
+// 				}
+// 				//传入TQuery对象
+// 				else if (typeof target.TQuery !== "undefined") {
+// 					target = target.offset('top');
+// 				}
+// 				var _this = this,
+// 					nowScrollTop, dif, speed, position,
+// 					pageHeight = $(doc).height() - $(doc).viewHeight();
+// 				target = target < 0 ? 0 : (target < pageHeight ? target : pageHeight); //超出范围
+// 				clearInterval(doc.timerScroll);
+// 				doc.timerScroll = setInterval(function() {
+// 					nowScrollTop = doc.body.scrollTop || doc.documentElement.scrollTop;
+// 					dif = Math.abs(nowScrollTop - target); //差值
+// 					speed = nowScrollTop - target < 0 ? (dif / 10) + 1 : -((dif / 10) + 1);
+// 					position = nowScrollTop + (speed);
+// 					if ((speed > 0 && position >= target) || (speed < 0 && position <= target)) {
+// 						doc.body.scrollTop = doc.documentElement.scrollTop = target;
+// 						clearInterval(doc.timerScroll);
+// 						if (callBack) callBack.call(_this[0]);
+// 					} else {
+// 						doc.body.scrollTop = doc.documentElement.scrollTop = position;
+// 					}
+// 				}, parseInt(1000 / 60));
+// 				return this;
+// 			},
+// 			"scrollToggle": function() {
+// 				var data = this.data('toggleClick'); //获取属性
+// 				if (typeof data.count == "undefined") data.count = 0;
+// 				if (typeof data.targets == "undefined") data.targets = arguments;
+// 				this.data('toggleClick', data); //设置属性
+// 				this.scrollTo(data.targets[data.count++ % arguments.length]);
+// 				return this;
+// 			},
+// 			//==============DOM=============
+// 			"replace":function(DOMNode){
+// 				//传入DOM节点
+// 				if( TQuery.isDOM( DOMNode ) ){
+// 					DOMNode = DOMNode;
+// 				}
+// 				//传入DOM字符串
+// 				else{
+
+// 				}
+// 				//替换
+// 				for( var i=0;i<this.length;i++ ){
+// 					doc.body.replaceChild(DOMNode,this[i]);//DOMNode替换掉this[i]
+// 				}
+// 				return this;
+// 			},
+// 			"replaceAll":function(){
+
+// 			},
+// 			"replaceWidth":function(){
+
+// 			},
+// 			"clone": function(deep) {
+// 				var newElements = [],
+// 					cloneNode;
+// 				for (var i = 0; i < this.length; i++) {
+// 					cloneNode = this[i].cloneNode(true); //带子节点
+// 					if (deep && deep === true) { //深度克隆，带事件
+
+// 					}
+// 				}
+// 				return this;
+// 			},
+// 			"append": function(content) {
+
+// 			},
+// 			"appendChild": function(content) {
+
+// 			},
+// 			"prepend": function(prepend) {
+
+// 			},
+// 			"prependChild": function() {
+
+// 			},
+// 			//插入到DOMNode之后
+// 			"after": function(DOMNode) {
+// 				var parent,
+// 					oFragment = doc.createDocumentFragment(); //创建文档碎片;
+// 				for (var i = 0; i < this.length; i++) {
+// 					oFragment.appendChild(this[i]);
+// 				}
+// 				parent = DOMNode.parentNode; //插入位置的父元素
+// 				if (parent.lastChild == DOMNode) { //如果最后的节点是目标节点，直接添加
+// 					parent.appendChild(oFragment);
+// 				} else { //如果不是，则插入在目标元素的下一个兄弟节点的前面，也就是目标元素的后面
+// 					parent.insertBefore(oFragment, DOMNode.nextSibling);
+// 				}
+// 				return this;
+// 			},
+// 			//插入到DOMNode之前
+// 			"before": function(DOMNode) {
+// 				var oFragment = doc.createDocumentFragment(); //创建文档碎片
+// 				for (var i = 0; i < this.length; i++) {
+// 					oFragment.appendChild(this[i]);
+// 				}
+// 				DOMNode.parentNode.insertBefore(oFragment, DOMNode);
+// 				return this;
+// 			},
+// 			"remove": function() {
+// 				for (var i = 0; i < this.length; i++) {
+// 					this[i].remove();
+// 				}
+// 				return this;
+// 			},
+// 			"empty": function() {
+// 				this.text(' ');
+// 				this.html(' ');
+// 				return this;
+// 			},
+// 			"html": function(setting) {
+// 				if (setting) {
+// 					for (var i = 0; i < this.length; i++) {
+// 						this[i].innerHTML = setting;
+// 					}
+// 					return this;
+// 				} else {
+// 					return this[0].innerHTML;
+// 				}
+// 			},
+// 			"text": function(setting) {
+// 				if (setting) {
+// 					for (var i = 0; i < this.length; i++) {
+// 						this[i].innerText = this[i].textContent = setting;
+// 					}
+// 					return this;
+// 				} else {
+// 					return this[0].innerText || this[0].textContent;
+// 				}
+// 			},
+// 			//带标签,注释
+// 			"contents":function(setting){
+// 				if (setting) {
+// 					for (var i = 0; i < this.length; i++) {
+// 						this[i].outerText = this[i].outerHTML = setting;
+// 					}
+// 					return this;
+// 				} else {
+// 					return this[0].outerText || this[0].outerHTML;
+// 				}
+// 			},
+// 			"val": function(setting) {
+// 				if (setting) {
+// 					this.prop("value",setting);
+// 					return this;
+// 				} else {
+// 					return this[0].value;
+// 				}
+// 			},
+// 			//==============其他=============
+// 			"proxy": function(fn, _this) {
+// 				fn.call(_this);
+// 				return this;
+// 			},
+// 			"delay": function(fn, time) {
+// 				var _this = this;
+// 				setTimeout(function() {
+// 					fn.call(_this);
+// 				}, time);
+// 				return this;
+// 			},
+// 			"do": function(fn) {
+// 				fn.call(this);
+// 				return this;
+// 			},
+// 			//==============转换=============
+// 			"get": function(n) {
+// 				n = n || 0;
+// 				return this[n];
+// 			},
+// 			"toArray": function() {
+// 				var temp = [];
+// 				for (var i in this) {
+// 					if (i >= 0) temp.push(this[i]);
+// 				}
+// 				return this.init.elements ? this.init.elements : temp;
+// 			},
+// 			"index": function(n) {
+// 				var _this = this,
+// 					index = 0,
+// 					brothers = _this[0].parentNode.children;
+// 				for (var i = 0; i < brothers.length; i++) { //遍历
+// 					if (brothers[i] == this[0]) { //如果匹配到
+// 						index = i;
+// 						break;
+// 					}
+// 				}
+// 				return index;
+// 			}
+// 		};
+// 		TQuery.fn.init.prototype = TQuery.fn;
+// 		//==============工具集=============
+// 		//****检查类型****
+// 		TQuery.type = function(obj) {
+// 			var string = Object.prototype.toString.call(obj);
+// 			return string.split(" ")[1].replace(/\]|\[/img, "").toString().toLowerCase();
+// 		};
+// 		TQuery.isNumber = function(obj) {
+// 			if (typeof obj == "number" && !isNaN(obj)) {
+// 				return true;
+// 			} else {
+// 				return false;
+// 			}
+// 		};
+// 		TQuery.isString = function(obj) {
+// 			if (typeof obj == "string" || obj instanceof String) {
+// 				return true;
+// 			} else {
+// 				return false;
+// 			}
+// 		};
+// 		TQuery.isFunction = function(obj) {
+// 			if (typeof obj == "function" && obj instanceof Function && Object.prototype.toString.call(obj) === '[object Function]') {
+// 				return true;
+// 			} else {
+// 				return false;
+// 			}
+// 		};
+// 		TQuery.isArray = function(obj) {
+// 			return Array.isArray ? Array.isArray(obj) : Object.prototype.toString.call(obj) === '[object Array]';
+// 		};
+// 		TQuery.isObject = function(obj) {
+// 			return Object.prototype.toString.call(obj) === '[object Object]';
+// 		};
+// 		TQuery.isDOM = function(obj) {
+// 			//IE8下，一切皆为object
+// 			return /html|document|element|object/img.test(Object.prototype.toString.call(obj).split(" ")[1]) && typeof obj.parentNode !=="undefined";
+// 		};
+// 		TQuery.isBoolean = function(obj){
+// 			return (obj===true || obj===false) ? true : Object.prototype.toString.call(obj)==='[object Boolean]';
+// 		};
+// 		TQuery.isWindow = function(obj) {
+// 			return (obj == obj.obj && typeof obj == "object") ? true : false;
+// 		};
+// 		TQuery.isUndefined = function(obj) {
+// 			return Object.prototype.toString.call(obj) === '[object Undefined]';
+// 		};
+// 		//创新一个新的TQuery副本,可以自行修改方法，属性，而不影响原有的。
+// 		TQuery.sub = function(selectors){
+// 			//构造函数
+// 			var newTQuery = function(selectors){
+// 				return newTQuery.fn.init(selectors);
+// 			};
+// 			for( var prop in $ ){
+// 				newTQuery[prop] = $[prop];
+// 			}
+// 			var prototype = {};
+// 			for( var attr in $.prototype ){
+// 				prototype[attr] = $.prototype[attr];
+// 			}
+// 			newTQuery.fn = newTQuery.prototype = prototype;
+// 			newTQuery.fn.init.prototype = newTQuery.fn;
+// 			return newTQuery;
+// 		};
+// 		//****AJAX****
+// 		TQuery.ajax = function(options) {
+// 			var oAjax,
+// 				data = options.data ? options.data : "", //头部信息。必须是数组[key,value]
+// 				context = options.context ? options.context : win, //执行上下文，this
+// 				type = options.type ? options.type : 'GET', //请求方式
+// 				async = options.async ? options.async : true; //默认异步加载
+// 			if (win.XMLHttpRequest) { //IE7+，chrome，firefox，opara，safari
+// 				oAjax = new XMLHttpRequest();
+// 			} else {
+// 				oAjax = new ActiveXObject("Microsoft.XMLHTTP"); //IE5，IE6
+// 			}
+
+// 			if (options.beforeSend) options.beforeSend.call(context); //发送之前
+
+// 			oAjax.setRequestHeader(data[0], data[1]); //设置头部信息
+// 			oAjax.open(options.type, options.url, async);
+// 			oAjax.send();
+// 			oAjax.onreadystatechange = function() {
+// 				if (oAjax.readyState == 4) {
+// 					if (options.complete) options.complete.call(context, oAjax.status); //读取完成
+// 					if (oAjax.status == 200) {
+// 						if (options.success) options.success.call(context, oAjax.responseText); //读取成功
+// 					} else {
+// 						if (options.fail) options.fail.call(context, oAjax.status); //读取失败
+// 					}
+// 				}
+// 			};
+// 		};
+// 		//****对象操作****
+// 		//去重复
+// 		TQuery.unique = function(obj) {
+// 			var V = {
+// 				"hash": {},
+// 				"arr": [],
+// 				"length": obj.length
+// 			};
+// 			for (var i = 0; i < V.length; i++) {
+// 				if (typeof V.hash[obj[i]] == "undefined") {
+// 					V.hash[obj[i]] = 1;
+// 					V.arr.push(obj[i]);
+// 				}
+// 			}
+// 			return V.arr;
+// 		};
+
+// 		//空函数，同jquery
+// 		TQuery.noop = function() {
+// 			return;
+// 		};
+
+// 		//去掉首尾空格，同jquery
+// 		TQuery.trim = function(str) {
+// 			var newStr = str.replace(/^\s*(\S*)\s*$/img, "$1");
+// 			return newStr;
+// 		};
+
+// 		//返回当前时间，同jquery
+// 		TQuery.now = function() {
+// 			return (new Date()).getTime();
+// 		};
+// 		//刷新页面，同jquery
+// 		TQuery.reload = function() {
+// 			win.location.reload(true);
+// 		};
+// 		//将类数组转成数组
+// 		TQuery.toArray = function(iArray) {
+// 			var temp = [];
+// 			for (var i = 0; i < iArray.length; i++) {
+// 				temp.push(iArray[i]);
+// 			}
+// 			return temp;
+// 		};
+// 		//单词首字母大写
+// 		TQuery.upper = function(str) {
+// 			var reg = /\b(\w)|\s(\w)/g;
+// 			str = str.toLowerCase();
+// 			return str.replace(reg, function(m) {
+// 				return m.toUpperCase();
+// 			});
+// 		};
+// 		//打乱数组，同jquery
+// 		TQuery.shuffleArray = function(arr) {
+// 			var V = {
+// 				"temp": [],
+// 				"length": arr.length
+// 			};
+// 			for (var i = 0; i < V.length; i++) {
+// 				V.temp.push(arr[i]);
+// 			}
+// 			V.temp.sort(function() {
+// 				return Math.random() - 0.5;
+// 			});
+// 			return V.temp;
+// 		};
+
+// 		//获取对象的长度
+// 		TQuery.sizeof = function(obj) {
+// 			var V = {
+// 				"temp": [],
+// 				"length": 0
+// 			};
+// 			for (var attr in obj) {
+// 				V.length++;
+// 			}
+// 			return V.length;
+// 		};
+// 		//获取浏览器信息
+// 		var ua = navigator.userAgent;
+// 		TQuery.browser = function() {
+// 			var name = null;
+// 			var vision = null;
+// 			var content = null;
+// 			//IE
+// 			if( /msie|Trident/img.test(ua) ){
+// 				name = "ie";
+// 				content = ua.match( /MSIE\s\d+\.\d/img );
+// 				if( content===null || typeof content === "undefined" ){
+// 					vision = 11;//IE11
+// 				}else{
+// 					vision = content[0].split(" ")[1];
+// 				}
+// 			}
+// 			//webkit
+// 			else if(/webkit/img.test(ua)){
+// 				name = "chrome";
+// 				content = ua.match( /Chrome\/[\d\.]+/img );
+// 				vision = content[0].split("/")[1];
+// 			}
+// 			//moz
+// 			else if(/firefox/img.test(ua)){
+// 				name = "firefox";
+// 				content = ua.match( /Firefox\/[\d\.]+/img );
+// 				vision = content[0].split("/")[1];
+// 			}
+// 			//opera
+// 			else if(/opera|Presto/img.test(ua)){
+// 				name = "opera";
+// 				content = ua.match( /Opera\/[\d\.]+/img );
+// 				vision = content[0].split("/")[1];
+// 			}
+// 			return {
+// 				"name":name,
+// 				"vision":vision
+// 			};
+// 		};
+// 		TQuery.browser.webkit = function() {
+// 			var content = ua.match( /Chrome\/[\d\.]+/img );
+// 			if( /webkit/img.test(ua)===false ){
+// 				return false;//不是webkit
+// 			}else{
+// 				if( content===null && typeof content =="undefined" ){
+// 					return true;
+// 				}
+// 				return content[0].split("/")[1];//返回版本号
+// 			}
+// 		};
+// 		TQuery.browser.msie = function() {
+// 			var content = ua.match( /MSIE\s\d+\.\d/img );
+// 			if( !/msie|Trident/img.test(ua) ){
+// 				return false;//不是IE
+// 			}else{
+// 				if( content===null || typeof content === "undefined" ){
+// 					return 11;//IE11
+// 				}else{
+// 					TQuery.browser.vision = content[0].split(" ")[1];
+// 					return content[0].split(" ")[1];//IE11以下版本号
+
+// 				}
+// 			}
+// 		};
+// 		TQuery.browser.moz = function() {
+// 			var content = ua.match( /Firefox\/[\d\.]+/img );
+// 			if( !/firefox/img.test(ua) ){
+// 				return false;//不是moz
+// 			}else{
+// 				if( content===null && typeof content =="undefined" ){
+// 					return true;
+// 				}
+// 				return content[0].split("/")[1];//返回版本号
+// 			}
+// 		};
+// 		TQuery.browser.opera = function() {
+// 			var content = ua.match( /Opera\/[\d\.]+/img );
+// 			if( !/Opera/img.test(ua) ){
+// 				return false;//不是opera
+// 			}else{
+// 				if( content===null && typeof content =="undefined" ){
+// 					return true;
+// 				}
+// 				return content[0].split("/")[1];//返回版本号
+// 			}
+// 		};
+// 		//合并对象
+// 		TQuery.merge = function() {
+// 			//合并json
+// 			if (TQuery.type.isObject(arguments[0])) {
+// 				var object = new Object({});
+// 				for (var i = 0; i < arguments.length; i++) {
+// 					for (var key in arguments[i]) {
+// 						if (typeof object[key] == "undefined") { //默认不覆盖
+// 							object[key] = arguments[i][key];
+// 						}
+// 					}
+// 				}
+// 				return object;
+// 			}
+// 			//合并数组
+// 			else if (TQuery.type.isArray(arguments[0])) {
+// 				var newArray = [];
+// 				for (var k = 0; k < arguments.length; k++) {
+// 					newArray = newArray.concat(arguments[k]);
+// 				}
+// 				return newArray;
+// 			}
+// 		};
+
+// 		//遍历对象
+// 		TQuery.map = function(obj, fn) {
+// 			var temps = [],
+// 				returnValue;
+// 			if (this.type.isArray(obj)) {
+
+// 				for (var i = 0; i < obj.length; i++) {
+// 					returnValue = fn.call(obj, obj[i], i);
+// 					if (returnValue && returnValue !== "undefined" || returnValue !== null) {
+// 						temps.push(returnValue);
+// 					}
+// 				}
+// 			} else if (this.type.isObject(obj)) {
+// 				for (var key in obj) {
+// 					returnValue = fn.call(obj, key, obj[key]);
+// 					if (returnValue && returnValue !== "undefined" || returnValue !== null) {
+// 						temps.push(returnValue);
+// 					}
+// 				}
+// 			}
+// 			return temps;
+// 		};
+// 		//转换JSON
+// 		TQuery.parseJSON = function(str, compatibility) {
+// 			return (compatibility && compatibility === true) ? (new Function("return " + str))() : JSON.parse(str);
+// 		};
+// 		//插件入口
+// 		TQuery.extend = TQuery.fn.extend = function(object) {
+// 			for( var name in object ){
+// 				if( TQuery.isUndefined(TQuery.prototype[name]) ){
+// 					TQuery.fn[name] = TQuery.prototype[name] = object[name];
+// 				}
+// 			}
+// 			return this;
+// 		};
+
+// 		return TQuery;
+// 	})();
+
+
+// 	//公共函数
+// 	function addEvent(obj, type, fn) {
+// 		var ev = null;
+// 		return obj.addEventListener ?
+// 			obj.addEventListener(type, function(e) {
+// 				ev = win.event ? win.event : (e ? e : null);
+// 				ev.target = ev.target || ev.srcElement;
+// 				if (fn.call(obj, ev) === false) {
+// 					return stop.call(ev);
+// 				}
+// 			}, false) :
+// 			obj.attachEvent('on' + type, function(e) {
+// 				ev = win.event ? win.event : (e ? e : null);
+// 				ev.target = ev.target || ev.srcElement;
+// 				ev.preventDefault = function(){
+// 					if (typeof this.preventDefault !== "undefined") this.preventDefault(); //w3c标准
+// 					if (typeof this.returnValue !== "undefined") this.returnValue = false; //阻止默认事件，针对老版本IE
+// 				};
+// 				if (fn.call(obj, ev) === false) {
+// 					return stop.call(ev);
+// 				}
+// 			});
+// 	}
+// 	//禁止冒泡和默认事件。
+// 	function stop() {
+// 		if (typeof this.stopPropagation !== "undefined") this.stopPropagation(); //阻止冒泡，w3c标准
+// 		if (typeof this.cancelBubble !== "undefined") this.cancelBubble = true; //阻止冒泡,ie,firefox
+// 		if (typeof this.preventDefault !== "undefined") this.preventDefault(); //w3c标准
+// 		if (typeof this.returnValue !== "undefined") this.returnValue = false; //阻止默认事件，针对老版本IE
+// 		return false;
+// 	}
+
+// 	win.TQuery = win.$ = $;
+// })(window, document, undefined);
+
+
+// $.ajax({
+//   type: "POST",
+//   url: `https://chat.pipk.top/graphql`,
+//   dataType: "json",
+//   data:{
+//     query: `{
+//       search(query: "${name||'pengliheng'}", type: USER, first: 1) {
+//         edges {
+//           node {
+//             ... on User {
+//               avatarUrl login bio url createdAt name
+//               contributedRepositories(first: 100,orderBy: {field: CREATED_AT, direction: DESC}) {
+//                 totalCount
+//                 nodes{
+//                   nameWithOwner url
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }`,
+//   },
+//   success: function (data) {
+//     console.log(data);
+//   },
+//   error: function (error) {
+//     console.log(error);
+//   }
+// });
+
+$('svg').css('background', 'red').click(function (e) {
+  $('li').each(function (e) {
+    console.log(e);
+  });
+});
+},{"babel-polyfill":5}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -8006,7 +10190,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':52133/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':62053/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 

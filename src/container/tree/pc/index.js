@@ -3,15 +3,15 @@ import Dom from '../../../utils/dom';
 import Icon from '../../../container/icon/pc';
 
 const {
+  isMobile,
   isDomFunc,
   addArrProp,
-  isDomInPathFunc,
-  isIdInPathFunc,
-  domToggleAnimation,
-  coverDataToTree,
   composedPath,
+  isIdInPathFunc,
+  coverDataToTree,
+  isDomInPathFunc,
   tottleShowSelect,
-  isMobile,
+  domToggleAnimation,
 } = Dom;
 
 const selectBeforeFunc = (args) => {
@@ -130,12 +130,6 @@ const eventProxy = (args) => {
             });
             const listContainer = isListInPath.parentElement;
             listContainer.classList.toggle(styles.slideout);
-            // domToggleAnimation({
-            //   dom: listContainer,
-            //   animationDuration: '0.3s',
-            //   animationFillMode: 'forwards',
-            //   animationName: [styles.slidein, styles.slideout],
-            // });
           }
         }
       });
@@ -150,6 +144,11 @@ const eventProxy = (args) => {
             activeDom.classList.remove(`${styles.active}`);
           });
           isIdInPath.classList.toggle(`${styles.active}`);
+          if (document.querySelector(`.${styles.halfSelect}`)) {
+            document.querySelector(`.${styles.halfSelect}`).classList.remove(styles.halfSelect);
+          } else if (document.querySelector(`.${styles.allSelect}`)) {
+            document.querySelector(`.${styles.allSelect}`).classList.remove(styles.allSelect);
+          }
           tottleShowSelect({ dom: isIdInPath, styles });
         } else if (selectModel === 'checkbox') {
           // if select more

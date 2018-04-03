@@ -1,0 +1,28 @@
+@import './assets/common/@common.less';
+
+.pagination {
+    .info{
+        .index{
+            font-size: 13px;
+        }
+    }
+    
+    .page-list {
+
+        button {
+            display: none;
+            margin: 0 3px;
+        }
+        .active {
+            background-color: @daocheng-red;
+            color: #fff;
+            display: inline-flex;
+        }
+        .active + button {
+            display: inline-flex;
+        }
+        button + .active {
+            display: inline-flex;
+        }
+    }
+}

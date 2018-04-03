@@ -162,6 +162,13 @@ const tree = async (args) => {
         </div>
       </div>
     </div>`;
+  domFunc({
+    dom: document.querySelector('html'),
+    style: {
+      paddingRight: `${window.innerWidth - document.body.clientWidth}px`,
+      overflow: 'hidden',
+    },
+  });
   const tree = Tree({ data, beforeSelect, selectModel }).container;
   const treeDom = Tree({ data, beforeSelect, selectModel }).container;
   const treeStyles = Tree({ data, beforeSelect, selectModel }).styles;

@@ -2,9 +2,9 @@ import styles from './index.less';
 import Button from '../../../container/button/pc';
 import Icon from '../../../container/icon/pc';
 import Dom from '../../../utils/dom';
+import Pagination from '../../../container/Pagination/pc';
 
 const {
-  sleep,
   domFunc,
   addEvent,
   isDomFunc,
@@ -77,28 +77,21 @@ const putDataToSecTable = async ({ data, tableHead }) => {
   data.forEach((row, i) => {
     const secTable = document.querySelector('#sec-table-tb-container');
     const div = document.createElement('label');
-    div.className = styles.tb;
-
-
+    div.className = `${styles.tb} ${i > 19 ? styles.hide : ''}`;
+    div.dataset.index = i;
+    div.htmlFor = `select-second-${i}`;
     let html = `
       <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
     `;
-    // ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
-    // <span class="${styles.name}">${row.name}</span>
     addArrProp(tableHead).forEach((dom) => {
       const id = dom.dataset.field;
       if (id !== undefined && id !== 'id' && id !== 'user_id') {
         html += `<span class="${styles[id === 'name' ? 'name' : 'num']}" style="width:${dom.style.width}">${row[id]}</span>`;
       }
     });
-
     div.innerHTML = html;
-    div.htmlFor = `select-second-${i}`;
     div.id = `sec${i}`;
-    div.dataset.index = i;
     div.dataset.type = row.type;
-    div.style.color = '#000';
-    div.style.cursor = 'pointer';
     secTable.appendChild(div);
   });
 };
@@ -245,6 +238,31 @@ const thrTableObserver = () => {
   observer.observe(secTableContainer, config);
 };
 
+const paginationObserver = ({ paginationStyles, paginationContainer }) => {
+  // 监听分页当前被选中元素
+  const pagination = document.querySelector('#pagination');
+  const secTableContainer = document.querySelector('#sec-table-tb-container');
+  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+  const observer = new MutationObserver(() => {
+    // let activeDom = pagination.querySelector
+    let index = paginationContainer.querySelector(`.${paginationStyles.active}`).id.replace(/sec/, '');
+    index = Number(index);
+    addArrProp(secTableContainer.children).forEach((dom, i) => {
+      if (index * 20 <= i && i < (index + 1) * 20) {
+        dom.classList.remove(styles.hide);
+      } else {
+        dom.classList.add(styles.hide);
+      }
+    });
+  });
+  const config = {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true,
+  };
+  observer.observe(pagination, config);
+};
 
 const Table = async (args) => {
   const {
@@ -280,7 +298,7 @@ const Table = async (args) => {
                 </span>
               </div>
               <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
-              <span class="${styles.tbb}"></span>
+              <span class="${styles.tbb}" id="pagination"></span>
             </div>
             <div class="${styles['thr-table']}" id="thr-table">
               <h3 class="${styles.thh} ${styles.title}">当前已选中</h3>
@@ -303,7 +321,6 @@ const Table = async (args) => {
       </div>
     </div>
   `;
-
   domFunc({
     dom: document.querySelector('html'),
     style: {
@@ -324,7 +341,6 @@ const Table = async (args) => {
   });
   const tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
   addArrProp(tableHead).forEach((dom) => {
-    console.log(dom);
     const id = dom.dataset.field;
     if (!dom.querySelector('input') && id !== 'id' && id !== 'user_id') {
       mask.querySelector(`#sec-table .${styles.th}`).innerHTML += `
@@ -354,6 +370,18 @@ const Table = async (args) => {
   await eventProxy({
     event: 'keyup',
     domAddEvent: document.querySelector('#search'),
+  });
+
+  const pagination = Pagination({
+    data,
+    id: 'pagination',
+    defaultValue: '0',
+    limit: 20,
+  });
+  document.querySelector('#pagination').appendChild(pagination.container);
+  paginationObserver({
+    paginationStyles: pagination.styles,
+    paginationContainer: pagination.container,
   });
   if (ifselect) {
     selectBeforeFunc({

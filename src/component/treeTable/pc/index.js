@@ -2,18 +2,45 @@ import styles from './index.less';
 import Dom from '../../../utils/dom';
 import Icon from '../../../container/icon/pc';
 import Button from '../../../container/button/pc';
+import Pagination from '../../../container/Pagination/pc';
 import Tree from '../../../container/tree/pc';
 
 const {
   domFunc,
   isDomFunc,
   addArrProp,
-  showDomFunc,
   isDomInPathFunc,
   isNumeric,
   fetchData,
   createElementFromHTML,
 } = Dom;
+
+const paginationObserver = ({ paginationStyles, paginationContainer, limit }) => {
+  // 监听分页当前被选中元素
+  const pagination = document.querySelector(`#pagination .${paginationStyles['page-list']}`);
+  const secTableContainer = document.querySelector('#sec-table-tb-container');
+  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+  const observer = new MutationObserver(() => {
+    // let activeDom = pagination.querySelector
+    let index = paginationContainer.querySelector(`.${paginationStyles.active}`).id.replace(/sec/, '');
+    index = Number(index);
+    addArrProp(secTableContainer.children).forEach((dom, i) => {
+      if (index * limit <= i && i < (index + 1) * limit) {
+        dom.classList.remove(styles.hide);
+      } else {
+        dom.classList.add(styles.hide);
+      }
+    });
+  });
+  const config = {
+    subtree: true,
+    childList: true,
+    attributes: true,
+    characterData: true,
+  };
+  observer.observe(pagination, config);
+};
+
 
 const selectBeforeFunc = (args) => {
   const {
@@ -40,10 +67,12 @@ const btnAddevent = (args) => {
     if (dom.id === 'confirm') {
       dom.addEventListener('click', () => {
         let doms = document.querySelectorAll('#thr-table-tb-container label');
-        doms = Array.prototype.slice.call(doms);
+        doms = addArrProp(doms);
         doms = doms.map(activeDom => JSON.parse(activeDom.id));
         console.log('输出的数据：', doms);
-        doms.length > 0 && next(doms);
+        if (doms.length > 0) {
+          next(doms);
+        }
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -71,16 +100,16 @@ const btnAddevent = (args) => {
 const putDataToSecTable = async ({ data, tableHead, selectModel }) => {
   // 将数据传入data之前先清空 container
   let secTableInputs = document.querySelector('#sec-table-tb-container');
-  secTableInputs = Array.prototype.slice.call(secTableInputs);
+  secTableInputs = addArrProp(secTableInputs);
   secTableInputs.map(input => input.parentElement.remove());
   data.forEach((row, i) => {
     const secTable = document.querySelector('#sec-table-tb-container');
     const div = document.createElement('label');
-    div.className = styles.tb;
+    div.className = `${styles.tb} ${i > 19 ? styles.hide : ''}`;
     div.dataset.index = i;
     div.htmlFor = `select-second-${i}`;
     let html = `
-      <input class="${styles.select} ${styles[selectModel]}" type="${select_model}" name="select" id="select-second-${i}"/>
+      <input class="${styles.select} ${styles[selectModel]}" type="${selectModel}" name="select" id="select-second-${i}"/>
     `;
     addArrProp(tableHead).forEach((dom) => {
       const id = dom.dataset.field;
@@ -103,7 +132,7 @@ const eventProxy = (args) => {
     const handleAllEvent = (e) => {
       // filter second table
       let firstTableLists = document.querySelectorAll('.tree-container-list-div');
-      firstTableLists = Array.prototype.slice.call(firstTableLists);
+      firstTableLists = addArrProp(firstTableLists);
       firstTableLists.forEach((list) => {
         const isDomInPath = isDomFunc({
           path: e.path,
@@ -209,24 +238,35 @@ const secTableObserver = ({ treeStyles, pars }) => {
   const firTableContainer = document.querySelector('#tree-container');
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
-  const observer = new MutationObserver(async (mutations) => {
+  const observer = new MutationObserver(async () => {
     const activeDom = firTableContainer.querySelector(`.${treeStyles.active}`);
+    if (activeDom === null) return;
     const jsonData = JSON.parse(activeDom.dataset.json);
     const getData = await fetchData({
       url: pars.parame.detailUrl,
-      data: `&${pars.parame.parame}=${jsonData.id}`,
+      data: `&${pars.parame.parame}=${jsonData.id}&limit=10000`,
       header: {
         method: 'POST',
         credentials: 'include',
       },
     });
-    const index = activeDom.dataset.type;
     let allDom = secTableContainer.querySelectorAll('input');
     allDom = addArrProp(allDom).map(dom => dom.parentElement);
     let showDom = secTableContainer.querySelectorAll('label');
-
     showDom = getData.rows.map(arr => allDom.filter(dom => JSON.parse(dom.dataset.json).id === arr.id)[0]);
-    // console.log(showDom);
+    const pagination = Pagination({
+      data: getData.rows,
+      id: 'pagination',
+      defaultValue: '0',
+      limit: 10000,
+    });
+    document.querySelector('#pagination').innerHTML = '';
+    document.querySelector('#pagination').appendChild(pagination.container);
+    paginationObserver({
+      paginationStyles: pagination.styles,
+      paginationContainer: pagination.container,
+      limit: 10000,
+    });
 
 
     allDom.forEach((dom) => {
@@ -239,12 +279,6 @@ const secTableObserver = ({ treeStyles, pars }) => {
       }
       dom.classList.remove(styles.hide);
     });
-
-
-    // showDomFunc({
-    //   allDom,
-    //   showDom,
-    // });
   });
   // 配置观察选项:
   const config = {
@@ -289,7 +323,6 @@ const thrTableObserver = () => {
   observer.observe(secTableContainer, config);
 };
 
-
 const treeTable = async (args) => {
   const {
     data,
@@ -321,15 +354,14 @@ const treeTable = async (args) => {
               </span>
               <div class="${styles.th}">
                 <span class="${styles.select}">
-                  ${select_model === 'checkbox' ? `
+                  ${selectModel === 'checkbox' ? `
                     <input id="select-all" type="checkbox"/> 
                     <label for="select-all">全选</label>
                   ` : ''}
                 </span>
               </div>
               <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
-              <span class="${styles.tbb}">
-              </span>
+              <span class="${styles.tbb}" id="pagination"></span>
             </div>
             <div class="${styles['thr-table']}" id="thr-table">
               <h3 class="${styles.thh} ${styles.title}">当前已选中</h3>
@@ -379,7 +411,9 @@ const treeTable = async (args) => {
   addArrProp(tableHead).forEach((dom) => {
     if (!dom.querySelector('input')) {
       mask.querySelector(`#sec-table .${styles.th}`).innerHTML += `
-        <span class="${styles.num}" style="width:${dom.style.width}">${dom.innerText}</span>
+        <span class="${styles.num}" style="width:${dom.style.width};${dom.innerText.replace(/\s/g, '') === '名称' ? 'flex:1' : ''};">
+          ${dom.innerText}
+        </span>
       `;
     }
   });
@@ -388,10 +422,9 @@ const treeTable = async (args) => {
     tableHead,
     selectModel,
   });
-  let btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
-  btns = Array.prototype.slice.call(btns);
+  const btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
   await btnAddevent({
-    btns, mask, data: data.content, next,
+    btns: addArrProp(btns), mask, data: data.content, next,
   });
   // 添加观察者
   await secTableObserver({ treeStyles, pars });
@@ -407,6 +440,20 @@ const treeTable = async (args) => {
     event: 'keyup',
     domAddEvent: document.querySelector('#search'),
   });
+
+  const pagination = Pagination({
+    data: data.content,
+    id: 'pagination',
+    defaultValue: '0',
+    limit: 20,
+  });
+  document.querySelector('#pagination').appendChild(pagination.container);
+  paginationObserver({
+    paginationStyles: pagination.styles,
+    paginationContainer: pagination.container,
+    limit: 20,
+  });
+
   if (ifselect) {
     selectBeforeFunc({
       beforeSelect,
