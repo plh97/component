@@ -67,7 +67,7 @@ const eventProxy = (args) => {
         treeDom.querySelector('#empty').click();
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
-      document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
+      addArrProp(document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`)).forEach((dom) => {
         const isTableList = isDomFunc({
           path, dom,
         });

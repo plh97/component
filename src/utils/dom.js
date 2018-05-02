@@ -21,7 +21,7 @@ const isDomInPathFunc = (args) => {
     path,
     selector,
   } = args;
-  for (let i = 0; i < path.length; i++) {
+  for (let i = 0; i < path.length; i += 1) {
     if (path[i] === document.querySelector(selector)) {
       return path[i];
     } else if (path[i] === document.body) {
@@ -35,7 +35,7 @@ const isIdInPathFunc = (args) => {
     path,
     id,
   } = args;
-  for (let i = 0; i < path.length; i++) {
+  for (let i = 0; i < path.length; i += 1) {
     if (path[i].id === id) {
       return path[i];
     } else if (path[i] === document.body) {
@@ -49,7 +49,7 @@ const isClassInPathFunc = (args) => {
     path,
     className,
   } = args;
-  for (let i = 0; i < path.length; i++) {
+  for (let i = 0; i < path.length; i += 1) {
     if (path[i].classList.contains(className)) {
       return path[i];
     } else if (path[i] === document.body) {
@@ -63,7 +63,7 @@ const isDomFunc = (args) => {
     path,
     dom,
   } = args;
-  for (let i = 0; i < path.length; i++) {
+  for (let i = 0; i < path.length; i += 1) {
     if (path[i] === dom) {
       return dom;
     } else if (path[i] === document.body) {
@@ -163,8 +163,8 @@ const getIndexLevelFunc = (data) => {
 };
 
 const coverDataToTree = (data) => {
-  if(!data[0].id){
-    return data
+  if (!data[0].id) {
+    return data;
   }
   const newData = sortBy(data, o => o.id);
   const lenDiff = newData.map(e => e.id.length);
@@ -266,28 +266,29 @@ const createElementFromHTML = (htmlString) => {
 };
 
 const fetchData = (args) => {
-  const { url, data,header } = args;
-  return new Promise((resolve,reject) => {
-    fetch(url+data,header)
+  const { url, data, header } = args;
+  return new Promise((resolve, reject) => {
+    fetch(url + data, header)
       .then(res => res.json())
       .then(json => resolve(json))
-      .catch(err => reject(err))
+      .catch(err => reject(err));
   });
 };
+
 const isMobile = () => {
-  var userAgentInfo = navigator.userAgent;
-  var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-  var flag = false;
-  for (var v = 0; v < Agents.length; v++) {
-      if (userAgentInfo.indexOf(Agents[v]) > 0) {
-          flag = true;
-          break;
-      }
+  const userAgentInfo = navigator.userAgent;
+  const Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
+  let flag = false;
+  for (let v = 0; v < Agents.length; v += 1) {
+    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+      flag = true;
+      break;
+    }
   }
   return flag;
-}
+};
 
-const Dom = {
+export default {
   domFunc,
   fetchData,
   sleep,
@@ -309,4 +310,3 @@ const Dom = {
   tottleShowSelect,
 };
 
-export default Dom;

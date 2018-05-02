@@ -62,6 +62,7 @@ const btnAddevent = (args) => {
     btns,
     mask,
     next,
+    rebackBtn,
   } = args;
   btns.forEach((dom) => {
     if (dom.id === 'confirm') {
@@ -73,6 +74,7 @@ const btnAddevent = (args) => {
         if (doms.length > 0) {
           next(doms);
         }
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -84,6 +86,7 @@ const btnAddevent = (args) => {
       });
     } else if (dom.id === 'return') {
       dom.addEventListener('click', () => {
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -130,12 +133,13 @@ const eventProxy = (args) => {
   const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`);
   if (event === 'click') {
     const handleAllEvent = (e) => {
+      const path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
       // filter second table
       let firstTableLists = document.querySelectorAll('.tree-container-list-div');
       firstTableLists = addArrProp(firstTableLists);
       firstTableLists.forEach((list) => {
         const isDomInPath = isDomFunc({
-          path: e.path,
+          path,
           dom: list,
         });
         if (isDomInPath) {
@@ -150,14 +154,21 @@ const eventProxy = (args) => {
       });
       // empty
       const isEmptyDom = isDomInPathFunc({
-        path: e.path,
+        path,
         selector: `.${styles['empty-btn']}`,
       });
       if (isEmptyDom) {
-        const inputs = document.querySelectorAll('#sec-table-tb-container input:checked');
-        inputs.forEach((input) => {
+        // const inputs = document.querySelectorAll('#sec-table-tb-container input:checked');
+        // inputs.forEach((input) => {
+        //   input.click();
+        // });
+        const input = document.querySelector('label[for="select-all"] input')
+        if(input.checked){
           input.click();
-        });
+        } else {
+          input.click();
+          input.click();
+        }
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
       document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
@@ -178,23 +189,23 @@ const eventProxy = (args) => {
   } else if (event === 'change') {
     // change 事件
     const handleAllEvent = (e) => {
+      const path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
       // selectAll
       const isSelectAllDom = isDomInPathFunc({
         path: e.path,
         selector: '#select-all',
       });
       if (isSelectAllDom) {
-        const inputs = isSelectAllDom.parentElement.parentElement.parentElement.querySelectorAll(`.${styles['tb-container']} .${styles.select}`);
-        inputs.forEach((input) => {
-          if (input.parentElement.style.display !== 'none') {
-            input.checked = e.target.checked;
-            input.dataset.checked = e.target.checked;
-          }
+        const labels = document.querySelectorAll(`#sec-table-tb-container label:not(.${styles.hide})`);
+        labels.forEach((label) => {
+          const input = label.querySelector('input');
+          input.checked = e.target.checked;
+          input.dataset.checked = e.target.checked;
         });
       }
       // 为第二个表格每一个列表添加点击事件，tb-container
       const isTableList = isDomFunc({
-        path: e.path,
+        path,
         dom: document.querySelector('#sec-table-tb-container'),
       });
       if (isTableList) {
@@ -206,17 +217,19 @@ const eventProxy = (args) => {
     const handleAllEvent = (e) => {
       const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
       const allList = document.querySelector('#sec-table-tb-container').children;
-      const filterList = addArrProp(allList).filter((list) => {
-        let keyValue;
-        let regex;
-        if (isNumeric(e.target.value)) {
-          keyValue = list.querySelector(`.${styles.num}`).innerText;
-          regex = new RegExp(`^${searchValue}`);
-        } else {
-          keyValue = list.querySelector(`.${styles.name}`).innerText;
-          regex = new RegExp(`${searchValue}`);
+      const filterList = addArrProp(allList).filter(list => {
+        // 双边帅选规则
+        if(!list.querySelector(`.${styles.num}`)){
+          // 至匹配名字
+          let nameValue = list.querySelector(`.${styles.name}`).innerText;
+          let nameRegex = new RegExp(`${searchValue}`);
+          return nameValue.match(nameRegex);
         }
-        return keyValue.match(regex);
+        let numValue = list.querySelector(`.${styles.num}`).innerText;
+        let numRegex = new RegExp(`^${searchValue}`);
+        let nameValue = list.querySelector(`.${styles.name}`).innerText;
+        let nameRegex = new RegExp(`${searchValue}`);
+        return nameValue.match(nameRegex) || numValue.match(numRegex);
       });
       addArrProp(allList).forEach((dom) => {
         dom.style.backgroundColor = '#fff';
@@ -238,7 +251,8 @@ const secTableObserver = ({ treeStyles, pars }) => {
   const firTableContainer = document.querySelector('#tree-container');
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
-  const observer = new MutationObserver(async () => {
+  const observer = new MutationObserver(async (mu) => {
+    // console.log('监听树的变化',mu);
     const activeDom = firTableContainer.querySelector(`.${treeStyles.active}`);
     if (activeDom === null) return;
     const jsonData = JSON.parse(activeDom.dataset.json);
@@ -329,6 +343,7 @@ const treeTable = async (args) => {
     next,
     beforeSelect,
     pars,
+    rebackBtn,
   } = args;
   window.select_model = args.select_model;
   window.selectModel = args.select_model;
@@ -353,12 +368,12 @@ const treeTable = async (args) => {
                 </span>
               </span>
               <div class="${styles.th}">
-                <span class="${styles.select}">
+                <label for="select-all" class="${styles.select}">
                   ${selectModel === 'checkbox' ? `
                     <input id="select-all" type="checkbox"/> 
-                    <label for="select-all">全选</label>
+                    <span>全选</span>
                   ` : ''}
-                </span>
+                </label>
               </div>
               <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
               <span class="${styles.tbb}" id="pagination"></span>
@@ -424,7 +439,7 @@ const treeTable = async (args) => {
   });
   const btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
   await btnAddevent({
-    btns: addArrProp(btns), mask, data: data.content, next,
+    btns: addArrProp(btns), mask, data: data.content, next, rebackBtn,
   });
   // 添加观察者
   await secTableObserver({ treeStyles, pars });

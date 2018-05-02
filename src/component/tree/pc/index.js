@@ -12,11 +12,13 @@ const {
   composedPath,
 } = Dom;
 
+
 const btnAddevent = (args) => {
   const {
     btns,
     mask,
     next,
+    rebackBtn,
   } = args;
   btns.forEach((dom) => {
     if (dom.id === 'confirm') {
@@ -26,6 +28,7 @@ const btnAddevent = (args) => {
         doms = doms.map(activeDom => JSON.parse(activeDom.id));
         console.log('输出的数据：', doms);
         next(doms);
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -37,6 +40,7 @@ const btnAddevent = (args) => {
       });
     } else if (dom.id === 'return') {
       dom.addEventListener('click', () => {
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -126,6 +130,7 @@ const tree = async (args) => {
     data,
     next,
     beforeSelect,
+    rebackBtn,
   } = args;
   const selectModel = args.select_model;
   console.log('拿到的数据：', data);
@@ -178,7 +183,7 @@ const tree = async (args) => {
   let btns = mask.querySelectorAll(`.${styles.tree} button`);
   btns = Array.prototype.slice.call(btns);
   await btnAddevent({
-    btns, mask, data: data.content, next,
+    btns, mask, data: data.content, next, rebackBtn,
   });
   // 添加观察者
   await thrTableObserver({ selectModel, treeStyles });

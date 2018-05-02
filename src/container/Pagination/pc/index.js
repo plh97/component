@@ -11,22 +11,32 @@ const {
 } = Dom;
 
 const refreshPageList = ({
-  buttons, currentDom, total, pages,
+  buttons, currentDom, total, pages, container,
 }) => {
-  const index = Number(currentDom.id.replace(/sec/, ''));
-  const indexInfo = document.querySelector(`.${styles.index}`);
+  let index;
+  if(currentDom === undefined){
+    index = 0;
+  } else {
+    index = Number(currentDom.id.replace(/sec/, ''));
+  }
+  console.log('index:',index);
+  const indexInfo = container.querySelector(`.${styles.index}`);
   buttons.forEach((dom, i) => {
     if (index - 2 < i && i < index + 2) {
       dom.style.display = 'inline-flex';
-    } else if (i < 2 || i > buttons.length - 2) {
+    } else if (i < 1 || i > buttons.length - 2) {
       dom.style.display = 'inline-flex';
     } else {
       dom.style.display = 'none';
     }
   });
-  indexInfo.innerHTML = `${(index * 20) + 1} - ${(index + 1) * 20 > total ? total : (index + 1) * 20}`;
 
-  const container = currentDom.parentElement.parentElement;
+  if(currentDom === undefined){
+    indexInfo.innerHTML = '0';
+  } else {
+    indexInfo.innerHTML = `${(index * 20) + 1} - ${(index + 1) * 20 > total ? total : (index + 1) * 20}`;
+  }
+
   if (pages < 4) return;
   if (index <= 2) {
     container.querySelector('#hide-prev').style.display = 'none';
@@ -68,6 +78,19 @@ const Pagination = (args) => {
   if (buttons[defaultValue]) {
     buttons[defaultValue].classList.add(styles.active);
   }
+  // 插入 ...
+  const prevHide = createElementFromHTML('<span id="hide-prev" style="display:none">...</span>');
+  const nextHide = createElementFromHTML(`<span id="hide-next" ${pages < 5 ? "style='display:none'" : ''}>...</span>`);
+  container.querySelector(`.${styles['page-list']}`).insertBefore(prevHide, buttons[2]);
+  container.querySelector(`.${styles['page-list']}`).insertBefore(nextHide, buttons[Arr.length - 2]);
+
+  refreshPageList({
+    buttons,
+    pages, container,
+    total: data.length,
+    currentDom: buttons[0],
+  });
+
   buttons.forEach((btn) => {
     btn.onclick = (e) => {
       container.querySelector(`.${styles['page-list']}`).dataset.version = Math.random();
@@ -75,16 +98,15 @@ const Pagination = (args) => {
       container.querySelector(`.${styles.active}`).classList.remove(styles.active);
       e.target.classList.toggle(styles.active);
       refreshPageList({
-        buttons, currentDom: e.target, total: data.length, pages,
+        pages, 
+        buttons, 
+        container,
+        total: data.length, 
+        currentDom: e.target, 
       });
       e.target.dataset.time = Math.random();
     };
   });
-  const prevHide = createElementFromHTML('<span id="hide-prev" style="display:none">...</span>');
-  const nextHide = createElementFromHTML(`<span id="hide-next" ${pages < 6 ? "style='display:none'" : ''}>...</span>`);
-
-  container.querySelector(`.${styles['page-list']}`).insertBefore(prevHide, buttons[2]);
-  container.querySelector(`.${styles['page-list']}`).insertBefore(nextHide, buttons[Arr.length - 2]);
 
   // 点击上一个元素
   container.querySelector('#prev').onclick = () => {
@@ -92,18 +114,23 @@ const Pagination = (args) => {
     container.querySelector(`.${styles['page-list']}`).dataset.version = Math.random();
     if ($(prevDom).is('button')) {
       container.querySelector(`.${styles.active}`).previousElementSibling.click();
-    } else {
+    } else if ($(prevDom.previousElementSibling).is('button')) {
       container.querySelector(`.${styles.active}`).previousElementSibling.previousElementSibling.click();
+    } else {
+      container.querySelector(`.${styles.active}`).previousElementSibling.previousElementSibling.previousElementSibling.click();
     }
   };
+
   // 点击下一个元素
   container.querySelector('#next').onclick = () => {
     const nextDom = container.querySelector(`.${styles.active}`).nextElementSibling;
     container.querySelector(`.${styles['page-list']}`).dataset.version = Math.random();
     if ($(nextDom).is('button')) {
       container.querySelector(`.${styles.active}`).nextElementSibling.click();
-    } else {
+    } else if ($(nextDom.nextElementSibling).is('button')) {
       container.querySelector(`.${styles.active}`).nextElementSibling.nextElementSibling.click();
+    } else {
+      container.querySelector(`.${styles.active}`).nextElementSibling.nextElementSibling.nextElementSibling.click();
     }
   };
   return { container, styles };

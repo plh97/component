@@ -36,6 +36,7 @@ const btnAddevent = (args) => {
     mask,
     data,
     next,
+    rebackBtn,
   } = args;
   btns.forEach((dom) => {
     if (dom.id === 'confirm') {
@@ -45,6 +46,7 @@ const btnAddevent = (args) => {
         doms = doms.map(activeDom => data[activeDom.parentElement.dataset.index]);
         console.log('输出的数据：', doms);
         next(doms);
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -56,6 +58,7 @@ const btnAddevent = (args) => {
       });
     } else if (dom.id === 'return') {
       dom.addEventListener('click', () => {
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -177,14 +180,18 @@ const eventProxy = (args) => {
       const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
       const allList = document.querySelector('#sec-table-tb-container').children;
       const filterList = addArrProp(allList).filter((list) => {
-        if (isNumeric(e.target.value)) {
-          var keyValue = list.querySelector(`.${styles.num}`).innerText;
-          var regex = new RegExp(`^${searchValue}`);
-        } else {
-          var keyValue = list.querySelector(`.${styles.name}`).innerText;
-          var regex = new RegExp(`${searchValue}`);
+        // 双边帅选规则
+        if(!list.querySelector(`.${styles.num}`)){
+          // 至匹配名字
+          let nameValue = list.querySelector(`.${styles.name}`).innerText;
+          let nameRegex = new RegExp(`${searchValue}`);
+          return nameValue.match(nameRegex);
         }
-        return keyValue.match(regex);
+        let numValue = list.querySelector(`.${styles.num}`).innerText;
+        let numRegex = new RegExp(`^${searchValue}`);
+        let nameValue = list.querySelector(`.${styles.name}`).innerText;
+        let nameRegex = new RegExp(`${searchValue}`);
+        return nameValue.match(nameRegex) || numValue.match(numRegex);
       });
       addArrProp(allList).forEach((dom) => {
         dom.style.display = 'none';
@@ -270,6 +277,7 @@ const Table = async (args) => {
     next,
     beforeSelect,
     pars,
+    rebackBtn,
   } = args;
   window.select_model = args.select_model;
   const ifselect = args.ifselect || true;
@@ -305,11 +313,13 @@ const Table = async (args) => {
               <div class="${styles.th}">
                 <span class="${styles.index}">序号</span>
                 <span class="${styles.name}">名称</span>
-                <span class="${styles['empty-btn']}" id="empty">
-                  ${Icon({ type: 'trash' })}
-                  清空
-                </span>
-              </div>
+                ${select_model === 'checkbox' ? `
+                    <span class="${styles['empty-btn']}" id="empty">
+                      ${Icon({ type: 'trash' })}
+                      清空
+                    </span>
+                  ` : ''}
+                </div>
               <div class="${styles['tb-container']}" id="thr-table-tb-container"></div>
               <span class="${styles.tbb}">
                 ${Button({ id: 'return', text: '返回', type: 'daocheng-cancel' }).outerHTML}&nbsp;&nbsp;
@@ -356,7 +366,7 @@ const Table = async (args) => {
   let btns = mask.querySelectorAll(`.${styles['component-table']} button`);
   btns = Array.prototype.slice.call(btns);
   await btnAddevent({
-    btns, mask, data, next,
+    btns, mask, data, next, rebackBtn,
   });
   // 添加观察者
   await thrTableObserver();

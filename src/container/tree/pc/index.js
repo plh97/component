@@ -1,18 +1,24 @@
+// package
+
+// local
 import styles from './index.less';
 import Dom from '../../../utils/dom';
 import Icon from '../../../container/icon/pc';
 
+// app
 const {
   isMobile,
   isDomFunc,
   addArrProp,
   composedPath,
   isIdInPathFunc,
+  createElementFromHTML,
   coverDataToTree,
   isDomInPathFunc,
   tottleShowSelect,
   domToggleAnimation,
 } = Dom;
+
 
 const selectBeforeFunc = (args) => {
   const {
@@ -29,7 +35,7 @@ const selectBeforeFunc = (args) => {
   });
 };
 
-const putDataToFirTable = async (args) => {
+const putDataToFirTable = (args) => {
   const {
     data,
     container,
@@ -37,28 +43,40 @@ const putDataToFirTable = async (args) => {
   } = args;
   data.forEach((row) => {
     const ol = document.createElement('ol');
-    const isChildren = Object.prototype.hasOwnProperty.call(row, 'children');
-    let typeId = () => {
-      return 
-    }
     const html = `
-      <li data-json='${JSON.stringify(row)}' id='tree-list-li' data-type="${row.code || row.id}">
+      <li data-select="checkbox" data-json='${JSON.stringify(row)}' id='tree-list-li' data-type="${row.code || row.id}">
         <span id="checkbox" class="${styles[selectModel]}"></span>
         <span class="${styles['text-container']}">${row.name}</span>
-        ${isChildren ? Icon({ type: 'unfold' }) : ''}
       </li>
     `;
     ol.id = 'tree-list-ol';
-    ol.innerHTML += html;
-    if (isChildren) {
-      putDataToFirTable({
-        data: row.children,
-        container: ol,
-        selectModel,
-      });
+    ol.dataset.id = row.id;
+    ol.dataset.pid = row.pId;
+    ol.appendChild(createElementFromHTML(html));
+    const parentDOM = container.querySelector(`[data-id="${row.pId}"]`);
+    // console.log(`id：${row.id}`);
+    // console.log(`pId：${row.pId}`);
+    // console.log(parentDOM);
+    // console.log(container);
+    // console.log('---------分割线------------');
+    if (parentDOM) {
+      // 如果找得到父节点，那就push
+      parentDOM.appendChild(ol);
+      // 同时给父节点的li元素里面添加$ ```Icon({ type: 'unfold' })``` 元素
+      if(
+        !parentDOM.children[0].querySelector('svg')
+      ){
+        parentDOM.children[0].appendChild(
+          createElementFromHTML(Icon({ type: 'unfold' }))
+        )
+        parentDOM.children[0].dataset.select = false;
+      }
+    } else {
+      // 如果找不到父节点，那他就是根节点
+      container.appendChild(ol);
     }
-    container.appendChild(ol);
   });
+  container.querySelectorAll('ol')
 };
 
 const eventProxy = (args) => {
@@ -126,7 +144,7 @@ const eventProxy = (args) => {
               dom,
               animationDuration: '0.3s',
               animationFillMode: 'forwards',
-              animationName: [styles.rotate90, styles['rotate-90'] ],
+              animationName: [styles.rotate90, styles['rotate-90']],
             });
             const listContainer = isListInPath.parentElement;
             listContainer.classList.toggle(styles.slideout);
@@ -227,14 +245,15 @@ const tree = (args) => {
   container.className = styles.tree;
   container.innerHTML = `
     <div class="${styles.all}" id="all">
-      ${selectModel === 'checkbox' ? `<span id="select-all-checkbox" class="${styles.checkbox}"></span>` : ""}
-      <span class="${styles['text-container']}">${isMobile()?corpName:"全部"}</span>
+      ${selectModel === 'checkbox' ? `<span id="select-all-checkbox" class="${styles.checkbox}"></span>` : ''}
+      <span class="${styles['text-container']}">${isMobile() ? corpName : '全部'}</span>
       <span class="empty" id="empty" style="display:none">清空</span>
     </div>
     <div class="${styles['tree-container']}" id='tree-container'></div>
   `;
   putDataToFirTable({
-    data: coverDataToTree(data),
+    // data: coverDataToTree(data),
+    data,
     container: container.children[1],
     selectModel,
   });

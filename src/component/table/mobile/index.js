@@ -1,7 +1,6 @@
 import styles from './index.less';
 import Dom from '../../../utils/dom';
 import Icon from '../../../container/icon/pc';
-import Button from '../../../container/button/pc';
 
 const {
   domFunc,
@@ -9,7 +8,6 @@ const {
   addArrProp,
   isIdInPathFunc,
   composedPath,
-  fetchData,
 } = Dom;
 
 const btnAddevent = (args) => {
@@ -70,7 +68,7 @@ const eventProxy = (args) => {
         thrTableContainer.innerHTML = '';
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
-      document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
+      addArrProp(document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`)).forEach((dom) => {
         const isTableList = isDomFunc({
           path, dom,
         });
@@ -103,7 +101,7 @@ const eventProxy = (args) => {
 
       // 为第二个表格每一个列表添加点击事件，tb-container
       const isTableList = isDomFunc({
-        path: e.path,
+        path,
         dom: document.querySelector('#sec-table-tb-container'),
       });
       if (isTableList) {
