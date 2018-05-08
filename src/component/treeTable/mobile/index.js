@@ -1,7 +1,7 @@
 import styles from './index.less';
 import Dom from '../../../utils/dom';
 import Icon from '../../../container/icon/pc';
-import Button from '../../../container/button/pc';
+// import Button from '../../../container/button/pc';
 import Tree from '../../../container/tree/pc';
 
 const {
@@ -54,11 +54,10 @@ const btnAddevent = (args) => {
 
 const eventProxy = (args) => {
   const {
-    event, selectModel, domAddEvent, treeDom,
+    event, selectModel, domAddEvent,
   } = args;
   if (event === 'click') {
     const handleAllEvent = (e) => {
-      const treeDom = document.querySelector(`.${styles.mask }`)
       const secTableContainer = document.querySelector('#sec-table-tb-container');
       const thrTableContainer = document.querySelector('#thr-table-tb-container');
       const path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
@@ -68,11 +67,11 @@ const eventProxy = (args) => {
         path,
       });
       if (isEmptyDom) {
-        secTableContainer.querySelectorAll(':checked').forEach(dom => dom.checked = false);
-        thrTableContainer.innerHTML = ``;
+        secTableContainer.querySelectorAll(':checked').forEach((dom) => { dom.checked = false });
+        thrTableContainer.innerHTML = '';
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
-      document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
+      addArrProp(document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`)).forEach((dom) => {
         const isTableList = isDomFunc({
           path, dom,
         });
@@ -96,38 +95,38 @@ const eventProxy = (args) => {
         id: 'show',
       });
       if (isTableContainer) {
-        bodyContainer.classList.remove(styles.hide)
+        bodyContainer.classList.remove(styles.hide);
       } else if (isShow) {
-        bodyContainer.classList.toggle(styles.hide)
-      }else {
-        bodyContainer.classList.add(styles.hide)
+        bodyContainer.classList.toggle(styles.hide);
+      } else {
+        bodyContainer.classList.add(styles.hide);
       }
       const isTreeShow = isIdInPathFunc({
         path,
         id: 'show-tree',
       });
       if (isTreeShow) {
-        document.querySelector(`.${styles.mask} #side`).style.display = 'flex'
+        document.querySelector(`.${styles.mask} #side`).style.display = 'flex';
       }
 
       // 为第二个表格每一个列表添加点击事件，tb-container
       const isTableList = isDomFunc({
-        path: e.path,
+        path,
         dom: document.querySelector('#sec-table-tb-container'),
       });
       if (isTableList) {
         isTableList.dataset.select = Math.random();
       }
-      // sync the num with 
+      // sync the num with
       setTimeout(() => {
-        document.querySelector(`.${styles.num} font`).innerHTML=document.querySelectorAll('#sec-table-tb-container > label > input:checked').length;
+        document.querySelector(`.${styles.num} font`).innerHTML = document.querySelectorAll('#sec-table-tb-container > label > input:checked').length;
       }, 5);
     };
     domAddEvent.addEventListener(event, handleAllEvent);
   }
 };
 
-const putDataToSecTable = async ({data , selectModel}) => {
+const putDataToSecTable = async ({ data, selectModel }) => {
   // 将数据传入data之前先清空 container
   let secTableInputs = document.querySelector('#sec-table-tb-container');
   secTableInputs = Array.prototype.slice.call(secTableInputs);
@@ -159,21 +158,21 @@ const secTableObserver = ({ treeStyles, pars, selectModel }) => {
   const secTable = document.querySelector('#sec-table');
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
-  const observer = new MutationObserver(async(mutations) => {
+  const observer = new MutationObserver(async () => {
     const activeDom = firTableContainer.querySelector(`.${treeStyles.active}`);
     const jsonData = JSON.parse(activeDom.dataset.json);
     const getData = await fetchData({
       url: pars.parame.detailUrl,
       data: `&${pars.parame.parame}=${jsonData.id}`,
       header: {
-        method:"POST",
-        credentials: 'include'
-      }
+        method: 'POST',
+        credentials: 'include',
+      },
     });
     console.log('pars', getData);
-    secTableContainer.innerHTML='';
-    secTable.style.display = "block";
-    let doms = getData.rows.map((data,i) => {
+    secTableContainer.innerHTML = '';
+    secTable.style.display = 'block';
+    const doms = getData.rows.map((data, i) => {
       const div = document.createElement('label');
       div.className = styles.tb;
       div.dataset.json = JSON.stringify(data);
@@ -188,7 +187,7 @@ const secTableObserver = ({ treeStyles, pars, selectModel }) => {
       div.style.color = '#000';
       div.style.cursor = 'pointer';
       return div;
-    })
+    });
     side.style.display = 'none';
     doms.forEach(dom => secTableContainer.appendChild(dom))
   });
@@ -202,13 +201,13 @@ const secTableObserver = ({ treeStyles, pars, selectModel }) => {
   observer.observe(firTableContainer, config);
 };
 
-const thrTableObserver = ({ treeStyles }) => {
+const thrTableObserver = () => {
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const thrTableContainer = document.querySelector('#thr-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
   const observer = new MutationObserver(() => {
     document.querySelector('#thr-table-tb-container').innerHTML = '';
-    addArrProp(secTableContainer.querySelectorAll(` input:checked`)).forEach((dom) => {
+    addArrProp(secTableContainer.querySelectorAll('input:checked')).forEach((dom) => {
       const jsonData = JSON.parse(dom.parentElement.dataset.json);
       const div = document.createElement('label');
       div.className = styles.tb;
@@ -233,12 +232,13 @@ const thrTableObserver = ({ treeStyles }) => {
 };
 
 
-const tree = async (args) => {
+const treeTable = async (args) => {
   const {
     data,
     next,
     beforeSelect,
     pars,
+    corpName
   } = args;
   const selectModel = args.select_model;
   // 表格 初始化的时候就显示
@@ -250,11 +250,13 @@ const tree = async (args) => {
   mask.className = styles.mask;
   mask.innerHTML = `
     <div class="${styles.tree}">
+
       <header class="${styles.header}">
         ${Icon({ type: '<', id: 'return' })}
         <span>请选择</span>
         <span class="${styles.right}"></span>
       </header>
+
       <div class="${styles.body}">
         <div class="${styles['body-side']}" id="side"></div>
         <div class="${styles['body-container']} ${styles.hide}">
@@ -278,10 +280,10 @@ const tree = async (args) => {
       <div class="${styles['sec-table']}" id="sec-table">
         <div class="${styles.th}">
           <span class="${styles.select}">
-            ${selectModel==='checkbox'?`
+            ${selectModel === 'checkbox' ? `
               <input id="select-all" type="checkbox"/> 
               <label for="select-all">全选</label>
-            `:``}
+            ` : ''}
           </span>
           <span class="${styles.name}">名称</span>
           <span class="${styles.btn}" id="show-tree">筛选</span>
@@ -303,7 +305,12 @@ const tree = async (args) => {
         <span class="${styles.confirm}" id="confirm">确认</span>
       </footer>
     </div>`;
-  const tree = Tree({ data: data.title, beforeSelect, selectModel: "radio" });
+  const tree = Tree({
+    data: data.title,
+    beforeSelect,
+    selectModel: 'radio',
+    corpName,
+  });
   const treeDom = tree.container;
   const treeStyles = tree.styles;
   mask.querySelector('#side').appendChild(treeDom);
@@ -312,15 +319,20 @@ const tree = async (args) => {
   await btnAddevent({
     btns: [
       document.querySelector('#return'),
-      document.querySelector('#confirm')
-    ], mask, data: data.content, next,
+      document.querySelector('#confirm'),
+    ],
+    mask,
+    data: data.content,
+    next,
   });
   await putDataToSecTable({
     data: data.content,
-    selectModel
+    selectModel,
   });
   // 添加观察者
-  await secTableObserver({ treeStyles, pars, selectModel });
+  await secTableObserver({
+    treeStyles, pars, selectModel, corpName,
+  });
   // 添加观察者
   await thrTableObserver({ selectModel, treeStyles });
   // all event proxy
@@ -344,4 +356,4 @@ const tree = async (args) => {
   });
 };
 
-export default tree;
+export default treeTable;

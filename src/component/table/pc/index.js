@@ -2,9 +2,9 @@ import styles from './index.less';
 import Button from '../../../container/button/pc';
 import Icon from '../../../container/icon/pc';
 import Dom from '../../../utils/dom';
+import Pagination from '../../../container/Pagination/pc';
 
 const {
-  sleep,
   domFunc,
   addEvent,
   isDomFunc,
@@ -36,6 +36,7 @@ const btnAddevent = (args) => {
     mask,
     data,
     next,
+    rebackBtn,
   } = args;
   btns.forEach((dom) => {
     if (dom.id === 'confirm') {
@@ -45,6 +46,7 @@ const btnAddevent = (args) => {
         doms = doms.map(activeDom => data[activeDom.parentElement.dataset.index]);
         console.log('输出的数据：', doms);
         next(doms);
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -56,6 +58,7 @@ const btnAddevent = (args) => {
       });
     } else if (dom.id === 'return') {
       dom.addEventListener('click', () => {
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -69,7 +72,7 @@ const btnAddevent = (args) => {
   });
 };
 
-const putDataToSecTable = async ({data,tableHead}) => {
+const putDataToSecTable = async ({ data, tableHead }) => {
   // 将数据传入data之前先清空 container
   let secTableInputs = document.querySelector('#sec-table-tb-container');
   secTableInputs = Array.prototype.slice.call(secTableInputs);
@@ -77,29 +80,21 @@ const putDataToSecTable = async ({data,tableHead}) => {
   data.forEach((row, i) => {
     const secTable = document.querySelector('#sec-table-tb-container');
     const div = document.createElement('label');
-    div.className = styles.tb;
-
-
-
+    div.className = `${styles.tb} ${i > 19 ? styles.hide : ''}`;
+    div.dataset.index = i;
+    div.htmlFor = `select-second-${i}`;
     let html = `
       <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
     `;
-    // ${row.dept_code ? `<span class="${styles.num}">${row.dept_code}</span>` : ''}
-    // <span class="${styles.name}">${row.name}</span>
-    addArrProp(tableHead).forEach(dom=>{
+    addArrProp(tableHead).forEach((dom) => {
       const id = dom.dataset.field;
-      if (id!==undefined && id!=='id' && id!=='user_id') {
-        html += `<span class="${styles[id==="name"?'name':'num']}" style="width:${dom.style.width}">${row[id]}</span>`
+      if (id !== undefined && id !== 'id' && id !== 'user_id') {
+        html += `<span class="${styles[id === 'name' ? 'name' : 'num']}" style="width:${dom.style.width}">${row[id]}</span>`;
       }
-    })
-
+    });
     div.innerHTML = html;
-    div.htmlFor = `select-second-${i}`;
     div.id = `sec${i}`;
-    div.dataset.index = i;
     div.dataset.type = row.type;
-    div.style.color = '#000';
-    div.style.cursor = 'pointer';
     secTable.appendChild(div);
   });
 };
@@ -185,17 +180,30 @@ const eventProxy = (args) => {
       const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
       const allList = document.querySelector('#sec-table-tb-container').children;
       const filterList = addArrProp(allList).filter((list) => {
-        if (isNumeric(e.target.value)) {
-          var keyValue = list.querySelector(`.${styles.num}`).innerText;
-          var regex = new RegExp(`^${searchValue}`);
-        } else {
-          var keyValue = list.querySelector(`.${styles.name}`).innerText;
-          var regex = new RegExp(`${searchValue}`);
+        // 双边帅选规则
+        if(!list.querySelector(`.${styles.num}`)){
+          // 至匹配名字
+          let nameValue = list.querySelector(`.${styles.name}`).innerText;
+          let nameRegex = new RegExp(`${searchValue}`);
+          return nameValue.match(nameRegex);
         }
-        return keyValue.match(regex);
+        let numValue = list.querySelector(`.${styles.num}`).innerText;
+        let numRegex = new RegExp(`^${searchValue}`);
+        let nameValue = list.querySelector(`.${styles.name}`).innerText;
+        let nameRegex = new RegExp(`${searchValue}`);
+        return nameValue.match(nameRegex) || numValue.match(numRegex);
       });
-      addArrProp(allList).forEach(dom => dom.style.display = 'none');
-      addArrProp(filterList).forEach(dom => dom.style.display = 'flex');
+      addArrProp(allList).forEach((dom) => {
+        dom.style.display = 'none';
+      });
+      addArrProp(filterList).forEach((dom, i) => {
+        if (i % 2 === 1) {
+          dom.style.backgroundColor = '#f9f9f9';
+        } else {
+          dom.style.backgroundColor = '#fff';
+        }
+        dom.style.display = 'flex';
+      });
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   }
@@ -237,6 +245,31 @@ const thrTableObserver = () => {
   observer.observe(secTableContainer, config);
 };
 
+const paginationObserver = ({ paginationStyles, paginationContainer }) => {
+  // 监听分页当前被选中元素
+  const pagination = document.querySelector('#pagination');
+  const secTableContainer = document.querySelector('#sec-table-tb-container');
+  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+  const observer = new MutationObserver(() => {
+    // let activeDom = pagination.querySelector
+    let index = paginationContainer.querySelector(`.${paginationStyles.active}`).id.replace(/sec/, '');
+    index = Number(index);
+    addArrProp(secTableContainer.children).forEach((dom, i) => {
+      if (index * 20 <= i && i < (index + 1) * 20) {
+        dom.classList.remove(styles.hide);
+      } else {
+        dom.classList.add(styles.hide);
+      }
+    });
+  });
+  const config = {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true,
+  };
+  observer.observe(pagination, config);
+};
 
 const Table = async (args) => {
   const {
@@ -244,6 +277,7 @@ const Table = async (args) => {
     next,
     beforeSelect,
     pars,
+    rebackBtn,
   } = args;
   window.select_model = args.select_model;
   const ifselect = args.ifselect || true;
@@ -272,18 +306,20 @@ const Table = async (args) => {
                 </span>
               </div>
               <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
-              <span class="${styles.tbb}"></span>
+              <span class="${styles.tbb}" id="pagination"></span>
             </div>
             <div class="${styles['thr-table']}" id="thr-table">
               <h3 class="${styles.thh} ${styles.title}">当前已选中</h3>
               <div class="${styles.th}">
                 <span class="${styles.index}">序号</span>
                 <span class="${styles.name}">名称</span>
-                <span class="${styles['empty-btn']}" id="empty">
-                  ${Icon({ type: 'trash' })}
-                  清空
-                </span>
-              </div>
+                ${select_model === 'checkbox' ? `
+                    <span class="${styles['empty-btn']}" id="empty">
+                      ${Icon({ type: 'trash' })}
+                      清空
+                    </span>
+                  ` : ''}
+                </div>
               <div class="${styles['tb-container']}" id="thr-table-tb-container"></div>
               <span class="${styles.tbb}">
                 ${Button({ id: 'return', text: '返回', type: 'daocheng-cancel' }).outerHTML}&nbsp;&nbsp;
@@ -295,7 +331,6 @@ const Table = async (args) => {
       </div>
     </div>
   `;
-
   domFunc({
     dom: document.querySelector('html'),
     style: {
@@ -306,33 +341,32 @@ const Table = async (args) => {
   document.body.appendChild(mask);
   // await sleep(300);
   const getTableHTML = await fetchData({
-    url:"https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/" + pars.tempid,
-    data: ``,
+    url: `https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/${pars.tempid}`,
+    data: '',
     header: {
-      method:"GET",
-      "Access-Control-Allow-Origin": '*',
+      method: 'GET',
+      'Access-Control-Allow-Origin': '*',
       mode: 'include',
-    }
+    },
   });
-  let tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
-  addArrProp(tableHead).forEach(dom => {
-    console.log(dom);
+  const tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
+  addArrProp(tableHead).forEach((dom) => {
     const id = dom.dataset.field;
-    if(!dom.querySelector('input') && id!=='id' && id!=='user_id'){
+    if (!dom.querySelector('input') && id !== 'id' && id !== 'user_id') {
       mask.querySelector(`#sec-table .${styles.th}`).innerHTML += `
         <span class="${styles.num}" style="width:${dom.style.width}">${dom.innerText}</span>
-      `
+      `;
     }
   });
 
   await putDataToSecTable({
-    data, 
-    tableHead
+    data,
+    tableHead,
   });
   let btns = mask.querySelectorAll(`.${styles['component-table']} button`);
   btns = Array.prototype.slice.call(btns);
   await btnAddevent({
-    btns, mask, data, next,
+    btns, mask, data, next, rebackBtn,
   });
   // 添加观察者
   await thrTableObserver();
@@ -346,6 +380,18 @@ const Table = async (args) => {
   await eventProxy({
     event: 'keyup',
     domAddEvent: document.querySelector('#search'),
+  });
+
+  const pagination = Pagination({
+    data,
+    id: 'pagination',
+    defaultValue: '0',
+    limit: 20,
+  });
+  document.querySelector('#pagination').appendChild(pagination.container);
+  paginationObserver({
+    paginationStyles: pagination.styles,
+    paginationContainer: pagination.container,
   });
   if (ifselect) {
     selectBeforeFunc({

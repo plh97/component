@@ -1,9 +1,5 @@
 // import 'babel-polyfill';
 // package
-// import 'vconsole/dist/vconsole.min.js'
-// import '../assets/vconsole.js'
-// var VConsole = require('vconsole/dist/vconsole.min.js');
-// var vConsole = new VConsole();
 
 
 // window.Component.pc.tree({

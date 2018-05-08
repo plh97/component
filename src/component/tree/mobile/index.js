@@ -67,7 +67,7 @@ const eventProxy = (args) => {
         treeDom.querySelector('#empty').click();
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
-      document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
+      addArrProp(document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`)).forEach((dom) => {
         const isTableList = isDomFunc({
           path, dom,
         });
@@ -151,9 +151,10 @@ const tree = async (args) => {
     data,
     next,
     beforeSelect,
+    corpName
   } = args;
   const selectModel = args.select_model;
-  console.log('tree拿到的数据', data);
+  console.log('tree 拿到的数据', data);
   window.top.dataa = data;
   const ifselect = args.ifselect || true;
   const mask = document.createElement('div');
@@ -196,7 +197,7 @@ const tree = async (args) => {
         <span class="${styles.confirm}" id="confirm">确认</span>
       </footer>
     </div>`;
-  const tree = Tree({ data, beforeSelect, selectModel });
+  const tree = Tree({ data, beforeSelect, selectModel,corpName });
   const treeDom = tree.container;
   const treeStyles = tree.styles;
   mask.querySelector('#side').appendChild(treeDom);

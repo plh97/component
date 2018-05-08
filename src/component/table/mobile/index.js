@@ -1,7 +1,6 @@
 import styles from './index.less';
 import Dom from '../../../utils/dom';
 import Icon from '../../../container/icon/pc';
-import Button from '../../../container/button/pc';
 
 const {
   domFunc,
@@ -9,7 +8,6 @@ const {
   addArrProp,
   isIdInPathFunc,
   composedPath,
-  fetchData,
 } = Dom;
 
 const btnAddevent = (args) => {
@@ -67,10 +65,10 @@ const eventProxy = (args) => {
       });
       if (isEmptyDom) {
         secTableContainer.querySelectorAll(':checked').forEach(dom => dom.checked = false);
-        thrTableContainer.innerHTML = ``;
+        thrTableContainer.innerHTML = '';
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
-      document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
+      addArrProp(document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`)).forEach((dom) => {
         const isTableList = isDomFunc({
           path, dom,
         });
@@ -94,31 +92,31 @@ const eventProxy = (args) => {
         id: 'show',
       });
       if (isTableContainer) {
-        bodyContainer.classList.remove(styles.hide)
+        bodyContainer.classList.remove(styles.hide);
       } else if (isShow) {
-        bodyContainer.classList.toggle(styles.hide)
-      }else {
-        bodyContainer.classList.add(styles.hide)
+        bodyContainer.classList.toggle(styles.hide);
+      } else {
+        bodyContainer.classList.add(styles.hide);
       }
 
       // 为第二个表格每一个列表添加点击事件，tb-container
       const isTableList = isDomFunc({
-        path: e.path,
+        path,
         dom: document.querySelector('#sec-table-tb-container'),
       });
       if (isTableList) {
         isTableList.dataset.select = Math.random();
       }
-      // sync the num with 
+      // sync the num with
       setTimeout(() => {
-        document.querySelector(`.${styles.num} font`).innerHTML=document.querySelectorAll('#sec-table-tb-container > label > input:checked').length;
+        document.querySelector(`.${styles.num} font`).innerHTML = document.querySelectorAll('#sec-table-tb-container > label > input:checked').length;
       }, 5);
     };
     domAddEvent.addEventListener(event, handleAllEvent);
   }
 };
 
-const putDataToSecTable = async ({data , selectModel}) => {
+const putDataToSecTable = async ({ data, selectModel }) => {
   // 将数据传入data之前先清空 container
   let secTableInputs = document.querySelector('#sec-table-tb-container');
   secTableInputs = Array.prototype.slice.call(secTableInputs);
@@ -143,14 +141,13 @@ const putDataToSecTable = async ({data , selectModel}) => {
   });
 };
 
-
 const thrTableObserver = () => {
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const thrTableContainer = document.querySelector('#thr-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
   const observer = new MutationObserver(() => {
     document.querySelector('#thr-table-tb-container').innerHTML = '';
-    addArrProp(secTableContainer.querySelectorAll(` input:checked`)).forEach((dom) => {
+    addArrProp(secTableContainer.querySelectorAll(' input:checked')).forEach((dom) => {
       const jsonData = JSON.parse(dom.parentElement.dataset.json);
       const div = document.createElement('label');
       div.className = styles.tb;
@@ -219,13 +216,12 @@ const table = async (args) => {
       <div class="${styles['sec-table']}" id="sec-table">
         <div class="${styles.th}">
           <span class="${styles.select}">
-            ${selectModel==='checkbox'?`
+            ${selectModel === 'checkbox' ? `
               <input id="select-all" type="checkbox"/> 
               <label for="select-all">全选</label>
-            `:``}
+            ` : ''}
           </span>
           <span class="${styles.name}">名称</span>
-          <span class="${styles.btn}" id="show-tree">筛选</span>
         </div>
         <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
       </div>
@@ -249,12 +245,15 @@ const table = async (args) => {
   await btnAddevent({
     btns: [
       document.querySelector('#return'),
-      document.querySelector('#confirm')
-    ], mask, data: data.content, next,
+      document.querySelector('#confirm'),
+    ],
+    mask,
+    data,
+    next,
   });
   await putDataToSecTable({
-    data: data.content,
-    selectModel
+    data,
+    selectModel,
   });
   // 添加观察者
   await thrTableObserver({ selectModel });

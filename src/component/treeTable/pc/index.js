@@ -2,18 +2,45 @@ import styles from './index.less';
 import Dom from '../../../utils/dom';
 import Icon from '../../../container/icon/pc';
 import Button from '../../../container/button/pc';
+import Pagination from '../../../container/Pagination/pc';
 import Tree from '../../../container/tree/pc';
 
 const {
   domFunc,
   isDomFunc,
   addArrProp,
-  showDomFunc,
   isDomInPathFunc,
   isNumeric,
   fetchData,
   createElementFromHTML,
 } = Dom;
+
+const paginationObserver = ({ paginationStyles, paginationContainer, limit }) => {
+  // 监听分页当前被选中元素
+  const pagination = document.querySelector(`#pagination .${paginationStyles['page-list']}`);
+  const secTableContainer = document.querySelector('#sec-table-tb-container');
+  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+  const observer = new MutationObserver(() => {
+    // let activeDom = pagination.querySelector
+    let index = paginationContainer.querySelector(`.${paginationStyles.active}`).id.replace(/sec/, '');
+    index = Number(index);
+    addArrProp(secTableContainer.children).forEach((dom, i) => {
+      if (index * limit <= i && i < (index + 1) * limit) {
+        dom.classList.remove(styles.hide);
+      } else {
+        dom.classList.add(styles.hide);
+      }
+    });
+  });
+  const config = {
+    subtree: true,
+    childList: true,
+    attributes: true,
+    characterData: true,
+  };
+  observer.observe(pagination, config);
+};
+
 
 const selectBeforeFunc = (args) => {
   const {
@@ -35,15 +62,19 @@ const btnAddevent = (args) => {
     btns,
     mask,
     next,
+    rebackBtn,
   } = args;
   btns.forEach((dom) => {
     if (dom.id === 'confirm') {
       dom.addEventListener('click', () => {
         let doms = document.querySelectorAll('#thr-table-tb-container label');
-        doms = Array.prototype.slice.call(doms);
+        doms = addArrProp(doms);
         doms = doms.map(activeDom => JSON.parse(activeDom.id));
         console.log('输出的数据：', doms);
-        doms.length > 0 && next(doms);
+        if (doms.length > 0) {
+          next(doms);
+        }
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -55,6 +86,7 @@ const btnAddevent = (args) => {
       });
     } else if (dom.id === 'return') {
       dom.addEventListener('click', () => {
+        rebackBtn();
         mask.remove();
         domFunc({
           dom: document.querySelector('html'),
@@ -68,37 +100,30 @@ const btnAddevent = (args) => {
   });
 };
 
-
-const putDataToSecTable = async ({data,tableHead}) => {
+const putDataToSecTable = async ({ data, tableHead, selectModel }) => {
   // 将数据传入data之前先清空 container
   let secTableInputs = document.querySelector('#sec-table-tb-container');
-  secTableInputs = Array.prototype.slice.call(secTableInputs);
+  secTableInputs = addArrProp(secTableInputs);
   secTableInputs.map(input => input.parentElement.remove());
   data.forEach((row, i) => {
     const secTable = document.querySelector('#sec-table-tb-container');
     const div = document.createElement('label');
-    div.className = styles.tb;
+    div.className = `${styles.tb} ${i > 19 ? styles.hide : ''}`;
     div.dataset.index = i;
     div.htmlFor = `select-second-${i}`;
-
     let html = `
-      <input class="${styles.select}" type="${select_model}" name="select" id="select-second-${i}"/>
+      <input class="${styles.select} ${styles[selectModel]}" type="${selectModel}" name="select" id="select-second-${i}"/>
     `;
-
-    
-    addArrProp(tableHead).forEach(dom=>{
+    addArrProp(tableHead).forEach((dom) => {
       const id = dom.dataset.field;
-      if (id!==undefined) {
-        html += `<span class="${styles[id==="name"?'name':'num']}" style="width:${dom.style.width}">${row[id]}</span>`
+      if (id !== undefined) {
+        html += `<span class="${styles[id === 'name' ? 'name' : 'num']}" style="width:${dom.style.width}">${row[id]}</span>`;
       }
-    })
-
+    });
     div.innerHTML = html;
     div.id = `sec${i}`;
     div.dataset.json = JSON.stringify(row);
     div.dataset.type = row.type || row.goods_code || row.corp_code || row.id;
-    div.style.color = '#000';
-    div.style.cursor = 'pointer';
     secTable.appendChild(div);
   });
 };
@@ -108,12 +133,13 @@ const eventProxy = (args) => {
   const domAddEvent = args.domAddEvent || document.querySelector(`.${styles['component-mask']}`);
   if (event === 'click') {
     const handleAllEvent = (e) => {
+      const path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
       // filter second table
       let firstTableLists = document.querySelectorAll('.tree-container-list-div');
-      firstTableLists = Array.prototype.slice.call(firstTableLists);
+      firstTableLists = addArrProp(firstTableLists);
       firstTableLists.forEach((list) => {
         const isDomInPath = isDomFunc({
-          path: e.path,
+          path,
           dom: list,
         });
         if (isDomInPath) {
@@ -128,14 +154,21 @@ const eventProxy = (args) => {
       });
       // empty
       const isEmptyDom = isDomInPathFunc({
-        path: e.path,
+        path,
         selector: `.${styles['empty-btn']}`,
       });
       if (isEmptyDom) {
-        const inputs = document.querySelectorAll('#sec-table-tb-container input:checked');
-        inputs.forEach((input) => {
+        // const inputs = document.querySelectorAll('#sec-table-tb-container input:checked');
+        // inputs.forEach((input) => {
+        //   input.click();
+        // });
+        const input = document.querySelector('label[for="select-all"] input')
+        if(input.checked){
           input.click();
-        });
+        } else {
+          input.click();
+          input.click();
+        }
       }
       // 为第三个表格每一个列表添加点击事件, 就是点击第二个表格，由第二个表格触发第三个表格事件
       document.querySelectorAll(`#thr-table-tb-container .${styles.tb}`).forEach((dom) => {
@@ -156,23 +189,23 @@ const eventProxy = (args) => {
   } else if (event === 'change') {
     // change 事件
     const handleAllEvent = (e) => {
+      const path = e.path || (e.composedPath && e.composedPath()) || composedPath(e.target);
       // selectAll
       const isSelectAllDom = isDomInPathFunc({
         path: e.path,
         selector: '#select-all',
       });
       if (isSelectAllDom) {
-        const inputs = isSelectAllDom.parentElement.parentElement.parentElement.querySelectorAll(`.${styles['tb-container']} .${styles.select}`);
-        inputs.forEach((input) => {
-          if (input.parentElement.style.display !== 'none') {
-            input.checked = e.target.checked;
-            input.dataset.checked = e.target.checked;
-          }
+        const labels = document.querySelectorAll(`#sec-table-tb-container label:not(.${styles.hide})`);
+        labels.forEach((label) => {
+          const input = label.querySelector('input');
+          input.checked = e.target.checked;
+          input.dataset.checked = e.target.checked;
         });
       }
       // 为第二个表格每一个列表添加点击事件，tb-container
       const isTableList = isDomFunc({
-        path: e.path,
+        path,
         dom: document.querySelector('#sec-table-tb-container'),
       });
       if (isTableList) {
@@ -184,20 +217,30 @@ const eventProxy = (args) => {
     const handleAllEvent = (e) => {
       const searchValue = e.target.value.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
       const allList = document.querySelector('#sec-table-tb-container').children;
-      const filterList = addArrProp(allList).filter((list) => {
-        let keyValue;
-        let regex;
-        if (isNumeric(e.target.value)) {
-          keyValue = list.querySelector(`.${styles.num}`).innerText;
-          regex = new RegExp(`^${searchValue}`);
-        } else {
-          keyValue = list.querySelector(`.${styles.name}`).innerText;
-          regex = new RegExp(`${searchValue}`);
+      const filterList = addArrProp(allList).filter(list => {
+        // 双边帅选规则
+        if(!list.querySelector(`.${styles.num}`)){
+          // 至匹配名字
+          let nameValue = list.querySelector(`.${styles.name}`).innerText;
+          let nameRegex = new RegExp(`${searchValue}`);
+          return nameValue.match(nameRegex);
         }
-        return keyValue.match(regex);
+        let numValue = list.querySelector(`.${styles.num}`).innerText;
+        let numRegex = new RegExp(`^${searchValue}`);
+        let nameValue = list.querySelector(`.${styles.name}`).innerText;
+        let nameRegex = new RegExp(`${searchValue}`);
+        return nameValue.match(nameRegex) || numValue.match(numRegex);
       });
-      addArrProp(allList).forEach((dom) => { dom.style.display = 'none'; });
-      addArrProp(filterList).forEach((dom) => { dom.style.display = 'flex'; });
+      addArrProp(allList).forEach((dom) => {
+        dom.style.backgroundColor = '#fff';
+        dom.classList.add(styles.hide);
+      });
+      addArrProp(filterList).forEach((dom, i) => {
+        if (i % 2 === 1) {
+          dom.style.backgroundColor = '#f9f9f9';
+        }
+        dom.classList.remove(styles.hide);
+      });
     };
     domAddEvent.addEventListener(event, handleAllEvent, false);
   }
@@ -208,39 +251,47 @@ const secTableObserver = ({ treeStyles, pars }) => {
   const firTableContainer = document.querySelector('#tree-container');
   const secTableContainer = document.querySelector('#sec-table-tb-container');
   const MutationObserver = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver);
-  const observer = new MutationObserver(async(mutations) => {
+  const observer = new MutationObserver(async (mu) => {
+    // console.log('监听树的变化',mu);
     const activeDom = firTableContainer.querySelector(`.${treeStyles.active}`);
+    if (activeDom === null) return;
     const jsonData = JSON.parse(activeDom.dataset.json);
     const getData = await fetchData({
       url: pars.parame.detailUrl,
-      data: `&${pars.parame.parame}=${jsonData.id}`,
+      data: `&${pars.parame.parame}=${jsonData.id}&limit=10000`,
       header: {
-        method:"POST",
-        credentials: 'include'
-      }
+        method: 'POST',
+        credentials: 'include',
+      },
     });
-    // console.log('pars', getData);
-    const index = activeDom.dataset.type;
     let allDom = secTableContainer.querySelectorAll('input');
     allDom = addArrProp(allDom).map(dom => dom.parentElement);
     let showDom = secTableContainer.querySelectorAll('label');
-    // const regex = new RegExp(`^${index}`);
-    // showDom = addArrProp(showDom).filter(dom => {
-    //   // getData.forEach(arr=>{
-    //   //   dom.dataset.json === arr
-    //   // })
-    //   // dom.dataset.json === 
-    // });
-    showDom = getData.rows.map(arr=>{
-      return allDom.filter(dom=>{
-        // console.log(JSON.parse(dom.dataset.json),arr);
-        return JSON.parse(dom.dataset.json).id === arr.id;
-      })[0]
-    })
-    // console.log(showDom);
-    showDomFunc({
-      allDom,
-      showDom,
+    showDom = getData.rows.map(arr => allDom.filter(dom => JSON.parse(dom.dataset.json).id === arr.id)[0]);
+    const pagination = Pagination({
+      data: getData.rows,
+      id: 'pagination',
+      defaultValue: '0',
+      limit: 10000,
+    });
+    document.querySelector('#pagination').innerHTML = '';
+    document.querySelector('#pagination').appendChild(pagination.container);
+    paginationObserver({
+      paginationStyles: pagination.styles,
+      paginationContainer: pagination.container,
+      limit: 10000,
+    });
+
+
+    allDom.forEach((dom) => {
+      dom.style.backgroundColor = '#fff';
+      dom.classList.add(styles.hide);
+    });
+    showDom.forEach((dom, i) => {
+      if (i % 2 === 1) {
+        dom.style.backgroundColor = '#f9f9f9';
+      }
+      dom.classList.remove(styles.hide);
     });
   });
   // 配置观察选项:
@@ -274,8 +325,6 @@ const thrTableObserver = () => {
         <span class="${styles.empty}">☒</span>
       `;
       div.innerHTML = html;
-      // div.style.color = '#000';
-      div.style.cursor = 'pointer';
       thrTableContainer.appendChild(div);
     });
   });
@@ -288,13 +337,13 @@ const thrTableObserver = () => {
   observer.observe(secTableContainer, config);
 };
 
-
 const treeTable = async (args) => {
   const {
     data,
     next,
     beforeSelect,
     pars,
+    rebackBtn,
   } = args;
   window.select_model = args.select_model;
   window.selectModel = args.select_model;
@@ -319,16 +368,15 @@ const treeTable = async (args) => {
                 </span>
               </span>
               <div class="${styles.th}">
-                <span class="${styles.select}">
-                  ${select_model === 'checkbox' ? `
+                <label for="select-all" class="${styles.select}">
+                  ${selectModel === 'checkbox' ? `
                     <input id="select-all" type="checkbox"/> 
-                    <label for="select-all">全选</label>
+                    <span>全选</span>
                   ` : ''}
-                </span>
+                </label>
               </div>
               <form class="${styles['tb-container']}" id="sec-table-tb-container"></form>
-              <span class="${styles.tbb}">
-              </span>
+              <span class="${styles.tbb}" id="pagination"></span>
             </div>
             <div class="${styles['thr-table']}" id="thr-table">
               <h3 class="${styles.thh} ${styles.title}">当前已选中</h3>
@@ -352,17 +400,6 @@ const treeTable = async (args) => {
         </div>
       </div>
     </div>`;
-  // <span class="${styles.select}">
-  //   ${select_model === 'checkbox' ? `
-  //     <input id="select-all" type="checkbox"/> 
-  //     <label for="select-all">全选</label>
-  //   ` : ''}
-  // </span>
-  // ${data.content[0] ? (data.content[0].goods_code ? `<span class="${styles.num}">编号</span>` : '') : ''}
-  // <span class="${styles.name}">名称</span>
-  // ${data.content[0] ? (data.content[0].standard_name ? `<span class="${styles.num}">规格</span>` : '') : ''}
-  // ${data.content[0] ? (data.content[0].unit_name ? `<span class="${styles.num}">单位</span>` : '') : ''}
-  // ${data.content[0] ? (data.content[0].use_number ? `<span class="${styles.num}">可用数量</span>` : '') : ''}
   const treeComponent = Tree({ data: data.title, beforeSelect, selectModel: 'radio' });
   const treeDom = treeComponent.container;
   const treeStyles = treeComponent.styles;
@@ -377,31 +414,32 @@ const treeTable = async (args) => {
   document.body.appendChild(mask);
   // await sleep(300);
   const getTableHTML = await fetchData({
-    url:"https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/" + pars.tempid,
-    data: ``,
+    url: `https://www.kingubo.cn/frontend/api/pc/getSelectTemplate/${pars.tempid}`,
+    data: '',
     header: {
-      method:"GET",
-      "Access-Control-Allow-Origin": '*',
+      method: 'GET',
+      'Access-Control-Allow-Origin': '*',
       mode: 'include',
-    }
+    },
   });
-  let tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
-  addArrProp(tableHead).forEach(dom => {
-    console.log(dom);
-    if(!dom.querySelector('input')){
+  const tableHead = createElementFromHTML(getTableHTML.data).querySelectorAll('thead tr th');
+  addArrProp(tableHead).forEach((dom) => {
+    if (!dom.querySelector('input')) {
       mask.querySelector(`#sec-table .${styles.th}`).innerHTML += `
-        <span class="${styles.num}" style="width:${dom.style.width}">${dom.innerText}</span>
-      `
+        <span class="${styles.num}" style="width:${dom.style.width};${dom.innerText.replace(/\s/g, '') === '名称' ? 'flex:1' : ''};">
+          ${dom.innerText}
+        </span>
+      `;
     }
   });
   await putDataToSecTable({
     data: data.content,
-    tableHead
+    tableHead,
+    selectModel,
   });
-  let btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
-  btns = Array.prototype.slice.call(btns);
+  const btns = mask.querySelectorAll(`.${styles['component-treeTable']} button`);
   await btnAddevent({
-    btns, mask, data: data.content, next,
+    btns: addArrProp(btns), mask, data: data.content, next, rebackBtn,
   });
   // 添加观察者
   await secTableObserver({ treeStyles, pars });
@@ -417,6 +455,20 @@ const treeTable = async (args) => {
     event: 'keyup',
     domAddEvent: document.querySelector('#search'),
   });
+
+  const pagination = Pagination({
+    data: data.content,
+    id: 'pagination',
+    defaultValue: '0',
+    limit: 20,
+  });
+  document.querySelector('#pagination').appendChild(pagination.container);
+  paginationObserver({
+    paginationStyles: pagination.styles,
+    paginationContainer: pagination.container,
+    limit: 20,
+  });
+
   if (ifselect) {
     selectBeforeFunc({
       beforeSelect,

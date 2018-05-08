@@ -8,7 +8,8 @@
     background: #fff;
     display: flex;
     position: fixed;
-    z-index: 50;
+    z-index: 19891016;
+    // z-index: 50;
     align-items: center;
     justify-content: center;
     animation: mask-show 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -79,7 +80,8 @@
                                 color: #333;
                                 flex: 0 1 100px;
                             }
-                            .name{
+                            .name {
+                                font-size: 14px;
                                 color: #333;
                                 flex: 1 0 auto;
                             }
@@ -96,7 +98,7 @@
                                 }
                             }
                             .empty {
-                                margin: 0 25px;
+                                margin: 0 15px;
                                 font-size: 31px;
                                 color: @daocheng-red;
                             }
@@ -132,6 +134,12 @@
                             label {
                                 margin-bottom: 0;
                                 font-weight: 500;
+                            }
+                            label:nth-child(even) {
+                                background-color: #f9f9f9;
+                            }
+                            label:nth-child(odd) {
+                                background-color: #fff;
                             }
                             .index:before {
                                 color: #999;
